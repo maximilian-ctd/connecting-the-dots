@@ -1,0 +1,246 @@
+---
+// CaseStudy-Komponente für ConnectingTheDots
+// Success Story - Exakt nach Original Design
+---
+
+<section id="case-study" class="bg-white py-20 px-4 relative overflow-hidden">
+  <!-- Subtle connecting dots background -->
+  <div class="absolute inset-0 opacity-15">
+    <!-- ConnectingDots Hintergrund-Effekt -->
+  </div>
+
+  <div class="max-w-7xl mx-auto relative z-10">
+    <div class="text-center mb-16">
+      <h2 
+        id="case-study-title"
+        class="text-3xl lg:text-4xl mb-6 opacity-0"
+      >
+        Success Story: IT Service Launch
+      </h2>
+      <p 
+        id="case-study-subtitle"
+        class="text-lg text-muted-foreground max-w-2xl mx-auto opacity-0"
+      >
+        IT service company validates new offering in DACH region.
+      </p>
+    </div>
+    
+    <div class="grid lg:grid-cols-2 gap-12 items-center">
+      <!-- Left Side: Content -->
+      <div id="case-study-content" class="space-y-8 opacity-0">
+        <div class="space-y-6">
+          <h3 class="text-2xl">
+            From Service Idea to Partner Success
+          </h3>
+          <p class="text-muted-foreground leading-relaxed">
+            We validated market demand for the new IT service in DACH region and secured a key partner generating significant ARR.
+          </p>
+        </div>
+        
+        <div class="grid grid-cols-3 gap-6">
+          <!-- KPI 1: Discovery Calls -->
+          <div class="kpi-card opacity-0" data-index="0">
+            <div class="border-0 bg-secondary rounded-xl hover:bg-accent/5 transition-colors relative overflow-hidden h-full">
+              <div class="p-6 text-center relative z-10 flex flex-col items-center justify-center h-full min-h-[200px]">
+                <div class="icon-wrapper mb-3">
+                  <svg class="w-8 h-8 text-accent mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                  </svg>
+                </div>
+                <div class="kpi-value text-2xl mb-1">50</div>
+                <div class="text-sm text-muted-foreground mb-1">Discovery Calls</div>
+                <div class="text-xs text-accent">in 6 months</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- KPI 2: Qualified Sales Leads -->
+          <div class="kpi-card opacity-0" data-index="1">
+            <div class="border-0 bg-secondary rounded-xl hover:bg-accent/5 transition-colors relative overflow-hidden h-full">
+              <div class="p-6 text-center relative z-10 flex flex-col items-center justify-center h-full min-h-[200px]">
+                <div class="icon-wrapper mb-3">
+                  <svg class="w-8 h-8 text-accent mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
+                  </svg>
+                </div>
+                <div class="kpi-value text-2xl mb-1">12</div>
+                <div class="text-sm text-muted-foreground mb-1">Qualified Sales Leads</div>
+                <div class="text-xs text-accent">24% conversion</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- KPI 3: Customers with ARR -->
+          <div class="kpi-card opacity-0" data-index="2">
+            <div class="border-0 bg-secondary rounded-xl hover:bg-accent/5 transition-colors relative overflow-hidden h-full">
+              <div class="p-6 text-center relative z-10 flex flex-col items-center justify-center h-full min-h-[200px]">
+                <div class="icon-wrapper mb-3">
+                  <svg class="w-8 h-8 text-accent mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                  </svg>
+                </div>
+                <div class="kpi-value text-2xl mb-1">2 / €50k</div>
+                <div class="text-sm text-muted-foreground mb-1">Customers with ARR</div>
+                <div class="text-xs text-accent">generated</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Right Side: TourCont Logo -->
+      <div id="case-study-visual" class="opacity-0">
+        <div class="bg-secondary rounded-3xl p-8 relative overflow-hidden">
+          <!-- Corner dots -->
+          <div class="absolute top-4 left-4 w-2 h-2 bg-accent rounded-full"></div>
+          <div class="absolute top-4 right-4 w-2 h-2 bg-accent rounded-full"></div>
+          <div class="absolute bottom-4 left-4 w-2 h-2 bg-accent rounded-full"></div>
+          <div class="absolute bottom-4 right-4 w-2 h-2 bg-accent rounded-full"></div>
+
+          <img
+            src="/images/41144ac6829b4b8ce105a021e42e2c7135c8ab45.png"
+            alt="TourCont AG - IT service case study"
+            class="w-full h-80 object-contain rounded-2xl"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  function initCaseStudy() {
+    const title = document.getElementById('case-study-title');
+    const subtitle = document.getElementById('case-study-subtitle');
+    const content = document.getElementById('case-study-content');
+    const visual = document.getElementById('case-study-visual');
+    const kpiCards = document.querySelectorAll('.kpi-card');
+
+    // Fade in title and subtitle
+    if (title) {
+      setTimeout(() => {
+        title.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        title.style.opacity = '1';
+        title.style.transform = 'translateY(0)';
+      }, 100);
+    }
+
+    if (subtitle) {
+      setTimeout(() => {
+        subtitle.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        subtitle.style.opacity = '1';
+        subtitle.style.transform = 'translateY(0)';
+      }, 200);
+    }
+
+    // Intersection Observer für Content und Visual
+    const observerOptions = {
+      threshold: 0.2,
+      rootMargin: '-50px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const element = entry.target as HTMLElement;
+          
+          if (element.id === 'case-study-content') {
+            setTimeout(() => {
+              element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+              element.style.opacity = '1';
+              element.style.transform = 'translateX(0)';
+            }, 300);
+          } else if (element.id === 'case-study-visual') {
+            setTimeout(() => {
+              element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+              element.style.opacity = '1';
+              element.style.transform = 'translateX(0)';
+            }, 400);
+          }
+        }
+      });
+    }, observerOptions);
+
+    if (content) {
+      content.style.transform = 'translateX(-50px)';
+      observer.observe(content);
+    }
+
+    if (visual) {
+      visual.style.transform = 'translateX(50px)';
+      observer.observe(visual);
+    }
+
+    // Animate KPI cards
+    kpiCards.forEach((card, index) => {
+      const cardEl = card as HTMLElement;
+      const delay = index * 150;
+      
+      setTimeout(() => {
+        cardEl.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+        cardEl.style.opacity = '1';
+        cardEl.style.transform = 'scale(1)';
+      }, 600 + delay);
+
+      // Hover effects
+      cardEl.addEventListener('mouseenter', () => {
+        cardEl.style.transform = 'translateY(-5px) scale(1.05)';
+      });
+      cardEl.addEventListener('mouseleave', () => {
+        cardEl.style.transform = 'translateY(0) scale(1)';
+      });
+
+      // Icon rotation on hover
+      const iconWrapper = cardEl.querySelector('.icon-wrapper');
+      if (iconWrapper) {
+        cardEl.addEventListener('mouseenter', () => {
+          iconWrapper.style.transform = 'rotate(360deg)';
+        });
+        cardEl.addEventListener('mouseleave', () => {
+          iconWrapper.style.transform = 'rotate(0deg)';
+        });
+      }
+
+      // KPI value pulse animation
+      const kpiValue = cardEl.querySelector('.kpi-value');
+      if (kpiValue) {
+        setInterval(() => {
+          kpiValue.style.transform = 'scale(1)';
+          setTimeout(() => {
+            kpiValue.style.transition = 'transform 0.3s ease';
+            kpiValue.style.transform = 'scale(1.05)';
+            setTimeout(() => {
+              kpiValue.style.transform = 'scale(1)';
+            }, 300);
+          }, 100);
+        }, 2000 + index * 300);
+      }
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initCaseStudy);
+  } else {
+    initCaseStudy();
+  }
+</script>
+
+<style>
+  #case-study-title,
+  #case-study-subtitle {
+    transform: translateY(20px);
+  }
+
+  .kpi-card {
+    transform: scale(0.8);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .icon-wrapper {
+    transition: transform 0.6s ease;
+  }
+
+  .kpi-value {
+    transition: transform 0.3s ease;
+  }
+</style>

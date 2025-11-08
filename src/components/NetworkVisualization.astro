@@ -1,0 +1,442 @@
+---
+// NetworkVisualization-Komponente für Astro
+// Canvas-basierte Animation mit Partikeln - Exakt nach Original
+---
+
+<div class="relative w-full h-full">
+  <canvas
+    id="network-canvas"
+    class="absolute inset-0 w-full h-full"
+    style="opacity: 0;"
+  ></canvas>
+</div>
+
+<script>
+  function initNetworkVisualization() {
+    const canvas = document.getElementById('network-canvas') as HTMLCanvasElement;
+    
+    if (!canvas) return;
+
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    let animationFrameId: number;
+    let isAnimating = true;
+    let isReady = false;
+
+    // Update canvas size
+    function updateCanvasSize() {
+      try {
+        const rect = canvas.getBoundingClientRect();
+        if (rect.width === 0 || rect.height === 0) return;
+        
+        canvas.width = rect.width * window.devicePixelRatio;
+        canvas.height = rect.height * window.devicePixelRatio;
+        ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
+        isReady = true;
+        canvas.style.opacity = '1';
+      } catch (error) {
+        console.error('Canvas size update error:', error);
+      }
+    }
+
+    updateCanvasSize();
+    window.addEventListener('resize', updateCanvasSize);
+
+    // Define satellite nodes
+    interface Node {
+      x: number;
+      y: number;
+      radius: number;
+      angle: number;
+      distance: number;
+    }
+
+    interface Particle {
+      progress: number;
+      speed: number;
+      nodeIndex: number;
+      size: number;
+      isInterStakeholder?: boolean;
+      fromNode?: number;
+      toNode?: number;
+    }
+
+    const rect = canvas.getBoundingClientRect();
+    const centerX = rect.width > 1024 ? rect.width * 0.70 : rect.width * 0.60;
+    const centerY = rect.height / 2;
+    const baseDistance = rect.width > 1024 ? 150 : 120;
+
+    const satelliteNodes: Node[] = [
+      { x: 0, y: 0, radius: 18, angle: -135, distance: baseDistance * 1.2 },
+      { x: 0, y: 0, radius: 18, angle: -65, distance: baseDistance * 1.47 },
+      { x: 0, y: 0, radius: 18, angle: -5, distance: baseDistance * 1.3 },
+      { x: 0, y: 0, radius: 18, angle: 55, distance: baseDistance * 1.4 },
+      { x: 0, y: 0, radius: 18, angle: 115, distance: baseDistance * 1.23 },
+      { x: 0, y: 0, radius: 18, angle: 175, distance: baseDistance * 1.37 },
+      { x: 0, y: 0, radius: 18, angle: 235, distance: baseDistance * 1.3 }
+    ];
+
+    // Calculate positions
+    function updatePositions() {
+      const rect = canvas.getBoundingClientRect();
+      const centerX = rect.width > 1024 ? rect.width * 0.70 : rect.width * 0.60;
+      const centerY = rect.height / 2;
+      const baseDistance = rect.width > 1024 ? 150 : 120;
+
+      satelliteNodes.forEach((node, index) => {
+        const distances = [
+          baseDistance * 1.2,
+          baseDistance * 1.47,
+          baseDistance * 1.3,
+          baseDistance * 1.4,
+          baseDistance * 1.23,
+          baseDistance * 1.37,
+          baseDistance * 1.3
+        ];
+        node.distance = distances[index];
+        const angleRad = (node.angle * Math.PI) / 180;
+        node.x = centerX + Math.cos(angleRad) * node.distance;
+        node.y = centerY + Math.sin(angleRad) * node.distance;
+      });
+    }
+
+    updatePositions();
+
+    // Inter-stakeholder connections
+    const interStakeholderConnections = [
+      [0, 2], [1, 3], [2, 3], [0, 6],
+      [4, 5], [5, 6], [3, 4], [1, 2],
+    ];
+
+    // Create particles
+    const particles: Particle[] = [];
+    
+    // Particles for center-to-stakeholder connections
+    satelliteNodes.forEach((_, index) => {
+      const particleCount = 2 + Math.floor(Math.random() * 2);
+      for (let i = 0; i < particleCount; i++) {
+        particles.push({
+          progress: Math.random(),
+          speed: 0.003 + Math.random() * 0.004,
+          nodeIndex: index,
+          size: 3 + Math.random() * 3,
+          isInterStakeholder: false
+        });
+      }
+    });
+
+    // Particles for inter-stakeholder connections
+    interStakeholderConnections.forEach(([fromNode, toNode]) => {
+      const particleCount = 1 + Math.floor(Math.random() * 2);
+      for (let i = 0; i < particleCount; i++) {
+        particles.push({
+          progress: Math.random(),
+          speed: 0.002 + Math.random() * 0.003,
+          nodeIndex: 0,
+          size: 2 + Math.random() * 2,
+          isInterStakeholder: true,
+          fromNode,
+          toNode
+        });
+      }
+    });
+
+    // Get point on quadratic bezier curve
+    function getPointOnCurve(
+      fromX: number,
+      fromY: number,
+      controlX: number,
+      controlY: number,
+      toX: number,
+      toY: number,
+      t: number
+    ) {
+      const t1 = 1 - t;
+      const x = t1 * t1 * fromX + 2 * t1 * t * controlX + t * t * toX;
+      const y = t1 * t1 * fromY + 2 * t1 * t * controlY + t * t * toY;
+      return { x, y };
+    }
+
+    // Draw sphere
+    function drawSphere(x: number, y: number, radius: number, isCenter: boolean = false) {
+      try {
+        ctx.save();
+
+        // Shadow
+        ctx.shadowColor = 'rgba(0, 0, 0, 0.4)';
+        ctx.shadowBlur = 20;
+        ctx.shadowOffsetY = 15;
+
+        // Gradient
+        const gradient = ctx.createRadialGradient(
+          x - radius * 0.3,
+          y - radius * 0.3,
+          radius * 0.1,
+          x,
+          y,
+          radius
+        );
+        
+        if (isCenter) {
+          gradient.addColorStop(0, '#1e293b');
+          gradient.addColorStop(0.7, '#0f172a');
+          gradient.addColorStop(1, '#020617');
+        } else {
+          gradient.addColorStop(0, '#475569');
+          gradient.addColorStop(0.7, '#334155');
+          gradient.addColorStop(1, '#1e293b');
+        }
+
+        ctx.fillStyle = gradient;
+        ctx.beginPath();
+        ctx.arc(x, y, radius, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Highlight
+        const highlightGradient = ctx.createRadialGradient(
+          x - radius * 0.4,
+          y - radius * 0.4,
+          0,
+          x - radius * 0.4,
+          y - radius * 0.4,
+          radius * 0.5
+        );
+        highlightGradient.addColorStop(0, 'rgba(255, 255, 255, 0.4)');
+        highlightGradient.addColorStop(1, 'rgba(255, 255, 255, 0)');
+
+        ctx.fillStyle = highlightGradient;
+        ctx.beginPath();
+        ctx.arc(x, y, radius, 0, Math.PI * 2);
+        ctx.fill();
+
+        ctx.restore();
+      } catch (error) {
+        console.error('Draw sphere error:', error);
+      }
+    }
+
+    // Animation loop
+    let time = 0;
+    function animate() {
+      if (!isAnimating) return;
+
+      try {
+        time += 0.01;
+        const rect = canvas.getBoundingClientRect();
+        const width = rect.width;
+        const height = rect.height;
+        
+        updatePositions();
+        const centerX = width > 1024 ? width * 0.70 : width * 0.60;
+        const centerY = height / 2;
+
+        // Clear with gradient background
+        const bgGradient = ctx.createLinearGradient(0, 0, width, height);
+        bgGradient.addColorStop(0, '#f1f5f9');
+        bgGradient.addColorStop(1, '#e2e8f0');
+        ctx.fillStyle = bgGradient;
+        ctx.fillRect(0, 0, width, height);
+
+        // Draw inter-stakeholder connections
+        const interControlPoints: Array<{ controlX: number; controlY: number }> = [];
+        interStakeholderConnections.forEach(([fromIdx, toIdx]) => {
+          const fromNode = satelliteNodes[fromIdx];
+          const toNode = satelliteNodes[toIdx];
+          
+          ctx.save();
+          ctx.globalAlpha = 0.3;
+          
+          const dx = toNode.x - fromNode.x;
+          const dy = toNode.y - fromNode.y;
+          const midX = (fromNode.x + toNode.x) / 2;
+          const midY = (fromNode.y + toNode.y) / 2;
+          const offsetX = -dy * 0.1;
+          const offsetY = dx * 0.1;
+          const controlX = midX + offsetX;
+          const controlY = midY + offsetY;
+
+          ctx.beginPath();
+          ctx.moveTo(fromNode.x, fromNode.y);
+          ctx.quadraticCurveTo(controlX, controlY, toNode.x, toNode.y);
+          ctx.strokeStyle = '#475569';
+          ctx.lineWidth = 2;
+          ctx.lineCap = 'round';
+          ctx.stroke();
+
+          ctx.beginPath();
+          ctx.moveTo(fromNode.x, fromNode.y);
+          ctx.quadraticCurveTo(controlX, controlY, toNode.x, toNode.y);
+          ctx.strokeStyle = '#7be0b7';
+          ctx.lineWidth = 1;
+          ctx.stroke();
+
+          ctx.restore();
+          
+          interControlPoints.push({ controlX, controlY });
+        });
+
+        // Draw center-to-stakeholder connections
+        const curvatures = [0.15, -0.2, 0.25, -0.15, 0.18, 0.2, -0.18];
+        const controlPoints: Array<{ controlX: number; controlY: number }> = [];
+        
+        satelliteNodes.forEach((node, index) => {
+          const dx = node.x - centerX;
+          const dy = node.y - centerY;
+          const midX = (centerX + node.x) / 2;
+          const midY = (centerY + node.y) / 2;
+          const offsetX = -dy * curvatures[index];
+          const offsetY = dx * curvatures[index];
+          const controlX = midX + offsetX;
+          const controlY = midY + offsetY;
+
+          ctx.save();
+          ctx.shadowColor = 'rgba(11, 15, 20, 0.4)';
+          ctx.shadowBlur = 10;
+          ctx.shadowOffsetY = 4;
+
+          ctx.beginPath();
+          ctx.moveTo(centerX, centerY);
+          ctx.quadraticCurveTo(controlX, controlY, node.x, node.y);
+          ctx.strokeStyle = '#0b0f14';
+          ctx.lineWidth = 4;
+          ctx.lineCap = 'round';
+          ctx.stroke();
+
+          ctx.shadowColor = 'rgba(123, 224, 183, 0.5)';
+          ctx.shadowBlur = 8;
+
+          ctx.beginPath();
+          ctx.moveTo(centerX, centerY);
+          ctx.quadraticCurveTo(controlX, controlY, node.x, node.y);
+          ctx.strokeStyle = '#7be0b7';
+          ctx.lineWidth = 2.5;
+          ctx.stroke();
+
+          ctx.restore();
+          controlPoints.push({ controlX, controlY });
+        });
+
+        // Update and draw particles
+        particles.forEach((particle) => {
+          particle.progress += particle.speed;
+          if (particle.progress > 1) {
+            particle.progress = 0;
+          }
+
+          let pos;
+          
+          if (particle.isInterStakeholder && particle.fromNode !== undefined && particle.toNode !== undefined) {
+            const fromNode = satelliteNodes[particle.fromNode];
+            const toNode = satelliteNodes[particle.toNode];
+            const connectionIndex = interStakeholderConnections.findIndex(
+              ([f, t]) => (f === particle.fromNode && t === particle.toNode) || (f === particle.toNode && t === particle.fromNode)
+            );
+            const control = interControlPoints[connectionIndex];
+            
+            pos = getPointOnCurve(
+              fromNode.x,
+              fromNode.y,
+              control.controlX,
+              control.controlY,
+              toNode.x,
+              toNode.y,
+              particle.progress
+            );
+          } else {
+            const node = satelliteNodes[particle.nodeIndex];
+            const control = controlPoints[particle.nodeIndex];
+            pos = getPointOnCurve(
+              centerX,
+              centerY,
+              control.controlX,
+              control.controlY,
+              node.x,
+              node.y,
+              particle.progress
+            );
+          }
+
+          // Draw particle with glow
+          const gradient = ctx.createRadialGradient(
+            pos.x, pos.y, 0,
+            pos.x, pos.y, particle.size * 3
+          );
+          gradient.addColorStop(0, '#7be0b7');
+          gradient.addColorStop(0.3, 'rgba(123, 224, 183, 0.6)');
+          gradient.addColorStop(1, 'rgba(123, 224, 183, 0)');
+
+          ctx.fillStyle = gradient;
+          ctx.beginPath();
+          ctx.arc(pos.x, pos.y, particle.size * 3, 0, Math.PI * 2);
+          ctx.fill();
+
+          ctx.fillStyle = '#7be0b7';
+          ctx.beginPath();
+          ctx.arc(pos.x, pos.y, particle.size, 0, Math.PI * 2);
+          ctx.fill();
+        });
+
+        // Draw satellite spheres
+        satelliteNodes.forEach((node, index) => {
+          const pulse = Math.sin(time + index) * 2;
+          drawSphere(node.x, node.y, node.radius + pulse, false);
+        });
+
+        // Draw center sphere
+        const centerPulse = Math.sin(time * 2) * 3;
+        const centerRadius = width > 1024 ? 50 : 45;
+        drawSphere(centerX, centerY, centerRadius + centerPulse, true);
+
+        // Accent glow
+        const glowScale = width > 1024 ? 1 : 0.8;
+        const innerGlow = ctx.createRadialGradient(
+          centerX, centerY, 0,
+          centerX, centerY, 70 * glowScale
+        );
+        innerGlow.addColorStop(0, 'rgba(123, 224, 183, 0.5)');
+        innerGlow.addColorStop(0.5, 'rgba(123, 224, 183, 0.3)');
+        innerGlow.addColorStop(1, 'rgba(123, 224, 183, 0)');
+        ctx.fillStyle = innerGlow;
+        ctx.beginPath();
+        ctx.arc(centerX, centerY, 70 * glowScale, 0, Math.PI * 2);
+        ctx.fill();
+
+        const pulseIntensity = (Math.sin(time * 3) + 1) / 2;
+        const outerGlow = ctx.createRadialGradient(
+          centerX, centerY, 50 * glowScale,
+          centerX, centerY, (100 + centerPulse * 2) * glowScale
+        );
+        outerGlow.addColorStop(0, `rgba(123, 224, 183, ${0.4 * pulseIntensity})`);
+        outerGlow.addColorStop(0.5, `rgba(123, 224, 183, ${0.2 * pulseIntensity})`);
+        outerGlow.addColorStop(1, 'rgba(123, 224, 183, 0)');
+        ctx.fillStyle = outerGlow;
+        ctx.beginPath();
+        ctx.arc(centerX, centerY, (100 + centerPulse * 2) * glowScale, 0, Math.PI * 2);
+        ctx.fill();
+
+        animationFrameId = requestAnimationFrame(animate);
+      } catch (error) {
+        console.error('Animation error:', error);
+      }
+    }
+
+    animate();
+
+    // Cleanup
+    return () => {
+      isAnimating = false;
+      window.removeEventListener('resize', updateCanvasSize);
+      if (animationFrameId) {
+        cancelAnimationFrame(animationFrameId);
+      }
+    };
+  }
+
+  // Initialize when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initNetworkVisualization);
+  } else {
+    initNetworkVisualization();
+  }
+</script>

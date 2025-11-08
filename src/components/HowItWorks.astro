@@ -1,0 +1,328 @@
+---
+// HowItWorks-Komponente für ConnectingTheDots
+// Original Design: 3 Steps mit Video-Placeholder
+---
+
+<section id="how-it-works" class="bg-white py-20 px-4 relative overflow-hidden">
+  <!-- Subtle connecting dots background -->
+  <div class="absolute inset-0 opacity-20">
+    <!-- ConnectingDots Hintergrund-Effekt -->
+  </div>
+
+  <div class="max-w-7xl mx-auto relative z-10">
+    <div class="text-center mb-16">
+      <h2 
+        id="how-it-works-title"
+        class="text-3xl lg:text-4xl mb-6 opacity-0"
+      >
+        How It Works
+      </h2>
+      <p 
+        id="how-it-works-subtitle"
+        class="text-lg text-muted-foreground max-w-2xl mx-auto mb-12 opacity-0"
+      >
+        Rapid, data-driven validation in 3 steps.
+      </p>
+      
+      <!-- Video Placeholder -->
+      <div 
+        id="video-placeholder"
+        class="bg-secondary rounded-3xl p-8 mb-16 max-w-4xl mx-auto relative overflow-hidden group opacity-0"
+      >
+        <!-- Animated corner dots -->
+        <div 
+          id="corner-dot-1"
+          class="absolute top-4 left-4 w-2 h-2 bg-accent rounded-full"
+        ></div>
+        <div 
+          id="corner-dot-2"
+          class="absolute top-4 right-4 w-2 h-2 bg-accent rounded-full"
+        ></div>
+        <div 
+          id="corner-dot-3"
+          class="absolute bottom-4 left-4 w-2 h-2 bg-accent rounded-full"
+        ></div>
+        <div 
+          id="corner-dot-4"
+          class="absolute bottom-4 right-4 w-2 h-2 bg-accent rounded-full"
+        ></div>
+
+        <div class="aspect-video bg-primary/10 rounded-2xl flex items-center justify-center relative overflow-hidden cursor-pointer">
+          <!-- Subtle gradient overlay -->
+          <div class="absolute inset-0 bg-gradient-to-br from-accent/10 to-primary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+          
+          <div class="text-center relative z-10">
+            <div 
+              id="play-button"
+              class="w-20 h-20 bg-accent rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg shadow-accent/20"
+            >
+              <svg class="w-8 h-8 text-accent-foreground" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M8 5v14l11-7z"/>
+              </svg>
+            </div>
+            <p class="text-lg text-muted-foreground">
+              Video: See our methodology in action
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="grid md:grid-cols-3 gap-8 relative">
+      <!-- Connecting lines between steps -->
+      <div class="hidden md:block absolute top-10 left-1/4 right-1/4 h-1">
+        <svg id="connecting-line" class="w-full h-full" viewBox="0 0 100 10">
+          <line
+            x1="0"
+            y1="5"
+            x2="100"
+            y2="5"
+            stroke="#7be0b7"
+            stroke-width="2"
+            stroke-dasharray="5,5"
+            style="stroke-dashoffset: 100;"
+          />
+        </svg>
+      </div>
+
+      <!-- Step 1: Clarity -->
+      <div class="step-card opacity-0" data-index="0">
+        <div class="text-center relative">
+          <div class="step-content">
+            <div class="w-20 h-20 bg-accent rounded-2xl flex items-center justify-center mx-auto mb-6 relative shadow-lg shadow-accent/20">
+              <!-- Pulsing ring -->
+              <div class="pulsing-ring absolute inset-0 border-2 border-accent rounded-2xl"></div>
+              <svg class="w-10 h-10 text-accent-foreground relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+              </svg>
+            </div>
+
+            <h3 class="text-xl mb-4">1. Clarity</h3>
+            <p class="text-muted-foreground leading-relaxed">
+              Define hypotheses and key assumptions.
+            </p>
+
+            <!-- Arrow between steps -->
+            <div class="hidden md:block absolute top-10 -right-12 text-accent opacity-0 arrow-right">
+              <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 2: Test -->
+      <div class="step-card opacity-0" data-index="1">
+        <div class="text-center relative">
+          <div class="step-content">
+            <div class="w-20 h-20 bg-accent rounded-2xl flex items-center justify-center mx-auto mb-6 relative shadow-lg shadow-accent/20">
+              <!-- Pulsing ring -->
+              <div class="pulsing-ring absolute inset-0 border-2 border-accent rounded-2xl" style="animation-delay: 0.3s;"></div>
+              <svg class="w-10 h-10 text-accent-foreground relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+              </svg>
+            </div>
+
+            <h3 class="text-xl mb-4">2. Test</h3>
+            <p class="text-muted-foreground leading-relaxed">
+              Execute targeted market experiments.
+            </p>
+
+            <!-- Arrow between steps -->
+            <div class="hidden md:block absolute top-10 -right-12 text-accent opacity-0 arrow-right">
+              <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 3: Learn -->
+      <div class="step-card opacity-0" data-index="2">
+        <div class="text-center relative">
+          <div class="step-content">
+            <div class="w-20 h-20 bg-accent rounded-2xl flex items-center justify-center mx-auto mb-6 relative shadow-lg shadow-accent/20">
+              <!-- Pulsing ring -->
+              <div class="pulsing-ring absolute inset-0 border-2 border-accent rounded-2xl" style="animation-delay: 0.6s;"></div>
+              <svg class="w-10 h-10 text-accent-foreground relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+              </svg>
+            </div>
+
+            <h3 class="text-xl mb-4">3. Learn</h3>
+            <p class="text-muted-foreground leading-relaxed">
+              Analyze data and provide actionable insights.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  function initHowItWorks() {
+    // Fade in title and subtitle
+    const title = document.getElementById('how-it-works-title');
+    const subtitle = document.getElementById('how-it-works-subtitle');
+    const videoPlaceholder = document.getElementById('video-placeholder');
+    
+    if (title) {
+      setTimeout(() => {
+        title.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        title.style.opacity = '1';
+        title.style.transform = 'translateY(0)';
+      }, 100);
+    }
+
+    if (subtitle) {
+      setTimeout(() => {
+        subtitle.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        subtitle.style.opacity = '1';
+        subtitle.style.transform = 'translateY(0)';
+      }, 200);
+    }
+
+    if (videoPlaceholder) {
+      setTimeout(() => {
+        videoPlaceholder.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        videoPlaceholder.style.opacity = '1';
+        videoPlaceholder.style.transform = 'scale(1)';
+      }, 300);
+    }
+
+    // Animate corner dots
+    const cornerDots = ['corner-dot-1', 'corner-dot-2', 'corner-dot-3', 'corner-dot-4'];
+    const delays = [0, 0.5, 1, 1.5];
+    
+    cornerDots.forEach((id, index) => {
+      const dot = document.getElementById(id);
+      if (dot) {
+        setInterval(() => {
+          dot.style.transform = 'scale(1)';
+          dot.style.opacity = '0.5';
+          setTimeout(() => {
+            dot.style.transition = 'all 0.5s ease';
+            dot.style.transform = 'scale(1.5)';
+            dot.style.opacity = '1';
+            setTimeout(() => {
+              dot.style.transform = 'scale(1)';
+              dot.style.opacity = '0.5';
+            }, 500);
+          }, 100);
+        }, 2000 + delays[index] * 1000);
+      }
+    });
+
+    // Animate connecting line
+    const connectingLine = document.querySelector('#connecting-line line');
+    if (connectingLine) {
+      setTimeout(() => {
+        connectingLine.style.transition = 'stroke-dashoffset 1.5s ease';
+        connectingLine.style.strokeDashoffset = '0';
+      }, 800);
+    }
+
+    // Step cards animation
+    const stepCards = document.querySelectorAll('.step-card');
+    const observerOptions = {
+      threshold: 0.2,
+      rootMargin: '-100px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const card = entry.target as HTMLElement;
+          const index = parseInt(card.getAttribute('data-index') || '0');
+          const delay = index * 200 + 300;
+          
+          setTimeout(() => {
+            card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            card.style.opacity = '1';
+            card.style.transform = 'translateY(0)';
+            
+            // Show arrow
+            const arrow = card.querySelector('.arrow-right');
+            if (arrow) {
+              setTimeout(() => {
+                arrow.style.transition = 'opacity 0.5s ease';
+                arrow.style.opacity = '0.5';
+              }, 300);
+            }
+          }, delay);
+        }
+      });
+    }, observerOptions);
+
+    stepCards.forEach((card) => {
+      card.style.transform = 'translateY(50px)';
+      observer.observe(card);
+    });
+
+    // Hover effects
+    const playButton = document.getElementById('play-button');
+    if (playButton) {
+      playButton.addEventListener('mouseenter', () => {
+        playButton.style.transform = 'scale(1.1) rotate(5deg)';
+      });
+      playButton.addEventListener('mouseleave', () => {
+        playButton.style.transform = 'scale(1) rotate(0deg)';
+      });
+    }
+
+    stepCards.forEach((card) => {
+      const stepContent = card.querySelector('.step-content');
+      if (stepContent) {
+        card.addEventListener('mouseenter', () => {
+          stepContent.style.transform = 'translateY(-10px)';
+        });
+        card.addEventListener('mouseleave', () => {
+          stepContent.style.transform = 'translateY(0)';
+        });
+      }
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initHowItWorks);
+  } else {
+    initHowItWorks();
+  }
+</script>
+
+<style>
+  #how-it-works-title,
+  #how-it-works-subtitle {
+    transform: translateY(20px);
+  }
+
+  #video-placeholder {
+    transform: scale(0.95);
+  }
+
+  .step-content {
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .pulsing-ring {
+    animation: pulseRing 2s ease-in-out infinite;
+  }
+
+  @keyframes pulseRing {
+    0%, 100% {
+      transform: scale(1);
+      opacity: 0.5;
+    }
+    50% {
+      transform: scale(1.2);
+      opacity: 0;
+    }
+  }
+
+  .play-button {
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+</style>

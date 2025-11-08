@@ -1,0 +1,293 @@
+---
+// ServicesNetwork-Komponente für ConnectingTheDots
+// Original Design: 2 Cards nebeneinander
+---
+
+<section id="services" class="bg-secondary py-20 px-4 relative overflow-hidden">
+  <!-- Connecting dots background -->
+  <div class="absolute inset-0 opacity-25">
+    <!-- ConnectingDots Hintergrund-Effekt -->
+  </div>
+
+  <div class="max-w-7xl mx-auto relative z-10">
+    <div class="text-center mb-16">
+      <h2 class="text-3xl lg:text-4xl mb-6">
+        Our Services & Network
+      </h2>
+    </div>
+    
+    <div class="grid lg:grid-cols-2 gap-12">
+      <!-- Services Card -->
+      <div id="services-card" class="opacity-0">
+        <div class="bg-white border-0 shadow-sm rounded-2xl hover:shadow-xl transition-shadow">
+          <div class="pb-6 px-6 pt-6">
+            <h3 class="text-2xl font-semibold">What We Offer</h3>
+          </div>
+          <div class="px-6 pb-6 space-y-4">
+            <!-- Service 1: Lead Generation -->
+            <div 
+              class="service-item flex items-center gap-4 p-4 bg-secondary rounded-xl hover:bg-accent/10 transition-colors cursor-pointer group opacity-0"
+              data-index="0"
+            >
+              <div class="arrow-container">
+                <svg class="w-5 h-5 text-accent flex-shrink-0 group-hover:text-accent/80" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+                </svg>
+              </div>
+              <span class="text-lg">Lead Generation</span>
+            </div>
+
+            <!-- Service 2: Rapid Prototyping -->
+            <div 
+              class="service-item flex items-center gap-4 p-4 bg-secondary rounded-xl hover:bg-accent/10 transition-colors cursor-pointer group opacity-0"
+              data-index="1"
+            >
+              <div class="arrow-container">
+                <svg class="w-5 h-5 text-accent flex-shrink-0 group-hover:text-accent/80" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+                </svg>
+              </div>
+              <span class="text-lg">Rapid Prototyping</span>
+            </div>
+
+            <!-- Service 3: E-Commerce Setup -->
+            <div 
+              class="service-item flex items-center gap-4 p-4 bg-secondary rounded-xl hover:bg-accent/10 transition-colors cursor-pointer group opacity-0"
+              data-index="2"
+            >
+              <div class="arrow-container">
+                <svg class="w-5 h-5 text-accent flex-shrink-0 group-hover:text-accent/80" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+                </svg>
+              </div>
+              <span class="text-lg">E-Commerce Setup</span>
+            </div>
+
+            <!-- Service 4: Interim Management -->
+            <div 
+              class="service-item flex items-center gap-4 p-4 bg-secondary rounded-xl hover:bg-accent/10 transition-colors cursor-pointer group opacity-0"
+              data-index="3"
+            >
+              <div class="arrow-container">
+                <svg class="w-5 h-5 text-accent flex-shrink-0 group-hover:text-accent/80" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+                </svg>
+              </div>
+              <span class="text-lg">Interim Management</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Why ConnectingTheDots Card -->
+      <div id="benefits-card" class="opacity-0">
+        <div class="bg-white border-0 shadow-sm rounded-2xl hover:shadow-xl transition-shadow">
+          <div class="pb-6 px-6 pt-6">
+            <h3 class="text-2xl font-semibold">Why ConnectingTheDots?</h3>
+          </div>
+          <div class="px-6 pb-6 space-y-4">
+            <!-- Benefit 1 -->
+            <div 
+              class="benefit-item flex items-start gap-4 group opacity-0"
+              data-index="0"
+            >
+              <div class="check-icon">
+                <svg class="w-6 h-6 text-accent flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+              </div>
+              <span class="text-muted-foreground leading-relaxed">Market insights within weeks</span>
+            </div>
+
+            <!-- Benefit 2 -->
+            <div 
+              class="benefit-item flex items-start gap-4 group opacity-0"
+              data-index="1"
+            >
+              <div class="check-icon">
+                <svg class="w-6 h-6 text-accent flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+              </div>
+              <span class="text-muted-foreground leading-relaxed">Reduced risk through data</span>
+            </div>
+
+            <!-- Benefit 3 -->
+            <div 
+              class="benefit-item flex items-start gap-4 group opacity-0"
+              data-index="2"
+            >
+              <div class="check-icon">
+                <svg class="w-6 h-6 text-accent flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+              </div>
+              <span class="text-muted-foreground leading-relaxed">Expert network access</span>
+            </div>
+
+            <!-- Benefit 4 -->
+            <div 
+              class="benefit-item flex items-start gap-4 group opacity-0"
+              data-index="3"
+            >
+              <div class="check-icon">
+                <svg class="w-6 h-6 text-accent flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+              </div>
+              <span class="text-muted-foreground leading-relaxed">No internal resources needed</span>
+            </div>
+
+            <!-- Benefit 5 -->
+            <div 
+              class="benefit-item flex items-start gap-4 group opacity-0"
+              data-index="4"
+            >
+              <div class="check-icon">
+                <svg class="w-6 h-6 text-accent flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+              </div>
+              <span class="text-muted-foreground leading-relaxed">Proven methodology</span>
+            </div>
+
+            <!-- Benefit 6 -->
+            <div 
+              class="benefit-item flex items-start gap-4 group opacity-0"
+              data-index="5"
+            >
+              <div class="check-icon">
+                <svg class="w-6 h-6 text-accent flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+              </div>
+              <span class="text-muted-foreground leading-relaxed">Fast implementation</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  function initServicesNetwork() {
+    const servicesCard = document.getElementById('services-card');
+    const benefitsCard = document.getElementById('benefits-card');
+    const serviceItems = document.querySelectorAll('.service-item');
+    const benefitItems = document.querySelectorAll('.benefit-item');
+
+    // Fade in cards
+    if (servicesCard) {
+      setTimeout(() => {
+        servicesCard.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        servicesCard.style.opacity = '1';
+        servicesCard.style.transform = 'translateX(0)';
+      }, 100);
+    }
+
+    if (benefitsCard) {
+      setTimeout(() => {
+        benefitsCard.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        benefitsCard.style.opacity = '1';
+        benefitsCard.style.transform = 'translateX(0)';
+      }, 200);
+    }
+
+    // Animate service items
+    serviceItems.forEach((item, index) => {
+      const itemEl = item as HTMLElement;
+      const delay = index * 100;
+      
+      setTimeout(() => {
+        itemEl.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+        itemEl.style.opacity = '1';
+        itemEl.style.transform = 'translateX(0)';
+      }, 400 + delay);
+
+      // Arrow animation
+      const arrowContainer = itemEl.querySelector('.arrow-container');
+      if (arrowContainer) {
+        setInterval(() => {
+          arrowContainer.style.transform = 'translateX(0)';
+          setTimeout(() => {
+            arrowContainer.style.transition = 'transform 0.3s ease';
+            arrowContainer.style.transform = 'translateX(5px)';
+            setTimeout(() => {
+              arrowContainer.style.transform = 'translateX(0)';
+            }, 300);
+          }, 100);
+        }, 1500 + index * 200);
+      }
+
+      // Hover effect
+      itemEl.addEventListener('mouseenter', () => {
+        itemEl.style.transform = 'translateX(5px)';
+      });
+      itemEl.addEventListener('mouseleave', () => {
+        itemEl.style.transform = 'translateX(0)';
+      });
+    });
+
+    // Animate benefit items
+    benefitItems.forEach((item, index) => {
+      const itemEl = item as HTMLElement;
+      const delay = index * 100;
+      
+      setTimeout(() => {
+        itemEl.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+        itemEl.style.opacity = '1';
+        itemEl.style.transform = 'translateX(0)';
+      }, 500 + delay);
+
+      // Check icon hover effect
+      const checkIcon = itemEl.querySelector('.check-icon');
+      if (checkIcon) {
+        itemEl.addEventListener('mouseenter', () => {
+          checkIcon.style.transform = 'scale(1.2) rotate(360deg)';
+        });
+        itemEl.addEventListener('mouseleave', () => {
+          checkIcon.style.transform = 'scale(1) rotate(0deg)';
+        });
+      }
+    });
+  }
+
+  // Initialize
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initServicesNetwork);
+  } else {
+    initServicesNetwork();
+  }
+</script>
+
+<style>
+  #services-card {
+    transform: translateX(-50px);
+  }
+
+  #benefits-card {
+    transform: translateX(50px);
+  }
+
+  .service-item {
+    transform: translateX(-20px);
+  }
+
+  .benefit-item {
+    transform: translateX(20px);
+  }
+
+  .arrow-container {
+    transition: transform 0.3s ease;
+  }
+
+  .check-icon {
+    transition: transform 0.5s ease;
+  }
+
+  .service-item,
+  .benefit-item {
+    transition: transform 0.3s ease;
+  }
+</style>

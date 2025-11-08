@@ -1,0 +1,336 @@
+---
+// LeadForm-Komponente für ConnectingTheDots
+// Request Your Use Case - Exakt nach Original Design
+---
+
+<section id="contact" class="bg-secondary py-20 px-4 relative overflow-hidden">
+  <!-- Connecting dots background -->
+  <div class="absolute inset-0 opacity-20">
+    <!-- ConnectingDots Hintergrund-Effekt -->
+  </div>
+
+  <div class="max-w-7xl mx-auto relative z-10">
+    <div class="text-center mb-16">
+      <h2 
+        id="lead-form-title"
+        class="text-3xl lg:text-4xl mb-6 opacity-0"
+      >
+        Request Your Use Case
+      </h2>
+      <p 
+        id="lead-form-subtitle"
+        class="text-lg text-muted-foreground max-w-2xl mx-auto opacity-0"
+      >
+        Ready to validate? Tell us about your project.
+      </p>
+    </div>
+    
+    <div class="grid lg:grid-cols-2 gap-12">
+      <!-- Form -->
+      <div id="lead-form-card" class="opacity-0">
+        <div class="bg-white border-0 shadow-sm rounded-2xl hover:shadow-xl transition-shadow">
+          <div class="px-6 pt-6 pb-4">
+            <h3 class="text-2xl font-semibold">Get Started Today</h3>
+          </div>
+          <div class="px-6 pb-6 space-y-6">
+            <form id="contact-form" class="space-y-6">
+              <div class="grid grid-cols-2 gap-4">
+                <div class="space-y-2">
+                  <label for="firstName" class="text-sm font-medium leading-none block">First Name</label>
+                  <input 
+                    id="firstName" 
+                    name="firstName"
+                    type="text"
+                    placeholder="John"
+                    class="rounded-xl border border-border h-9 w-full min-w-0 px-3 py-1 text-base bg-input-background transition-[color,box-shadow] outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] placeholder:text-muted-foreground"
+                    required
+                  />
+                </div>
+                <div class="space-y-2">
+                  <label for="lastName" class="text-sm font-medium leading-none block">Last Name</label>
+                  <input 
+                    id="lastName" 
+                    name="lastName"
+                    type="text"
+                    placeholder="Doe"
+                    class="rounded-xl border border-border h-9 w-full min-w-0 px-3 py-1 text-base bg-input-background transition-[color,box-shadow] outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] placeholder:text-muted-foreground"
+                    required
+                  />
+                </div>
+              </div>
+              
+              <div class="space-y-2">
+                <label for="company" class="text-sm font-medium leading-none block">Company</label>
+                <input 
+                  id="company" 
+                  name="company"
+                  type="text"
+                  placeholder="Your Company Name"
+                  class="rounded-xl border border-border h-9 w-full min-w-0 px-3 py-1 text-base bg-input-background transition-[color,box-shadow] outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] placeholder:text-muted-foreground"
+                  required
+                />
+              </div>
+              
+              <div class="space-y-2">
+                <label for="email" class="text-sm font-medium leading-none block">Email Address</label>
+                <input 
+                  id="email" 
+                  name="email"
+                  type="email"
+                  placeholder="john@company.com"
+                  class="rounded-xl border border-border h-9 w-full min-w-0 px-3 py-1 text-base bg-input-background transition-[color,box-shadow] outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] placeholder:text-muted-foreground"
+                  required
+                />
+              </div>
+              
+              <div class="space-y-2">
+                <label for="goals" class="text-sm font-medium leading-none block">Project Goals & Challenges</label>
+                <textarea 
+                  id="goals"
+                  name="goals"
+                  placeholder="Tell us about your business model, target market, and what you'd like to validate..."
+                  class="rounded-xl border border-border resize-none w-full min-h-24 px-3 py-2 text-base bg-input-background transition-[color,box-shadow] outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] placeholder:text-muted-foreground"
+                  required
+                ></textarea>
+              </div>
+              
+              <div class="flex items-start space-x-3">
+                <input 
+                  id="consent" 
+                  name="consent"
+                  type="checkbox" 
+                  class="mt-1 w-4 h-4 rounded border-border text-accent focus:ring-accent focus:ring-2"
+                  required
+                />
+                <label for="consent" class="text-sm text-muted-foreground leading-relaxed">
+                  I agree to be contacted and accept the privacy policy.
+                </label>
+              </div>
+              
+              <button 
+                type="submit"
+                class="w-full bg-accent text-accent-foreground hover:bg-accent/90 py-6 text-lg rounded-xl group inline-flex items-center justify-center transition-all hover:scale-[1.02] active:scale-[0.98]"
+              >
+                Submit Request
+                <svg class="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <line x1="22" y1="2" x2="11" y2="13"></line>
+                  <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                </svg>
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <!-- Benefits -->
+      <div id="benefits-card">
+        <div class="bg-white border-0 shadow-sm rounded-2xl hover:shadow-xl transition-shadow">
+          <div class="px-6 pt-6 pb-4">
+            <h3 class="text-2xl font-semibold">What You Get</h3>
+          </div>
+          <div class="px-6 pb-6 space-y-6">
+            <!-- Benefit 1 -->
+            <div 
+              class="benefit-item flex items-start gap-4 group opacity-0"
+              data-index="0"
+            >
+              <div class="check-icon">
+                <svg class="w-6 h-6 text-accent flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+              </div>
+              <span class="leading-relaxed">Free consultation call</span>
+            </div>
+
+            <!-- Benefit 2 -->
+            <div 
+              class="benefit-item flex items-start gap-4 group opacity-0"
+              data-index="1"
+            >
+              <div class="check-icon">
+                <svg class="w-6 h-6 text-accent flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+              </div>
+              <span class="leading-relaxed">Custom validation strategy</span>
+            </div>
+
+            <!-- Benefit 3 -->
+            <div 
+              class="benefit-item flex items-start gap-4 group opacity-0"
+              data-index="2"
+            >
+              <div class="check-icon">
+                <svg class="w-6 h-6 text-accent flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+              </div>
+              <span class="leading-relaxed">Expert network access</span>
+            </div>
+
+            <!-- Benefit 4 -->
+            <div 
+              class="benefit-item flex items-start gap-4 group opacity-0"
+              data-index="3"
+            >
+              <div class="check-icon">
+                <svg class="w-6 h-6 text-accent flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+              </div>
+              <span class="leading-relaxed">Clear roadmap</span>
+            </div>
+
+            <!-- Benefit 5 -->
+            <div 
+              class="benefit-item flex items-start gap-4 group opacity-0"
+              data-index="4"
+            >
+              <div class="check-icon">
+                <svg class="w-6 h-6 text-accent flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+              </div>
+              <span class="leading-relaxed">Risk assessment</span>
+            </div>
+            
+            <div class="bg-secondary p-6 rounded-xl mt-8">
+              <h4 class="mb-3 font-semibold">Typical Timeline</h4>
+              <div class="space-y-2 text-sm text-muted-foreground">
+                <div>• Initial consultation: 1-2 days</div>
+                <div>• Strategy development: 3-5 days</div>
+                <div>• Validation execution: 2-4 weeks</div>
+                <div>• Results & recommendations: 2-3 days</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  function initLeadForm() {
+    const title = document.getElementById('lead-form-title');
+    const subtitle = document.getElementById('lead-form-subtitle');
+    const formCard = document.getElementById('lead-form-card');
+    const benefitsCard = document.getElementById('benefits-card');
+    const benefitItems = document.querySelectorAll('.benefit-item');
+    const form = document.getElementById('contact-form');
+
+    // Fade in title and subtitle
+    if (title) {
+      setTimeout(() => {
+        title.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        title.style.opacity = '1';
+        title.style.transform = 'translateY(0)';
+      }, 100);
+    }
+
+    if (subtitle) {
+      setTimeout(() => {
+        subtitle.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        subtitle.style.opacity = '1';
+        subtitle.style.transform = 'translateY(0)';
+      }, 200);
+    }
+
+    // Fade in cards - ensure they're visible
+    if (formCard) {
+      formCard.style.transform = 'translateX(-50px)';
+      setTimeout(() => {
+        formCard.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        formCard.style.opacity = '1';
+        formCard.style.transform = 'translateX(0)';
+      }, 300);
+    }
+
+    if (benefitsCard) {
+      // Start visible but translated
+      benefitsCard.style.opacity = '1';
+      benefitsCard.style.transform = 'translateX(50px)';
+      benefitsCard.style.transition = 'transform 0.6s ease';
+      
+      // Animate in
+      setTimeout(() => {
+        benefitsCard.style.transform = 'translateX(0)';
+      }, 400);
+    }
+
+    // Animate benefit items
+    benefitItems.forEach((item, index) => {
+      const itemEl = item as HTMLElement;
+      const delay = index * 100;
+      
+      setTimeout(() => {
+        itemEl.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+        itemEl.style.opacity = '1';
+        itemEl.style.transform = 'translateX(0)';
+      }, 500 + delay);
+
+      // Check icon hover effect
+      const checkIcon = itemEl.querySelector('.check-icon');
+      if (checkIcon) {
+        itemEl.addEventListener('mouseenter', () => {
+          checkIcon.style.transform = 'scale(1.2) rotate(360deg)';
+        });
+        itemEl.addEventListener('mouseleave', () => {
+          checkIcon.style.transform = 'scale(1) rotate(0deg)';
+        });
+      }
+    });
+
+    // Form submission handler
+    if (form) {
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        
+        // Get form data
+        const formData = new FormData(form as HTMLFormElement);
+        const data = Object.fromEntries(formData);
+        
+        // Here you would typically send the data to a backend
+        console.log('Form submitted:', data);
+        
+        // Show success message (you can enhance this)
+        alert('Thank you for your request! We will contact you soon.');
+        
+        // Reset form
+        (form as HTMLFormElement).reset();
+      });
+    }
+  }
+
+  // Initialize
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initLeadForm);
+  } else {
+    initLeadForm();
+  }
+</script>
+
+<style>
+  #lead-form-title,
+  #lead-form-subtitle {
+    transform: translateY(20px);
+  }
+
+  #lead-form-card {
+    transform: translateX(-50px);
+  }
+
+  #benefits-card {
+    /* Will be set by JavaScript */
+  }
+
+  .benefit-item {
+    transform: translateX(20px);
+    transition: transform 0.3s ease;
+  }
+
+  .check-icon {
+    transition: transform 0.5s ease;
+  }
+</style>
+
