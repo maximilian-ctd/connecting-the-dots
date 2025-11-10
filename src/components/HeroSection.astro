@@ -1,61 +1,49 @@
 ---
-import NetworkVisualization from './NetworkVisualization.astro';
+const heroVideoSrc = '/videos/hero-network.mp4';
 ---
 
-<section class="bg-gradient-to-br from-white via-secondary/30 to-white py-16 pb-8 px-4 overflow-hidden relative min-h-[70vh] flex items-center">
-  <!-- Animated background effects -->
-  <div 
-    id="bg-effect-1"
-    class="absolute top-20 right-10 w-96 h-96 bg-accent/10 rounded-full blur-3xl"
-  ></div>
-  <div 
-    id="bg-effect-2"
-    class="absolute bottom-20 left-10 w-96 h-96 bg-primary/5 rounded-full blur-3xl"
-  ></div>
-
-  <!-- Network Visualization - Full Width Background -->
-  <div class="absolute inset-0">
-    <div id="network-viz" class="w-full h-full">
-      <NetworkVisualization />
-    </div>
-
-    <!-- Floating particles effect -->
-    <div
-      id="particle-1"
-      class="absolute top-20 right-20 w-20 h-20 bg-accent/20 rounded-full blur-xl"
-    ></div>
-    <div
-      id="particle-2"
-      class="absolute bottom-20 right-40 w-16 h-16 bg-primary/20 rounded-full blur-xl"
-    ></div>
+<section class="bg-gradient-to-br from-white/70 via-primary/10 to-white/80 py-16 pb-8 px-4 overflow-hidden relative min-h-[70vh] flex items-center">
+  <!-- Background video -->
+  <div class="absolute inset-0 overflow-hidden">
+    <video
+      id="hero-video"
+      class="w-full h-full object-cover md:object-[65%_center] object-[75%_center] opacity-85 pointer-events-none transition-[object-position] duration-700 ease-out"
+      autoplay
+      muted
+      loop
+      playsinline
+      preload="auto"
+    >
+      <source src={heroVideoSrc} type="video/mp4" />
+    </video>
+    <div class="absolute inset-0 bg-gradient-to-br from-white/70 via-white/40 to-white/70"></div>
   </div>
-  
-  <div class="max-w-7xl mx-auto relative z-10 w-full">
+
+  <div class="max-w-7xl mx-auto relative z-10 w-full px-2 sm:px-4">
     <div class="relative">
-      <div id="hero-content" class="space-y-8 max-w-2xl lg:max-w-xl">
-        <!-- Semi-transparent backdrop for better readability -->
-        <div class="absolute inset-0 bg-gradient-to-r from-white via-white to-white/40 lg:from-white lg:via-white/98 lg:to-transparent -z-10 rounded-3xl blur-xl" />
-        
-        <div class="space-y-6 relative">
-          <h1 class="text-4xl lg:text-6xl leading-tight">
-            Grow your business through new connections
-          </h1>
-          <p class="text-lg text-muted-foreground max-w-lg">
-            We validate your assumptions fast and connect you to our ecosystem of partners and experts.
-          </p>
-        </div>
-        
-        <div class="flex flex-col sm:flex-row gap-4">
-          <a
-            href="#contact"
-            onclick="scrollToSection('#contact')"
-            class="bg-accent text-accent-foreground hover:bg-accent/90 px-8 py-6 text-lg rounded-xl shadow-lg shadow-accent/20 group inline-flex items-center justify-center transition-all hover:scale-105 active:scale-95"
-          >
-            Book a free call
-            <svg class="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
-            </svg>
-          </a>
+      <div id="hero-content" class="max-w-2xl lg:max-w-xl text-slate-900">
+        <div class="relative overflow-hidden rounded-3xl border border-white/25 bg-white/30 backdrop-blur-md shadow-[0_24px_60px_rgba(15,23,42,0.2)]">
+          <div class="absolute inset-0 bg-gradient-to-br from-white/70 via-white/45 to-white/20"></div>
+          <div class="relative space-y-6 px-8 py-10">
+            <h1 class="text-4xl lg:text-6xl leading-tight font-semibold text-slate-900">
+              Grow your business through new connections
+            </h1>
+            <p class="text-lg text-slate-700 max-w-lg font-medium">
+              We validate your assumptions fast and connect you to our ecosystem of partners and experts.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4">
+              <a
+                href="#contact"
+                onclick="scrollToSection('#contact')"
+                class="bg-accent text-accent-foreground hover:bg-accent/90 px-8 py-6 text-lg rounded-xl shadow-[0_20px_50px_rgba(123,224,183,0.35)] ring-1 ring-accent/30 group inline-flex items-center justify-center transition-all hover:translate-y-[-2px] active:scale-95"
+              >
+                Book a free call
+                <svg class="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+                </svg>
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -63,88 +51,31 @@ import NetworkVisualization from './NetworkVisualization.astro';
 </section>
 
 <script>
-  // Animationen für Background-Effekte
-  function animateBackgroundEffects() {
-    const effect1 = document.getElementById('bg-effect-1');
-    const effect2 = document.getElementById('bg-effect-2');
-    const particle1 = document.getElementById('particle-1');
-    const particle2 = document.getElementById('particle-2');
-    const heroContent = document.getElementById('hero-content');
-    const networkViz = document.getElementById('network-viz');
+  const HERO_VIDEO_RATE = 0.6;
 
-    if (!effect1 || !effect2 || !particle1 || !particle2 || !heroContent || !networkViz) return;
+  function setHeroVideoRate() {
+    const video = document.getElementById('hero-video');
+    if (!video) return;
 
-    let time = 0;
-    
-    function animate() {
-      time += 0.01;
-      
-      // Background effect 1
-      const scale1 = 1 + Math.sin(time * 0.5) * 0.2;
-      const opacity1 = 0.3 + Math.sin(time * 0.5) * 0.2;
-      effect1.style.transform = `scale(${scale1})`;
-      effect1.style.opacity = opacity1.toString();
+    const applyRate = () => {
+      try {
+        video.playbackRate = HERO_VIDEO_RATE;
+      } catch (error) {
+        console.error('Playback rate set error:', error);
+      }
+    };
 
-      // Background effect 2
-      const scale2 = 1 + Math.sin(time * 0.4 + 2) * 0.3;
-      const opacity2 = 0.2 + Math.sin(time * 0.4 + 2) * 0.2;
-      effect2.style.transform = `scale(${scale2})`;
-      effect2.style.opacity = opacity2.toString();
-
-      // Particle 1
-      const y1 = Math.sin(time * 0.5) * 20;
-      const scaleP1 = 1 + Math.sin(time * 0.5) * 0.2;
-      particle1.style.transform = `translateY(${y1}px) scale(${scaleP1})`;
-
-      // Particle 2
-      const y2 = Math.sin(time * 0.4 + 1) * 20;
-      const scaleP2 = 1 + Math.sin(time * 0.4 + 1) * 0.3;
-      particle2.style.transform = `translateY(${y2}px) scale(${scaleP2})`;
-
-      requestAnimationFrame(animate);
+    if (video.readyState >= 2) {
+      applyRate();
+    } else {
+      video.addEventListener('loadedmetadata', applyRate, { once: true });
     }
-
-    // Initial fade-in für Hero Content
-    heroContent.style.opacity = '0';
-    heroContent.style.transform = 'translateX(-50px)';
-    
-    setTimeout(() => {
-      heroContent.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-      heroContent.style.opacity = '1';
-      heroContent.style.transform = 'translateX(0)';
-    }, 100);
-
-    // Network Visualization fade-in
-    networkViz.style.transition = 'opacity 0.6s ease';
-    setTimeout(() => {
-      networkViz.style.opacity = '1';
-    }, 200);
-
-    animate();
   }
 
-  // Start animations when DOM is ready
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', animateBackgroundEffects);
+    document.addEventListener('DOMContentLoaded', setHeroVideoRate);
   } else {
-    animateBackgroundEffects();
+    setHeroVideoRate();
   }
 </script>
-
-<style>
-  #hero-content {
-    animation: fadeInLeft 0.6s ease-out;
-  }
-
-  @keyframes fadeInLeft {
-    from {
-      opacity: 0;
-      transform: translateX(-50px);
-    }
-    to {
-      opacity: 1;
-      transform: translateX(0);
-    }
-  }
-</style>
 
