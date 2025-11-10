@@ -87,146 +87,258 @@
 </section>
 
 <script>
-  // Animated green dots for each card
-  class AnimatedDots {
+  // Subtle network overlay for each card
+  class CardNetwork {
     private canvas: HTMLCanvasElement;
     private ctx: CanvasRenderingContext2D;
-    private dots: Array<{
+    private nodes: Array<{
+      type: 'center' | 'satellite';
       x: number;
       y: number;
-      vx: number;
-      vy: number;
       radius: number;
-      pulse: number;
-      pulseSpeed: number;
+      angle: number;
+      baseDistance: number;
+      baseDistanceX?: number;
+      baseDistanceY?: number;
+      drift: number;
+      phase: number;
+      speed: number;
+      intensity: number;
+      targetIntensity: number;
+      nextConnectionTime: number;
     }>;
     private animationFrameId: number;
     private width: number;
     private height: number;
-    private color: string = '#7be0b7'; // Accent color
+    private time: number;
+    private resizeHandler: () => void;
+    private accent: string = '#7be0b7';
+    private accentSoft: string = 'rgba(123, 224, 183, 0.35)';
 
     constructor(canvas: HTMLCanvasElement) {
       this.canvas = canvas;
       const ctx = canvas.getContext('2d');
       if (!ctx) return;
       this.ctx = ctx;
-      this.dots = [];
+      this.nodes = [];
       this.animationFrameId = 0;
       this.width = 0;
       this.height = 0;
+      this.time = 0;
+      this.resizeHandler = () => {
+        this.resize();
+        this.configureNodes();
+        this.time = 0;
+      };
       
       this.init();
     }
 
     private init() {
       this.resize();
-      this.createDots();
+      this.configureNodes();
       this.animate();
       
-      window.addEventListener('resize', () => {
-        this.resize();
-        this.createDots();
-      });
+      window.addEventListener('resize', this.resizeHandler, { passive: true });
     }
 
     private resize() {
       const rect = this.canvas.getBoundingClientRect();
       this.width = rect.width;
       this.height = rect.height;
+      this.ctx.setTransform(1, 0, 0, 1, 0, 0);
       this.canvas.width = this.width * window.devicePixelRatio;
       this.canvas.height = this.height * window.devicePixelRatio;
       this.ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
     }
 
-    private createDots() {
-      this.dots = [];
-      const numDots = 8;
-      
-      for (let i = 0; i < numDots; i++) {
-        this.dots.push({
-          x: Math.random() * this.width,
-          y: Math.random() * this.height,
-          vx: (Math.random() - 0.5) * 0.3,
-          vy: (Math.random() - 0.5) * 0.3,
-          radius: 3 + Math.random() * 2,
-          pulse: Math.random() * Math.PI * 2,
-          pulseSpeed: 0.02 + Math.random() * 0.02
+    private configureNodes() {
+      this.nodes = [];
+      const size = Math.min(this.width, this.height);
+      const centerX = this.width * 0.5;
+      const centerY = this.height * 0.46;
+      const centerRadius = Math.max(4, Math.min(9, size * 0.1));
+
+      this.nodes.push({
+        type: 'center',
+        x: centerX,
+        y: centerY,
+        radius: centerRadius,
+        angle: 0,
+        baseDistance: 0,
+        drift: size * 0.04,
+        phase: 0,
+        speed: 0.45,
+        intensity: 0,
+        targetIntensity: 0.7,
+        nextConnectionTime: 0
+      });
+
+      const satellites = 8;
+      const angleOffset = -Math.PI / 2.8;
+      for (let i = 0; i < satellites; i++) {
+        const angle = angleOffset + (i * (Math.PI * 2)) / satellites;
+        const distanceX = (this.width * 0.28) + Math.random() * (this.width * 0.08);
+        const distanceY = (this.height * 0.32) + Math.random() * (this.height * 0.08);
+
+        this.nodes.push({
+          type: 'satellite',
+          x: 0,
+          y: 0,
+          radius: Math.max(2.2, Math.min(3.6, size * 0.035)),
+          angle,
+          baseDistance: 0,
+          baseDistanceX: distanceX,
+          baseDistanceY: distanceY,
+          drift: size * 0.07,
+          phase: Math.random() * Math.PI * 2,
+          speed: 0.6 + Math.random() * 0.25,
+          intensity: 0,
+          targetIntensity: 0.5 + Math.random() * 0.3,
+          nextConnectionTime: this.time + 2 + Math.random() * 2
+        });
+      }
+
+      const ambientNodes = 4;
+      for (let i = 0; i < ambientNodes; i++) {
+        const angle = Math.random() * Math.PI * 2;
+        this.nodes.push({
+          type: 'satellite',
+          x: 0,
+          y: 0,
+          radius: Math.max(1.8, Math.min(3, size * 0.028)),
+          angle,
+          baseDistance: size * (0.25 + Math.random() * 0.4),
+          drift: size * 0.1,
+          phase: Math.random() * Math.PI * 2,
+          speed: 0.4 + Math.random() * 0.2,
+          intensity: 0,
+          targetIntensity: 0.3 + Math.random() * 0.3,
+          nextConnectionTime: this.time + 1.5 + Math.random() * 3
         });
       }
     }
 
     private animate = () => {
+      this.time += 0.01;
       this.ctx.clearRect(0, 0, this.width, this.height);
       
-      // Update and draw dots
-      this.dots.forEach((dot, i) => {
-        // Update position
-        dot.x += dot.vx;
-        dot.y += dot.vy;
-        
-        // Bounce off edges
-        if (dot.x < 0 || dot.x > this.width) dot.vx *= -1;
-        if (dot.y < 0 || dot.y > this.height) dot.vy *= -1;
-        
-        // Keep within bounds
-        dot.x = Math.max(0, Math.min(this.width, dot.x));
-        dot.y = Math.max(0, Math.min(this.height, dot.y));
-        
-        // Update pulse
-        dot.pulse += dot.pulseSpeed;
-        
-        // Draw dot with pulse effect
-        const pulseSize = 1 + Math.sin(dot.pulse) * 0.3;
-        const currentRadius = dot.radius * pulseSize;
-        const opacity = 0.6 + Math.sin(dot.pulse) * 0.3;
-        
-        this.ctx.beginPath();
-        this.ctx.arc(dot.x, dot.y, currentRadius, 0, Math.PI * 2);
-        this.ctx.fillStyle = this.color;
-        this.ctx.globalAlpha = opacity;
-        this.ctx.fill();
-        this.ctx.globalAlpha = 1;
-        
-        // Draw connecting lines to nearby dots
-        this.dots.slice(i + 1).forEach(otherDot => {
-          const dx = dot.x - otherDot.x;
-          const dy = dot.y - otherDot.y;
-          const distance = Math.sqrt(dx * dx + dy * dy);
-          
-          if (distance < 80) {
-            const lineOpacity = (1 - distance / 80) * 0.2;
-            this.ctx.beginPath();
-            this.ctx.moveTo(dot.x, dot.y);
-            this.ctx.lineTo(otherDot.x, otherDot.y);
-            this.ctx.strokeStyle = this.color;
-            this.ctx.globalAlpha = lineOpacity;
-            this.ctx.lineWidth = 1;
-            this.ctx.stroke();
-            this.ctx.globalAlpha = 1;
-          }
-        });
+      if (this.nodes.length === 0) {
+        this.animationFrameId = requestAnimationFrame(this.animate);
+        return;
+      }
+
+      const center = this.nodes[0];
+      const wobbleX = Math.sin(this.time * center.speed) * center.drift;
+      const wobbleY = Math.cos(this.time * (center.speed * 0.8)) * center.drift;
+      center.x = this.width * 0.52 + wobbleX;
+      center.y = this.height * 0.48 + wobbleY;
+      center.intensity += (center.targetIntensity - center.intensity) * 0.02;
+
+      this.nodes.slice(1).forEach((node, index) => {
+        const angle = node.angle + Math.sin(this.time * 0.4 + node.phase) * 0.12;
+        const delta = Math.sin(this.time * node.speed + node.phase) * node.drift;
+        const baseDistance = node.baseDistance + delta;
+
+        if (node.baseDistanceX !== undefined && node.baseDistanceY !== undefined) {
+          const distanceX = node.baseDistanceX + delta * 0.6;
+          const distanceY = node.baseDistanceY + delta * 0.6;
+          node.x = center.x + Math.cos(angle) * distanceX;
+          node.y = center.y + Math.sin(angle) * distanceY;
+        } else {
+          node.x = center.x + Math.cos(angle) * baseDistance;
+          node.y = center.y + Math.sin(angle) * baseDistance;
+        }
+
+        node.intensity += (node.targetIntensity - node.intensity) * 0.025;
+        if (this.time > node.nextConnectionTime) {
+          node.targetIntensity = 0.4 + Math.random() * 0.4;
+          node.nextConnectionTime = this.time + 2.5 + Math.random() * 3;
+        }
       });
+
+      this.drawConnections(center);
+      this.drawNodes();
       
       this.animationFrameId = requestAnimationFrame(this.animate);
+    }
+
+    private drawConnections(center: typeof this.nodes[0]) {
+      this.ctx.save();
+      this.ctx.lineCap = 'round';
+      const timeFactor = (Math.sin(this.time * 0.6) + 1) / 2;
+
+      this.nodes.slice(1).forEach((node, index, arr) => {
+        const intensity = Math.min(1, (node.intensity + center.intensity) / 2);
+        const gradient = this.ctx.createLinearGradient(center.x, center.y, node.x, node.y);
+        gradient.addColorStop(0, `rgba(123, 224, 183, ${0.1 * intensity})`);
+        gradient.addColorStop(1, `rgba(123, 224, 183, ${0.03 * intensity})`);
+
+        this.ctx.strokeStyle = gradient;
+        this.ctx.lineWidth = 0.7 + 0.4 * intensity;
+        this.ctx.beginPath();
+        this.ctx.moveTo(center.x, center.y);
+        this.ctx.lineTo(node.x, node.y);
+        this.ctx.stroke();
+
+        const neighbor = arr[(index + 1) % arr.length];
+        const distance = Math.hypot(node.x - neighbor.x, node.y - neighbor.y);
+        if (distance < Math.min(this.width, this.height) * 0.85) {
+          const secondaryIntensity = Math.min(intensity, (node.intensity + neighbor.intensity) / 2);
+          this.ctx.strokeStyle = `rgba(123, 224, 183, ${0.04 * secondaryIntensity * (0.6 + timeFactor * 0.4)})`;
+          this.ctx.lineWidth = 0.5;
+          this.ctx.beginPath();
+          this.ctx.moveTo(node.x, node.y);
+          this.ctx.lineTo(neighbor.x, neighbor.y);
+          this.ctx.stroke();
+        }
+      });
+
+      this.ctx.restore();
+    }
+
+    private drawNodes() {
+      this.nodes.forEach((node, index) => {
+        const pulse = 1 + Math.sin(this.time * (0.8 + index * 0.15) + node.phase) * 0.12;
+        const radius = node.radius * pulse;
+
+        const core = index === 0 ? 0.22 : 0.15;
+        const glowIntensity = core * (0.6 + node.intensity * 0.4);
+
+        const glow = this.ctx.createRadialGradient(node.x, node.y, 0, node.x, node.y, radius * 4);
+        glow.addColorStop(0, `rgba(123, 224, 183, ${glowIntensity})`);
+        glow.addColorStop(1, 'rgba(123, 224, 183, 0)');
+        this.ctx.fillStyle = glow;
+        this.ctx.beginPath();
+        this.ctx.arc(node.x, node.y, radius * 3.2, 0, Math.PI * 2);
+        this.ctx.fill();
+
+        const fillOpacity = index === 0 ? 0.45 : 0.28;
+        this.ctx.fillStyle = `rgba(123, 224, 183, ${fillOpacity * (0.6 + node.intensity * 0.4)})`;
+        this.ctx.beginPath();
+        this.ctx.arc(node.x, node.y, radius, 0, Math.PI * 2);
+        this.ctx.fill();
+      });
     }
 
     public destroy() {
       if (this.animationFrameId) {
         cancelAnimationFrame(this.animationFrameId);
       }
+      window.removeEventListener('resize', this.resizeHandler);
     }
   }
 
   function initValueProposition() {
     const featureCards = document.querySelectorAll('.feature-card');
     
-    // Initialize animated dots for each card
-    const dotAnimations: AnimatedDots[] = [];
+    // Initialize network overlay for each card
+    const networkAnimations: CardNetwork[] = [];
     featureCards.forEach((card) => {
       const canvas = card.querySelector('.animated-dots-canvas') as HTMLCanvasElement;
       if (canvas) {
-        const animation = new AnimatedDots(canvas);
-        dotAnimations.push(animation);
+        const animation = new CardNetwork(canvas);
+        networkAnimations.push(animation);
       }
     });
     

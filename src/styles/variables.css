@@ -45,8 +45,8 @@
   --color-border: rgba(255, 255, 255, 0.1);
   
   /* Typografie */
-  --font-family-base: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  --font-family-heading: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-family-base: 'Manrope', sans-serif;
+  --font-family-heading: 'Manrope', sans-serif;
   
   --font-size-xs: 0.75rem;    /* 12px */
   --font-size-sm: 0.875rem;    /* 14px */

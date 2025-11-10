@@ -26,21 +26,28 @@ const heroVideoSrc = '/videos/hero-network.mp4';
           <div class="absolute inset-0 bg-gradient-to-br from-white/70 via-white/45 to-white/20"></div>
           <div class="relative space-y-6 px-8 py-10">
             <h1 class="text-4xl lg:text-6xl leading-tight font-semibold text-slate-900">
-              Grow your business through new connections
+              <span class="block">From validation</span>
+              <span class="block">to market domination.</span>
             </h1>
             <p class="text-lg text-slate-700 max-w-lg font-medium">
-              We validate your assumptions fast and connect you to our ecosystem of partners and experts.
+              Grow faster with data-driven validation, operational support, and access to our trusted ecosystem.
             </p>
             <div class="flex flex-col sm:flex-row gap-4">
               <a
                 href="#contact"
                 onclick="scrollToSection('#contact')"
-                class="bg-accent text-accent-foreground hover:bg-accent/90 px-8 py-6 text-lg rounded-xl shadow-[0_20px_50px_rgba(123,224,183,0.35)] ring-1 ring-accent/30 group inline-flex items-center justify-center transition-all hover:translate-y-[-2px] active:scale-95"
+                class="relative overflow-hidden px-8 py-6 text-lg rounded-xl group inline-flex items-center justify-center text-accent-foreground bg-accent shadow-[0_22px_48px_rgba(123,224,183,0.35)] transition-all hover:-translate-y-[2px] hover:shadow-[0_32px_60px_rgba(123,224,183,0.4)] active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/45"
               >
-                Book a free call
+                <span class="absolute inset-[1.5px] rounded-[0.85rem] bg-accent"></span>
+                <span class="absolute inset-0 rounded-xl border border-white/22"></span>
+                <span class="pointer-events-none absolute inset-y-[8px] left-[10px] w-[2.5px] rounded-full bg-white/40 blur-[2px]"></span>
+                <span class="pointer-events-none absolute inset-y-[8px] right-[10px] w-[2.5px] rounded-full bg-white/28 blur-[2px]"></span>
+                <span class="relative inline-flex items-center">
+                  Let’s connect
                 <svg class="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
                 </svg>
+                </span>
               </a>
             </div>
           </div>

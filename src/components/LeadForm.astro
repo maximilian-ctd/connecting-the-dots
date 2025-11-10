@@ -109,13 +109,19 @@
               
               <button 
                 type="submit"
-                class="w-full bg-accent text-accent-foreground hover:bg-accent/90 py-6 text-lg rounded-xl group inline-flex items-center justify-center transition-all hover:scale-[1.02] active:scale-[0.98]"
+                class="relative w-full overflow-hidden py-6 text-lg rounded-xl group inline-flex items-center justify-center text-accent-foreground bg-accent shadow-[0_22px_48px_rgba(123,224,183,0.35)] transition-all hover:-translate-y-[2px] hover:shadow-[0_30px_58px_rgba(123,224,183,0.4)] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/45"
               >
-                Submit Request
-                <svg class="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <line x1="22" y1="2" x2="11" y2="13"></line>
-                  <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
-                </svg>
+                <span class="absolute inset-[1.5px] rounded-[0.9rem] bg-accent"></span>
+                <span class="absolute inset-0 rounded-xl border border-white/22"></span>
+                <span class="pointer-events-none absolute inset-y-[8px] left-[10px] w-[2.5px] rounded-full bg-white/38 blur-[2px]"></span>
+                <span class="pointer-events-none absolute inset-y-[8px] right-[10px] w-[2.5px] rounded-full bg-white/28 blur-[2px]"></span>
+                <span class="relative inline-flex items-center">
+                  Submit Request
+                  <svg class="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <line x1="22" y1="2" x2="11" y2="13"></line>
+                    <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                  </svg>
+                </span>
               </button>
             </form>
           </div>

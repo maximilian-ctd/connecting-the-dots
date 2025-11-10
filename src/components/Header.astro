@@ -3,7 +3,7 @@
 // Konvertiert von React zu Astro
 ---
 
-<header class="bg-white/95 backdrop-blur-sm border-b border-border sticky top-0 z-50">
+<header class="bg-white/35 backdrop-blur-2xl border-b border-white/20 sticky top-0 z-50 transition-colors duration-300">
   <div class="max-w-7xl mx-auto px-4">
     <div class="flex items-center justify-between h-20">
       <!-- Desktop Navigation - Left Side -->
@@ -25,17 +25,21 @@
       </nav>
 
       <!-- Logo - Center -->
-      <div class="flex items-center justify-center lg:mx-12">
+      <div class="flex flex-1 items-center justify-start lg:justify-center lg:mx-12 lg:flex-none">
         <a
           href="/"
-          class="block group"
+          class="group block"
           aria-label="ConnectingTheDots Startseite"
         >
-          <img
-            src="/images/Logo_CTD.png"
-            alt="ConnectingTheDots Logo"
-            class="h-10 sm:h-12 w-auto transform-gpu brightness-110 contrast-125 drop-shadow-[0_8px_24px_rgba(15,23,42,0.25)] transition-transform duration-300 ease-out group-hover:scale-105 group-hover:brightness-125 group-hover:contrast-150 group-hover:drop-shadow-[0_14px_32px_rgba(123,224,183,0.5)] cursor-pointer"
-          />
+          <div class="flex-shrink-0 ml-0 lg:ml-0">
+            <img
+              src="/images/Logo_CTD.svg"
+              alt="ConnectingTheDots Logo"
+              class="h-12 sm:h-14 lg:h-16 w-auto object-contain brightness-110 contrast-110 transition duration-300 ease-out group-hover:scale-[1.02] group-hover:brightness-125 group-hover:contrast-120"
+              style="filter: contrast(115%) saturate(110%);"
+              loading="lazy"
+            />
+          </div>
         </a>
       </div>
 
@@ -57,9 +61,13 @@
         <a
           href="#contact"
           onclick="scrollToSection('#contact')"
-          class="bg-accent text-accent-foreground hover:bg-accent/90 rounded-xl px-4 py-2 transition-colors"
+          class="relative rounded-xl px-4 py-2 text-accent-foreground bg-accent shadow-[0_10px_20px_rgba(123,224,183,0.25)] transition-all hover:-translate-y-[1px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/50"
         >
-          Book a Call
+          <span class="absolute inset-[1px] rounded-[0.75rem] bg-accent"></span>
+          <span class="absolute inset-0 rounded-xl border border-white/20"></span>
+          <span class="pointer-events-none absolute inset-y-[6px] left-[6px] w-[2px] rounded-full bg-white/38 blur-[1.5px]"></span>
+          <span class="pointer-events-none absolute inset-y-[6px] right-[6px] w-[2px] rounded-full bg-white/30 blur-[1.5px]"></span>
+          <span class="relative block px-1">Book a Call</span>
         </a>
       </nav>
 
@@ -113,9 +121,13 @@
           <a
             href="#contact"
             onclick="scrollToSection('#contact'); toggleMobileMenu();"
-            class="block w-full bg-accent text-accent-foreground hover:bg-accent/90 rounded-xl px-4 py-2 text-center transition-colors"
+            class="relative block w-full rounded-xl text-accent-foreground bg-accent px-4 py-2 text-center shadow-[0_10px_22px_rgba(123,224,183,0.25)] transition-all hover:-translate-y-[1px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/50"
           >
-            Book a Call
+            <span class="absolute inset-[1px] rounded-[0.75rem] bg-accent"></span>
+            <span class="absolute inset-0 rounded-xl border border-white/18"></span>
+            <span class="pointer-events-none absolute inset-y-[6px] left-[6px] w-[2px] rounded-full bg-white/35 blur-[1.5px]"></span>
+            <span class="pointer-events-none absolute inset-y-[6px] right-[6px] w-[2px] rounded-full bg-white/28 blur-[1.5px]"></span>
+            <span class="relative block px-1">Book a Call</span>
           </a>
         </div>
       </nav>
