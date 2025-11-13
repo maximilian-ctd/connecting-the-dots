@@ -330,42 +330,46 @@ const t = getTranslations(lang);
         const sendingText = lang === 'de' ? 'Wird gesendet...' : 'Sending...';
         submitButton.innerHTML = `<span class="relative inline-flex items-center">${sendingText}</span>`;
         
+        // Get calendar URL from form data attribute or use default
+        const calendarAppointmentUrl = (form as HTMLFormElement).dataset.calendarUrl || 
+          'https://calendar.app.google/wyAn29zGD5LyTVYd6';
+        
+        // Try to submit to Netlify Forms in the background
+        // But always show the success modal with calendar link
         try {
           // Submit to Netlify Forms
           const formDataToSend = new FormData(form as HTMLFormElement);
           
+          // Create URLSearchParams from FormData
+          const params = new URLSearchParams();
+          for (const [key, value] of formDataToSend.entries()) {
+            params.append(key, value as string);
+          }
+          
+          // Submit to Netlify Forms endpoint
           const response = await fetch('/', {
             method: 'POST',
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-            body: new URLSearchParams(formDataToSend as any).toString(),
+            body: params.toString(),
           });
           
-          if (!response.ok) {
-            throw new Error('Failed to submit form');
-          }
-          
-          // Get calendar URL from form data attribute or use default
-          const calendarAppointmentUrl = (form as HTMLFormElement).dataset.calendarUrl || 
-            'https://calendar.app.google/wyAn29zGD5LyTVYd6';
-          
-          console.log('Form submitted successfully, Calendar URL:', calendarAppointmentUrl);
-          
-          // Show success message with calendar link
-          showSuccessMessage(data, calendarAppointmentUrl);
-          
-          // Reset form
-          (form as HTMLFormElement).reset();
+          console.log('Form submission response:', response.status, response.statusText);
           
         } catch (error) {
-          console.error('Form submission error:', error);
-          const errorMessage = lang === 'de' 
-            ? 'Es gab einen Fehler beim Absenden. Bitte versuche es erneut.'
-            : 'There was an error submitting. Please try again.';
-          alert(errorMessage);
-        } finally {
-          submitButton.disabled = false;
-          submitButton.innerHTML = originalButtonText;
+          // Log error but don't block the user from booking
+          console.error('Form submission error (non-blocking):', error);
         }
+        
+        // Always show success message with calendar link
+        // This ensures users can always book an appointment
+        showSuccessMessage(data, calendarAppointmentUrl);
+        
+        // Reset form
+        (form as HTMLFormElement).reset();
+        
+        // Reset button
+        submitButton.disabled = false;
+        submitButton.innerHTML = originalButtonText;
       });
     }
     
