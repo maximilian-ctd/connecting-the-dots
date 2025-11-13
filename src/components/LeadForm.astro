@@ -408,35 +408,24 @@ const t = getTranslations(lang);
   // Create calendar URL with form data attached
   function createCalendarUrlWithData(formData: any, baseUrl: string): string {
     // Format form data for calendar description
-    const description = `
-Kontaktinformationen:
-- Name: ${formData.firstName || ''} ${formData.lastName || ''}
+    const fullName = `${formData.firstName || ''} ${formData.lastName || ''}`.trim();
+    const description = `Kontaktinformationen:
+- Name: ${fullName}
 - Firma: ${formData.company || ''}
 - E-Mail: ${formData.email || ''}
 
 Projektziele & Herausforderungen:
-${formData.goals || ''}
-    `.trim();
+${formData.goals || ''}`;
     
     // Encode the description for URL
     const encodedDescription = encodeURIComponent(description);
+    const encodedTitle = encodeURIComponent(`Beratungstermin mit ${fullName}`);
     
-    // Google Calendar Appointment Scheduling doesn't support direct URL parameters
-    // So we'll store the data and add it to the URL as a reference
-    // The data will be available when the appointment is created
-    const dataId = btoa(JSON.stringify(formData)).replace(/[+/=]/g, (m) => {
-      return { '+': '-', '/': '_', '=': '' }[m] || m;
-    });
+    // Create a Google Calendar event link with the data directly in the description
+    // This will open Google Calendar with a pre-filled event that includes all form data
+    const calendarEventUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodedTitle}&details=${encodedDescription}`;
     
-    // Store data in localStorage for reference
-    try {
-      localStorage.setItem(`formData_${dataId}`, JSON.stringify(formData));
-    } catch (e) {
-      console.error('Could not store form data:', e);
-    }
-    
-    // Add data ID to URL as parameter (for reference)
-    return `${baseUrl}?data=${dataId}`;
+    return calendarEventUrl;
   }
   
   // Show success message with calendar booking option
@@ -491,7 +480,6 @@ ${formData.goals || ''}
             target="_blank"
             rel="noopener noreferrer"
             class="block w-full py-3 px-4 rounded-xl bg-accent text-accent-foreground font-medium text-center hover:bg-accent/90 transition-colors"
-            onclick="if (window.attachFormDataToCalendar) { window.attachFormDataToCalendar('${calendarUrl}'); }"
           >
             ${bookAppointment}
           </a>
@@ -537,44 +525,6 @@ ${formData.goals || ''}
     }
   }
   
-  // Function to attach form data when calendar link is clicked
-  (window as any).attachFormDataToCalendar = function(calendarUrl: string) {
-    // Extract data ID from URL
-    const urlParams = new URLSearchParams(calendarUrl.split('?')[1] || '');
-    const dataId = urlParams.get('data');
-    
-    if (dataId) {
-      try {
-        // Get form data from localStorage
-        const storedData = localStorage.getItem(`formData_${dataId}`);
-        if (storedData) {
-          const formData = JSON.parse(storedData);
-          
-          // Format data for calendar
-          const calendarDescription = `
-Kontaktinformationen:
-- Name: ${formData.firstName || ''} ${formData.lastName || ''}
-- Firma: ${formData.company || ''}
-- E-Mail: ${formData.email || ''}
-
-Projektziele & Herausforderungen:
-${formData.goals || ''}
-          `.trim();
-          
-          // Store description in a way that can be accessed
-          // Note: Google Calendar Appointment Scheduling doesn't support direct URL parameters
-          // So we'll copy the data to clipboard as a fallback
-          navigator.clipboard.writeText(calendarDescription).then(() => {
-            console.log('Form data copied to clipboard. Paste it into the calendar appointment description.');
-          }).catch(() => {
-            console.log('Form data:', calendarDescription);
-          });
-        }
-      } catch (e) {
-        console.error('Error retrieving form data:', e);
-      }
-    }
-  };
 
   // Initialize when DOM is ready
   // Initialize immediately and also on DOMContentLoaded as backup
