@@ -47,11 +47,6 @@ const t = getTranslations(lang);
               netlify-honeypot="bot-field"
               class="space-y-6" 
               data-calendar-url="https://calendar.app.google/wyAn29zGD5LyTVYd6"
-              data-lang={lang}
-              data-success-title={t.leadForm.successTitle}
-              data-success-message={t.leadForm.successMessage}
-              data-book-appointment={t.leadForm.bookAppointment}
-              data-close={t.leadForm.close}
             >
               <!-- Hidden field for Netlify Forms -->
               <input type="hidden" name="form-name" value="contact" />
@@ -243,7 +238,7 @@ const t = getTranslations(lang);
   </div>
 </section>
 
-<script>
+<script define:vars={{ lang, translations: t.leadForm, calendarUrl: 'https://calendar.app.google/wyAn29zGD5LyTVYd6' }}>
   function initLeadForm() {
     const title = document.getElementById('lead-form-title');
     const subtitle = document.getElementById('lead-form-subtitle');
@@ -333,10 +328,6 @@ const t = getTranslations(lang);
         const sendingText = lang === 'de' ? 'Wird gesendet...' : 'Sending...';
         submitButton.innerHTML = `<span class="relative inline-flex items-center">${sendingText}</span>`;
         
-        // Get calendar URL from form data attribute or use default
-        const calendarAppointmentUrl = (form as HTMLFormElement).dataset.calendarUrl || 
-          'https://calendar.app.google/wyAn29zGD5LyTVYd6';
-        
         // Try to submit to Netlify Forms in the background
         // But always show the success modal with calendar link
         try {
@@ -365,8 +356,9 @@ const t = getTranslations(lang);
         
         // Always show success message with calendar link
         // This ensures users can always book an appointment
-        console.log('Showing success message with calendar URL:', calendarAppointmentUrl);
-        showSuccessMessage(data, calendarAppointmentUrl);
+        // Use calendarUrl from Astro props
+        console.log('Showing success message with calendar URL:', calendarUrl);
+        showSuccessMessage(data, calendarUrl);
         
         // Reset form
         (form as HTMLFormElement).reset();
@@ -381,20 +373,14 @@ const t = getTranslations(lang);
     function showSuccessMessage(formData: any, calendarUrl: string) {
       console.log('showSuccessMessage called with calendarUrl:', calendarUrl);
       
-      // Get form element directly from DOM to avoid scope issues
-      const formElement = document.getElementById('contact-form') as HTMLFormElement;
-      if (!formElement) {
-        console.error('Form element not found');
-        return;
-      }
-      
-      // Get translations from form data attributes
-      const successTitle = formElement.dataset.successTitle || 'Thank you!';
-      const successMessage = formElement.dataset.successMessage || 'We have received your request.';
-      const bookAppointment = formElement.dataset.bookAppointment || '📅 Book appointment in calendar';
-      const closeText = formElement.dataset.close || 'Close';
+      // Use translations directly from Astro props
+      const successTitle = translations?.successTitle || 'Thank you!';
+      const successMessage = translations?.successMessage || 'We have received your request.';
+      const bookAppointment = translations?.bookAppointment || '📅 Book appointment in calendar';
+      const closeText = translations?.close || 'Close';
       
       console.log('Modal text:', { successTitle, successMessage, bookAppointment, closeText });
+      console.log('Translations object:', translations);
       
       // Remove existing modal if present
       const existingModal = document.getElementById('form-success-message');
