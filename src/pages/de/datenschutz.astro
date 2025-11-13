@@ -1,14 +1,18 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+
+const lang = 'de';
+const currentPath = '/de/datenschutz';
 ---
 
 <Layout 
 	title="Datenschutzerklärung - ConnectingTheDots" 
 	description="Datenschutzerklärung von ConnectingTheDots"
+	lang={lang}
 >
-	<Header />
+	<Header lang={lang} currentPath={currentPath} />
 	<main class="bg-white py-20 px-4">
 		<div class="max-w-4xl mx-auto">
 			<h1 class="text-4xl font-bold mb-8">Datenschutzerklärung</h1>
@@ -94,7 +98,7 @@ import Footer from '../components/Footer.astro';
 						Deutschland
 					</p>
 					<p>
-						<strong>E-Mail:</strong> <a href="mailto:max@connectingthe.de" class="text-accent hover:underline">max@connectingthe.de</a>
+						<strong>E-Mail:</strong> <a href="mailto:maximilian@connectingthe.de" class="text-accent hover:underline">maximilian@connectingthe.de</a>
 					</p>
 					<p>
 						Verantwortliche Stelle ist die natürliche oder juristische Person, die allein oder gemeinsam mit anderen über die Zwecke und Mittel der Verarbeitung von personenbezogenen Daten (z. B. Namen, E-Mail-Adressen o. Ä.) entscheidet.
@@ -130,7 +134,7 @@ import Footer from '../components/Footer.astro';
 
 					<h3 class="text-xl font-semibold mt-6 mb-3">Recht auf Datenübertragbarkeit</h3>
 					<p>
-						Sie haben das Recht, Daten, die wir auf Grundlage Ihrer Einwilligung oder in Erfüllung eines Vertrags automatisiert verarbeiten, an sich oder an einen Dritten in einem gängigen, maschinenlesbaren Format aushändigen zu lassen. Sofern Sie die direkte Übertragung der Daten an einen anderen Verantwortlichen verlangen, erfolgt dies nur, soweit es technisch machbar ist.
+						Sie haben das Recht, Daten, die wir auf Grundlage Ihrer Einwilligung oder in Erfüllung eines Vertrags automatisiert verarbeiten, an sich oder an einen Dritten in einem gängigen, maschinelesbaren Format aushändigen zu lassen. Sofern Sie die direkte Übertragung der Daten an einen anderen Verantwortlichen verlangen, erfolgt dies nur, soweit es technisch machbar ist.
 					</p>
 
 					<h3 class="text-xl font-semibold mt-6 mb-3">SSL- bzw. TLS-Verschlüsselung</h3>
@@ -197,7 +201,7 @@ import Footer from '../components/Footer.astro';
 			</div>
 		</div>
 	</main>
-	<Footer />
+	<Footer lang={lang} currentPath={currentPath} />
 </Layout>
 
 <style>
@@ -215,5 +219,4 @@ import Footer from '../components/Footer.astro';
 		margin-left: 1.5rem;
 	}
 </style>
-
 

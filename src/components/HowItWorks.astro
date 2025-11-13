@@ -1,6 +1,12 @@
 ---
-// HowItWorks-Komponente für ConnectingTheDots
-// Original Design: 3 Steps mit Video-Placeholder
+import { getTranslations, type Language } from '../i18n/translations';
+
+interface Props {
+  lang?: Language;
+}
+
+const { lang = 'de' } = Astro.props;
+const t = getTranslations(lang);
 ---
 
 <section id="how-it-works" class="bg-white py-20 px-4 relative overflow-hidden">
@@ -15,13 +21,13 @@
         id="how-it-works-title"
         class="text-3xl lg:text-4xl mb-6 opacity-0"
       >
-        How It Works
+        {t.howItWorks.title}
       </h2>
       <p 
         id="how-it-works-subtitle"
         class="text-lg text-muted-foreground max-w-2xl mx-auto mb-12 opacity-0"
       >
-        From Idea to Market Success – Fast, Data-Driven, and Network-Supported.
+        {t.howItWorks.subtitle}
       </p>
       
       <!-- Video Placeholder -->
@@ -61,7 +67,7 @@
               </svg>
             </div>
             <p class="text-lg text-muted-foreground">
-              Video: See our methodology in action
+              {t.howItWorks.videoPlaceholder}
             </p>
           </div>
         </div>
@@ -95,9 +101,9 @@
               </svg>
             </div>
 
-            <h3 class="text-xl mb-3">1. Validate</h3>
+            <h3 class="text-xl mb-3">{t.howItWorks.step1.title}</h3>
             <p class="text-muted-foreground leading-relaxed">
-              Find real market fit. Define key assumptions and test them with real customers through rapid, data-driven experiments.
+              {t.howItWorks.step1.description}
             </p>
 
             <!-- Arrow between steps -->
@@ -120,9 +126,9 @@
               </svg>
             </div>
 
-            <h3 class="text-xl mb-3">2. Build</h3>
+            <h3 class="text-xl mb-3">{t.howItWorks.step2.title}</h3>
             <p class="text-muted-foreground leading-relaxed">
-              Turn validation into action. Execute go-to-market strategies with our network of performance experts, UX designers, and tech partners.
+              {t.howItWorks.step2.description}
             </p>
 
             <!-- Arrow between steps -->
@@ -145,9 +151,9 @@
               </svg>
             </div>
 
-            <h3 class="text-xl mb-3">3. Scale</h3>
+            <h3 class="text-xl mb-3">{t.howItWorks.step3.title}</h3>
             <p class="text-muted-foreground leading-relaxed">
-              Grow with confidence. Use validated insights and operational support to expand, optimize, and dominate your market.
+              {t.howItWorks.step3.description}
             </p>
           </div>
         </div>

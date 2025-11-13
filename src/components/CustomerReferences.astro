@@ -1,6 +1,12 @@
 ---
-// CustomerReferences-Komponente für ConnectingTheDots
-// Kundenlogos mit animiertem Scrollen
+import { getTranslations, type Language } from '../i18n/translations';
+
+interface Props {
+  lang?: Language;
+}
+
+const { lang = 'de' } = Astro.props;
+const t = getTranslations(lang);
 ---
 
 <section class="bg-gradient-to-br from-white via-secondary/30 to-white py-6 overflow-hidden">
@@ -10,7 +16,7 @@
       class="text-center mb-8 opacity-0"
     >
       <p class="text-sm text-muted-foreground">
-        Trusted by innovative companies
+        {t.customerReferences.title}
       </p>
     </div>
     

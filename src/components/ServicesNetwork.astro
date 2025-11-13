@@ -1,6 +1,12 @@
 ---
-// ServicesNetwork-Komponente für ConnectingTheDots
-// Original Design: 2 Cards nebeneinander
+import { getTranslations, type Language } from '../i18n/translations';
+
+interface Props {
+  lang?: Language;
+}
+
+const { lang = 'de' } = Astro.props;
+const t = getTranslations(lang);
 ---
 
 <section id="services" class="bg-secondary py-20 px-4 relative overflow-hidden">
@@ -12,10 +18,10 @@
   <div class="max-w-7xl mx-auto relative z-10">
     <div class="text-center mb-16 space-y-4 max-w-3xl mx-auto">
       <h2 class="text-3xl lg:text-4xl">
-        Our Services & Network
+        {t.services.title}
       </h2>
       <p class="text-muted-foreground text-lg">
-        From validation to growth — we combine data, people, and execution to help your business scale faster with less risk.
+        {t.services.subtitle}
       </p>
     </div>
     
@@ -24,7 +30,7 @@
       <div id="services-card" class="opacity-0">
         <div class="bg-white border-0 shadow-sm rounded-2xl hover:shadow-xl transition-shadow">
           <div class="pb-6 px-6 pt-6">
-            <h3 class="text-2xl font-semibold">What We Offer</h3>
+            <h3 class="text-2xl font-semibold">{t.services.whatWeOffer}</h3>
           </div>
           <div class="px-6 pb-6 space-y-4">
             <!-- Service 1: Lead Generation -->
@@ -38,9 +44,9 @@
                 </svg>
               </div>
               <div class="text-left space-y-1">
-                <p class="text-lg font-semibold text-foreground">Lead Generation</p>
+                <p class="text-lg font-semibold text-foreground">{t.services.leadGeneration.title}</p>
                 <p class="text-sm leading-relaxed text-muted-foreground">
-                  Identify and reach your ideal customers through targeted digital experiments and performance channels.
+                  {t.services.leadGeneration.description}
                 </p>
               </div>
             </div>
@@ -56,9 +62,9 @@
                 </svg>
               </div>
               <div class="text-left space-y-1">
-                <p class="text-lg font-semibold text-foreground">Rapid Prototyping</p>
+                <p class="text-lg font-semibold text-foreground">{t.services.rapidPrototyping.title}</p>
                 <p class="text-sm leading-relaxed text-muted-foreground">
-                  Turn ideas into testable MVPs within days — fast, lean, and data-driven.
+                  {t.services.rapidPrototyping.description}
                 </p>
               </div>
             </div>
@@ -74,9 +80,9 @@
                 </svg>
               </div>
               <div class="text-left space-y-1">
-                <p class="text-lg font-semibold text-foreground">E-Commerce Setup</p>
+                <p class="text-lg font-semibold text-foreground">{t.services.ecommerceSetup.title}</p>
                 <p class="text-sm leading-relaxed text-muted-foreground">
-                  Validate, build, and scale your digital sales infrastructure with proven tools and automation.
+                  {t.services.ecommerceSetup.description}
                 </p>
               </div>
             </div>
@@ -92,9 +98,9 @@
                 </svg>
               </div>
               <div class="text-left space-y-1">
-                <p class="text-lg font-semibold text-foreground">Interim Management</p>
+                <p class="text-lg font-semibold text-foreground">{t.services.interimManagement.title}</p>
                 <p class="text-sm leading-relaxed text-muted-foreground">
-                  Temporary leadership support for marketing, sales, or digital transformation — until your internal teams are ready.
+                  {t.services.interimManagement.description}
                 </p>
               </div>
             </div>
@@ -106,7 +112,7 @@
       <div id="benefits-card" class="opacity-0">
         <div class="bg-white border-0 shadow-sm rounded-2xl hover:shadow-xl transition-shadow">
           <div class="pb-6 px-6 pt-6">
-            <h3 class="text-2xl font-semibold">Why ConnectingTheDots?</h3>
+            <h3 class="text-2xl font-semibold">{t.services.whyConnectingTheDots}</h3>
           </div>
           <div class="px-6 pb-6 space-y-4">
             <!-- Benefit 1 -->
@@ -119,9 +125,7 @@
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                 </svg>
               </div>
-              <span class="text-muted-foreground leading-relaxed">
-                <strong class="text-foreground font-semibold">Market insights within weeks</strong> — get real customer feedback instead of assumptions.
-              </span>
+              <span class="text-muted-foreground leading-relaxed" set:html={t.services.benefit1}></span>
             </div>
 
             <!-- Benefit 2 -->
@@ -134,9 +138,7 @@
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                 </svg>
               </div>
-              <span class="text-muted-foreground leading-relaxed">
-                <strong class="text-foreground font-semibold">Reduced risk through data</strong> — every decision is based on measurable evidence.
-              </span>
+              <span class="text-muted-foreground leading-relaxed" set:html={t.services.benefit2}></span>
             </div>
 
             <!-- Benefit 3 -->
@@ -149,9 +151,7 @@
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                 </svg>
               </div>
-              <span class="text-muted-foreground leading-relaxed">
-                <strong class="text-foreground font-semibold">Access to an expert network</strong> — from UX and frontend to performance and e-commerce.
-              </span>
+              <span class="text-muted-foreground leading-relaxed" set:html={t.services.benefit3}></span>
             </div>
 
             <!-- Benefit 4 -->
@@ -164,9 +164,7 @@
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                 </svg>
               </div>
-              <span class="text-muted-foreground leading-relaxed">
-                <strong class="text-foreground font-semibold">No internal resources needed</strong> — we act as your external validation and growth team.
-              </span>
+              <span class="text-muted-foreground leading-relaxed" set:html={t.services.benefit4}></span>
             </div>
 
             <!-- Benefit 5 -->
@@ -179,9 +177,7 @@
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                 </svg>
               </div>
-              <span class="text-muted-foreground leading-relaxed">
-                <strong class="text-foreground font-semibold">Proven methodology</strong> — our 3-step model: Validate · Build · Scale.
-              </span>
+              <span class="text-muted-foreground leading-relaxed" set:html={t.services.benefit5}></span>
             </div>
 
             <!-- Benefit 6 -->
@@ -194,9 +190,7 @@
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                 </svg>
               </div>
-              <span class="text-muted-foreground leading-relaxed">
-                <strong class="text-foreground font-semibold">Scalable implementation</strong> — move from validated idea to operational growth seamlessly.
-              </span>
+              <span class="text-muted-foreground leading-relaxed" set:html={t.services.benefit6}></span>
             </div>
           </div>
         </div>

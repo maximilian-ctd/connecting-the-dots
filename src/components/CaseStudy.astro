@@ -1,6 +1,12 @@
 ---
-// CaseStudy-Komponente für ConnectingTheDots
-// Success Story - Exakt nach Original Design
+import { getTranslations, type Language } from '../i18n/translations';
+
+interface Props {
+  lang?: Language;
+}
+
+const { lang = 'de' } = Astro.props;
+const t = getTranslations(lang);
 ---
 
 <section id="case-study" class="bg-white py-20 px-4 relative overflow-hidden">
@@ -15,7 +21,7 @@
         id="case-study-title"
         class="text-3xl lg:text-4xl mb-6 opacity-0"
       >
-        Success Story: DACH Market Expansion
+        {t.caseStudy.title}
       </h2>
     </div>
     
@@ -24,13 +30,13 @@
       <div id="case-study-content" class="space-y-8 opacity-0">
         <div class="space-y-6">
           <h3 class="text-2xl">
-            From Market Entry to Regional Growth
+            {t.caseStudy.heading}
           </h3>
           <p class="text-muted-foreground leading-relaxed">
-            ConnectingTheDots supported GenesysAI in establishing a strong market position in the DACH region.
+            {t.caseStudy.description1}
           </p>
           <p class="text-muted-foreground leading-relaxed">
-            Within 6 months, we helped expand their sales network from 1 to 4 active channels and built partnerships with 4 new suppliers across Germany, Austria, and Switzerland — generating €1M in additional revenue.
+            {t.caseStudy.description2}
           </p>
         </div>
         
@@ -43,7 +49,7 @@
                   🌐
                 </div>
                 <div class="kpi-value text-3xl font-semibold text-foreground mb-2">1 → 4</div>
-                <div class="text-sm text-muted-foreground">Sales Channels</div>
+                <div class="text-sm text-muted-foreground">{t.caseStudy.kpi1}</div>
               </div>
             </div>
           </div>
@@ -56,7 +62,7 @@
                   🤝
                 </div>
                 <div class="kpi-value text-3xl font-semibold text-foreground mb-2">4</div>
-                <div class="text-sm text-muted-foreground">New DACH Suppliers</div>
+                <div class="text-sm text-muted-foreground">{t.caseStudy.kpi2}</div>
               </div>
             </div>
           </div>
@@ -69,7 +75,7 @@
                   💰
                 </div>
                 <div class="kpi-value text-3xl font-semibold text-foreground mb-2">+€1M</div>
-                <div class="text-sm text-muted-foreground">Additional Revenue</div>
+                <div class="text-sm text-muted-foreground">{t.caseStudy.kpi3}</div>
               </div>
             </div>
           </div>
@@ -91,7 +97,7 @@
               Andreas Skorski · CEO, GenesysAI
             </p>
             <blockquote class="text-lg sm:text-xl leading-relaxed font-medium">
-              “CTD supported GenesysAI in validating and launching its offering in the EU market — building strong partnerships and scalable sales channels within months.”
+              "{t.caseStudy.testimonial}"
             </blockquote>
           </div>
         </div>

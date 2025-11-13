@@ -7,13 +7,14 @@ import '../styles/tailwind.css';
 interface Props {
 	title: string;
 	description?: string;
+	lang?: 'de' | 'en';
 }
 
-const { title, description = "Meine neue Website" } = Astro.props;
+const { title, description = "Meine neue Website", lang = 'de' } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="de">
+<html lang={lang}>
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="description" content={description} />

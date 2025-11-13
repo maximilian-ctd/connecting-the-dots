@@ -1,6 +1,15 @@
 ---
 // Header-Komponente für ConnectingTheDots
-// Konvertiert von React zu Astro
+import LanguageSwitcher from './LanguageSwitcher.astro';
+import { getTranslations, type Language } from '../i18n/translations';
+
+interface Props {
+  lang?: Language;
+  currentPath?: string;
+}
+
+const { lang = 'de', currentPath = '/de' } = Astro.props;
+const t = getTranslations(lang);
 ---
 
 <header class="bg-white/35 backdrop-blur-2xl border-b border-white/20 sticky top-0 z-50 transition-colors duration-300">
@@ -13,21 +22,21 @@
           onclick="scrollToSection('#how-it-works')"
           class="text-foreground hover:text-accent transition-colors cursor-pointer"
         >
-          How it Works
+          {t.header.howItWorks}
         </button>
         <button
           type="button"
           onclick="scrollToSection('#services')"
           class="text-foreground hover:text-accent transition-colors cursor-pointer"
         >
-          Services
+          {t.header.services}
         </button>
       </nav>
 
       <!-- Logo - Center -->
       <div class="flex flex-1 items-center justify-start lg:justify-center lg:mx-12 lg:flex-none">
         <a
-          href="/"
+          href={`/${lang}/`}
           class="group block"
           aria-label="ConnectingTheDots Startseite"
         >
@@ -44,24 +53,25 @@
       </div>
 
       <!-- Desktop Navigation - Right Side -->
-      <nav class="hidden lg:flex items-center space-x-8 flex-1 justify-end">
+      <nav class="hidden lg:flex items-center space-x-4 flex-1 justify-end">
         <button
           type="button"
           onclick="scrollToSection('#case-study')"
           class="text-foreground hover:text-accent transition-colors cursor-pointer"
         >
-          Case Study
+          {t.header.caseStudy}
         </button>
+        <LanguageSwitcher currentLang={lang} currentPath={currentPath} />
         <a
           href="#contact"
           onclick="scrollToSection('#contact')"
-          class="relative rounded-xl px-4 py-2 text-accent-foreground bg-accent shadow-[0_10px_20px_rgba(123,224,183,0.25)] transition-all hover:-translate-y-[1px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/50"
+          class="relative rounded-xl px-4 py-2 text-accent-foreground bg-accent shadow-[0_10px_20px_rgba(123,224,183,0.25)] transition-all hover:-translate-y-[1px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/50 ml-4"
         >
           <span class="absolute inset-[1px] rounded-[0.75rem] bg-accent"></span>
           <span class="absolute inset-0 rounded-xl border border-white/20"></span>
           <span class="pointer-events-none absolute inset-y-[6px] left-[6px] w-[2px] rounded-full bg-white/38 blur-[1.5px]"></span>
           <span class="pointer-events-none absolute inset-y-[6px] right-[6px] w-[2px] rounded-full bg-white/30 blur-[1.5px]"></span>
-          <span class="relative block px-1">Book a Call</span>
+          <span class="relative block px-1">{t.header.bookACall}</span>
         </a>
       </nav>
 
@@ -89,29 +99,33 @@
           onclick="scrollToSection('#how-it-works'); toggleMobileMenu();"
           class="block w-full text-left py-2 text-foreground hover:text-accent transition-colors"
         >
-          How it Works
+          {t.header.howItWorks}
         </button>
         <button
           type="button"
           onclick="scrollToSection('#services'); toggleMobileMenu();"
           class="block w-full text-left py-2 text-foreground hover:text-accent transition-colors"
         >
-          Services
+          {t.header.services}
         </button>
         <button
           type="button"
           onclick="scrollToSection('#case-study'); toggleMobileMenu();"
           class="block w-full text-left py-2 text-foreground hover:text-accent transition-colors"
         >
-          Case Study
+          {t.header.caseStudy}
         </button>
         <a
           href="/faq"
           class="block w-full text-left py-2 text-foreground hover:text-accent transition-colors"
         >
-          FAQ
+          {t.header.faq}
         </a>
         <div class="pt-4 space-y-3">
+          <div class="flex items-center justify-between px-2 py-2">
+            <span class="text-sm text-foreground/70">Language:</span>
+            <LanguageSwitcher currentLang={lang} currentPath={currentPath} />
+          </div>
           <a
             href="#contact"
             onclick="scrollToSection('#contact'); toggleMobileMenu();"
@@ -121,7 +135,7 @@
             <span class="absolute inset-0 rounded-xl border border-white/18"></span>
             <span class="pointer-events-none absolute inset-y-[6px] left-[6px] w-[2px] rounded-full bg-white/35 blur-[1.5px]"></span>
             <span class="pointer-events-none absolute inset-y-[6px] right-[6px] w-[2px] rounded-full bg-white/28 blur-[1.5px]"></span>
-            <span class="relative block px-1">Book a Call</span>
+            <span class="relative block px-1">{t.header.bookACall}</span>
           </a>
         </div>
       </nav>

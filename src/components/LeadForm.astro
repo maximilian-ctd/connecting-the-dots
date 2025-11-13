@@ -1,6 +1,12 @@
 ---
-// LeadForm-Komponente für ConnectingTheDots
-// Request Your Use Case - Exakt nach Original Design
+import { getTranslations, type Language } from '../i18n/translations';
+
+interface Props {
+  lang?: Language;
+}
+
+const { lang = 'de' } = Astro.props;
+const t = getTranslations(lang);
 ---
 
 <section id="contact" class="bg-secondary py-20 px-4 relative overflow-hidden">
@@ -15,13 +21,13 @@
         id="lead-form-title"
         class="text-3xl lg:text-4xl mb-6 opacity-0"
       >
-        Request Your Use Case
+        {t.leadForm.title}
       </h2>
       <p 
         id="lead-form-subtitle"
         class="text-lg text-muted-foreground max-w-2xl mx-auto opacity-0"
       >
-        Ready to validate? Tell us about your project.
+        {t.leadForm.subtitle}
       </p>
     </div>
     
@@ -30,7 +36,7 @@
       <div id="lead-form-card" class="opacity-0">
         <div class="bg-white border-0 shadow-sm rounded-2xl hover:shadow-xl transition-shadow">
           <div class="px-6 pt-6 pb-4">
-            <h3 class="text-2xl font-semibold">Get Started Today</h3>
+            <h3 class="text-2xl font-semibold">{t.leadForm.getStarted}</h3>
           </div>
           <div class="px-6 pb-6 space-y-6">
             <form 
@@ -41,6 +47,11 @@
               netlify-honeypot="bot-field"
               class="space-y-6" 
               data-calendar-url="https://calendar.app.google/wyAn29zGD5LyTVYd6"
+              data-lang={lang}
+              data-success-title={t.leadForm.successTitle}
+              data-success-message={t.leadForm.successMessage}
+              data-book-appointment={t.leadForm.bookAppointment}
+              data-close={t.leadForm.close}
             >
               <!-- Hidden field for Netlify Forms -->
               <input type="hidden" name="form-name" value="contact" />
@@ -52,7 +63,7 @@
               </p>
               <div class="grid grid-cols-2 gap-4">
                 <div class="space-y-2">
-                  <label for="firstName" class="text-sm font-medium leading-none block">First Name</label>
+                  <label for="firstName" class="text-sm font-medium leading-none block">{t.leadForm.firstName}</label>
                   <input 
                     id="firstName" 
                     name="firstName"
@@ -63,7 +74,7 @@
                   />
                 </div>
                 <div class="space-y-2">
-                  <label for="lastName" class="text-sm font-medium leading-none block">Last Name</label>
+                  <label for="lastName" class="text-sm font-medium leading-none block">{t.leadForm.lastName}</label>
                   <input 
                     id="lastName" 
                     name="lastName"
@@ -76,7 +87,7 @@
               </div>
               
               <div class="space-y-2">
-                <label for="company" class="text-sm font-medium leading-none block">Company</label>
+                <label for="company" class="text-sm font-medium leading-none block">{t.leadForm.company}</label>
                 <input 
                   id="company" 
                   name="company"
@@ -88,7 +99,7 @@
               </div>
               
               <div class="space-y-2">
-                <label for="email" class="text-sm font-medium leading-none block">Email Address</label>
+                <label for="email" class="text-sm font-medium leading-none block">{t.leadForm.email}</label>
                 <input 
                   id="email" 
                   name="email"
@@ -100,11 +111,11 @@
               </div>
               
               <div class="space-y-2">
-                <label for="goals" class="text-sm font-medium leading-none block">Project Goals & Challenges</label>
+                <label for="goals" class="text-sm font-medium leading-none block">{t.leadForm.goals}</label>
                 <textarea 
                   id="goals"
                   name="goals"
-                  placeholder="Tell us about your business model, target market, and what you'd like to validate..."
+                  placeholder={t.leadForm.goalsPlaceholder}
                   class="rounded-xl border border-border resize-none w-full min-h-24 px-3 py-2 text-base bg-input-background transition-[color,box-shadow] outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] placeholder:text-muted-foreground"
                   required
                 ></textarea>
@@ -119,7 +130,7 @@
                   required
                 />
                 <label for="consent" class="text-sm text-muted-foreground leading-relaxed">
-                  I agree to be contacted and accept the privacy policy.
+                  {t.leadForm.consent}
                 </label>
               </div>
               
@@ -132,7 +143,7 @@
                 <span class="pointer-events-none absolute inset-y-[8px] left-[10px] w-[2.5px] rounded-full bg-white/38 blur-[2px]"></span>
                 <span class="pointer-events-none absolute inset-y-[8px] right-[10px] w-[2.5px] rounded-full bg-white/28 blur-[2px]"></span>
                 <span class="relative inline-flex items-center">
-                  Submit Request
+                  {t.leadForm.submit}
                   <svg class="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <line x1="22" y1="2" x2="11" y2="13"></line>
                     <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
@@ -148,7 +159,7 @@
       <div id="benefits-card">
         <div class="bg-white border-0 shadow-sm rounded-2xl hover:shadow-xl transition-shadow">
           <div class="px-6 pt-6 pb-4">
-            <h3 class="text-2xl font-semibold">What You Get</h3>
+            <h3 class="text-2xl font-semibold">{t.leadForm.whatYouGet}</h3>
           </div>
           <div class="px-6 pb-6 space-y-6">
             <!-- Benefit 1 -->
@@ -161,7 +172,7 @@
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                 </svg>
               </div>
-              <span class="leading-relaxed">Free consultation call</span>
+              <span class="leading-relaxed">{t.leadForm.benefit1}</span>
             </div>
 
             <!-- Benefit 2 -->
@@ -174,7 +185,7 @@
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                 </svg>
               </div>
-              <span class="leading-relaxed">Custom validation strategy</span>
+              <span class="leading-relaxed">{t.leadForm.benefit2}</span>
             </div>
 
             <!-- Benefit 3 -->
@@ -187,7 +198,7 @@
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                 </svg>
               </div>
-              <span class="leading-relaxed">Expert network access</span>
+              <span class="leading-relaxed">{t.leadForm.benefit3}</span>
             </div>
 
             <!-- Benefit 4 -->
@@ -200,7 +211,7 @@
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                 </svg>
               </div>
-              <span class="leading-relaxed">Clear roadmap</span>
+              <span class="leading-relaxed">{t.leadForm.benefit4}</span>
             </div>
 
             <!-- Benefit 5 -->
@@ -213,16 +224,16 @@
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                 </svg>
               </div>
-              <span class="leading-relaxed">Risk assessment</span>
+              <span class="leading-relaxed">{t.leadForm.benefit5}</span>
             </div>
             
             <div class="bg-secondary p-6 rounded-xl mt-8">
-              <h4 class="mb-3 font-semibold">Typical Timeline</h4>
+              <h4 class="mb-3 font-semibold">{t.leadForm.timeline}</h4>
               <div class="space-y-2 text-sm text-muted-foreground">
-                <div>• Initial consultation: 1-2 days</div>
-                <div>• Strategy development: 3-5 days</div>
-                <div>• Validation execution: 2-4 weeks</div>
-                <div>• Results & recommendations: 2-3 days</div>
+                <div>• {t.leadForm.timeline1}</div>
+                <div>• {t.leadForm.timeline2}</div>
+                <div>• {t.leadForm.timeline3}</div>
+                <div>• {t.leadForm.timeline4}</div>
               </div>
             </div>
           </div>
@@ -316,7 +327,8 @@
         const submitButton = form.querySelector('button[type="submit"]') as HTMLButtonElement;
         const originalButtonText = submitButton.innerHTML;
         submitButton.disabled = true;
-        submitButton.innerHTML = '<span class="relative inline-flex items-center">Sending...</span>';
+        const sendingText = lang === 'de' ? 'Wird gesendet...' : 'Sending...';
+        submitButton.innerHTML = `<span class="relative inline-flex items-center">${sendingText}</span>`;
         
         try {
           // Submit to Netlify Forms
@@ -346,7 +358,10 @@
           
         } catch (error) {
           console.error('Form submission error:', error);
-          alert('Es gab einen Fehler beim Absenden. Bitte versuche es erneut.');
+          const errorMessage = lang === 'de' 
+            ? 'Es gab einen Fehler beim Absenden. Bitte versuche es erneut.'
+            : 'There was an error submitting. Please try again.';
+          alert(errorMessage);
         } finally {
           submitButton.disabled = false;
           submitButton.innerHTML = originalButtonText;
@@ -356,6 +371,13 @@
     
     // Show success message with calendar booking option
     function showSuccessMessage(formData: any, calendarUrl: string) {
+      // Get translations from form data attributes
+      const formElement = form as HTMLFormElement;
+      const successTitle = formElement.dataset.successTitle || 'Thank you!';
+      const successMessage = formElement.dataset.successMessage || 'We have received your request.';
+      const bookAppointment = formElement.dataset.bookAppointment || '📅 Book appointment in calendar';
+      const closeText = formElement.dataset.close || 'Close';
+      
       // Remove existing modal if present
       const existingModal = document.getElementById('form-success-message');
       if (existingModal) {
@@ -363,9 +385,9 @@
       }
       
       // Create success modal/message
-      const successMessage = document.createElement('div');
-      successMessage.id = 'form-success-message';
-      successMessage.style.cssText = 'position: fixed; inset: 0; background-color: rgba(0, 0, 0, 0.5); display: flex; align-items: center; justify-content: center; z-index: 9999; padding: 1rem;';
+      const successMessageDiv = document.createElement('div');
+      successMessageDiv.id = 'form-success-message';
+      successMessageDiv.style.cssText = 'position: fixed; inset: 0; background-color: rgba(0, 0, 0, 0.5); display: flex; align-items: center; justify-content: center; z-index: 9999; padding: 1rem;';
       
       const modalContent = document.createElement('div');
       modalContent.className = 'bg-white rounded-2xl p-8 max-w-md w-full shadow-xl';
@@ -376,55 +398,51 @@
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
             </svg>
           </div>
-          <h3 class="text-2xl font-semibold mb-2">Vielen Dank!</h3>
-          <p class="text-muted-foreground">Wir haben deine Anfrage erhalten.</p>
+          <h3 class="text-2xl font-semibold mb-2">${successTitle}</h3>
+          <p class="text-muted-foreground">${successMessage}</p>
         </div>
         
         <div class="space-y-4">
-          <p class="text-sm text-muted-foreground text-center">
-            Möchtest du direkt einen Termin buchen?
-          </p>
-          
           <a 
             href="${calendarUrl}" 
             target="_blank"
             rel="noopener noreferrer"
             class="block w-full py-3 px-4 rounded-xl bg-accent text-accent-foreground font-medium text-center hover:bg-accent/90 transition-colors"
           >
-            📅 Termin im Kalender buchen
+            ${bookAppointment}
           </a>
           
           <button 
             id="close-modal-btn"
             class="block w-full py-3 px-4 rounded-xl border border-border text-foreground font-medium hover:bg-secondary transition-colors"
           >
-            Schließen
+            ${closeText}
           </button>
         </div>
       `;
       
-      successMessage.appendChild(modalContent);
-      document.body.appendChild(successMessage);
+      successMessageDiv.appendChild(modalContent);
+      document.body.appendChild(successMessageDiv);
       
       // Close button handler
       const closeBtn = modalContent.querySelector('#close-modal-btn');
       if (closeBtn) {
         closeBtn.addEventListener('click', () => {
-          successMessage.remove();
+          successMessageDiv.remove();
         });
       }
       
       // Close on background click
-      successMessage.addEventListener('click', (e) => {
-        if (e.target === successMessage) {
-          successMessage.remove();
+      successMessageDiv.addEventListener('click', (e) => {
+        if (e.target === successMessageDiv) {
+          successMessageDiv.remove();
         }
       });
       
       // Close on Escape key
       const handleEscape = (e: KeyboardEvent) => {
         if (e.key === 'Escape') {
-          successMessage.remove();
+          successMessageDiv.remove();
           document.removeEventListener('keydown', handleEscape);
         }
       };

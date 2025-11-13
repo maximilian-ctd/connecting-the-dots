@@ -1,6 +1,15 @@
 ---
 // Footer-Komponente für ConnectingTheDots
-// Exakt nach Original Design
+import LanguageSwitcher from './LanguageSwitcher.astro';
+import { getTranslations, type Language } from '../i18n/translations';
+
+interface Props {
+  lang?: Language;
+  currentPath?: string;
+}
+
+const { lang = 'de', currentPath = '/de' } = Astro.props;
+const t = getTranslations(lang);
 ---
 
 <footer class="bg-primary text-primary-foreground py-16 px-4">
@@ -12,32 +21,32 @@
         <div class="flex-shrink-0 ml-0 lg:ml-0">
             <img
               src="/images/Logo_CTD-footer.svg"
-              alt="ConnectingTheDots Wortmarke"
+              alt="ConnectingTheDots"
               class="h-12 sm:h-14 lg:h-16 w-auto object-contain transition duration-300 ease-out"
               loading="lazy"
             />
           </div>
           <p class="text-primary-foreground/80 leading-relaxed max-w-md">
-            From market validation to operational execution — ConnectingTheDots bridges the gap between strategy and real market success.
+            {t.footer.description}
           </p>
         </div>
       </div>
       
       <!-- Links -->
       <div class="space-y-4">
-        <h4 class="text-lg">Company</h4>
+        <h4 class="text-lg">{t.footer.company}</h4>
         <ul class="space-y-2 text-primary-foreground/80">
-          <li><a href="#" class="hover:text-accent transition-colors">About Us</a></li>
-          <li><a href="#" class="hover:text-accent transition-colors">Blog</a></li>
+          <li><a href="#" class="hover:text-accent transition-colors">{t.footer.aboutUs}</a></li>
+          <li><a href="#" class="hover:text-accent transition-colors">{t.footer.blog}</a></li>
         </ul>
       </div>
       
           <div class="space-y-4">
-            <h4 class="text-lg">Legal</h4>
+            <h4 class="text-lg">{t.footer.legal}</h4>
             <ul class="space-y-2 text-primary-foreground/80">
-              <li><a href="/impressum" class="hover:text-accent transition-colors">Impressum</a></li>
-              <li><a href="/datenschutz" class="hover:text-accent transition-colors">Datenschutz</a></li>
-              <li><a href="#contact" class="hover:text-accent transition-colors">Contact</a></li>
+              <li><a href={`/${lang}/impressum`} class="hover:text-accent transition-colors">{t.footer.impressum}</a></li>
+              <li><a href={`/${lang}/datenschutz`} class="hover:text-accent transition-colors">{t.footer.datenschutz}</a></li>
+              <li><a href="#contact" class="hover:text-accent transition-colors">{t.footer.contact}</a></li>
             </ul>
           </div>
     </div>
@@ -47,16 +56,19 @@
     
     <div class="flex flex-col md:flex-row justify-between items-center gap-4">
       <p class="text-primary-foreground/60 text-sm">
-        © 2024 ConnectingTheDots. All rights reserved.
+        {t.footer.copyright}
       </p>
       
-      <div class="flex gap-6">
-        <a href="#" class="text-primary-foreground/60 hover:text-accent transition-colors">
-          LinkedIn
-        </a>
-        <a href="#" class="text-primary-foreground/60 hover:text-accent transition-colors">
-          Email
-        </a>
+      <div class="flex items-center gap-4">
+        <LanguageSwitcher currentLang={lang} currentPath={currentPath} />
+        <div class="flex gap-6">
+          <a href="https://www.linkedin.com/company/connectingthedots1/" target="_blank" rel="noopener noreferrer" class="text-primary-foreground/60 hover:text-accent transition-colors">
+            {t.footer.linkedin}
+          </a>
+          <a href="mailto:maximilian@connectingthe.de" class="text-primary-foreground/60 hover:text-accent transition-colors">
+            {t.footer.email}
+          </a>
+        </div>
       </div>
     </div>
   </div>
