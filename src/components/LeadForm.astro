@@ -316,12 +316,15 @@ const t = getTranslations(lang);
 
     // Form submission handler
     if (form) {
+      console.log('Form found, adding submit listener');
       form.addEventListener('submit', async (e) => {
+        console.log('Form submit event triggered');
         e.preventDefault();
         
         // Get form data
         const formData = new FormData(form as HTMLFormElement);
         const data = Object.fromEntries(formData);
+        console.log('Form data:', data);
         
         // Show loading state
         const submitButton = form.querySelector('button[type="submit"]') as HTMLButtonElement;
@@ -362,6 +365,7 @@ const t = getTranslations(lang);
         
         // Always show success message with calendar link
         // This ensures users can always book an appointment
+        console.log('Showing success message with calendar URL:', calendarAppointmentUrl);
         showSuccessMessage(data, calendarAppointmentUrl);
         
         // Reset form
@@ -375,12 +379,22 @@ const t = getTranslations(lang);
     
     // Show success message with calendar booking option
     function showSuccessMessage(formData: any, calendarUrl: string) {
+      console.log('showSuccessMessage called with calendarUrl:', calendarUrl);
+      
+      // Get form element directly from DOM to avoid scope issues
+      const formElement = document.getElementById('contact-form') as HTMLFormElement;
+      if (!formElement) {
+        console.error('Form element not found');
+        return;
+      }
+      
       // Get translations from form data attributes
-      const formElement = form as HTMLFormElement;
       const successTitle = formElement.dataset.successTitle || 'Thank you!';
       const successMessage = formElement.dataset.successMessage || 'We have received your request.';
       const bookAppointment = formElement.dataset.bookAppointment || '📅 Book appointment in calendar';
       const closeText = formElement.dataset.close || 'Close';
+      
+      console.log('Modal text:', { successTitle, successMessage, bookAppointment, closeText });
       
       // Remove existing modal if present
       const existingModal = document.getElementById('form-success-message');
@@ -392,6 +406,8 @@ const t = getTranslations(lang);
       const successMessageDiv = document.createElement('div');
       successMessageDiv.id = 'form-success-message';
       successMessageDiv.style.cssText = 'position: fixed; inset: 0; background-color: rgba(0, 0, 0, 0.5); display: flex; align-items: center; justify-content: center; z-index: 9999; padding: 1rem;';
+      
+      console.log('Creating modal element');
       
       const modalContent = document.createElement('div');
       modalContent.className = 'bg-white rounded-2xl p-8 max-w-md w-full shadow-xl';
@@ -427,6 +443,9 @@ const t = getTranslations(lang);
       
       successMessageDiv.appendChild(modalContent);
       document.body.appendChild(successMessageDiv);
+      
+      console.log('Modal added to DOM, element:', successMessageDiv);
+      console.log('Modal visible:', successMessageDiv.offsetParent !== null);
       
       // Close button handler
       const closeBtn = modalContent.querySelector('#close-modal-btn');
