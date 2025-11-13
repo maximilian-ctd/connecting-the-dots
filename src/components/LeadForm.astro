@@ -243,7 +243,7 @@ const t = getTranslations(lang);
   </div>
 </section>
 
-<script>
+<script is:inline>
   // Pass translations and calendar URL via data attributes
   const CALENDAR_URL = 'https://calendar.app.google/wyAn29zGD5LyTVYd6';
   let formInitialized = false;
@@ -401,9 +401,11 @@ const t = getTranslations(lang);
     } else {
       console.error('Form element not found!');
     }
-    
-    // Show success message with calendar booking option
-    function showSuccessMessage(formData: any, calendarUrl: string) {
+  }
+  
+  // Show success message with calendar booking option
+  // Defined outside initLeadForm so it's accessible from the submit handler
+  function showSuccessMessage(formData: any, calendarUrl: string) {
       console.log('showSuccessMessage called with calendarUrl:', calendarUrl);
       
       // Get form element to read translations from data attributes
@@ -498,6 +500,7 @@ const t = getTranslations(lang);
     }
   }
 
+  // Initialize when DOM is ready
   // Initialize immediately and also on DOMContentLoaded as backup
   console.log('Script loaded, initializing form...');
   
