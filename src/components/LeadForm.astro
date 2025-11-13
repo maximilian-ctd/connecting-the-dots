@@ -385,8 +385,10 @@ const t = getTranslations(lang);
         
         // Always show success message with calendar link
         // This ensures users can always book an appointment
-        console.log('Showing success message with calendar URL:', CALENDAR_URL);
-        showSuccessMessage(data, CALENDAR_URL);
+        // Create calendar URL with form data attached
+        const calendarUrlWithData = createCalendarUrlWithData(data, CALENDAR_URL);
+        console.log('Showing success message with calendar URL:', calendarUrlWithData);
+        showSuccessMessage(data, calendarUrlWithData);
         
         // Reset form
         (form as HTMLFormElement).reset();
@@ -401,6 +403,40 @@ const t = getTranslations(lang);
     } else {
       console.error('Form element not found!');
     }
+  }
+  
+  // Create calendar URL with form data attached
+  function createCalendarUrlWithData(formData: any, baseUrl: string): string {
+    // Format form data for calendar description
+    const description = `
+Kontaktinformationen:
+- Name: ${formData.firstName || ''} ${formData.lastName || ''}
+- Firma: ${formData.company || ''}
+- E-Mail: ${formData.email || ''}
+
+Projektziele & Herausforderungen:
+${formData.goals || ''}
+    `.trim();
+    
+    // Encode the description for URL
+    const encodedDescription = encodeURIComponent(description);
+    
+    // Google Calendar Appointment Scheduling doesn't support direct URL parameters
+    // So we'll store the data and add it to the URL as a reference
+    // The data will be available when the appointment is created
+    const dataId = btoa(JSON.stringify(formData)).replace(/[+/=]/g, (m) => {
+      return { '+': '-', '/': '_', '=': '' }[m] || m;
+    });
+    
+    // Store data in localStorage for reference
+    try {
+      localStorage.setItem(`formData_${dataId}`, JSON.stringify(formData));
+    } catch (e) {
+      console.error('Could not store form data:', e);
+    }
+    
+    // Add data ID to URL as parameter (for reference)
+    return `${baseUrl}?data=${dataId}`;
   }
   
   // Show success message with calendar booking option
@@ -455,6 +491,7 @@ const t = getTranslations(lang);
             target="_blank"
             rel="noopener noreferrer"
             class="block w-full py-3 px-4 rounded-xl bg-accent text-accent-foreground font-medium text-center hover:bg-accent/90 transition-colors"
+            onclick="if (window.attachFormDataToCalendar) { window.attachFormDataToCalendar('${calendarUrl}'); }"
           >
             ${bookAppointment}
           </a>
@@ -499,6 +536,45 @@ const t = getTranslations(lang);
       document.addEventListener('keydown', handleEscape);
     }
   }
+  
+  // Function to attach form data when calendar link is clicked
+  (window as any).attachFormDataToCalendar = function(calendarUrl: string) {
+    // Extract data ID from URL
+    const urlParams = new URLSearchParams(calendarUrl.split('?')[1] || '');
+    const dataId = urlParams.get('data');
+    
+    if (dataId) {
+      try {
+        // Get form data from localStorage
+        const storedData = localStorage.getItem(`formData_${dataId}`);
+        if (storedData) {
+          const formData = JSON.parse(storedData);
+          
+          // Format data for calendar
+          const calendarDescription = `
+Kontaktinformationen:
+- Name: ${formData.firstName || ''} ${formData.lastName || ''}
+- Firma: ${formData.company || ''}
+- E-Mail: ${formData.email || ''}
+
+Projektziele & Herausforderungen:
+${formData.goals || ''}
+          `.trim();
+          
+          // Store description in a way that can be accessed
+          // Note: Google Calendar Appointment Scheduling doesn't support direct URL parameters
+          // So we'll copy the data to clipboard as a fallback
+          navigator.clipboard.writeText(calendarDescription).then(() => {
+            console.log('Form data copied to clipboard. Paste it into the calendar appointment description.');
+          }).catch(() => {
+            console.log('Form data:', calendarDescription);
+          });
+        }
+      } catch (e) {
+        console.error('Error retrieving form data:', e);
+      }
+    }
+  };
 
   // Initialize when DOM is ready
   // Initialize immediately and also on DOMContentLoaded as backup
