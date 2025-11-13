@@ -47,6 +47,7 @@ const t = getTranslations(lang);
               netlify-honeypot="bot-field"
               class="space-y-6" 
               data-calendar-url="https://calendar.app.google/wyAn29zGD5LyTVYd6"
+              data-lang={lang}
               data-success-title={t.leadForm.successTitle}
               data-success-message={t.leadForm.successMessage}
               data-book-appointment={t.leadForm.bookAppointment}
@@ -245,7 +246,16 @@ const t = getTranslations(lang);
 <script>
   // Pass translations and calendar URL via data attributes
   const CALENDAR_URL = 'https://calendar.app.google/wyAn29zGD5LyTVYd6';
+  let formInitialized = false;
+  
   function initLeadForm() {
+    // Prevent multiple initializations
+    if (formInitialized) {
+      console.log('Form already initialized, skipping...');
+      return;
+    }
+    
+    console.log('Initializing form...');
     const title = document.getElementById('lead-form-title');
     const subtitle = document.getElementById('lead-form-subtitle');
     const formCard = document.getElementById('lead-form-card');
@@ -315,9 +325,20 @@ const t = getTranslations(lang);
       }
     });
 
-    // Form submission handler
+    // Form submission handler - use both form submit and button click
     if (form) {
       console.log('Form found, adding submit listener');
+      
+      // Also add click handler to submit button as backup
+      const submitButton = form.querySelector('button[type="submit"]') as HTMLButtonElement;
+      if (submitButton) {
+        console.log('Submit button found, adding click listener');
+        submitButton.addEventListener('click', (e) => {
+          console.log('Submit button clicked');
+          // Don't prevent default here, let form submit handle it
+        });
+      }
+      
       form.addEventListener('submit', async (e) => {
         console.log('Form submit event triggered');
         e.preventDefault();
@@ -331,7 +352,9 @@ const t = getTranslations(lang);
         const submitButton = form.querySelector('button[type="submit"]') as HTMLButtonElement;
         const originalButtonText = submitButton.innerHTML;
         submitButton.disabled = true;
-        const sendingText = lang === 'de' ? 'Wird gesendet...' : 'Sending...';
+        // Get language from form data attribute or default to German
+        const formLang = (form as HTMLFormElement).dataset.lang || 'de';
+        const sendingText = formLang === 'de' ? 'Wird gesendet...' : 'Sending...';
         submitButton.innerHTML = `<span class="relative inline-flex items-center">${sendingText}</span>`;
         
         // Try to submit to Netlify Forms in the background
@@ -372,6 +395,11 @@ const t = getTranslations(lang);
         submitButton.disabled = false;
         submitButton.innerHTML = originalButtonText;
       });
+      
+      formInitialized = true;
+      console.log('Form initialization complete');
+    } else {
+      console.error('Form element not found!');
     }
     
     // Show success message with calendar booking option
@@ -470,11 +498,36 @@ const t = getTranslations(lang);
     }
   }
 
-  // Initialize
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initLeadForm);
-  } else {
+  // Initialize immediately and also on DOMContentLoaded as backup
+  console.log('Script loaded, initializing form...');
+  
+  // Try to initialize immediately
+  try {
     initLeadForm();
+  } catch (error) {
+    console.error('Error initializing form immediately:', error);
+  }
+  
+  // Also initialize on DOMContentLoaded as backup
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+      console.log('DOMContentLoaded fired, initializing form...');
+      try {
+        initLeadForm();
+      } catch (error) {
+        console.error('Error initializing form on DOMContentLoaded:', error);
+      }
+    });
+  } else {
+    // DOM already loaded, try again
+    setTimeout(() => {
+      console.log('Delayed initialization...');
+      try {
+        initLeadForm();
+      } catch (error) {
+        console.error('Error in delayed initialization:', error);
+      }
+    }, 100);
   }
 </script>
 
