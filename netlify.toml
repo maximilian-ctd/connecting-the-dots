@@ -1,4 +1,14 @@
 [build]
   command = "npm run build"
   publish = "dist"
+  functions = "netlify/functions"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+# Netlify Forms Configuration
+# Forms are automatically handled by Netlify
+# Configure email notifications in Netlify Dashboard:
+# Site Settings → Forms → Form notifications → Add notification
+# Set recipient email to: maximilian@connectingthe.de
 

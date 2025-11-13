@@ -33,7 +33,23 @@
             <h3 class="text-2xl font-semibold">Get Started Today</h3>
           </div>
           <div class="px-6 pb-6 space-y-6">
-            <form id="contact-form" class="space-y-6">
+            <form 
+              id="contact-form" 
+              name="contact" 
+              method="POST" 
+              data-netlify="true" 
+              netlify-honeypot="bot-field"
+              class="space-y-6" 
+              data-calendar-url="https://calendar.app.google/wyAn29zGD5LyTVYd6"
+            >
+              <!-- Hidden field for Netlify Forms -->
+              <input type="hidden" name="form-name" value="contact" />
+              <!-- Honeypot field for spam protection -->
+              <p class="hidden">
+                <label>
+                  Don't fill this out if you're human: <input name="bot-field" />
+                </label>
+              </p>
               <div class="grid grid-cols-2 gap-4">
                 <div class="space-y-2">
                   <label for="firstName" class="text-sm font-medium leading-none block">First Name</label>
@@ -289,22 +305,130 @@
 
     // Form submission handler
     if (form) {
-      form.addEventListener('submit', (e) => {
+      form.addEventListener('submit', async (e) => {
         e.preventDefault();
         
         // Get form data
         const formData = new FormData(form as HTMLFormElement);
         const data = Object.fromEntries(formData);
         
-        // Here you would typically send the data to a backend
-        console.log('Form submitted:', data);
+        // Show loading state
+        const submitButton = form.querySelector('button[type="submit"]') as HTMLButtonElement;
+        const originalButtonText = submitButton.innerHTML;
+        submitButton.disabled = true;
+        submitButton.innerHTML = '<span class="relative inline-flex items-center">Sending...</span>';
         
-        // Show success message (you can enhance this)
-        alert('Thank you for your request! We will contact you soon.');
-        
-        // Reset form
-        (form as HTMLFormElement).reset();
+        try {
+          // Submit to Netlify Forms
+          const formDataToSend = new FormData(form as HTMLFormElement);
+          
+          const response = await fetch('/', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: new URLSearchParams(formDataToSend as any).toString(),
+          });
+          
+          if (!response.ok) {
+            throw new Error('Failed to submit form');
+          }
+          
+          // Get calendar URL from form data attribute or use default
+          const calendarAppointmentUrl = (form as HTMLFormElement).dataset.calendarUrl || 
+            'https://calendar.app.google/wyAn29zGD5LyTVYd6';
+          
+          console.log('Form submitted successfully, Calendar URL:', calendarAppointmentUrl);
+          
+          // Show success message with calendar link
+          showSuccessMessage(data, calendarAppointmentUrl);
+          
+          // Reset form
+          (form as HTMLFormElement).reset();
+          
+        } catch (error) {
+          console.error('Form submission error:', error);
+          alert('Es gab einen Fehler beim Absenden. Bitte versuche es erneut.');
+        } finally {
+          submitButton.disabled = false;
+          submitButton.innerHTML = originalButtonText;
+        }
       });
+    }
+    
+    // Show success message with calendar booking option
+    function showSuccessMessage(formData: any, calendarUrl: string) {
+      // Remove existing modal if present
+      const existingModal = document.getElementById('form-success-message');
+      if (existingModal) {
+        existingModal.remove();
+      }
+      
+      // Create success modal/message
+      const successMessage = document.createElement('div');
+      successMessage.id = 'form-success-message';
+      successMessage.style.cssText = 'position: fixed; inset: 0; background-color: rgba(0, 0, 0, 0.5); display: flex; align-items: center; justify-content: center; z-index: 9999; padding: 1rem;';
+      
+      const modalContent = document.createElement('div');
+      modalContent.className = 'bg-white rounded-2xl p-8 max-w-md w-full shadow-xl';
+      modalContent.innerHTML = `
+        <div class="text-center mb-6">
+          <div class="w-16 h-16 bg-accent/20 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+          </div>
+          <h3 class="text-2xl font-semibold mb-2">Vielen Dank!</h3>
+          <p class="text-muted-foreground">Wir haben deine Anfrage erhalten.</p>
+        </div>
+        
+        <div class="space-y-4">
+          <p class="text-sm text-muted-foreground text-center">
+            Möchtest du direkt einen Termin buchen?
+          </p>
+          
+          <a 
+            href="${calendarUrl}" 
+            target="_blank"
+            rel="noopener noreferrer"
+            class="block w-full py-3 px-4 rounded-xl bg-accent text-accent-foreground font-medium text-center hover:bg-accent/90 transition-colors"
+          >
+            📅 Termin im Kalender buchen
+          </a>
+          
+          <button 
+            id="close-modal-btn"
+            class="block w-full py-3 px-4 rounded-xl border border-border text-foreground font-medium hover:bg-secondary transition-colors"
+          >
+            Schließen
+          </button>
+        </div>
+      `;
+      
+      successMessage.appendChild(modalContent);
+      document.body.appendChild(successMessage);
+      
+      // Close button handler
+      const closeBtn = modalContent.querySelector('#close-modal-btn');
+      if (closeBtn) {
+        closeBtn.addEventListener('click', () => {
+          successMessage.remove();
+        });
+      }
+      
+      // Close on background click
+      successMessage.addEventListener('click', (e) => {
+        if (e.target === successMessage) {
+          successMessage.remove();
+        }
+      });
+      
+      // Close on Escape key
+      const handleEscape = (e: KeyboardEvent) => {
+        if (e.key === 'Escape') {
+          successMessage.remove();
+          document.removeEventListener('keydown', handleEscape);
+        }
+      };
+      document.addEventListener('keydown', handleEscape);
     }
   }
 
