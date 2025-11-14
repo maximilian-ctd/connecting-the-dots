@@ -128,8 +128,7 @@ export interface Translations {
     timeline4: string;
     successTitle: string;
     successMessage: string;
-    bookAppointment: string;
-    close: string;
+    errorMessage: string;
   };
 }
 
@@ -243,10 +242,9 @@ export const translations: Record<Language, Translations> = {
       timeline2: 'Planung: 3-5 Tage',
       timeline3: 'Umsetzung: 2-4 Wochen',
       timeline4: 'Ergebnisse & Empfehlungen: 2-3 Tage',
-      successTitle: 'Vielen Dank!',
-      successMessage: 'Wir haben deine Anfrage erhalten.',
-      bookAppointment: '📅 Termin im Kalender buchen',
-      close: 'Schließen',
+      successTitle: 'Anfrage eingegangen',
+      successMessage: 'Wir melden uns zeitnah mit konkreten Terminvorschlägen für dein Beratungsgespräch.',
+      errorMessage: 'Etwas ist schiefgelaufen. Bitte versuche es später erneut oder schreib an maximilian@connectingthe.de.',
     },
   },
   en: {
@@ -346,7 +344,7 @@ export const translations: Record<Language, Translations> = {
       goals: 'Project Goals & Challenges',
       goalsPlaceholder: "Tell us about your business model, target market, and what you'd like to validate...",
       consent: 'I agree to be contacted and accept the privacy policy.',
-      submit: 'Submit Request',
+      submit: 'Submit request',
       whatYouGet: 'What You Get',
       benefit1: 'Free consultation call',
       benefit2: 'Custom validation strategy',
@@ -358,10 +356,9 @@ export const translations: Record<Language, Translations> = {
       timeline2: 'Strategy development: 3-5 days',
       timeline3: 'Validation execution: 2-4 weeks',
       timeline4: 'Results & recommendations: 2-3 days',
-      successTitle: 'Thank you!',
-      successMessage: 'We have received your request.',
-      bookAppointment: '📅 Book appointment in calendar',
-      close: 'Close',
+      successTitle: 'Request received',
+      successMessage: 'We will get back to you shortly with concrete times for your free consultation.',
+      errorMessage: 'Something went wrong. Please try again or email maximilian@connectingthe.de.',
     },
   },
 };

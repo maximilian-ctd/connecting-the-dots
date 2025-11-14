@@ -1,5 +1,6 @@
 ---
 import { getTranslations, type Language } from '../i18n/translations';
+import leadFormScript from '../scripts/leadForm.ts?url';
 
 interface Props {
   lang?: Language;
@@ -19,13 +20,13 @@ const t = getTranslations(lang);
     <div class="text-center mb-16">
       <h2 
         id="lead-form-title"
-        class="text-3xl lg:text-4xl mb-6 opacity-0"
+        class="text-3xl lg:text-4xl mb-6"
       >
         {t.leadForm.title}
       </h2>
       <p 
         id="lead-form-subtitle"
-        class="text-lg text-muted-foreground max-w-2xl mx-auto opacity-0"
+        class="text-lg text-muted-foreground max-w-2xl mx-auto"
       >
         {t.leadForm.subtitle}
       </p>
@@ -33,7 +34,7 @@ const t = getTranslations(lang);
     
     <div class="grid lg:grid-cols-2 gap-12">
       <!-- Form -->
-      <div id="lead-form-card" class="opacity-0">
+      <div id="lead-form-card" style="opacity: 1 !important; transform: none !important; visibility: visible !important;">
         <div class="bg-white border-0 shadow-sm rounded-2xl hover:shadow-xl transition-shadow">
           <div class="px-6 pt-6 pb-4">
             <h3 class="text-2xl font-semibold">{t.leadForm.getStarted}</h3>
@@ -46,12 +47,10 @@ const t = getTranslations(lang);
               data-netlify="true" 
               netlify-honeypot="bot-field"
               class="space-y-6" 
-              data-calendar-url="https://calendar.app.google/wyAn29zGD5LyTVYd6"
-              data-lang={lang}
+            data-lang={lang}
               data-success-title={t.leadForm.successTitle}
               data-success-message={t.leadForm.successMessage}
-              data-book-appointment={t.leadForm.bookAppointment}
-              data-close={t.leadForm.close}
+              data-error-message={t.leadForm.errorMessage}
             >
               <!-- Hidden field for Netlify Forms -->
               <input type="hidden" name="form-name" value="contact" />
@@ -164,7 +163,7 @@ const t = getTranslations(lang);
           <div class="px-6 pb-6 space-y-6">
             <!-- Benefit 1 -->
             <div 
-              class="benefit-item flex items-start gap-4 group opacity-0"
+              class="benefit-item flex items-start gap-4 group"
               data-index="0"
             >
               <div class="check-icon">
@@ -177,7 +176,7 @@ const t = getTranslations(lang);
 
             <!-- Benefit 2 -->
             <div 
-              class="benefit-item flex items-start gap-4 group opacity-0"
+              class="benefit-item flex items-start gap-4 group"
               data-index="1"
             >
               <div class="check-icon">
@@ -190,7 +189,7 @@ const t = getTranslations(lang);
 
             <!-- Benefit 3 -->
             <div 
-              class="benefit-item flex items-start gap-4 group opacity-0"
+              class="benefit-item flex items-start gap-4 group"
               data-index="2"
             >
               <div class="check-icon">
@@ -203,7 +202,7 @@ const t = getTranslations(lang);
 
             <!-- Benefit 4 -->
             <div 
-              class="benefit-item flex items-start gap-4 group opacity-0"
+              class="benefit-item flex items-start gap-4 group"
               data-index="3"
             >
               <div class="check-icon">
@@ -216,7 +215,7 @@ const t = getTranslations(lang);
 
             <!-- Benefit 5 -->
             <div 
-              class="benefit-item flex items-start gap-4 group opacity-0"
+              class="benefit-item flex items-start gap-4 group"
               data-index="4"
             >
               <div class="check-icon">
@@ -243,331 +242,17 @@ const t = getTranslations(lang);
   </div>
 </section>
 
-<script is:inline>
-  // Pass translations and calendar URL via data attributes
-  const CALENDAR_URL = 'https://calendar.app.google/wyAn29zGD5LyTVYd6';
-  let formInitialized = false;
-  
-  function initLeadForm() {
-    // Prevent multiple initializations
-    if (formInitialized) {
-      console.log('Form already initialized, skipping...');
-      return;
-    }
-    
-    console.log('Initializing form...');
-    const title = document.getElementById('lead-form-title');
-    const subtitle = document.getElementById('lead-form-subtitle');
-    const formCard = document.getElementById('lead-form-card');
-    const benefitsCard = document.getElementById('benefits-card');
-    const benefitItems = document.querySelectorAll('.benefit-item');
-    const form = document.getElementById('contact-form');
-
-    // Fade in title and subtitle
-    if (title) {
-      setTimeout(() => {
-        title.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-        title.style.opacity = '1';
-        title.style.transform = 'translateY(0)';
-      }, 100);
-    }
-
-    if (subtitle) {
-      setTimeout(() => {
-        subtitle.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-        subtitle.style.opacity = '1';
-        subtitle.style.transform = 'translateY(0)';
-      }, 200);
-    }
-
-    // Fade in cards - ensure they're visible
-    if (formCard) {
-      formCard.style.transform = 'translateX(-50px)';
-      setTimeout(() => {
-        formCard.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-        formCard.style.opacity = '1';
-        formCard.style.transform = 'translateX(0)';
-      }, 300);
-    }
-
-    if (benefitsCard) {
-      // Start visible but translated
-      benefitsCard.style.opacity = '1';
-      benefitsCard.style.transform = 'translateX(50px)';
-      benefitsCard.style.transition = 'transform 0.6s ease';
-      
-      // Animate in
-      setTimeout(() => {
-        benefitsCard.style.transform = 'translateX(0)';
-      }, 400);
-    }
-
-    // Animate benefit items
-    benefitItems.forEach((item, index) => {
-      const itemEl = item as HTMLElement;
-      const delay = index * 100;
-      
-      setTimeout(() => {
-        itemEl.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-        itemEl.style.opacity = '1';
-        itemEl.style.transform = 'translateX(0)';
-      }, 500 + delay);
-
-      // Check icon hover effect
-      const checkIcon = itemEl.querySelector('.check-icon');
-      if (checkIcon) {
-        itemEl.addEventListener('mouseenter', () => {
-          checkIcon.style.transform = 'scale(1.2) rotate(360deg)';
-        });
-        itemEl.addEventListener('mouseleave', () => {
-          checkIcon.style.transform = 'scale(1) rotate(0deg)';
-        });
-      }
-    });
-
-    // Form submission handler - use both form submit and button click
-    if (form) {
-      console.log('Form found, adding submit listener');
-      
-      // Also add click handler to submit button as backup
-      const submitButton = form.querySelector('button[type="submit"]') as HTMLButtonElement;
-      if (submitButton) {
-        console.log('Submit button found, adding click listener');
-        submitButton.addEventListener('click', (e) => {
-          console.log('Submit button clicked');
-          // Don't prevent default here, let form submit handle it
-        });
-      }
-      
-      form.addEventListener('submit', async (e) => {
-        console.log('Form submit event triggered');
-        e.preventDefault();
-        
-        // Get form data
-        const formData = new FormData(form as HTMLFormElement);
-        const data = Object.fromEntries(formData);
-        console.log('Form data:', data);
-        
-        // Show loading state
-        const submitButton = form.querySelector('button[type="submit"]') as HTMLButtonElement;
-        const originalButtonText = submitButton.innerHTML;
-        submitButton.disabled = true;
-        // Get language from form data attribute or default to German
-        const formLang = (form as HTMLFormElement).dataset.lang || 'de';
-        const sendingText = formLang === 'de' ? 'Wird gesendet...' : 'Sending...';
-        submitButton.innerHTML = `<span class="relative inline-flex items-center">${sendingText}</span>`;
-        
-        // Try to submit to Netlify Forms in the background
-        // But always show the success modal with calendar link
-        try {
-          // Submit to Netlify Forms
-          const formDataToSend = new FormData(form as HTMLFormElement);
-          
-          // Create URLSearchParams from FormData
-          const params = new URLSearchParams();
-          for (const [key, value] of formDataToSend.entries()) {
-            params.append(key, value as string);
-          }
-          
-          // Submit to Netlify Forms endpoint
-          const response = await fetch('/', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-            body: params.toString(),
-          });
-          
-          console.log('Form submission response:', response.status, response.statusText);
-          
-        } catch (error) {
-          // Log error but don't block the user from booking
-          console.error('Form submission error (non-blocking):', error);
-        }
-        
-        // Always show success message with calendar link
-        // This ensures users can always book an appointment
-        // Create calendar URL with form data attached
-        const calendarUrlWithData = createCalendarUrlWithData(data, CALENDAR_URL);
-        console.log('Showing success message with calendar URL:', calendarUrlWithData);
-        showSuccessMessage(data, calendarUrlWithData);
-        
-        // Reset form
-        (form as HTMLFormElement).reset();
-        
-        // Reset button
-        submitButton.disabled = false;
-        submitButton.innerHTML = originalButtonText;
-      });
-      
-      formInitialized = true;
-      console.log('Form initialization complete');
-    } else {
-      console.error('Form element not found!');
-    }
-  }
-  
-  // Create calendar URL with form data attached
-  function createCalendarUrlWithData(formData: any, baseUrl: string): string {
-    // Format form data for calendar description
-    const fullName = `${formData.firstName || ''} ${formData.lastName || ''}`.trim();
-    const description = `Kontaktinformationen:
-- Name: ${fullName}
-- Firma: ${formData.company || ''}
-- E-Mail: ${formData.email || ''}
-
-Projektziele & Herausforderungen:
-${formData.goals || ''}`;
-    
-    // Encode the description for URL
-    const encodedDescription = encodeURIComponent(description);
-    const encodedTitle = encodeURIComponent(`Beratungstermin mit ${fullName}`);
-    
-    // Create a Google Calendar event link with the data directly in the description
-    // This will open Google Calendar with a pre-filled event that includes all form data
-    const calendarEventUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodedTitle}&details=${encodedDescription}`;
-    
-    return calendarEventUrl;
-  }
-  
-  // Show success message with calendar booking option
-  // Defined outside initLeadForm so it's accessible from the submit handler
-  function showSuccessMessage(formData: any, calendarUrl: string) {
-      console.log('showSuccessMessage called with calendarUrl:', calendarUrl);
-      
-      // Get form element to read translations from data attributes
-      const formElement = document.getElementById('contact-form') as HTMLFormElement;
-      if (!formElement) {
-        console.error('Form element not found');
-        return;
-      }
-      
-      // Get translations from form data attributes
-      const successTitle = formElement.dataset.successTitle || 'Thank you!';
-      const successMessage = formElement.dataset.successMessage || 'We have received your request.';
-      const bookAppointment = formElement.dataset.bookAppointment || '📅 Book appointment in calendar';
-      const closeText = formElement.dataset.close || 'Close';
-      
-      console.log('Modal text:', { successTitle, successMessage, bookAppointment, closeText });
-      
-      // Remove existing modal if present
-      const existingModal = document.getElementById('form-success-message');
-      if (existingModal) {
-        existingModal.remove();
-      }
-      
-      // Create success modal/message
-      const successMessageDiv = document.createElement('div');
-      successMessageDiv.id = 'form-success-message';
-      successMessageDiv.style.cssText = 'position: fixed; inset: 0; background-color: rgba(0, 0, 0, 0.5); display: flex; align-items: center; justify-content: center; z-index: 9999; padding: 1rem;';
-      
-      console.log('Creating modal element');
-      
-      const modalContent = document.createElement('div');
-      modalContent.className = 'bg-white rounded-2xl p-8 max-w-md w-full shadow-xl';
-      modalContent.innerHTML = `
-        <div class="text-center mb-6">
-          <div class="w-16 h-16 bg-accent/20 rounded-full flex items-center justify-center mx-auto mb-4">
-            <svg class="w-8 h-8 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-            </svg>
-          </div>
-          <h3 class="text-2xl font-semibold mb-2">${successTitle}</h3>
-          <p class="text-muted-foreground">${successMessage}</p>
-        </div>
-        
-        <div class="space-y-4">
-          <a 
-            href="${calendarUrl}" 
-            target="_blank"
-            rel="noopener noreferrer"
-            class="block w-full py-3 px-4 rounded-xl bg-accent text-accent-foreground font-medium text-center hover:bg-accent/90 transition-colors"
-          >
-            ${bookAppointment}
-          </a>
-          
-          <button 
-            id="close-modal-btn"
-            class="block w-full py-3 px-4 rounded-xl border border-border text-foreground font-medium hover:bg-secondary transition-colors"
-          >
-            ${closeText}
-          </button>
-        </div>
-      `;
-      
-      successMessageDiv.appendChild(modalContent);
-      document.body.appendChild(successMessageDiv);
-      
-      console.log('Modal added to DOM, element:', successMessageDiv);
-      console.log('Modal visible:', successMessageDiv.offsetParent !== null);
-      
-      // Close button handler
-      const closeBtn = modalContent.querySelector('#close-modal-btn');
-      if (closeBtn) {
-        closeBtn.addEventListener('click', () => {
-          successMessageDiv.remove();
-        });
-      }
-      
-      // Close on background click
-      successMessageDiv.addEventListener('click', (e) => {
-        if (e.target === successMessageDiv) {
-          successMessageDiv.remove();
-        }
-      });
-      
-      // Close on Escape key
-      const handleEscape = (e: KeyboardEvent) => {
-        if (e.key === 'Escape') {
-          successMessageDiv.remove();
-          document.removeEventListener('keydown', handleEscape);
-        }
-      };
-      document.addEventListener('keydown', handleEscape);
-    }
-  }
-  
-
-  // Initialize when DOM is ready
-  // Initialize immediately and also on DOMContentLoaded as backup
-  console.log('Script loaded, initializing form...');
-  
-  // Try to initialize immediately
-  try {
-    initLeadForm();
-  } catch (error) {
-    console.error('Error initializing form immediately:', error);
-  }
-  
-  // Also initialize on DOMContentLoaded as backup
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', () => {
-      console.log('DOMContentLoaded fired, initializing form...');
-      try {
-        initLeadForm();
-      } catch (error) {
-        console.error('Error initializing form on DOMContentLoaded:', error);
-      }
-    });
-  } else {
-    // DOM already loaded, try again
-    setTimeout(() => {
-      console.log('Delayed initialization...');
-      try {
-        initLeadForm();
-      } catch (error) {
-        console.error('Error in delayed initialization:', error);
-      }
-    }, 100);
-  }
-</script>
+<script type="module" src={leadFormScript}></script>
 
 <style>
-  #lead-form-title,
-  #lead-form-subtitle {
-    transform: translateY(20px);
-  }
-
-  #lead-form-card {
-    transform: translateX(-50px);
+  /* Ensure form is visible by default - use high specificity */
+  section#contact #lead-form-title,
+  section#contact #lead-form-subtitle,
+  section#contact #lead-form-card {
+    opacity: 1 !important;
+    transform: none !important;
+    visibility: visible !important;
+    display: block !important;
   }
 
   #benefits-card {
@@ -575,7 +260,6 @@ ${formData.goals || ''}`;
   }
 
   .benefit-item {
-    transform: translateX(20px);
     transition: transform 0.3s ease;
   }
 
