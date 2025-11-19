@@ -8,6 +8,7 @@ interface Props {
 
 const { lang = 'de' } = Astro.props;
 const t = getTranslations(lang);
+const consentLabel = t.leadForm.consentLabel;
 ---
 
 <section id="contact" class="bg-secondary py-20 px-4 relative overflow-hidden">
@@ -129,7 +130,11 @@ const t = getTranslations(lang);
                   required
                 />
                 <label for="consent" class="text-sm text-muted-foreground leading-relaxed">
-                  {t.leadForm.consent}
+                  {consentLabel.prefix}
+                  <a href={consentLabel.linkHref} class="text-primary underline" rel="noopener noreferrer">
+                    {consentLabel.linkText}
+                  </a>
+                  {consentLabel.suffix}
                 </label>
               </div>
               

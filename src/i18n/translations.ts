@@ -113,7 +113,12 @@ export interface Translations {
     email: string;
     goals: string;
     goalsPlaceholder: string;
-    consent: string;
+    consentLabel: {
+      prefix: string;
+      linkText: string;
+      suffix: string;
+      linkHref: string;
+    };
     submit: string;
     whatYouGet: string;
     benefit1: string;
@@ -229,7 +234,12 @@ export const translations: Record<Language, Translations> = {
       email: 'E-Mail-Adresse',
       goals: 'Dein Projekt & deine Ziele',
       goalsPlaceholder: 'Erzähl uns von deiner Idee, deinem Unternehmensmodell und was du erreichen möchtest...',
-      consent: 'Ich stimme zu, kontaktiert zu werden und akzeptiere die Datenschutzerklärung.',
+      consentLabel: {
+        prefix: 'Ich stimme zu, kontaktiert zu werden und akzeptiere die ',
+        linkText: 'Datenschutzerklärung',
+        suffix: '.',
+        linkHref: '/datenschutz',
+      },
       submit: 'Anfrage absenden',
       whatYouGet: 'Was du erhältst',
       benefit1: 'Kostenloses Beratungsgespräch',
@@ -343,7 +353,12 @@ export const translations: Record<Language, Translations> = {
       email: 'Email Address',
       goals: 'Project Goals & Challenges',
       goalsPlaceholder: "Tell us about your business model, target market, and what you'd like to validate...",
-      consent: 'I agree to be contacted and accept the privacy policy.',
+      consentLabel: {
+        prefix: 'I agree to be contacted and accept the ',
+        linkText: 'privacy policy',
+        suffix: '.',
+        linkHref: '/en/datenschutz',
+      },
       submit: 'Submit request',
       whatYouGet: 'What You Get',
       benefit1: 'Free consultation call',
