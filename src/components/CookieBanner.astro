@@ -1,0 +1,179 @@
+---
+import { getTranslations, type Language } from '../i18n/translations';
+import { getPathForLanguage } from '../i18n/translations';
+
+interface Props {
+  lang?: Language;
+  currentPath?: string;
+}
+
+const { lang = 'de', currentPath = '/' } = Astro.props;
+const t = getTranslations(lang);
+const datenschutzPath = lang === 'de' ? '/datenschutz' : '/en/datenschutz';
+---
+
+<div 
+  id="cookie-banner" 
+  class="hidden fixed bottom-0 left-0 right-0 z-50 bg-white border-t border-border shadow-2xl p-6"
+  role="dialog"
+  aria-labelledby="cookie-banner-title"
+  aria-modal="true"
+>
+  <div class="max-w-7xl mx-auto w-full">
+    <!-- Hauptansicht -->
+    <div id="cookie-banner-main" class="space-y-4">
+      <div>
+        <h3 id="cookie-banner-title" class="text-xl font-semibold mb-2">
+          {t.cookieBanner.title}
+        </h3>
+        <p class="text-sm text-muted-foreground leading-relaxed">
+          {t.cookieBanner.description}
+        </p>
+      </div>
+      
+      <div class="flex flex-wrap gap-3">
+        <button
+          id="cookie-accept-all"
+          class="px-6 py-2.5 rounded-xl bg-accent text-accent-foreground font-medium hover:opacity-90 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/45"
+        >
+          {t.cookieBanner.acceptAll}
+        </button>
+        <button
+          id="cookie-accept-necessary"
+          class="px-6 py-2.5 rounded-xl border border-border bg-white text-foreground font-medium hover:bg-secondary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+        >
+          {t.cookieBanner.acceptNecessary}
+        </button>
+        <button
+          id="cookie-customize-btn"
+          class="px-6 py-2.5 rounded-xl border border-border bg-white text-foreground font-medium hover:bg-secondary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+        >
+          {t.cookieBanner.customize}
+        </button>
+      </div>
+      
+      <div class="text-xs text-muted-foreground">
+        <a 
+          href={datenschutzPath}
+          class="underline hover:text-foreground transition-colors"
+        >
+          {t.cookieBanner.privacyPolicy}
+        </a>
+      </div>
+    </div>
+    
+    <!-- Customize-Panel -->
+    <div id="cookie-customize" class="hidden space-y-6 mt-6 pt-6 border-t border-border">
+      <div>
+        <h4 class="text-lg font-semibold mb-4">{t.cookieBanner.title}</h4>
+        
+        <!-- Notwendige Cookies -->
+        <div class="mb-6 p-4 bg-secondary rounded-xl">
+          <div class="flex items-start justify-between mb-2">
+            <div class="flex-1">
+              <h5 class="font-semibold mb-1">{t.cookieBanner.necessary}</h5>
+              <p class="text-sm text-muted-foreground">
+                {t.cookieBanner.necessaryDescription}
+              </p>
+            </div>
+            <div class="ml-4">
+              <input
+                type="checkbox"
+                id="cookie-necessary"
+                checked
+                disabled
+                class="w-5 h-5 rounded border-border text-accent focus:ring-accent focus:ring-2 cursor-not-allowed opacity-50"
+              />
+            </div>
+          </div>
+        </div>
+        
+        <!-- Analyse-Cookies -->
+        <div class="mb-6 p-4 bg-secondary rounded-xl">
+          <div class="flex items-start justify-between mb-2">
+            <div class="flex-1">
+              <h5 class="font-semibold mb-1">{t.cookieBanner.analytics}</h5>
+              <p class="text-sm text-muted-foreground">
+                {t.cookieBanner.analyticsDescription}
+              </p>
+            </div>
+            <div class="ml-4">
+              <input
+                type="checkbox"
+                id="cookie-analytics"
+                class="w-5 h-5 rounded border-border text-accent focus:ring-accent focus:ring-2 cursor-pointer"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="flex gap-3">
+        <button
+          id="cookie-save"
+          class="px-6 py-2.5 rounded-xl bg-accent text-accent-foreground font-medium hover:opacity-90 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/45"
+        >
+          {t.cookieBanner.save}
+        </button>
+        <button
+          id="cookie-cancel"
+          class="px-6 py-2.5 rounded-xl border border-border bg-white text-foreground font-medium hover:bg-secondary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+        >
+          {lang === 'de' ? 'Abbrechen' : 'Cancel'}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  import { acceptAll, acceptNecessary, toggleCustomize, updateConsent, hideBanner } from '../scripts/consent.ts';
+  
+  // Event Listener für Buttons
+  document.addEventListener('DOMContentLoaded', () => {
+    const acceptAllBtn = document.getElementById('cookie-accept-all');
+    const acceptNecessaryBtn = document.getElementById('cookie-accept-necessary');
+    const customizeBtn = document.getElementById('cookie-customize-btn');
+    const saveBtn = document.getElementById('cookie-save');
+    const cancelBtn = document.getElementById('cookie-cancel');
+    const analyticsCheckbox = document.getElementById('cookie-analytics') as HTMLInputElement;
+    
+    acceptAllBtn?.addEventListener('click', () => {
+      acceptAll();
+    });
+    
+    acceptNecessaryBtn?.addEventListener('click', () => {
+      acceptNecessary();
+    });
+    
+    customizeBtn?.addEventListener('click', () => {
+      toggleCustomize();
+    });
+    
+    saveBtn?.addEventListener('click', () => {
+      const analyticsEnabled = analyticsCheckbox?.checked || false;
+      updateConsent(analyticsEnabled);
+      hideBanner();
+    });
+    
+    cancelBtn?.addEventListener('click', () => {
+      toggleCustomize();
+    });
+  });
+</script>
+
+<style>
+  #cookie-banner {
+    animation: slideUp 0.3s ease-out;
+  }
+  
+  @keyframes slideUp {
+    from {
+      transform: translateY(100%);
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
+</style>
+

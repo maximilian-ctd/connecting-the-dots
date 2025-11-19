@@ -135,6 +135,21 @@ export interface Translations {
     successMessage: string;
     errorMessage: string;
   };
+  
+  // Cookie Banner
+  cookieBanner: {
+    title: string;
+    description: string;
+    acceptAll: string;
+    acceptNecessary: string;
+    customize: string;
+    privacyPolicy: string;
+    necessary: string;
+    necessaryDescription: string;
+    analytics: string;
+    analyticsDescription: string;
+    save: string;
+  };
 }
 
 export const translations: Record<Language, Translations> = {
@@ -256,6 +271,19 @@ export const translations: Record<Language, Translations> = {
       successMessage: 'Wir melden uns zeitnah mit konkreten Terminvorschlägen für dein Beratungsgespräch.',
       errorMessage: 'Etwas ist schiefgelaufen. Bitte versuche es später erneut oder schreib an maximilian@connectingthe.de.',
     },
+    cookieBanner: {
+      title: 'Cookie-Einstellungen',
+      description: 'Wir verwenden Cookies, um Ihnen die bestmögliche Erfahrung zu bieten. Einige Cookies sind für den Betrieb der Website notwendig, während andere uns helfen, diese Website und die Nutzererfahrung zu verbessern (Tracking-Cookies). Sie können selbst entscheiden, ob Sie die Cookies zulassen möchten.',
+      acceptAll: 'Alle akzeptieren',
+      acceptNecessary: 'Nur notwendige',
+      customize: 'Anpassen',
+      privacyPolicy: 'Datenschutzerklärung',
+      necessary: 'Notwendige Cookies',
+      necessaryDescription: 'Diese Cookies sind für die Grundfunktionen der Website erforderlich und können nicht deaktiviert werden.',
+      analytics: 'Analyse-Cookies',
+      analyticsDescription: 'Diese Cookies helfen uns zu verstehen, wie Besucher mit der Website interagieren, indem Informationen anonym gesammelt und gemeldet werden.',
+      save: 'Einstellungen speichern',
+    },
   },
   en: {
     header: {
@@ -374,6 +402,19 @@ export const translations: Record<Language, Translations> = {
       successTitle: 'Request received',
       successMessage: 'We will get back to you shortly with concrete times for your free consultation.',
       errorMessage: 'Something went wrong. Please try again or email maximilian@connectingthe.de.',
+    },
+    cookieBanner: {
+      title: 'Cookie Settings',
+      description: 'We use cookies to provide you with the best possible experience. Some cookies are necessary for the website to function, while others help us improve this website and the user experience (tracking cookies). You can choose whether to allow cookies.',
+      acceptAll: 'Accept All',
+      acceptNecessary: 'Necessary Only',
+      customize: 'Customize',
+      privacyPolicy: 'Privacy Policy',
+      necessary: 'Necessary Cookies',
+      necessaryDescription: 'These cookies are required for the basic functions of the website and cannot be disabled.',
+      analytics: 'Analytics Cookies',
+      analyticsDescription: 'These cookies help us understand how visitors interact with the website by collecting and reporting information anonymously.',
+      save: 'Save Settings',
     },
   },
 };

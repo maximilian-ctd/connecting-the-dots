@@ -3,27 +3,78 @@ import '../styles/reset.css';
 import '../styles/variables.css';
 import '../styles/global.css';
 import '../styles/tailwind.css';
+import CookieBanner from '../components/CookieBanner.astro';
+import consentScript from '../scripts/consent.ts?url';
 
 interface Props {
 	title: string;
 	description?: string;
 	lang?: 'de' | 'en';
+	currentPath?: string;
 }
 
-const { title, description = "Meine neue Website", lang = 'de' } = Astro.props;
+const { title, description = "Meine neue Website", lang = 'de', currentPath = Astro.url.pathname } = Astro.props;
 ---
 
 <!doctype html>
 <html lang={lang}>
 	<head>
-		<!-- Google tag (gtag.js) -->
-		<script async src="https://www.googletagmanager.com/gtag/js?id=G-SSB2GL7YSD"></script>
-		<script>
+		<!-- Google Consent Mode v2 - MUSS vor Google Analytics geladen werden -->
+		<script is:inline>
+			// Initialisiere dataLayer
 			window.dataLayer = window.dataLayer || [];
 			function gtag(){dataLayer.push(arguments);}
+			
+			// Lade gespeicherten Consent
+			let savedConsent = null;
+			try {
+				const stored = localStorage.getItem('cookie_consent');
+				if (stored) {
+					const parsed = JSON.parse(stored);
+					if (parsed.version === '1.0') {
+						savedConsent = parsed.consent;
+					}
+				}
+			} catch (e) {}
+			
+			// Prüfe ob EWR (vereinfacht)
+			const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+			const language = navigator.language.toLowerCase();
+			const isEEA = timezone.startsWith('Europe/') || 
+				['de', 'en-gb', 'fr', 'it', 'es', 'nl', 'pl', 'pt', 'sv', 'da', 'fi', 'el', 'cs', 'ro', 'hu', 'sk', 'sl', 'et', 'lv', 'lt', 'mt', 'ga', 'hr', 'bg'].some(lang => language.startsWith(lang));
+			
+			// Setze Default-Consent
+			const defaultConsent = isEEA ? {
+				analytics_storage: 'denied',
+				ad_storage: 'denied',
+				ad_user_data: 'denied',
+				ad_personalization: 'denied',
+			} : {
+				analytics_storage: 'granted',
+				ad_storage: 'granted',
+				ad_user_data: 'granted',
+				ad_personalization: 'granted',
+			};
+			
+			const finalConsent = savedConsent || defaultConsent;
+			
+			// Setze Consent Mode Default
+			gtag('consent', 'default', {
+				analytics_storage: finalConsent.analytics_storage,
+				ad_storage: finalConsent.ad_storage,
+				ad_user_data: finalConsent.ad_user_data,
+				ad_personalization: finalConsent.ad_personalization,
+				wait_for_update: 500,
+			});
+		</script>
+		
+		<!-- Google tag (gtag.js) -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=G-SSB2GL7YSD"></script>
+		<script is:inline>
 			gtag('js', new Date());
 			gtag('config', 'G-SSB2GL7YSD');
 		</script>
+		
 		<meta charset="UTF-8" />
 		<meta name="description" content={description} />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -39,6 +90,8 @@ const { title, description = "Meine neue Website", lang = 'de' } = Astro.props;
 	</head>
 	<body>
 		<slot />
+		<CookieBanner lang={lang} currentPath={currentPath} />
+		<script type="module" src={consentScript}></script>
 	</body>
 </html>
 
