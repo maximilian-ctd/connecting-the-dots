@@ -72,7 +72,18 @@ const { title, description = "Meine neue Website", lang = 'de', currentPath = As
 		<script async src="https://www.googletagmanager.com/gtag/js?id=G-SSB2GL7YSD"></script>
 		<script is:inline>
 			gtag('js', new Date());
-			gtag('config', 'G-SSB2GL7YSD');
+			gtag('config', 'G-SSB2GL7YSD', {
+				anonymize_ip: true,
+				send_page_view: true,
+				// Stelle sicher, dass der Tag erkannt wird
+				page_path: window.location.pathname + window.location.search,
+				page_title: document.title
+			});
+			
+			// Debug: Stelle sicher, dass gtag verfügbar ist
+			if (typeof gtag === 'function') {
+				console.log('Google Analytics Tag loaded successfully');
+			}
 		</script>
 		
 		<meta charset="UTF-8" />
