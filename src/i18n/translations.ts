@@ -109,6 +109,7 @@ export interface Translations {
   // About Us
   aboutUs: {
     title: string;
+    teamMission: string;
     maximilian: {
       heading: string;
       intro: string;
@@ -137,6 +138,11 @@ export interface Translations {
       };
       linkedin: string;
       linkedinUrl: string;
+    };
+    ella: {
+      heading: string;
+      intro: string;
+      description: string;
     };
   };
   
@@ -283,14 +289,15 @@ export const translations: Record<Language, Translations> = {
     },
     aboutUs: {
       title: 'Unser Team',
+      teamMission: '„Wir verwandeln digitale Ideen effizient in marktreife Lösungen – mit klarer Strategie, belastbaren Markttests und präziser operativer Umsetzung."',
       maximilian: {
-        heading: 'Maximilian Rebensburg',
-        intro: 'Gründer & Geschäftsführer',
+        heading: 'Maximilian',
+        intro: 'Senior Consultant – Strategy & Market Validation',
         experience: {
           title: 'Erfahrung',
-          paragraph1: 'Maximilian Rebensburg verfügt über mehr als 15 Jahre Erfahrung in den Bereichen Digitalisierung, E-Commerce, Marktplatzstrategien, SaaS und digitale Geschäftsmodelle. In dieser Zeit hat er zahlreiche Unternehmen bei der Entwicklung, Markteinführung und Skalierung digitaler Produkte begleitet – von der strategischen Planung bis zur operativen Umsetzung.',
-          paragraph2: 'Bei seinen Stationen bei Tradebyte und Gute Marken verantwortete er unter anderem den Aufbau neuer Märkte und Segmente und konnte mit seinen Teams signifikante Wachstumsraten in diesen Märkten erzielen. Seine Arbeit umfasste sowohl strategische Marktentwicklung als auch den operativen Aufbau von Strukturen, Prozessen und Vertriebspartnerschaften.',
-          paragraph3: 'Diese langjährige Erfahrung hat ihm ein dezidiertes Verständnis dafür vermittelt, wie erfolgreiche Markteintritts- und Marktdurchdringungsstrategien funktionieren müssen: von der Positionierung über Pricing, Zielgruppendefinition und MVP-Tests bis hin zu iterativen Skalierungsprozessen.',
+          paragraph1: 'Maximilian Rebensburg verfügt über mehr als 15 Jahre Erfahrung in Digitalisierung, E-Commerce, Marktplatzstrategien und SaaS. Bei Unternehmen wie Tradebyte und Gute Marken verantwortete er den Aufbau neuer Märkte und Segmente und erzielte dabei signifikante Wachstumsraten.',
+          paragraph2: 'Er kombiniert strategische Marktentwicklung mit operativer Umsetzung – von Positionierung und Zielgruppendefinition über MVP-Tests bis hin zur Go-to-Market-Strategie. Sein Fokus liegt darauf, Unternehmen zu befähigen, neue Ideen und Produkte schnell, risikoarm und datenbasiert im Echtmarkt zu validieren.',
+          paragraph3: '',
         },
         mission: {
           title: 'Mission',
@@ -301,15 +308,20 @@ export const translations: Record<Language, Translations> = {
         linkedinUrl: 'https://www.linkedin.com/in/maximilianrebensburg/',
       },
       juliane: {
-        heading: 'Juliane Kissau',
-        intro: 'Senior Consultant',
+        heading: 'Juliane',
+        intro: 'Senior Consultant – Brand, Commerce & Integration',
         experience: {
           title: 'Erfahrung',
-          paragraph1: 'tba',
-          paragraph2: '',
+          paragraph1: 'Juliane Kissau bringt langjährige Erfahrung in E-Commerce, Markenaufbau und technischer Integration mit. Ihre Stationen bei Tradebyte, Spryker, GROSSE LIEBE, onQuality und X-Trade haben ihr ein tiefes Verständnis für digitale Wachstumsprozesse vermittelt.',
+          paragraph2: 'Sie unterstützt Unternehmen beim Aufbau und der Optimierung digitaler Vertriebskanäle, der Umsetzung technischer Integrationen sowie der Entwicklung klarer Marken- und Kommunikationsstrukturen. Ihr Schwerpunkt liegt darauf, digitale Produkte und Prozesse effizient marktreif zu machen und operativ sauber umzusetzen.',
         },
         linkedin: 'LinkedIn Profil',
         linkedinUrl: 'https://www.linkedin.com/in/juliane-kissau-9ba29b180/',
+      },
+      ella: {
+        heading: 'Ella',
+        intro: 'Junior Feelgood Manager',
+        description: 'Ella ist unsere gute Seele im Team und sorgt jeden Tag für positive Stimmung im Büro. Als Feelgood Managerin achtet sie darauf, dass Pausen eingehalten, Snacks geteilt und gemeinsame Aktivitäten nicht zu kurz kommen. Mit ihrer offenen, fröhlichen Art bringt sie Wärme ins Team – und freut sich über jede zusätzliche Streicheleinheit.',
       },
     },
     leadForm: {
@@ -450,14 +462,15 @@ export const translations: Record<Language, Translations> = {
     },
     aboutUs: {
       title: 'Our Team',
+      teamMission: '"We efficiently transform digital ideas into market-ready solutions – with clear strategy, reliable market tests, and precise operational implementation."',
       maximilian: {
-        heading: 'Maximilian Rebensburg',
-        intro: 'Founder & Managing Director',
+        heading: 'Maximilian',
+        intro: 'Senior Consultant – Strategy & Market Validation',
         experience: {
           title: 'Experience',
-          paragraph1: 'Maximilian Rebensburg has over 15 years of experience in digitalization, e-commerce, marketplace strategies, SaaS, and digital business models. During this time, he has supported numerous companies in developing, launching, and scaling digital products – from strategic planning to operational implementation.',
-          paragraph2: 'In his roles at Tradebyte and Gute Marken, he was responsible for building new markets and segments, achieving significant growth rates with his teams in these markets. His work encompassed both strategic market development and the operational setup of structures, processes, and sales partnerships.',
-          paragraph3: 'This extensive experience has given him a deep understanding of how successful market entry and market penetration strategies must work: from positioning to pricing, target group definition, and MVP testing to iterative scaling processes.',
+          paragraph1: 'Maximilian Rebensburg has over 15 years of experience in digitalization, e-commerce, marketplace strategies, and SaaS. At companies like Tradebyte and Gute Marken, he was responsible for building new markets and segments, achieving significant growth rates.',
+          paragraph2: 'He combines strategic market development with operational implementation – from positioning and target group definition to MVP testing and go-to-market strategies. His focus is on enabling companies to validate new ideas and products quickly, with low risk, and data-driven in the real market.',
+          paragraph3: '',
         },
         mission: {
           title: 'Mission',
@@ -468,15 +481,20 @@ export const translations: Record<Language, Translations> = {
         linkedinUrl: 'https://www.linkedin.com/in/maximilianrebensburg/',
       },
       juliane: {
-        heading: 'Juliane Kissau',
-        intro: 'Senior Consultant',
+        heading: 'Juliane',
+        intro: 'Senior Consultant – Brand, Commerce & Integration',
         experience: {
           title: 'Experience',
-          paragraph1: 'tba',
-          paragraph2: '',
+          paragraph1: 'Juliane Kissau brings extensive experience in e-commerce, brand building, and technical integration. Her roles at Tradebyte, Spryker, GROSSE LIEBE, onQuality, and X-Trade have given her a deep understanding of digital growth processes.',
+          paragraph2: 'She supports companies in building and optimizing digital sales channels, implementing technical integrations, and developing clear brand and communication structures. Her focus is on efficiently making digital products and processes market-ready and implementing them operationally cleanly.',
         },
         linkedin: 'LinkedIn Profile',
         linkedinUrl: 'https://www.linkedin.com/in/juliane-kissau-9ba29b180/',
+      },
+      ella: {
+        heading: 'Ella',
+        intro: 'Junior Feelgood Manager',
+        description: 'Ella is our team\'s good soul and ensures a positive atmosphere in the office every day. As Feelgood Manager, she makes sure that breaks are taken, snacks are shared, and joint activities are not neglected. With her open, cheerful nature, she brings warmth to the team – and enjoys every extra cuddle.',
       },
     },
     leadForm: {
