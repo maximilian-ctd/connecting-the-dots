@@ -11,9 +11,22 @@ interface Props {
 	description?: string;
 	lang?: 'de' | 'en';
 	currentPath?: string;
+	image?: string;
+	type?: string;
 }
 
-const { title, description = "Meine neue Website", lang = 'de', currentPath = Astro.url.pathname } = Astro.props;
+const { 
+	title, 
+	description = "ConnectingTheDots - Von der Idee zum erfolgreichen Unternehmen. Wir helfen dir dabei, deine Unternehmensidee zu testen, umzusetzen und zu wachsen.",
+	lang = 'de', 
+	currentPath = Astro.url.pathname,
+	image = new URL('/images/Logo_CTD.png', Astro.site).href,
+	type = 'website'
+} = Astro.props;
+
+const siteUrl = Astro.site || 'https://connectingthe.de';
+const canonicalUrl = new URL(currentPath, siteUrl).href;
+const fullImageUrl = image.startsWith('http') ? image : new URL(image, siteUrl).href;
 ---
 
 <!doctype html>
@@ -87,17 +100,155 @@ const { title, description = "Meine neue Website", lang = 'de', currentPath = As
 		</script>
 		
 		<meta charset="UTF-8" />
-		<meta name="description" content={description} />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
+		
+		<!-- Primary Meta Tags -->
+		<title>{title}</title>
+		<meta name="title" content={title} />
+		<meta name="description" content={description} />
+		<meta name="keywords" content={lang === 'de' ? 'Unternehmensberatung, Business Development, Startup Beratung, Marktvalidierung, E-Commerce, Performance Marketing, Interim Management, DACH Markt' : 'Business Consulting, Business Development, Startup Consulting, Market Validation, E-Commerce, Performance Marketing, Interim Management, DACH Market'} />
+		<meta name="author" content="ConnectingTheDots" />
+		<meta name="robots" content="index, follow" />
+		<link rel="canonical" href={canonicalUrl} />
+		
+		<!-- Open Graph / Facebook -->
+		<meta property="og:type" content={type} />
+		<meta property="og:url" content={canonicalUrl} />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:image" content={fullImageUrl} />
+		<meta property="og:locale" content={lang === 'de' ? 'de_DE' : 'en_US'} />
+		<meta property="og:site_name" content="ConnectingTheDots" />
+		
+		<!-- Twitter -->
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:url" content={canonicalUrl} />
+		<meta name="twitter:title" content={title} />
+		<meta name="twitter:description" content={description} />
+		<meta name="twitter:image" content={fullImageUrl} />
+		
+		<!-- Hreflang Tags für mehrsprachige Seiten -->
+		{(() => {
+			const pathWithoutLang = currentPath.replace(/^\/de|\/en/, '') || '/';
+			const dePath = pathWithoutLang === '/' ? '/de/' : `/de${pathWithoutLang}`;
+			const enPath = pathWithoutLang === '/' ? '/en/' : `/en${pathWithoutLang}`;
+			return (
+				<>
+					<link rel="alternate" hreflang="de" href={new URL(dePath, siteUrl).href} />
+					<link rel="alternate" hreflang="en" href={new URL(enPath, siteUrl).href} />
+					<link rel="alternate" hreflang="x-default" href={new URL('/de/', siteUrl).href} />
+				</>
+			);
+		})()}
+		
+		<!-- Favicon -->
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		
+		<!-- Preconnect für Performance -->
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link
 			rel="stylesheet"
 			href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap"
 		/>
-		<title>{title}</title>
+		
+		<!-- Structured Data (JSON-LD) -->
+		<script type="application/ld+json" set:html={JSON.stringify({
+			"@context": "https://schema.org",
+			"@type": "Organization",
+			"name": "ConnectingTheDots",
+			"url": siteUrl,
+			"logo": new URL('/images/Logo_CTD.png', siteUrl).href,
+			"description": description,
+			"sameAs": [
+				"https://www.linkedin.com/company/connectingthedots"
+			],
+			"contactPoint": {
+				"@type": "ContactPoint",
+				"contactType": "customer service",
+				"availableLanguage": ["German", "English"]
+			}
+		})} />
+		
+		<script type="application/ld+json" set:html={JSON.stringify({
+			"@context": "https://schema.org",
+			"@type": "WebSite",
+			"name": "ConnectingTheDots",
+			"url": siteUrl,
+			"description": description,
+			"inLanguage": lang === 'de' ? 'de-DE' : 'en-US',
+			"potentialAction": {
+				"@type": "SearchAction",
+				"target": {
+					"@type": "EntryPoint",
+					"urlTemplate": `${siteUrl}/?q={search_term_string}`
+				},
+				"query-input": "required name=search_term_string"
+			}
+		})} />
+		
+		{currentPath.includes('/de/') || currentPath === '/de' || currentPath === '/' ? (
+			<script type="application/ld+json" set:html={JSON.stringify({
+				"@context": "https://schema.org",
+				"@type": "Service",
+				"serviceType": "Business Consulting",
+				"provider": {
+					"@type": "Organization",
+					"name": "ConnectingTheDots"
+				},
+				"areaServed": {
+					"@type": "Country",
+					"name": ["DE", "AT", "CH"]
+				},
+				"hasOfferCatalog": {
+					"@type": "OfferCatalog",
+					"name": "Business Services",
+					"itemListElement": [
+						{
+							"@type": "Offer",
+							"itemOffered": {
+								"@type": "Service",
+								"name": "Kundenakquise",
+								"description": "Wir helfen dir dabei, deine Zielgruppe zu finden und zu erreichen."
+							}
+						},
+						{
+							"@type": "Offer",
+							"itemOffered": {
+								"@type": "Service",
+								"name": "Schnelle Umsetzung",
+								"description": "Turn ideas into testable MVPs within days."
+							}
+						},
+						{
+							"@type": "Offer",
+							"itemOffered": {
+								"@type": "Service",
+								"name": "E-Commerce Vertrieb",
+								"description": "Wir helfen dir dabei, deinen Online-Shop aufzubauen und zu betreiben."
+							}
+						},
+						{
+							"@type": "Offer",
+							"itemOffered": {
+								"@type": "Service",
+								"name": "Performance Marketing",
+								"description": "Wir optimieren deine Marketing-Kampagnen für maximale Performance und ROI."
+							}
+						},
+						{
+							"@type": "Offer",
+							"itemOffered": {
+								"@type": "Service",
+								"name": "Interim Management",
+								"description": "Wir unterstützen dich vorübergehend bei Marketing, Vertrieb oder digitalen Projekten."
+							}
+						}
+					]
+				}
+			})} />
+		) : null}
 	</head>
 	<body>
 		<slot />

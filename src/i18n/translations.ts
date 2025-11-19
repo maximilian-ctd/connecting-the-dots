@@ -76,6 +76,10 @@ export interface Translations {
       title: string;
       description: string;
     };
+    performanceMarketing: {
+      title: string;
+      description: string;
+    };
     interimManagement: {
       title: string;
       description: string;
@@ -100,6 +104,40 @@ export interface Translations {
     kpi2: string;
     kpi3: string;
     testimonial: string;
+  };
+  
+  // About Us
+  aboutUs: {
+    title: string;
+    maximilian: {
+      heading: string;
+      intro: string;
+      experience: {
+        title: string;
+        paragraph1: string;
+        paragraph2: string;
+        paragraph3: string;
+      };
+      mission: {
+        title: string;
+        paragraph1: string;
+        paragraph2: string;
+      };
+      linkedin: string;
+      linkedinUrl: string;
+    };
+    juliane: {
+      heading: string;
+      intro: string;
+      experience: {
+        title: string;
+        paragraph1: string;
+        paragraph2: string;
+        paragraph3?: string;
+      };
+      linkedin: string;
+      linkedinUrl: string;
+    };
   };
   
   // Lead Form
@@ -157,27 +195,27 @@ export const translations: Record<Language, Translations> = {
     header: {
       howItWorks: 'Wie es funktioniert',
       services: 'Services',
-      caseStudy: 'Erfolgsgeschichte',
+      caseStudy: 'Use Case',
       faq: 'Häufige Fragen',
       bookACall: 'Termin buchen',
     },
     footer: {
       description: 'Von der Idee bis zur Umsetzung — ConnectingTheDots hilft dir dabei, dein Unternehmen schneller und sicherer aufzubauen.',
       company: 'Unternehmen',
-      aboutUs: 'Über uns',
+      aboutUs: 'Unser Team',
       blog: 'Blog',
       legal: 'Rechtliches',
       impressum: 'Impressum',
       datenschutz: 'Datenschutz',
       contact: 'Kontakt',
-      copyright: '© 2024 ConnectingTheDots. Alle Rechte vorbehalten.',
+      copyright: '© 2025 ConnectingTheDots. Alle Rechte vorbehalten.',
       linkedin: 'LinkedIn',
       email: 'E-Mail',
     },
     hero: {
       title1: 'Von der Idee',
       title2: 'zum erfolgreichen Unternehmen.',
-      subtitle: 'Wir helfen dir dabei, deine Unternehmensidee zu testen, umzusetzen und zu wachsen — mit konkreten Ergebnissen statt leeren Versprechungen.',
+      subtitle: 'Wir helfen dir, deine Idee zu testen oder weiterzuwachsen – mit echten Ergebnissen statt leeren Versprechen.',
       cta: 'Jetzt verbinden',
     },
     customerReferences: {
@@ -192,7 +230,7 @@ export const translations: Record<Language, Translations> = {
       },
       step2: {
         title: '2. Umsetzen',
-        description: 'Baue dein Unternehmen auf. Wir unterstützen dich mit Experten für Marketing, Design und Technik, damit du schnell starten kannst.',
+        description: 'Baue dein Unternehmen auf. Wir unterstützen dich mit Experten für Marketing, Design und technische Entwicklung, damit du schnell starten kannst.',
       },
       step3: {
         title: '3. Wachsen',
@@ -213,8 +251,12 @@ export const translations: Record<Language, Translations> = {
         description: 'Wir verwandeln deine Idee innerhalb von Tagen in etwas Testbares — schnell und ohne großen Aufwand.',
       },
       ecommerceSetup: {
-        title: 'Online-Shop Aufbau',
+        title: 'E-Commerce Vertrieb (durch Online-Shop) oder Marktplatzexpansion',
         description: 'Wir helfen dir dabei, deinen Online-Shop aufzubauen und zu betreiben — mit bewährten Tools und klaren Prozessen.',
+      },
+      performanceMarketing: {
+        title: 'Performance Marketing',
+        description: 'Wir optimieren deine Marketing-Kampagnen für maximale Performance und ROI — datenbasiert und ergebnisorientiert.',
       },
       interimManagement: {
         title: 'Interim Management',
@@ -223,13 +265,13 @@ export const translations: Record<Language, Translations> = {
       whyConnectingTheDots: 'Warum ConnectingTheDots?',
       benefit1: '<strong class="text-foreground font-semibold">Schnelle Ergebnisse</strong> — innerhalb von Wochen erfährst du, ob deine Idee funktioniert.',
       benefit2: '<strong class="text-foreground font-semibold">Weniger Risiko</strong> — wir testen vorher, damit du keine teuren Fehler machst.',
-      benefit3: '<strong class="text-foreground font-semibold">Zugang zu Experten</strong> — wir haben ein Netzwerk aus Spezialisten für Design, Technik und Marketing.',
+      benefit3: '<strong class="text-foreground font-semibold">Zugang zu Experten</strong> — wir haben ein Netzwerk aus Spezialisten für Design, technische Entwicklung und Marketing.',
       benefit4: '<strong class="text-foreground font-semibold">Keine eigenen Ressourcen nötig</strong> — wir übernehmen die Arbeit, die du nicht selbst machen kannst.',
       benefit5: '<strong class="text-foreground font-semibold">Bewährter Ablauf</strong> — unser 3-Schritte-Modell: Testen · Umsetzen · Wachsen.',
       benefit6: '<strong class="text-foreground font-semibold">Klare Umsetzung</strong> — von der getesteten Idee bis zum laufenden Unternehmen.',
     },
     caseStudy: {
-      title: 'Erfolgsgeschichte: DACH-Marktexpansion',
+      title: 'Use Case: DACH-Marktexpansion',
       subtitle: '',
       heading: 'Vom Markteintritt zum regionalen Wachstum',
       description1: 'ConnectingTheDots unterstützte GenesysAI beim Aufbau einer starken Marktposition in der DACH-Region.',
@@ -238,6 +280,37 @@ export const translations: Record<Language, Translations> = {
       kpi2: 'Neue DACH-Lieferanten',
       kpi3: 'Zusätzlicher Umsatz',
       testimonial: 'CTD unterstützte GenesysAI dabei, sein Angebot im EU-Markt zu testen und zu starten — innerhalb von Monaten entstanden starke Partnerschaften und funktionierende Vertriebskanäle.',
+    },
+    aboutUs: {
+      title: 'Unser Team',
+      maximilian: {
+        heading: 'Maximilian Rebensburg',
+        intro: 'Gründer & Geschäftsführer',
+        experience: {
+          title: 'Erfahrung',
+          paragraph1: 'Maximilian Rebensburg verfügt über mehr als 15 Jahre Erfahrung in den Bereichen Digitalisierung, E-Commerce, Marktplatzstrategien, SaaS und digitale Geschäftsmodelle. In dieser Zeit hat er zahlreiche Unternehmen bei der Entwicklung, Markteinführung und Skalierung digitaler Produkte begleitet – von der strategischen Planung bis zur operativen Umsetzung.',
+          paragraph2: 'Bei seinen Stationen bei Tradebyte und Gute Marken verantwortete er unter anderem den Aufbau neuer Märkte und Segmente und konnte mit seinen Teams signifikante Wachstumsraten in diesen Märkten erzielen. Seine Arbeit umfasste sowohl strategische Marktentwicklung als auch den operativen Aufbau von Strukturen, Prozessen und Vertriebspartnerschaften.',
+          paragraph3: 'Diese langjährige Erfahrung hat ihm ein dezidiertes Verständnis dafür vermittelt, wie erfolgreiche Markteintritts- und Marktdurchdringungsstrategien funktionieren müssen: von der Positionierung über Pricing, Zielgruppendefinition und MVP-Tests bis hin zu iterativen Skalierungsprozessen.',
+        },
+        mission: {
+          title: 'Mission',
+          paragraph1: 'In zahlreichen Projekten hat er festgestellt, dass insbesondere mittelständische Unternehmen den Markteintritt häufig unterschätzen: Produkte werden ohne ausreichend getesteten Message-Market-Fit, falscher Zielgruppe oder unklarer Preisstrategie gelauncht – was unnötig Zeit, Budget und interne Ressourcen bindet.',
+          paragraph2: 'Mit ConnectingTheDots verfolgt er daher die Mission, Unternehmen dabei zu unterstützen, ihre Ideen oder neuen Produkte schnell, risikoarm und datenbasiert im Echtmarkt zu validieren. Sein breites Netzwerk im DACH-Raum und Europa ermöglicht dabei nicht nur strategische Beratung, sondern auch operative Umsetzung – vom ersten Markttest bis zum strukturierten Rollout.',
+        },
+        linkedin: 'LinkedIn Profil',
+        linkedinUrl: 'https://www.linkedin.com/in/maximilianrebensburg/',
+      },
+      juliane: {
+        heading: 'Juliane Kissau',
+        intro: 'Senior Consultant',
+        experience: {
+          title: 'Erfahrung',
+          paragraph1: 'tba',
+          paragraph2: '',
+        },
+        linkedin: 'LinkedIn Profil',
+        linkedinUrl: 'https://www.linkedin.com/in/juliane-kissau-9ba29b180/',
+      },
     },
     leadForm: {
       title: 'Erzähl uns von deinem Projekt',
@@ -296,13 +369,13 @@ export const translations: Record<Language, Translations> = {
     footer: {
       description: 'From market validation to operational execution — ConnectingTheDots bridges the gap between strategy and real market success.',
       company: 'Company',
-      aboutUs: 'About Us',
+      aboutUs: 'Our Team',
       blog: 'Blog',
       legal: 'Legal',
       impressum: 'Impressum',
       datenschutz: 'Privacy Policy',
       contact: 'Contact',
-      copyright: '© 2024 ConnectingTheDots. All rights reserved.',
+      copyright: '© 2025 ConnectingTheDots. All rights reserved.',
       linkedin: 'LinkedIn',
       email: 'Email',
     },
@@ -345,8 +418,12 @@ export const translations: Record<Language, Translations> = {
         description: 'Turn ideas into testable MVPs within days — fast, lean, and data-driven.',
       },
       ecommerceSetup: {
-        title: 'E-Commerce Setup',
+        title: 'E-Commerce Sales (via Online Shop) or Marketplace Expansion',
         description: 'Validate, build, and scale your digital sales infrastructure with proven tools and automation.',
+      },
+      performanceMarketing: {
+        title: 'Performance Marketing',
+        description: 'We optimize your marketing campaigns for maximum performance and ROI — data-driven and results-oriented.',
       },
       interimManagement: {
         title: 'Interim Management',
@@ -370,6 +447,37 @@ export const translations: Record<Language, Translations> = {
       kpi2: 'New DACH Suppliers',
       kpi3: 'Additional Revenue',
       testimonial: 'CTD supported GenesysAI in validating and launching its offering in the EU market — building strong partnerships and scalable sales channels within months.',
+    },
+    aboutUs: {
+      title: 'Our Team',
+      maximilian: {
+        heading: 'Maximilian Rebensburg',
+        intro: 'Founder & Managing Director',
+        experience: {
+          title: 'Experience',
+          paragraph1: 'Maximilian Rebensburg has over 15 years of experience in digitalization, e-commerce, marketplace strategies, SaaS, and digital business models. During this time, he has supported numerous companies in developing, launching, and scaling digital products – from strategic planning to operational implementation.',
+          paragraph2: 'In his roles at Tradebyte and Gute Marken, he was responsible for building new markets and segments, achieving significant growth rates with his teams in these markets. His work encompassed both strategic market development and the operational setup of structures, processes, and sales partnerships.',
+          paragraph3: 'This extensive experience has given him a deep understanding of how successful market entry and market penetration strategies must work: from positioning to pricing, target group definition, and MVP testing to iterative scaling processes.',
+        },
+        mission: {
+          title: 'Mission',
+          paragraph1: 'In numerous projects, he has found that especially medium-sized companies often underestimate market entry: products are launched without sufficiently tested message-market fit, wrong target groups, or unclear pricing strategies – which unnecessarily ties up time, budget, and internal resources.',
+          paragraph2: 'With ConnectingTheDots, he therefore pursues the mission of helping companies validate their ideas or new products quickly, with low risk, and data-driven in the real market. His broad network in the DACH region and Europe enables not only strategic consulting but also operational implementation – from the first market test to structured rollout.',
+        },
+        linkedin: 'LinkedIn Profile',
+        linkedinUrl: 'https://www.linkedin.com/in/maximilianrebensburg/',
+      },
+      juliane: {
+        heading: 'Juliane Kissau',
+        intro: 'Senior Consultant',
+        experience: {
+          title: 'Experience',
+          paragraph1: 'tba',
+          paragraph2: '',
+        },
+        linkedin: 'LinkedIn Profile',
+        linkedinUrl: 'https://www.linkedin.com/in/juliane-kissau-9ba29b180/',
+      },
     },
     leadForm: {
       title: 'Request Your Use Case',

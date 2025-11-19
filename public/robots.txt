@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://connectingthe.de/sitemap-index.xml
+Sitemap: https://connectingthe.de/sitemap-0.xml
+
+# Crawl-delay (optional, kann entfernt werden wenn nicht benötigt)
+# Crawl-delay: 1
+

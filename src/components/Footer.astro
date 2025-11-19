@@ -36,7 +36,7 @@ const t = getTranslations(lang);
       <div class="space-y-4">
         <h4 class="text-lg">{t.footer.company}</h4>
         <ul class="space-y-2 text-primary-foreground/80">
-          <li><a href="#" class="hover:text-accent transition-colors">{t.footer.aboutUs}</a></li>
+          <li><a href={`/${lang === 'de' ? 'de/unser-team' : 'en/our-team'}`} class="hover:text-accent transition-colors">{t.footer.aboutUs}</a></li>
           <li><a href="#" class="hover:text-accent transition-colors">{t.footer.blog}</a></li>
         </ul>
       </div>
