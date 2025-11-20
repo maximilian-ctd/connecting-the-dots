@@ -10,35 +10,65 @@
   <!-- Include the script that builds the page and powers Decap CMS -->
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
   <script>
+    // Verhindere automatische Weiterleitung
+    let loginCompleted = false;
+    
     if (window.netlifyIdentity) {
+      // Prüfe zuerst, ob User eingeloggt ist
       window.netlifyIdentity.on("init", user => {
+        console.log("Identity init, user:", user);
+        
         if (!user) {
-          // Zeige das Login-Modal, wenn kein User eingeloggt ist
-          // Warte kurz, damit das Widget vollständig geladen ist
+          // User ist nicht eingeloggt - öffne Login-Modal
           setTimeout(() => {
             window.netlifyIdentity.open("login");
-          }, 100);
+          }, 200);
+        } else {
+          // User ist bereits eingeloggt - lade CMS
+          console.log("User already logged in");
         }
       });
       
-      // Nach erfolgreichem Login: Seite neu laden
+      // Verhindere automatische Weiterleitung nach Login
       window.netlifyIdentity.on("login", (user) => {
-        if (user) {
-          window.netlifyIdentity.close();
-          // Kurze Verzögerung, damit der Login abgeschlossen ist
+        console.log("Login event, user:", user);
+        if (user && !loginCompleted) {
+          loginCompleted = true;
+          // Warte, bis der User wirklich eingeloggt ist
           setTimeout(() => {
-            document.location.href = "/admin/";
+            window.netlifyIdentity.close();
+            // Nur weiterleiten, wenn User vollständig authentifiziert ist
+            if (user.token) {
+              document.location.href = "/admin/";
+            }
+          }, 1000);
+        }
+      });
+      
+      // Behandle Signup/Invitation
+      window.netlifyIdentity.on("signup", (user) => {
+        console.log("Signup event, user:", user);
+        // Modal bleibt offen für Passwort-Setting
+      });
+      
+      // Behandle Error (z.B. wenn Passwort noch nicht gesetzt)
+      window.netlifyIdentity.on("error", (err) => {
+        console.error("Identity error:", err);
+        // Öffne Login-Modal erneut bei Fehler
+        if (err && err.message && err.message.includes("password")) {
+          setTimeout(() => {
+            window.netlifyIdentity.open("login");
           }, 500);
         }
       });
-      
-      // Verhindere automatische Weiterleitung bei Registration
-      window.netlifyIdentity.on("signup", (user) => {
-        // Nach Signup: Modal bleibt offen für Passwort-Setting
-        console.log("User signed up:", user);
-      });
     }
+    
+    // Verhindere automatische Redirects durch andere Scripts
+    window.addEventListener("beforeunload", (e) => {
+      if (!loginCompleted) {
+        // Verhindere Navigation während Login-Prozess
+      }
+    });
   </script>
 </body>
 </html>
-
