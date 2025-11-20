@@ -52,6 +52,43 @@
     .login-box a {
       color: #00ad9f;
       text-decoration: underline;
+      cursor: pointer;
+    }
+    .login-box input {
+      width: 100%;
+      padding: 0.75rem;
+      margin: 0.5rem 0;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 1rem;
+    }
+    .login-box .message {
+      margin-top: 1rem;
+      padding: 0.75rem;
+      border-radius: 4px;
+      font-size: 0.9rem;
+    }
+    .login-box .message.success {
+      background: #d4edda;
+      color: #155724;
+      border: 1px solid #c3e6cb;
+    }
+    .login-box .message.error {
+      background: #f8d7da;
+      color: #721c24;
+      border: 1px solid #f5c6cb;
+    }
+    .login-box .message a {
+      color: inherit;
+      text-decoration: underline;
+      font-weight: bold;
+    }
+    #recovery-form {
+      display: none;
+      margin-top: 1rem;
+    }
+    #recovery-form.show {
+      display: block;
     }
   </style>
 </head>
@@ -69,6 +106,17 @@
       <p style="margin-top: 1rem; font-size: 0.9rem;">
         <a href="#" id="password-reset-link">Passwort zurücksetzen</a>
       </p>
+      <div id="recovery-form">
+        <input 
+          type="email" 
+          id="recovery-email" 
+          placeholder="Deine E-Mail-Adresse"
+          required
+        />
+        <button id="send-recovery" style="width: 100%; margin-top: 0.5rem;">Reset-E-Mail senden</button>
+        <button id="cancel-recovery" style="width: 100%; margin-top: 0.5rem; background: #6c757d;">Abbrechen</button>
+      </div>
+      <div id="recovery-message" class="message" style="display: none;"></div>
     </div>
   </div>
 
@@ -171,15 +219,133 @@
         });
       }
       
+      const recoveryForm = document.getElementById('recovery-form');
+      const recoveryEmail = document.getElementById('recovery-email');
+      const sendRecoveryBtn = document.getElementById('send-recovery');
+      const cancelRecoveryBtn = document.getElementById('cancel-recovery');
+      const recoveryMessage = document.getElementById('recovery-message');
+      
       if (passwordResetLink) {
         passwordResetLink.addEventListener('click', (e) => {
           e.preventDefault();
-          // Öffne Recovery-Modal
-          if (window.netlifyIdentity) {
-            window.netlifyIdentity.open('recovery');
-            hideLoginPrompt();
+          // Zeige Recovery-Formular
+          if (recoveryForm) {
+            recoveryForm.classList.add('show');
+            recoveryEmail.focus();
           }
         });
+      }
+      
+      if (cancelRecoveryBtn) {
+        cancelRecoveryBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          if (recoveryForm) {
+            recoveryForm.classList.remove('show');
+            recoveryEmail.value = '';
+            recoveryMessage.style.display = 'none';
+          }
+        });
+      }
+      
+      if (sendRecoveryBtn) {
+        sendRecoveryBtn.addEventListener('click', async (e) => {
+          e.preventDefault();
+          const email = recoveryEmail.value.trim();
+          
+          if (!email) {
+            showRecoveryMessage('Bitte gib deine E-Mail-Adresse ein.', 'error');
+            return;
+          }
+          
+          // Validiere E-Mail-Format
+          const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          if (!emailRegex.test(email)) {
+            showRecoveryMessage('Bitte gib eine gültige E-Mail-Adresse ein.', 'error');
+            return;
+          }
+          
+          // Deaktiviere Button während der Anfrage
+          sendRecoveryBtn.disabled = true;
+          sendRecoveryBtn.textContent = 'Wird gesendet...';
+          
+          if (!window.netlifyIdentity) {
+            showRecoveryMessage('Netlify Identity ist nicht verfügbar. Bitte lade die Seite neu.', 'error');
+            sendRecoveryBtn.disabled = false;
+            sendRecoveryBtn.textContent = 'Reset-E-Mail senden';
+            return;
+          }
+          
+          try {
+            // Methode 1: Versuche die GoTrue API direkt zu verwenden
+            const siteUrl = window.location.origin;
+            const identityUrl = siteUrl + '/.netlify/identity';
+            
+            const response = await fetch(identityUrl + '/recover', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({ email: email })
+            });
+            
+            const data = await response.json();
+            
+            if (response.ok || response.status === 200 || response.status === 204) {
+              showRecoveryMessage('Eine E-Mail zum Zurücksetzen des Passworts wurde an ' + email + ' gesendet. Bitte prüfe dein Postfach (auch Spam-Ordner).', 'success');
+              recoveryEmail.value = '';
+              setTimeout(() => {
+                if (recoveryForm) {
+                  recoveryForm.classList.remove('show');
+                }
+              }, 5000);
+            } else {
+              // Wenn die API nicht funktioniert, versuche das Widget-Modal
+              throw new Error(data.message || data.error_description || 'API-Fehler');
+            }
+          } catch (error) {
+            console.error('Recovery API error:', error);
+            
+            // Methode 2: Fallback - Öffne das Recovery-Modal vom Widget
+            try {
+              // Verstecke unser Formular und öffne das Widget-Modal
+              if (recoveryForm) {
+                recoveryForm.classList.remove('show');
+              }
+              hideLoginPrompt();
+              
+              // Öffne das Recovery-Modal
+              if (window.netlifyIdentity && typeof window.netlifyIdentity.open === 'function') {
+                window.netlifyIdentity.open('recovery');
+                // Reaktiviere Button für nächsten Versuch
+                sendRecoveryBtn.disabled = false;
+                sendRecoveryBtn.textContent = 'Reset-E-Mail senden';
+                return;
+              } else {
+                throw new Error('Netlify Identity Widget nicht verfügbar');
+              }
+            } catch (modalError) {
+              console.error('Recovery modal error:', modalError);
+              // Methode 3: Letzter Fallback - Zeige manuelle Anweisungen
+              showRecoveryMessage(
+                'Automatischer Versand fehlgeschlagen. Bitte gehe zu Netlify Identity und sende manuell eine Reset-E-Mail: ' +
+                '<a href="https://app.netlify.com/sites/meine-website-1762641815/identity" target="_blank" style="color: #00ad9f;">Netlify Identity öffnen</a>',
+                'error'
+              );
+            }
+          } finally {
+            // Stelle Button wieder her
+            sendRecoveryBtn.disabled = false;
+            sendRecoveryBtn.textContent = 'Reset-E-Mail senden';
+          }
+        });
+      }
+      
+      function showRecoveryMessage(text, type) {
+        if (recoveryMessage) {
+          recoveryMessage.innerHTML = text;
+          recoveryMessage.className = 'message ' + type;
+          recoveryMessage.style.display = 'block';
+        }
       }
     });
     
