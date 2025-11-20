@@ -1,0 +1,16 @@
+# MIME-Type Headers für JavaScript Module
+/_astro/*.js
+  Content-Type: application/javascript; charset=utf-8
+
+/_astro/*.mjs
+  Content-Type: application/javascript; charset=utf-8
+
+/_astro/*.ts
+  Content-Type: application/javascript; charset=utf-8
+
+# Allgemeine Headers
+/*
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+

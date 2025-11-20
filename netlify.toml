@@ -17,3 +17,6 @@
 # Go to: Site Settings → Identity → Enable Identity
 # Then: Site Settings → Identity → Services → Git Gateway → Enable Git Gateway
 
+# Headers Configuration
+# Custom headers are defined in public/_headers
+
