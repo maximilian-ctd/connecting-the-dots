@@ -5,70 +5,190 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Content Manager</title>
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    }
+    #login-prompt {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.8);
+      z-index: 10000;
+      align-items: center;
+      justify-content: center;
+    }
+    #login-prompt.show {
+      display: flex;
+    }
+    .login-box {
+      background: white;
+      padding: 2rem;
+      border-radius: 8px;
+      max-width: 400px;
+      text-align: center;
+    }
+    .login-box h2 {
+      margin-top: 0;
+    }
+    .login-box button {
+      background: #00ad9f;
+      color: white;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 1rem;
+      margin: 0.5rem;
+    }
+    .login-box button:hover {
+      background: #008f83;
+    }
+    .login-box a {
+      color: #00ad9f;
+      text-decoration: underline;
+    }
+  </style>
 </head>
 <body>
   <!-- Include the script that builds the page and powers Decap CMS -->
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+  
+  <!-- Login Prompt -->
+  <div id="login-prompt">
+    <div class="login-box">
+      <h2>Anmeldung erforderlich</h2>
+      <p>Bitte melde dich an, um das CMS zu verwenden.</p>
+      <button id="open-login">Login öffnen</button>
+      <button id="open-signup">Passwort setzen</button>
+      <p style="margin-top: 1rem; font-size: 0.9rem;">
+        <a href="#" id="password-reset-link">Passwort zurücksetzen</a>
+      </p>
+    </div>
+  </div>
+
   <script>
-    // Verhindere automatische Weiterleitung
     let loginCompleted = false;
+    let identityInitialized = false;
     
-    if (window.netlifyIdentity) {
-      // Prüfe zuerst, ob User eingeloggt ist
-      window.netlifyIdentity.on("init", user => {
-        console.log("Identity init, user:", user);
+    // Warte auf Netlify Identity
+    function initIdentity() {
+      if (window.netlifyIdentity && !identityInitialized) {
+        identityInitialized = true;
         
-        if (!user) {
-          // User ist nicht eingeloggt - öffne Login-Modal
-          setTimeout(() => {
-            window.netlifyIdentity.open("login");
-          }, 200);
-        } else {
-          // User ist bereits eingeloggt - lade CMS
-          console.log("User already logged in");
-        }
-      });
-      
-      // Verhindere automatische Weiterleitung nach Login
-      window.netlifyIdentity.on("login", (user) => {
-        console.log("Login event, user:", user);
-        if (user && !loginCompleted) {
-          loginCompleted = true;
-          // Warte, bis der User wirklich eingeloggt ist
-          setTimeout(() => {
-            window.netlifyIdentity.close();
-            // Nur weiterleiten, wenn User vollständig authentifiziert ist
-            if (user.token) {
-              document.location.href = "/admin/";
-            }
-          }, 1000);
-        }
-      });
-      
-      // Behandle Signup/Invitation
-      window.netlifyIdentity.on("signup", (user) => {
-        console.log("Signup event, user:", user);
-        // Modal bleibt offen für Passwort-Setting
-      });
-      
-      // Behandle Error (z.B. wenn Passwort noch nicht gesetzt)
-      window.netlifyIdentity.on("error", (err) => {
-        console.error("Identity error:", err);
-        // Öffne Login-Modal erneut bei Fehler
-        if (err && err.message && err.message.includes("password")) {
-          setTimeout(() => {
-            window.netlifyIdentity.open("login");
-          }, 500);
-        }
-      });
+        window.netlifyIdentity.on("init", user => {
+          console.log("Identity init, user:", user);
+          
+          if (!user) {
+            // User ist nicht eingeloggt - zeige Login-Prompt
+            showLoginPrompt();
+          } else {
+            // User ist eingeloggt - verstecke Prompt
+            hideLoginPrompt();
+          }
+        });
+        
+        // Login-Handler
+        window.netlifyIdentity.on("login", (user) => {
+          console.log("Login event, user:", user);
+          if (user && !loginCompleted) {
+            loginCompleted = true;
+            hideLoginPrompt();
+            // Warte kurz, dann lade CMS neu
+            setTimeout(() => {
+              window.location.reload();
+            }, 500);
+          }
+        });
+        
+        // Signup-Handler
+        window.netlifyIdentity.on("signup", (user) => {
+          console.log("Signup event, user:", user);
+          // Modal bleibt offen für Passwort-Setting
+        });
+        
+        // Error-Handler
+        window.netlifyIdentity.on("error", (err) => {
+          console.error("Identity error:", err);
+          // Bei Fehler: zeige Login-Prompt erneut
+          if (err) {
+            showLoginPrompt();
+          }
+        });
+        
+        // Logout-Handler
+        window.netlifyIdentity.on("logout", () => {
+          console.log("Logout event");
+          loginCompleted = false;
+          showLoginPrompt();
+        });
+      } else if (!window.netlifyIdentity) {
+        // Retry nach kurzer Verzögerung
+        setTimeout(initIdentity, 100);
+      }
     }
     
-    // Verhindere automatische Redirects durch andere Scripts
-    window.addEventListener("beforeunload", (e) => {
-      if (!loginCompleted) {
-        // Verhindere Navigation während Login-Prozess
+    function showLoginPrompt() {
+      const prompt = document.getElementById('login-prompt');
+      if (prompt) {
+        prompt.classList.add('show');
+      }
+    }
+    
+    function hideLoginPrompt() {
+      const prompt = document.getElementById('login-prompt');
+      if (prompt) {
+        prompt.classList.remove('show');
+      }
+    }
+    
+    // Event Listeners für Buttons
+    document.addEventListener('DOMContentLoaded', () => {
+      const openLoginBtn = document.getElementById('open-login');
+      const openSignupBtn = document.getElementById('open-signup');
+      const passwordResetLink = document.getElementById('password-reset-link');
+      
+      if (openLoginBtn) {
+        openLoginBtn.addEventListener('click', () => {
+          if (window.netlifyIdentity) {
+            window.netlifyIdentity.open('login');
+            hideLoginPrompt();
+          }
+        });
+      }
+      
+      if (openSignupBtn) {
+        openSignupBtn.addEventListener('click', () => {
+          if (window.netlifyIdentity) {
+            window.netlifyIdentity.open('signup');
+            hideLoginPrompt();
+          }
+        });
+      }
+      
+      if (passwordResetLink) {
+        passwordResetLink.addEventListener('click', (e) => {
+          e.preventDefault();
+          // Öffne Recovery-Modal
+          if (window.netlifyIdentity) {
+            window.netlifyIdentity.open('recovery');
+            hideLoginPrompt();
+          }
+        });
       }
     });
+    
+    // Starte Identity-Initialisierung
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initIdentity);
+    } else {
+      initIdentity();
+    }
   </script>
 </body>
 </html>
