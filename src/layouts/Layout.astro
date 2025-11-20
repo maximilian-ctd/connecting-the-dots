@@ -254,6 +254,90 @@ const fullImageUrl = image.startsWith('http') ? image : new URL(image, siteUrl).
 		<slot />
 		<CookieBanner lang={lang} currentPath={currentPath} />
 		<script type="module" src={consentScript}></script>
+		
+		<!-- Netlify Identity Widget - für Token-Verarbeitung aus E-Mail-Links -->
+		<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+		<script is:inline>
+			// Initialisiere Netlify Identity, um Token aus E-Mail-Links zu verarbeiten
+			(function() {
+				// Warte bis das Widget geladen ist
+				function initIdentity() {
+					if (window.netlifyIdentity) {
+						// Prüfe ob Token in der URL vorhanden ist
+						const hash = window.location.hash;
+						const hasToken = hash && (
+							hash.includes('invite_token') || 
+							hash.includes('recovery_token') || 
+							hash.includes('confirmation_token') ||
+							hash.includes('access_token')
+						);
+						
+						if (hasToken) {
+							console.log('Token in URL gefunden:', hash);
+							// Das Widget verarbeitet den Token automatisch beim Init
+							// Für invite_token öffne das Signup-Modal (Passwort-Setup)
+							if (hash.includes('invite_token')) {
+								window.netlifyIdentity.on("init", user => {
+									if (!user) {
+										// User ist noch nicht eingeloggt, öffne Signup-Modal für Passwort-Setup
+										console.log('Öffne Signup-Modal für Passwort-Setup...');
+										setTimeout(() => {
+											window.netlifyIdentity.open('signup');
+										}, 500);
+									}
+								});
+							}
+						}
+						
+						// Nach erfolgreichem Login/Signup, leite zur Admin-Seite weiter
+						window.netlifyIdentity.on("login", (user) => {
+							console.log('Login erfolgreich, User:', user);
+							// Warte kurz, dann leite zur Admin-Seite weiter
+							setTimeout(() => {
+								if (window.location.pathname !== '/admin' && !window.location.pathname.includes('/admin')) {
+									window.location.href = '/admin';
+								} else {
+									// Wenn bereits auf /admin, lade die Seite neu
+									window.location.reload();
+								}
+							}, 1000);
+						});
+						
+						window.netlifyIdentity.on("signup", (user) => {
+							console.log('Signup/Passwort-Setup erfolgreich, User:', user);
+							// Nach Signup (Passwort-Setup) zur Admin-Seite weiterleiten
+							setTimeout(() => {
+								if (window.location.pathname !== '/admin' && !window.location.pathname.includes('/admin')) {
+									window.location.href = '/admin';
+								} else {
+									// Wenn bereits auf /admin, lade die Seite neu
+									window.location.reload();
+								}
+							}, 1000);
+						});
+						
+						// Error-Handler für Token-Fehler
+						window.netlifyIdentity.on("error", (err) => {
+							console.error('Identity error:', err);
+							// Bei Token-Fehlern, zeige Hinweis
+							if (hasToken && err) {
+								console.error('Fehler beim Verarbeiten des Tokens:', err);
+							}
+						});
+					} else {
+						// Retry nach kurzer Verzögerung
+						setTimeout(initIdentity, 100);
+					}
+				}
+				
+				// Starte Initialisierung
+				if (document.readyState === 'loading') {
+					document.addEventListener('DOMContentLoaded', initIdentity);
+				} else {
+					initIdentity();
+				}
+			})();
+		</script>
 	</body>
 </html>
 
