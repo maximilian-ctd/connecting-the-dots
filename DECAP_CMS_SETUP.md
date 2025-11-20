@@ -30,6 +30,11 @@ Decap CMS (früher Netlify CMS) ist jetzt für deinen Blog eingerichtet! 🎉
 5. Du erhältst eine Einladungs-E-Mail
 6. Klicke auf den Link in der E-Mail, um dein Passwort zu setzen
 
+**Falls du keine E-Mail erhalten hast:**
+- Prüfe deinen Spam-Ordner
+- Gehe zu **"Users"** → Klicke auf deine E-Mail → **"Send password reset email"**
+- Oder lösche den User und lade ihn erneut ein
+
 ## 🚀 CMS verwenden
 
 ### Zugriff auf das CMS
