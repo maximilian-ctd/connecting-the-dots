@@ -1,0 +1,25 @@
+backend:
+  name: git-gateway
+  branch: main # Branch to update (optional; defaults to master)
+
+media_folder: public/images/blog
+public_folder: /images/blog
+
+collections:
+  - name: "blog"
+    label: "Blog Posts"
+    folder: "src/content/blog"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string", required: true }
+      - { label: "Description", name: "description", widget: "text", required: true }
+      - { label: "Publish Date", name: "pubDate", widget: "datetime", required: true }
+      - { label: "Updated Date", name: "updatedDate", widget: "datetime", required: false }
+      - { label: "Author", name: "author", widget: "string", default: "ConnectingTheDots", required: true }
+      - { label: "Language", name: "lang", widget: "select", options: ["de", "en"], required: true }
+      - { label: "Category", name: "category", widget: "select", options: ["project", "news", "insights"], default: "news", required: true }
+      - { label: "Tags", name: "tags", widget: "list", required: false, default: [] }
+      - { label: "Hero Image", name: "heroImage", widget: "image", required: false }
+      - { label: "Body", name: "body", widget: "markdown", required: true, hint: "Der Content wird als Markdown gespeichert" }
+

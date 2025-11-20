@@ -12,3 +12,8 @@
 # Site Settings → Forms → Form notifications → Add notification
 # Set recipient email to: maximilian@connectingthe.de
 
+# Decap CMS Configuration
+# Git Gateway is enabled via Netlify Identity in the Netlify Dashboard
+# Go to: Site Settings → Identity → Enable Identity
+# Then: Site Settings → Identity → Services → Git Gateway → Enable Git Gateway
+

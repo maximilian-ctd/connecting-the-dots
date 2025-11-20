@@ -1,0 +1,114 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import { getTranslations } from '../../i18n/translations';
+import { getCollection } from 'astro:content';
+
+const lang = 'en';
+const currentPath = '/en/blog';
+const t = getTranslations(lang);
+
+// Lade alle Blog-Posts für die englische Sprache
+const allPosts = await getCollection('blog', ({ data }) => {
+  return data.lang === 'en';
+});
+
+// Sortiere nach Datum (neueste zuerst)
+const posts = allPosts.sort((a, b) => 
+  b.data.pubDate.getTime() - a.data.pubDate.getTime()
+);
+---
+
+<Layout 
+	title="Blog - ConnectingTheDots" 
+	description="Projects, News and Insights from ConnectingTheDots. Learn more about our work, projects and insights."
+	lang={lang}
+	currentPath={currentPath}
+>
+	<Header lang={lang} currentPath={currentPath} />
+	<main class="bg-white">
+		<!-- Hero Section -->
+		<section class="bg-gradient-to-br from-white via-secondary/30 to-white py-16 px-4 relative overflow-hidden">
+			<div class="absolute inset-0 opacity-20">
+				<div class="absolute inset-0" style="background-image: radial-gradient(circle at 20% 30%, rgba(123, 224, 183, 0.1) 0%, transparent 50%), radial-gradient(circle at 80% 70%, rgba(123, 224, 183, 0.1) 0%, transparent 50%);"></div>
+			</div>
+			<div class="max-w-7xl mx-auto relative z-10">
+				<div class="text-center">
+					<h1 class="text-4xl lg:text-5xl font-bold mb-4">{t.blog.title}</h1>
+					<p class="text-xl text-muted-foreground max-w-2xl mx-auto">
+						{t.blog.subtitle}
+					</p>
+				</div>
+			</div>
+		</section>
+
+		<!-- Blog Posts -->
+		<section class="bg-white py-16 px-4">
+			<div class="max-w-7xl mx-auto">
+				{posts.length === 0 ? (
+					<div class="text-center py-16">
+						<p class="text-muted-foreground text-lg">{t.blog.noPosts}</p>
+					</div>
+				) : (
+					<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+						{posts.map((post) => (
+							<article class="bg-white border border-accent/20 rounded-3xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+								{post.data.heroImage && (
+									<div class="relative h-48 overflow-hidden">
+										<img
+											src={post.data.heroImage}
+											alt={post.data.title}
+											class="absolute inset-0 w-full h-full object-cover"
+											loading="lazy"
+										/>
+									</div>
+								)}
+								<div class="p-6">
+									<div class="flex items-center gap-3 mb-3">
+										<span class="px-3 py-1 bg-accent/10 text-accent rounded-full text-sm font-medium">
+											{t.blog.category[post.data.category]}
+										</span>
+										{post.data.tags.length > 0 && (
+											<span class="text-sm text-muted-foreground">
+												{post.data.tags[0]}
+											</span>
+										)}
+									</div>
+									<h2 class="text-2xl font-bold mb-3 text-foreground">
+										<a href={`/en/blog/${post.slug}`} class="hover:text-accent transition-colors">
+											{post.data.title}
+										</a>
+									</h2>
+									<p class="text-muted-foreground mb-4 leading-relaxed">
+										{post.data.description}
+									</p>
+									<div class="flex items-center justify-between text-sm text-muted-foreground">
+										<span>
+											{t.blog.publishedOn} {post.data.pubDate.toLocaleDateString('en-US', { 
+												year: 'numeric', 
+												month: 'long', 
+												day: 'numeric' 
+											})}
+										</span>
+									</div>
+									<a 
+										href={`/en/blog/${post.slug}`}
+										class="inline-flex items-center gap-2 mt-4 text-accent hover:text-accent/80 font-medium transition-colors"
+									>
+										{t.blog.readMore}
+										<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+											<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+										</svg>
+									</a>
+								</div>
+							</article>
+						))}
+					</div>
+				)}
+			</div>
+		</section>
+	</main>
+	<Footer lang={lang} currentPath={currentPath} />
+</Layout>
+

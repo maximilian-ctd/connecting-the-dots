@@ -194,6 +194,23 @@ export interface Translations {
     analyticsDescription: string;
     save: string;
   };
+  
+  // Blog
+  blog: {
+    title: string;
+    subtitle: string;
+    readMore: string;
+    readTime: string;
+    publishedOn: string;
+    updatedOn: string;
+    category: {
+      project: string;
+      news: string;
+      insights: string;
+    };
+    noPosts: string;
+    backToBlog: string;
+  };
 }
 
 export const translations: Record<Language, Translations> = {
@@ -369,6 +386,21 @@ export const translations: Record<Language, Translations> = {
       analyticsDescription: 'Diese Cookies helfen uns zu verstehen, wie Besucher mit der Website interagieren, indem Informationen anonym gesammelt und gemeldet werden.',
       save: 'Einstellungen speichern',
     },
+    blog: {
+      title: 'Blog',
+      subtitle: 'Projekte, News und Insights von ConnectingTheDots',
+      readMore: 'Weiterlesen',
+      readTime: 'Min. Lesezeit',
+      publishedOn: 'Veröffentlicht am',
+      updatedOn: 'Aktualisiert am',
+      category: {
+        project: 'Projekt',
+        news: 'News',
+        insights: 'Insights',
+      },
+      noPosts: 'Noch keine Blog-Posts verfügbar.',
+      backToBlog: 'Zurück zum Blog',
+    },
   },
   en: {
     header: {
@@ -541,6 +573,21 @@ export const translations: Record<Language, Translations> = {
       analytics: 'Analytics Cookies',
       analyticsDescription: 'These cookies help us understand how visitors interact with the website by collecting and reporting information anonymously.',
       save: 'Save Settings',
+    },
+    blog: {
+      title: 'Blog',
+      subtitle: 'Projects, News and Insights from ConnectingTheDots',
+      readMore: 'Read More',
+      readTime: 'min read',
+      publishedOn: 'Published on',
+      updatedOn: 'Updated on',
+      category: {
+        project: 'Project',
+        news: 'News',
+        insights: 'Insights',
+      },
+      noPosts: 'No blog posts available yet.',
+      backToBlog: 'Back to Blog',
     },
   },
 };
