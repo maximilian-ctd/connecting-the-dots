@@ -102,7 +102,7 @@
       <h2>Anmeldung erforderlich</h2>
       <p>Bitte melde dich an, um das CMS zu verwenden.</p>
       <button id="open-login">Login öffnen</button>
-      <button id="open-signup">Passwort setzen</button>
+      <button id="open-signup">Passwort setzen / Registrieren</button>
       <p style="margin-top: 1rem; font-size: 0.9rem;">
         <a href="#" id="password-reset-link">Passwort zurücksetzen</a>
       </p>
@@ -117,6 +117,7 @@
         <button id="cancel-recovery" style="width: 100%; margin-top: 0.5rem; background: #6c757d;">Abbrechen</button>
       </div>
       <div id="recovery-message" class="message" style="display: none;"></div>
+      <div id="email-confirmation-message" class="message" style="display: none;"></div>
     </div>
   </div>
 
@@ -163,9 +164,17 @@
         // Error-Handler
         window.netlifyIdentity.on("error", (err) => {
           console.error("Identity error:", err);
-          // Bei Fehler: zeige Login-Prompt erneut
-          if (err) {
-            showLoginPrompt();
+          
+          // Spezielle Behandlung für "Email not confirmed" Fehler
+          if (err && (err.message && err.message.includes('not confirmed') || 
+                      err.msg && err.msg.includes('not confirmed') ||
+                      err.toString().includes('not confirmed'))) {
+            showEmailNotConfirmedMessage();
+          } else {
+            // Bei anderen Fehlern: zeige Login-Prompt erneut
+            if (err) {
+              showLoginPrompt();
+            }
           }
         });
         
@@ -192,6 +201,125 @@
       const prompt = document.getElementById('login-prompt');
       if (prompt) {
         prompt.classList.remove('show');
+      }
+    }
+    
+    function showEmailNotConfirmedMessage() {
+      const messageDiv = document.getElementById('email-confirmation-message');
+      if (messageDiv) {
+        messageDiv.innerHTML = `
+          <strong>E-Mail nicht bestätigt</strong><br>
+          Deine E-Mail-Adresse wurde noch nicht bestätigt. Bitte prüfe dein Postfach (auch Spam-Ordner) 
+          und klicke auf den Bestätigungslink in der E-Mail.<br><br>
+          <button id="resend-confirmation" style="background: #00ad9f; color: white; border: none; padding: 0.5rem 1rem; border-radius: 4px; cursor: pointer; margin-top: 0.5rem;">
+            Bestätigungs-E-Mail erneut senden
+          </button>
+        `;
+        messageDiv.className = 'message error';
+        messageDiv.style.display = 'block';
+        showLoginPrompt();
+        
+        // Event Listener für "Erneut senden" Button
+        const resendBtn = document.getElementById('resend-confirmation');
+        if (resendBtn) {
+          resendBtn.addEventListener('click', async () => {
+            resendConfirmationEmail();
+          });
+        }
+      }
+    }
+    
+    async function resendConfirmationEmail() {
+      const messageDiv = document.getElementById('email-confirmation-message');
+      const resendBtn = document.getElementById('resend-confirmation');
+      
+      if (resendBtn) {
+        resendBtn.disabled = true;
+        resendBtn.textContent = 'Wird gesendet...';
+      }
+      
+      if (!window.netlifyIdentity) {
+        if (messageDiv) {
+          messageDiv.innerHTML = 'Netlify Identity ist nicht verfügbar. Bitte lade die Seite neu.';
+          messageDiv.className = 'message error';
+        }
+        if (resendBtn) {
+          resendBtn.disabled = false;
+          resendBtn.textContent = 'Bestätigungs-E-Mail erneut senden';
+        }
+        return;
+      }
+      
+      // Zeige ein Eingabefeld für die E-Mail-Adresse
+      if (messageDiv) {
+        messageDiv.innerHTML = `
+          <strong>E-Mail-Adresse eingeben</strong><br>
+          <input type="email" id="confirmation-email-input" placeholder="Deine E-Mail-Adresse" style="width: 100%; padding: 0.5rem; margin: 0.5rem 0; border: 1px solid #ddd; border-radius: 4px;">
+          <button id="send-confirmation-btn" style="background: #00ad9f; color: white; border: none; padding: 0.5rem 1rem; border-radius: 4px; cursor: pointer; margin-top: 0.5rem; width: 100%;">
+            Bestätigungs-E-Mail senden
+          </button>
+          <button id="cancel-confirmation-btn" style="background: #6c757d; color: white; border: none; padding: 0.5rem 1rem; border-radius: 4px; cursor: pointer; margin-top: 0.5rem; width: 100%;">
+            Abbrechen
+          </button>
+        `;
+        messageDiv.className = 'message error';
+        
+        const emailInput = document.getElementById('confirmation-email-input');
+        const sendBtn = document.getElementById('send-confirmation-btn');
+        const cancelBtn = document.getElementById('cancel-confirmation-btn');
+        
+        if (emailInput) {
+          emailInput.focus();
+        }
+        
+        if (sendBtn) {
+          sendBtn.addEventListener('click', async () => {
+            const email = emailInput ? emailInput.value.trim() : '';
+            if (!email) {
+              if (messageDiv) {
+                messageDiv.innerHTML = '<strong>Fehler:</strong> Bitte gib deine E-Mail-Adresse ein.';
+                messageDiv.className = 'message error';
+              }
+              return;
+            }
+            
+            sendBtn.disabled = true;
+            sendBtn.textContent = 'Wird gesendet...';
+            
+            try {
+              // Versuche die Bestätigungs-E-Mail über die API zu senden
+              const siteUrl = window.location.origin;
+              const identityUrl = siteUrl + '/.netlify/identity';
+              
+              // Für nicht bestätigte E-Mails müssen wir über das Signup-Verfahren gehen
+              // Oder wir öffnen einfach das Signup-Modal
+              window.netlifyIdentity.open('signup');
+              hideLoginPrompt();
+              
+              if (messageDiv) {
+                messageDiv.innerHTML = 'Bitte gib deine E-Mail-Adresse im geöffneten Formular ein. Du erhältst dann eine neue Bestätigungs-E-Mail.';
+                messageDiv.className = 'message success';
+              }
+            } catch (error) {
+              console.error('Error sending confirmation:', error);
+              if (messageDiv) {
+                messageDiv.innerHTML = 'Fehler beim Senden. Bitte öffne das Registrierungs-Formular manuell oder gehe zu <a href="https://app.netlify.com/sites/meine-website-1762641815/identity" target="_blank" style="color: inherit; text-decoration: underline;">Netlify Identity</a>.';
+                messageDiv.className = 'message error';
+              }
+            } finally {
+              if (sendBtn) {
+                sendBtn.disabled = false;
+                sendBtn.textContent = 'Bestätigungs-E-Mail senden';
+              }
+            }
+          });
+        }
+        
+        if (cancelBtn) {
+          cancelBtn.addEventListener('click', () => {
+            showEmailNotConfirmedMessage();
+          });
+        }
       }
     }
     
