@@ -14,13 +14,28 @@
       window.netlifyIdentity.on("init", user => {
         if (!user) {
           // Zeige das Login-Modal, wenn kein User eingeloggt ist
-          window.netlifyIdentity.open("login");
+          // Warte kurz, damit das Widget vollständig geladen ist
+          setTimeout(() => {
+            window.netlifyIdentity.open("login");
+          }, 100);
         }
-        window.netlifyIdentity.on("login", () => {
-          // Nach erfolgreichem Login: Seite neu laden
+      });
+      
+      // Nach erfolgreichem Login: Seite neu laden
+      window.netlifyIdentity.on("login", (user) => {
+        if (user) {
           window.netlifyIdentity.close();
-          document.location.href = "/admin/";
-        });
+          // Kurze Verzögerung, damit der Login abgeschlossen ist
+          setTimeout(() => {
+            document.location.href = "/admin/";
+          }, 500);
+        }
+      });
+      
+      // Verhindere automatische Weiterleitung bei Registration
+      window.netlifyIdentity.on("signup", (user) => {
+        // Nach Signup: Modal bleibt offen für Passwort-Setting
+        console.log("User signed up:", user);
       });
     }
   </script>
