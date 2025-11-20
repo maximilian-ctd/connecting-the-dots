@@ -260,38 +260,65 @@ const fullImageUrl = image.startsWith('http') ? image : new URL(image, siteUrl).
 		<script is:inline>
 			// Initialisiere Netlify Identity, um Token aus E-Mail-Links zu verarbeiten
 			(function() {
+				let tokenProcessed = false;
+				let shouldRedirectToAdmin = false;
+				
+				// Prüfe sofort ob Token in der URL vorhanden ist (BEVOR das Widget geladen wird)
+				const hash = window.location.hash;
+				const hasInviteToken = hash && hash.includes('invite_token');
+				const hasRecoveryToken = hash && hash.includes('recovery_token');
+				const hasConfirmationToken = hash && hash.includes('confirmation_token');
+				
+				if (hasInviteToken || hasRecoveryToken || hasConfirmationToken) {
+					console.log('Token in URL gefunden:', hash);
+					// Verhindere automatische Weiterleitung, bis Token verarbeitet ist
+					shouldRedirectToAdmin = false;
+				}
+				
 				// Warte bis das Widget geladen ist
 				function initIdentity() {
 					if (window.netlifyIdentity) {
-						// Prüfe ob Token in der URL vorhanden ist
-						const hash = window.location.hash;
-						const hasToken = hash && (
-							hash.includes('invite_token') || 
-							hash.includes('recovery_token') || 
-							hash.includes('confirmation_token') ||
-							hash.includes('access_token')
-						);
-						
-						if (hasToken) {
-							console.log('Token in URL gefunden:', hash);
-							// Das Widget verarbeitet den Token automatisch beim Init
-							// Für invite_token öffne das Signup-Modal (Passwort-Setup)
-							if (hash.includes('invite_token')) {
-								window.netlifyIdentity.on("init", user => {
-									if (!user) {
-										// User ist noch nicht eingeloggt, öffne Signup-Modal für Passwort-Setup
+						// Event-Handler für Token-Verarbeitung
+						window.netlifyIdentity.on("init", user => {
+							console.log('Identity init, user:', user);
+							
+							// Wenn Token vorhanden und User noch nicht eingeloggt
+							if ((hasInviteToken || hasRecoveryToken || hasConfirmationToken) && !user && !tokenProcessed) {
+								console.log('Token gefunden, User nicht eingeloggt - öffne Modal...');
+								tokenProcessed = true;
+								
+								// Warte kurz, dann öffne das entsprechende Modal
+								setTimeout(() => {
+									if (hasInviteToken) {
 										console.log('Öffne Signup-Modal für Passwort-Setup...');
-										setTimeout(() => {
-											window.netlifyIdentity.open('signup');
-										}, 500);
+										window.netlifyIdentity.open('signup');
+									} else if (hasRecoveryToken) {
+										console.log('Öffne Recovery-Modal für Passwort-Reset...');
+										window.netlifyIdentity.open('recovery');
+									} else if (hasConfirmationToken) {
+										console.log('Bestätigungs-Token gefunden...');
+										// Für Bestätigung wird automatisch weitergeleitet
 									}
-								});
+								}, 800);
+							} else if (user) {
+								console.log('User bereits eingeloggt');
+								// User ist bereits eingeloggt, leite zur Admin-Seite weiter
+								if (shouldRedirectToAdmin) {
+									setTimeout(() => {
+										if (window.location.pathname !== '/admin' && !window.location.pathname.includes('/admin')) {
+											window.location.href = '/admin';
+										}
+									}, 500);
+								}
 							}
-						}
+						});
 						
-						// Nach erfolgreichem Login/Signup, leite zur Admin-Seite weiter
+						// Nach erfolgreichem Login, leite zur Admin-Seite weiter
 						window.netlifyIdentity.on("login", (user) => {
 							console.log('Login erfolgreich, User:', user);
+							tokenProcessed = true;
+							shouldRedirectToAdmin = true;
+							
 							// Warte kurz, dann leite zur Admin-Seite weiter
 							setTimeout(() => {
 								if (window.location.pathname !== '/admin' && !window.location.pathname.includes('/admin')) {
@@ -300,12 +327,16 @@ const fullImageUrl = image.startsWith('http') ? image : new URL(image, siteUrl).
 									// Wenn bereits auf /admin, lade die Seite neu
 									window.location.reload();
 								}
-							}, 1000);
+							}, 1500);
 						});
 						
+						// Nach erfolgreichem Signup (Passwort-Setup), leite zur Admin-Seite weiter
 						window.netlifyIdentity.on("signup", (user) => {
 							console.log('Signup/Passwort-Setup erfolgreich, User:', user);
-							// Nach Signup (Passwort-Setup) zur Admin-Seite weiterleiten
+							tokenProcessed = true;
+							shouldRedirectToAdmin = true;
+							
+							// Warte etwas länger, damit der User das Passwort setzen kann
 							setTimeout(() => {
 								if (window.location.pathname !== '/admin' && !window.location.pathname.includes('/admin')) {
 									window.location.href = '/admin';
@@ -313,24 +344,28 @@ const fullImageUrl = image.startsWith('http') ? image : new URL(image, siteUrl).
 									// Wenn bereits auf /admin, lade die Seite neu
 									window.location.reload();
 								}
-							}, 1000);
+							}, 2000);
 						});
 						
 						// Error-Handler für Token-Fehler
 						window.netlifyIdentity.on("error", (err) => {
 							console.error('Identity error:', err);
-							// Bei Token-Fehlern, zeige Hinweis
-							if (hasToken && err) {
+							if (hasInviteToken || hasRecoveryToken || hasConfirmationToken) {
 								console.error('Fehler beim Verarbeiten des Tokens:', err);
+								// Zeige Fehlermeldung
+								alert('Fehler beim Verarbeiten des Links. Bitte versuche es erneut oder kontaktiere den Administrator.');
 							}
 						});
+						
+						// Initialisiere das Widget (wichtig für Token-Verarbeitung)
+						window.netlifyIdentity.init();
 					} else {
 						// Retry nach kurzer Verzögerung
 						setTimeout(initIdentity, 100);
 					}
 				}
 				
-				// Starte Initialisierung
+				// Starte Initialisierung sofort
 				if (document.readyState === 'loading') {
 					document.addEventListener('DOMContentLoaded', initIdentity);
 				} else {
