@@ -158,6 +158,9 @@ const t = getTranslations(lang);
     animateScroll();
   }
 
+  // Entferne no-js Klasse falls vorhanden
+  document.documentElement.classList.remove('no-js');
+
   // Initialize when DOM is ready
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initCustomerReferences);
@@ -206,6 +209,12 @@ const t = getTranslations(lang);
   .logo-card:hover .logo-img {
     opacity: 1;
     filter: grayscale(0);
+  }
+
+  /* Fallback: Wenn JavaScript nicht läuft, zeige Content trotzdem */
+  .no-js #customer-header {
+    opacity: 1 !important;
+    transform: none !important;
   }
 </style>
 

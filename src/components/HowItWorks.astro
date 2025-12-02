@@ -228,8 +228,8 @@ const t = getTranslations(lang);
     // Step cards animation
     const stepCards = document.querySelectorAll('.step-card');
     const observerOptions = {
-      threshold: 0.2,
-      rootMargin: '-100px'
+      threshold: 0.1,
+      rootMargin: '0px'
     };
 
     const observer = new IntersectionObserver((entries) => {
@@ -286,6 +286,9 @@ const t = getTranslations(lang);
     });
   }
 
+  // Entferne no-js Klasse falls vorhanden
+  document.documentElement.classList.remove('no-js');
+
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initHowItWorks);
   } else {
@@ -301,6 +304,15 @@ const t = getTranslations(lang);
 
   #video-placeholder {
     transform: scale(0.95);
+  }
+
+  /* Fallback: Wenn JavaScript nicht läuft, zeige Content trotzdem */
+  .no-js #how-it-works-title,
+  .no-js #how-it-works-subtitle,
+  .no-js #video-placeholder,
+  .no-js .step-card {
+    opacity: 1 !important;
+    transform: none !important;
   }
 
   .step-content {

@@ -429,6 +429,9 @@
     };
   }
 
+  // Entferne no-js Klasse falls vorhanden
+  document.documentElement.classList.remove('no-js');
+
   // Initialize when DOM is ready
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initNetworkVisualization);

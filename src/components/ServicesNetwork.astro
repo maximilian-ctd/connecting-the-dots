@@ -300,6 +300,9 @@ const t = getTranslations(lang);
     });
   }
 
+  // Entferne no-js Klasse falls vorhanden
+  document.documentElement.classList.remove('no-js');
+
   // Initialize
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initServicesNetwork);
@@ -336,5 +339,14 @@ const t = getTranslations(lang);
   .service-item,
   .benefit-item {
     transition: transform 0.3s ease;
+  }
+
+  /* Fallback: Wenn JavaScript nicht läuft, zeige Content trotzdem */
+  .no-js #services-card,
+  .no-js #benefits-card,
+  .no-js .service-item,
+  .no-js .benefit-item {
+    opacity: 1 !important;
+    transform: none !important;
   }
 </style>

@@ -133,8 +133,8 @@ const t = getTranslations(lang);
 
     // Intersection Observer für Content und Visual
     const observerOptions = {
-      threshold: 0.2,
-      rootMargin: '-50px'
+      threshold: 0.1,
+      rootMargin: '0px'
     };
 
     const observer = new IntersectionObserver((entries) => {
@@ -216,6 +216,9 @@ const t = getTranslations(lang);
     });
   }
 
+  // Entferne no-js Klasse falls vorhanden
+  document.documentElement.classList.remove('no-js');
+
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initCaseStudy);
   } else {
@@ -240,5 +243,14 @@ const t = getTranslations(lang);
 
   .kpi-value {
     transition: transform 0.3s ease;
+  }
+
+  /* Fallback: Wenn JavaScript nicht läuft, zeige Content trotzdem */
+  .no-js #case-study-title,
+  .no-js #case-study-content,
+  .no-js #case-study-visual,
+  .no-js .kpi-card {
+    opacity: 1 !important;
+    transform: none !important;
   }
 </style>
