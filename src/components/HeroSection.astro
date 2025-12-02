@@ -15,7 +15,7 @@ const heroVideoSrc = '/videos/Video_Generation_for_Website_Hero.mp4';
   <div class="absolute inset-0 overflow-hidden">
     <video
       id="hero-video"
-      class="w-full h-full object-cover md:object-[65%_center] object-[75%_center] opacity-85 pointer-events-none transition-[object-position] duration-700 ease-out"
+      class="w-full h-full object-cover md:object-[65%_center] object-[75%_center] opacity-85 pointer-events-none transition-[object-position] duration-700 ease-out hero-video-sharp"
       autoplay
       muted
       loop
@@ -93,4 +93,34 @@ const heroVideoSrc = '/videos/Video_Generation_for_Website_Hero.mp4';
     setHeroVideoRate();
   }
 </script>
+
+<style>
+  .hero-video-sharp {
+    /* Verbesserte Bildqualität und Schärfe */
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+    filter: contrast(1.1) brightness(1.05) saturate(1.1);
+    /* Anti-Aliasing für bessere Qualität */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    /* Bessere Skalierung */
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    /* Hardware-Beschleunigung für bessere Performance */
+    will-change: transform;
+  }
+  
+  /* Zusätzliche Schärfe für verschiedene Bildschirmgrößen */
+  @media (min-width: 768px) {
+    .hero-video-sharp {
+      filter: contrast(1.15) brightness(1.05) saturate(1.1);
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .hero-video-sharp {
+      filter: contrast(1.2) brightness(1.05) saturate(1.15);
+    }
+  }
+</style>
 
