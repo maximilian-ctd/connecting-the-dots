@@ -20,7 +20,7 @@ const t = getTranslations(lang);
       </p>
     </div>
     
-    <div class="relative">
+    <div class="relative overflow-hidden">
       <div 
         id="customer-scroll"
         class="flex gap-8"
@@ -143,26 +143,39 @@ const t = getTranslations(lang);
         header.style.transform = 'translateY(0)';
       }, 100);
 
-      // Infinite scroll animation
+      // Infinite scroll animation - von rechts nach links
       let scrollPosition = 0;
       const scrollSpeed = 0.5; // pixels per frame
       const cardWidth = 180;
       const gap = 32;
       const totalWidth = (cardWidth + gap) * 6; // 6 items per set
-      let animationFrameId: number | null = null;
+      let animationFrameId = null;
+      let isAnimating = true;
 
       // Stelle sicher, dass keine CSS-Transition die Animation stört
       scrollContainer.style.transition = 'none';
       scrollContainer.style.willChange = 'transform';
+      scrollContainer.style.display = 'flex';
+      
+      // Initialisiere Position
+      scrollContainer.style.transform = 'translateX(0px)';
 
       function animateScroll() {
-        if (!scrollContainer) {
+        if (!isAnimating) {
           if (animationFrameId) {
             cancelAnimationFrame(animationFrameId);
+            animationFrameId = null;
           }
           return;
         }
         
+        const container = document.getElementById('customer-scroll');
+        if (!container) {
+          isAnimating = false;
+          return;
+        }
+        
+        // Bewege von rechts nach links (negative Werte)
         scrollPosition -= scrollSpeed;
         
         // Reset position when we've scrolled one full set
@@ -170,14 +183,17 @@ const t = getTranslations(lang);
           scrollPosition = 0;
         }
         
-        scrollContainer.style.transform = `translateX(${scrollPosition}px)`;
+        container.style.transform = `translateX(${scrollPosition}px)`;
         animationFrameId = requestAnimationFrame(animateScroll);
       }
 
       // Start animation after a short delay to ensure everything is ready
       setTimeout(() => {
-        animateScroll();
-      }, 200);
+        const container = document.getElementById('customer-scroll');
+        if (container && isAnimating) {
+          animateScroll();
+        }
+      }, 500);
     }
 
     // Initialize when DOM is ready
