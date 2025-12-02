@@ -149,9 +149,19 @@ const t = getTranslations(lang);
       const cardWidth = 180;
       const gap = 32;
       const totalWidth = (cardWidth + gap) * 6; // 6 items per set
+      let animationFrameId: number | null = null;
+
+      // Stelle sicher, dass keine CSS-Transition die Animation stört
+      scrollContainer.style.transition = 'none';
+      scrollContainer.style.willChange = 'transform';
 
       function animateScroll() {
-        if (!scrollContainer) return;
+        if (!scrollContainer) {
+          if (animationFrameId) {
+            cancelAnimationFrame(animationFrameId);
+          }
+          return;
+        }
         
         scrollPosition -= scrollSpeed;
         
@@ -161,11 +171,13 @@ const t = getTranslations(lang);
         }
         
         scrollContainer.style.transform = `translateX(${scrollPosition}px)`;
-        requestAnimationFrame(animateScroll);
+        animationFrameId = requestAnimationFrame(animateScroll);
       }
 
-      // Start animation
-      animateScroll();
+      // Start animation after a short delay to ensure everything is ready
+      setTimeout(() => {
+        animateScroll();
+      }, 200);
     }
 
     // Initialize when DOM is ready
@@ -185,6 +197,8 @@ const t = getTranslations(lang);
 
   #customer-scroll {
     will-change: transform;
+    /* Keine Transition für transform, damit die Animation funktioniert */
+    transition: none !important;
   }
 
   .logo-card {
