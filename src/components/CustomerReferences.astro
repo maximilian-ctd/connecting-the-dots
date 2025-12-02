@@ -190,8 +190,19 @@ const t = getTranslations(lang);
       // Start animation after a short delay to ensure everything is ready
       setTimeout(() => {
         const container = document.getElementById('customer-scroll');
-        if (container && isAnimating) {
-          animateScroll();
+        if (container) {
+          // Prüfe, ob Container sichtbar ist
+          const rect = container.getBoundingClientRect();
+          if (rect.width > 0 && rect.height > 0) {
+            animateScroll();
+          } else {
+            // Warte länger, wenn Container noch nicht sichtbar ist
+            setTimeout(() => {
+              if (document.getElementById('customer-scroll')) {
+                animateScroll();
+              }
+            }, 500);
+          }
         }
       }, 500);
     }
