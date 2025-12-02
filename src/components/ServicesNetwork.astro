@@ -219,6 +219,9 @@ const t = getTranslations(lang);
 
 <script>
   function initServicesNetwork() {
+    // Stelle sicher, dass no-js entfernt wurde
+    document.documentElement.classList.remove('no-js');
+    
     const servicesCard = document.getElementById('services-card');
     const benefitsCard = document.getElementById('benefits-card');
     const serviceItems = document.querySelectorAll('.service-item');
@@ -299,9 +302,6 @@ const t = getTranslations(lang);
       }
     });
   }
-
-  // Entferne no-js Klasse falls vorhanden
-  document.documentElement.classList.remove('no-js');
 
   // Initialize
   if (document.readyState === 'loading') {

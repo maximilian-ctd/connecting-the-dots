@@ -34,6 +34,9 @@ const fullImageUrl = image.startsWith('http') ? image : new URL(image, siteUrl).
 	<head>
 		<!-- Google Consent Mode v2 - MUSS vor Google Analytics geladen werden -->
 		<script is:inline>
+			// Entferne no-js Klasse sofort, wenn JavaScript verfügbar ist
+			document.documentElement.classList.remove('no-js');
+			
 			// Initialisiere dataLayer
 			window.dataLayer = window.dataLayer || [];
 			function gtag(){dataLayer.push(arguments);}

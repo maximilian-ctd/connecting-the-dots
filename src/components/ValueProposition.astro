@@ -330,6 +330,9 @@
   }
 
   function initValueProposition() {
+    // Stelle sicher, dass no-js entfernt wurde
+    document.documentElement.classList.remove('no-js');
+    
     const featureCards = document.querySelectorAll('.feature-card');
     
     // Initialize network overlay for each card
@@ -386,9 +389,6 @@
       }
     });
   }
-
-  // Entferne no-js Klasse falls vorhanden
-  document.documentElement.classList.remove('no-js');
 
   // Initialize when DOM is ready
   if (document.readyState === 'loading') {

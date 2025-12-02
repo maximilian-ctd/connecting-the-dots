@@ -164,6 +164,9 @@ const t = getTranslations(lang);
 
 <script>
   function initHowItWorks() {
+    // Stelle sicher, dass no-js entfernt wurde
+    document.documentElement.classList.remove('no-js');
+    
     // Fade in title and subtitle
     const title = document.getElementById('how-it-works-title');
     const subtitle = document.getElementById('how-it-works-subtitle');
@@ -285,9 +288,6 @@ const t = getTranslations(lang);
       }
     });
   }
-
-  // Entferne no-js Klasse falls vorhanden
-  document.documentElement.classList.remove('no-js');
 
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initHowItWorks);

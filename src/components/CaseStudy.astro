@@ -108,6 +108,9 @@ const t = getTranslations(lang);
 
 <script>
   function initCaseStudy() {
+    // Stelle sicher, dass no-js entfernt wurde
+    document.documentElement.classList.remove('no-js');
+    
     const title = document.getElementById('case-study-title');
     const subtitle = document.getElementById('case-study-subtitle');
     const content = document.getElementById('case-study-content');
@@ -215,9 +218,6 @@ const t = getTranslations(lang);
       }
     });
   }
-
-  // Entferne no-js Klasse falls vorhanden
-  document.documentElement.classList.remove('no-js');
 
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initCaseStudy);

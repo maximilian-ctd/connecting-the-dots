@@ -123,6 +123,9 @@ const t = getTranslations(lang);
 
 <script>
   function initCustomerReferences() {
+    // Stelle sicher, dass no-js entfernt wurde
+    document.documentElement.classList.remove('no-js');
+    
     const header = document.getElementById('customer-header');
     const scrollContainer = document.getElementById('customer-scroll');
     
@@ -157,9 +160,6 @@ const t = getTranslations(lang);
     // Start animation
     animateScroll();
   }
-
-  // Entferne no-js Klasse falls vorhanden
-  document.documentElement.classList.remove('no-js');
 
   // Initialize when DOM is ready
   if (document.readyState === 'loading') {
