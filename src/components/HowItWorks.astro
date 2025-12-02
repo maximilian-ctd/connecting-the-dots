@@ -323,6 +323,21 @@ const t = getTranslations(lang);
     opacity: 1 !important;
     transform: none !important;
   }
+  
+  /* Sicherheitsfallback: Zeige Content auch wenn Skripte nicht ausgeführt werden */
+  #how-it-works-title,
+  #how-it-works-subtitle,
+  #video-placeholder,
+  .step-card {
+    animation: fadeInFallback 0.1s ease 1s forwards;
+  }
+  
+  @keyframes fadeInFallback {
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
 
   .step-content {
     transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease, border 0.3s ease;

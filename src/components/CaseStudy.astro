@@ -262,4 +262,19 @@ const t = getTranslations(lang);
     opacity: 1 !important;
     transform: none !important;
   }
+  
+  /* Sicherheitsfallback: Zeige Content auch wenn Skripte nicht ausgeführt werden */
+  #case-study-title,
+  #case-study-content,
+  #case-study-visual,
+  .kpi-card {
+    animation: fadeInFallback 0.1s ease 1s forwards;
+  }
+  
+  @keyframes fadeInFallback {
+    to {
+      opacity: 1;
+      transform: translateX(0) translateY(0) scale(1);
+    }
+  }
 </style>
