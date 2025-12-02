@@ -218,14 +218,21 @@ const t = getTranslations(lang);
 </section>
 
 <script>
-  function initServicesNetwork() {
-    // Stelle sicher, dass no-js entfernt wurde
-    document.documentElement.classList.remove('no-js');
-    
-    const servicesCard = document.getElementById('services-card');
-    const benefitsCard = document.getElementById('benefits-card');
-    const serviceItems = document.querySelectorAll('.service-item');
-    const benefitItems = document.querySelectorAll('.benefit-item');
+  (function() {
+    function initServicesNetwork() {
+      // Stelle sicher, dass no-js entfernt wurde
+      document.documentElement.classList.remove('no-js');
+      
+      const servicesCard = document.getElementById('services-card');
+      const benefitsCard = document.getElementById('benefits-card');
+      const serviceItems = document.querySelectorAll('.service-item');
+      const benefitItems = document.querySelectorAll('.benefit-item');
+      
+      // Retry if elements not found
+      if (!servicesCard || !benefitsCard || serviceItems.length === 0) {
+        setTimeout(initServicesNetwork, 100);
+        return;
+      }
 
     // Fade in cards
     if (servicesCard) {
@@ -303,12 +310,13 @@ const t = getTranslations(lang);
     });
   }
 
-  // Initialize
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initServicesNetwork);
-  } else {
-    initServicesNetwork();
-  }
+    // Initialize
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initServicesNetwork);
+    } else {
+      setTimeout(initServicesNetwork, 0);
+    }
+  })();
 </script>
 
 <style>

@@ -163,14 +163,21 @@ const t = getTranslations(lang);
 </section>
 
 <script>
-  function initHowItWorks() {
-    // Stelle sicher, dass no-js entfernt wurde
-    document.documentElement.classList.remove('no-js');
-    
-    // Fade in title and subtitle
-    const title = document.getElementById('how-it-works-title');
-    const subtitle = document.getElementById('how-it-works-subtitle');
-    const videoPlaceholder = document.getElementById('video-placeholder');
+  (function() {
+    function initHowItWorks() {
+      // Stelle sicher, dass no-js entfernt wurde
+      document.documentElement.classList.remove('no-js');
+      
+      // Fade in title and subtitle
+      const title = document.getElementById('how-it-works-title');
+      const subtitle = document.getElementById('how-it-works-subtitle');
+      const videoPlaceholder = document.getElementById('video-placeholder');
+      
+      // Retry if elements not found
+      if (!title || !subtitle || !videoPlaceholder) {
+        setTimeout(initHowItWorks, 100);
+        return;
+      }
     
     if (title) {
       setTimeout(() => {
@@ -289,11 +296,13 @@ const t = getTranslations(lang);
     });
   }
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initHowItWorks);
-  } else {
-    initHowItWorks();
-  }
+    // Initialize when DOM is ready
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initHowItWorks);
+    } else {
+      setTimeout(initHowItWorks, 0);
+    }
+  })();
 </script>
 
 <style>

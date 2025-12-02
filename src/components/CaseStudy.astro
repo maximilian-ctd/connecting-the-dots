@@ -107,15 +107,22 @@ const t = getTranslations(lang);
 </section>
 
 <script>
-  function initCaseStudy() {
-    // Stelle sicher, dass no-js entfernt wurde
-    document.documentElement.classList.remove('no-js');
-    
-    const title = document.getElementById('case-study-title');
-    const subtitle = document.getElementById('case-study-subtitle');
-    const content = document.getElementById('case-study-content');
-    const visual = document.getElementById('case-study-visual');
-    const kpiCards = document.querySelectorAll('.kpi-card');
+  (function() {
+    function initCaseStudy() {
+      // Stelle sicher, dass no-js entfernt wurde
+      document.documentElement.classList.remove('no-js');
+      
+      const title = document.getElementById('case-study-title');
+      const subtitle = document.getElementById('case-study-subtitle');
+      const content = document.getElementById('case-study-content');
+      const visual = document.getElementById('case-study-visual');
+      const kpiCards = document.querySelectorAll('.kpi-card');
+      
+      // Retry if elements not found
+      if (!title || !content || !visual) {
+        setTimeout(initCaseStudy, 100);
+        return;
+      }
 
     // Fade in title and subtitle
     if (title) {
@@ -219,11 +226,13 @@ const t = getTranslations(lang);
     });
   }
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initCaseStudy);
-  } else {
-    initCaseStudy();
-  }
+    // Initialize when DOM is ready
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initCaseStudy);
+    } else {
+      setTimeout(initCaseStudy, 0);
+    }
+  })();
 </script>
 
 <style>

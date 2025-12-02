@@ -122,51 +122,60 @@ const t = getTranslations(lang);
 </section>
 
 <script>
-  function initCustomerReferences() {
-    // Stelle sicher, dass no-js entfernt wurde
-    document.documentElement.classList.remove('no-js');
-    
-    const header = document.getElementById('customer-header');
-    const scrollContainer = document.getElementById('customer-scroll');
-    
-    if (!header || !scrollContainer) return;
-
-    // Fade in header
-    setTimeout(() => {
-      header.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-      header.style.opacity = '1';
-      header.style.transform = 'translateY(0)';
-    }, 100);
-
-    // Infinite scroll animation
-    let scrollPosition = 0;
-    const scrollSpeed = 0.5; // pixels per frame
-    const cardWidth = 180;
-    const gap = 32;
-    const totalWidth = (cardWidth + gap) * 6; // 6 items per set
-
-    function animateScroll() {
-      scrollPosition -= scrollSpeed;
+  (function() {
+    function initCustomerReferences() {
+      // Stelle sicher, dass no-js entfernt wurde
+      document.documentElement.classList.remove('no-js');
       
-      // Reset position when we've scrolled one full set
-      if (Math.abs(scrollPosition) >= totalWidth) {
-        scrollPosition = 0;
+      const header = document.getElementById('customer-header');
+      const scrollContainer = document.getElementById('customer-scroll');
+      
+      if (!header || !scrollContainer) {
+        // Retry if elements not found yet
+        setTimeout(initCustomerReferences, 100);
+        return;
       }
-      
-      scrollContainer.style.transform = `translateX(${scrollPosition}px)`;
-      requestAnimationFrame(animateScroll);
+
+      // Fade in header
+      setTimeout(() => {
+        header.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        header.style.opacity = '1';
+        header.style.transform = 'translateY(0)';
+      }, 100);
+
+      // Infinite scroll animation
+      let scrollPosition = 0;
+      const scrollSpeed = 0.5; // pixels per frame
+      const cardWidth = 180;
+      const gap = 32;
+      const totalWidth = (cardWidth + gap) * 6; // 6 items per set
+
+      function animateScroll() {
+        if (!scrollContainer) return;
+        
+        scrollPosition -= scrollSpeed;
+        
+        // Reset position when we've scrolled one full set
+        if (Math.abs(scrollPosition) >= totalWidth) {
+          scrollPosition = 0;
+        }
+        
+        scrollContainer.style.transform = `translateX(${scrollPosition}px)`;
+        requestAnimationFrame(animateScroll);
+      }
+
+      // Start animation
+      animateScroll();
     }
 
-    // Start animation
-    animateScroll();
-  }
-
-  // Initialize when DOM is ready
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initCustomerReferences);
-  } else {
-    initCustomerReferences();
-  }
+    // Initialize when DOM is ready
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initCustomerReferences);
+    } else {
+      // Use setTimeout to ensure DOM is fully ready
+      setTimeout(initCustomerReferences, 0);
+    }
+  })();
 </script>
 
 <style>

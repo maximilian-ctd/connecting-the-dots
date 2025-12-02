@@ -329,11 +329,18 @@
     }
   }
 
-  function initValueProposition() {
-    // Stelle sicher, dass no-js entfernt wurde
-    document.documentElement.classList.remove('no-js');
-    
-    const featureCards = document.querySelectorAll('.feature-card');
+  (function() {
+    function initValueProposition() {
+      // Stelle sicher, dass no-js entfernt wurde
+      document.documentElement.classList.remove('no-js');
+      
+      const featureCards = document.querySelectorAll('.feature-card');
+      
+      // Retry if elements not found
+      if (featureCards.length === 0) {
+        setTimeout(initValueProposition, 100);
+        return;
+      }
     
     // Initialize network overlay for each card
     const networkAnimations: CardNetwork[] = [];
@@ -390,12 +397,13 @@
     });
   }
 
-  // Initialize when DOM is ready
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initValueProposition);
-  } else {
-    initValueProposition();
-  }
+    // Initialize when DOM is ready
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initValueProposition);
+    } else {
+      setTimeout(initValueProposition, 0);
+    }
+  })();
 </script>
 
 <style>
