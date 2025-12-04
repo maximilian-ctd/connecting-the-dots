@@ -95,8 +95,8 @@ const t = getTranslations(lang);
       <div class="step-card opacity-0" data-index="0">
         <div class="text-center relative">
           <div class="step-content card-surface gradient-validate">
-            <div class="icon-badge">
-              <svg class="w-10 h-10 text-accent-foreground relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div class="icon-badge icon-badge-1">
+              <svg class="w-10 h-10 text-accent-foreground relative z-10 step-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
               </svg>
             </div>
@@ -120,8 +120,8 @@ const t = getTranslations(lang);
       <div class="step-card opacity-0" data-index="1">
         <div class="text-center relative">
           <div class="step-content card-surface gradient-build">
-            <div class="icon-badge">
-              <svg class="w-10 h-10 text-accent-foreground relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div class="icon-badge icon-badge-2">
+              <svg class="w-10 h-10 text-accent-foreground relative z-10 step-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
               </svg>
             </div>
@@ -145,8 +145,8 @@ const t = getTranslations(lang);
       <div class="step-card opacity-0" data-index="2">
         <div class="text-center relative">
           <div class="step-content card-surface gradient-scale">
-            <div class="icon-badge">
-              <svg class="w-10 h-10 text-accent-foreground relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div class="icon-badge icon-badge-3">
+              <svg class="w-10 h-10 text-accent-foreground relative z-10 step-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3v18h18M7 14l4 4L21 8"></path>
               </svg>
             </div>
@@ -285,10 +285,12 @@ const t = getTranslations(lang);
 
     stepCards.forEach((card) => {
       const stepContent = card.querySelector('.step-content');
+      
       if (stepContent) {
         card.addEventListener('mouseenter', () => {
           stepContent.style.transform = 'translateY(-10px)';
         });
+        
         card.addEventListener('mouseleave', () => {
           stepContent.style.transform = 'translateY(0)';
         });
@@ -359,6 +361,55 @@ const t = getTranslations(lang);
     box-shadow: 0 12px 25px rgba(123, 224, 183, 0.25);
     background: var(--accent, #7be0b7);
     position: relative;
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  .step-icon {
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  /* Icon-spezifische Hover-Animationen */
+  .step-card:hover .icon-badge {
+    transform: scale(1.1);
+  }
+
+  /* Step 1 (Testen): Lupe - Schütteln und Vergrößerung */
+  .step-card:hover .icon-badge-1 {
+    animation: iconShake 0.5s ease-in-out;
+  }
+
+  .step-card:hover .icon-badge-1 .step-icon {
+    transform: scale(1.15);
+  }
+
+  /* Step 2 (Umsetzen): Zahnrad - Rotation */
+  .step-card:hover .icon-badge-2 .step-icon {
+    animation: iconRotate 0.8s ease-in-out infinite;
+  }
+
+  /* Step 3 (Wachsen): Häkchen - Sprung nach oben */
+  .step-card:hover .icon-badge-3 {
+    animation: iconBounce 0.6s ease-in-out;
+  }
+
+  .step-card:hover .icon-badge-3 .step-icon {
+    transform: scale(1.1);
+  }
+
+  @keyframes iconShake {
+    0%, 100% { transform: scale(1.1) translateX(0) rotate(0deg); }
+    25% { transform: scale(1.1) translateX(-4px) rotate(-5deg); }
+    75% { transform: scale(1.1) translateX(4px) rotate(5deg); }
+  }
+
+  @keyframes iconRotate {
+    0% { transform: rotate(0deg) scale(1); }
+    100% { transform: rotate(360deg) scale(1); }
+  }
+
+  @keyframes iconBounce {
+    0%, 100% { transform: scale(1.1) translateY(0); }
+    50% { transform: scale(1.1) translateY(-10px); }
   }
 
   .card-surface {

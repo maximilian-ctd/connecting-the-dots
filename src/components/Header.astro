@@ -143,11 +143,19 @@ const t = getTranslations(lang);
   </div>
 </header>
 
-<script>
-  function scrollToSection(href) {
-    const element = document.querySelector(href);
+<script is:inline>
+  // Definiere Funktionen sofort im globalen Scope für onclick-Handler
+  function scrollToSection(selector) {
+    const element = document.querySelector(selector);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+      const headerHeight = 80; // Header-Höhe für Offset
+      const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
+      const offsetPosition = elementPosition - headerHeight;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
     }
   }
 
@@ -163,16 +171,23 @@ const t = getTranslations(lang);
     }
   }
 
-  // Make functions available globally
+  // Stelle sicher, dass die Funktionen global verfügbar sind
   window.scrollToSection = scrollToSection;
   window.toggleMobileMenu = toggleMobileMenu;
 
   // Mobile menu button handler
-  document.addEventListener('DOMContentLoaded', () => {
+  function initMobileMenu() {
     const button = document.getElementById('mobile-menu-button');
     if (button) {
       button.addEventListener('click', toggleMobileMenu);
     }
-  });
+  }
+
+  // Initialize when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initMobileMenu);
+  } else {
+    initMobileMenu();
+  }
 </script>
 
