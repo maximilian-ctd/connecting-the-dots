@@ -252,6 +252,37 @@ const fullImageUrl = image.startsWith('http') ? image : new URL(image, siteUrl).
 				}
 			})} />
 		) : null}
+		
+		<!-- Globale Navigations-Funktionen - MUSS vor Header geladen werden -->
+		<script is:inline>
+			// Definiere scrollToSection sofort im globalen Scope
+			window.scrollToSection = function(selector) {
+				const element = document.querySelector(selector);
+				if (element) {
+					const headerHeight = 80;
+					const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
+					const offsetPosition = elementPosition - headerHeight;
+					
+					window.scrollTo({
+						top: offsetPosition,
+						behavior: 'smooth'
+					});
+				}
+			};
+			
+			// toggleMobileMenu wird im Header definiert
+			window.toggleMobileMenu = function() {
+				const menu = document.getElementById('mobile-menu');
+				const menuIcon = document.getElementById('menu-icon');
+				const closeIcon = document.getElementById('close-icon');
+				
+				if (menu && menuIcon && closeIcon) {
+					menu.classList.toggle('hidden');
+					menuIcon.classList.toggle('hidden');
+					closeIcon.classList.toggle('hidden');
+				}
+			};
+		</script>
 	</head>
 	<body>
 		<slot />
