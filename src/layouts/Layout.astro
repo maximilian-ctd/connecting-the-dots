@@ -415,6 +415,28 @@ const fullImageUrl = image.startsWith('http') ? image : new URL(image, siteUrl).
 				}
 			})();
 		</script>
+		<!-- Beim Laden oder Hash-Änderung zu #contact zum Kontaktbereich scrollen -->
+		<script is:inline>
+			(function() {
+				function scrollToContact() {
+					if (window.location.hash !== '#contact') return;
+					var el = document.getElementById('contact');
+					if (!el) return;
+					var headerOffset = 80;
+					var top = el.getBoundingClientRect().top + window.pageYOffset - headerOffset;
+					window.scrollTo({ top: top, behavior: 'smooth' });
+				}
+				function runScroll() {
+					setTimeout(scrollToContact, 100);
+				}
+				if (document.readyState === 'loading') {
+					document.addEventListener('DOMContentLoaded', runScroll);
+				} else {
+					runScroll();
+				}
+				window.addEventListener('hashchange', runScroll);
+			})();
+		</script>
 	</body>
 </html>
 
