@@ -76,6 +76,10 @@ export interface Translations {
       title: string;
       description: string;
     };
+    marketplaceManagement: {
+      title: string;
+      description: string;
+    };
     performanceMarketing: {
       title: string;
       description: string;
@@ -274,8 +278,12 @@ export const translations: Record<Language, Translations> = {
         description: 'Wir verwandeln deine Idee innerhalb von Tagen in etwas Testbares, schnell und ohne großen Aufwand.',
       },
       ecommerceSetup: {
-        title: 'E-Commerce Vertrieb (durch Online-Shop) oder Marktplatzexpansion',
-        description: 'Wir helfen dir dabei, deinen Online-Shop aufzubauen und zu betreiben, mit bewährten Tools und klaren Prozessen.',
+        title: 'E-Commerce Strategie',
+        description: 'Wir entwickeln mit dir die passende E-Commerce-Strategie über alle Kanäle: Online-Shop, Conversational und Social Commerce sowie Marktplätze. Zielbild, Kanalmix und Roadmap werden gemeinsam definiert.',
+      },
+      marketplaceManagement: {
+        title: 'Operatives Management',
+        description: 'Wir übernehmen oder unterstützen die operative Umsetzung: von Listings und Preisen über Bestands- und Prozesssteuerung bis zum Tagesgeschäft auf Marktplätzen und in Shops.',
       },
       performanceMarketing: {
         title: 'Performance Marketing',
@@ -462,8 +470,12 @@ export const translations: Record<Language, Translations> = {
         description: 'Turn ideas into testable MVPs within days, fast, lean, and data-driven.',
       },
       ecommerceSetup: {
-        title: 'E-Commerce Sales (via Online Shop) or Marketplace Expansion',
-        description: 'Validate, build, and scale your digital sales infrastructure with proven tools and automation.',
+        title: 'E-Commerce Strategy',
+        description: 'We develop the right e-commerce strategy with you across all channels: online shop, conversational and social commerce, and marketplaces. Target picture, channel mix, and roadmap are defined together.',
+      },
+      marketplaceManagement: {
+        title: 'Operational Management',
+        description: 'We take on or support operational execution: from listings and pricing to inventory and process control, and day-to-day operations on marketplaces and in shops.',
       },
       performanceMarketing: {
         title: 'Performance Marketing',
