@@ -63,8 +63,7 @@ const t = getTranslations(lang);
         </button>
         <LanguageSwitcher currentLang={lang} currentPath={currentPath} />
         <a
-          href="#contact"
-          onclick="scrollToSection('#contact')"
+          href={`/${lang}/#contact`}
           class="relative rounded-xl px-4 py-2 text-accent-foreground bg-accent shadow-[0_10px_20px_rgba(123,224,183,0.25)] transition-all hover:-translate-y-[1px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/50 ml-4"
         >
           <span class="absolute inset-[1px] rounded-[0.75rem] bg-accent"></span>
@@ -127,8 +126,7 @@ const t = getTranslations(lang);
             <LanguageSwitcher currentLang={lang} currentPath={currentPath} />
           </div>
           <a
-            href="#contact"
-            onclick="scrollToSection('#contact'); toggleMobileMenu();"
+            href={`/${lang}/#contact`}
             class="relative block w-full rounded-xl text-accent-foreground bg-accent px-4 py-2 text-center shadow-[0_10px_22px_rgba(123,224,183,0.25)] transition-all hover:-translate-y-[1px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/50"
           >
             <span class="absolute inset-[1px] rounded-[0.75rem] bg-accent"></span>
