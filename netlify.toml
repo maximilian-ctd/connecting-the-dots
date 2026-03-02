@@ -8,9 +8,9 @@
 
 # Netlify Forms Configuration
 # Forms are automatically handled by Netlify
-# Configure email notifications in Netlify Dashboard:
-# Site Settings → Forms → Form notifications → Add notification
-# Set recipient email to: maximilian@connectingthe.de
+# E-Mail bei Kontaktanfrage: Netlify Function send-email nutzt Resend.
+# In Netlify: Site → Environment variables → RESEND_API_KEY (API Key von resend.com)
+# Optional: FROM_EMAIL z. B. "ConnectingTheDots <noreply@connectingthe.de>" (Domain in Resend verifizieren)
 
 # Decap CMS Configuration
 # Git Gateway is enabled via Netlify Identity in the Netlify Dashboard

@@ -98,7 +98,7 @@ function initLeadForm() {
         params.append(key, typeof value === 'string' ? value : String(value));
       }
 
-      // Netlify Forms: POST an /contact.html (statisches Formular), damit keine Redirects die Daten verlieren
+      // 1) Netlify Forms speichern
       const response = await fetch('/contact.html', {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
@@ -110,6 +110,20 @@ function initLeadForm() {
         throw new Error(`Submission failed with status ${response.status}`);
       }
       submissionSucceeded = true;
+
+      // 2) E-Mail per Netlify Function + Resend senden (unabhängig von Netlify-Benachrichtigungen)
+      try {
+        const emailRes = await fetch('/.netlify/functions/send-email', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: params.toString(),
+        });
+        if (!emailRes.ok) {
+          console.warn('E-Mail-Versand fehlgeschlagen:', emailRes.status);
+        }
+      } catch (emailErr) {
+        console.warn('E-Mail-Versand fehlgeschlagen:', emailErr);
+      }
     } catch (error) {
       console.error('Form submission error (non-blocking):', error);
       showStatusMessage(form, 'error');

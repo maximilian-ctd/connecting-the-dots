@@ -1,5 +1,5 @@
-// Netlify Function to send email notifications
-// This function sends an email when the form is submitted
+// Netlify Function: E-Mail bei Kontaktformular per Resend senden
+// In Netlify: Environment Variables → RESEND_API_KEY setzen (API Key von resend.com)
 
 interface NetlifyEvent {
   httpMethod: string;
@@ -11,7 +11,7 @@ interface NetlifyContext {
   [key: string]: any;
 }
 
-interface FormData {
+interface FormDataParsed {
   'form-name': string;
   firstName: string;
   lastName: string;
@@ -21,19 +21,21 @@ interface FormData {
   consent: string;
 }
 
-export const handler = async (event: NetlifyEvent, context: NetlifyContext) => {
-  // Only allow POST requests
+const RECIPIENT = 'maximilian@connectingthe.de';
+const FROM_EMAIL = process.env.FROM_EMAIL || 'ConnectingTheDots <onboarding@resend.dev>';
+
+export const handler = async (event: NetlifyEvent, _context: NetlifyContext) => {
   if (event.httpMethod !== 'POST') {
     return {
       statusCode: 405,
+      headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' },
       body: JSON.stringify({ error: 'Method not allowed' }),
     };
   }
 
   try {
-    // Parse form data
     const formData = new URLSearchParams(event.body || '');
-    const data: FormData = {
+    const data: FormDataParsed = {
       'form-name': formData.get('form-name') || '',
       firstName: formData.get('firstName') || '',
       lastName: formData.get('lastName') || '',
@@ -43,75 +45,81 @@ export const handler = async (event: NetlifyEvent, context: NetlifyContext) => {
       consent: formData.get('consent') || '',
     };
 
-    // Validate required fields
     if (!data.firstName || !data.lastName || !data.email) {
       return {
         statusCode: 400,
+        headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' },
         body: JSON.stringify({ error: 'Missing required fields' }),
       };
     }
 
-    // Send email using Netlify's built-in email service or external service
-    // Option 1: Use Netlify Forms (already handled by Netlify Forms)
-    // Option 2: Use external email service (SendGrid, Resend, etc.)
-    
-    // For now, we'll use Netlify Forms which handles email automatically
-    // If you want custom email formatting, uncomment and configure below:
-    
-    /*
-    // Example: Send email via external service (e.g., Resend, SendGrid)
-    const emailServiceUrl = process.env.EMAIL_SERVICE_URL;
-    const emailApiKey = process.env.EMAIL_API_KEY;
-    
-    if (emailServiceUrl && emailApiKey) {
-      const emailResponse = await fetch(emailServiceUrl, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${emailApiKey}`,
-        },
-        body: JSON.stringify({
-          to: 'maximilian@connectingthe.de',
-          from: 'noreply@connectingthe.de',
-          subject: `Neue Kontaktanfrage von ${data.firstName} ${data.lastName}`,
-          html: `
-            <h2>Neue Kontaktanfrage</h2>
-            <p><strong>Name:</strong> ${data.firstName} ${data.lastName}</p>
-            <p><strong>Firma:</strong> ${data.company || 'Nicht angegeben'}</p>
-            <p><strong>E-Mail:</strong> ${data.email}</p>
-            <p><strong>Projektziele & Herausforderungen:</strong></p>
-            <p>${data.goals || 'Nicht angegeben'}</p>
-            <p><strong>Einverständnis:</strong> ${data.consent ? 'Ja' : 'Nein'}</p>
-          `,
-        }),
-      });
-      
-      if (!emailResponse.ok) {
-        throw new Error('Failed to send email');
-      }
+    const apiKey = process.env.RESEND_API_KEY;
+    if (!apiKey) {
+      console.error('RESEND_API_KEY not set');
+      return {
+        statusCode: 200,
+        headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' },
+        body: JSON.stringify({ success: true, message: 'Form saved (email not configured)' }),
+      };
     }
-    */
+
+    const html = `
+      <h2>Neue Kontaktanfrage</h2>
+      <p><strong>Name:</strong> ${escapeHtml(data.firstName)} ${escapeHtml(data.lastName)}</p>
+      <p><strong>Firma:</strong> ${escapeHtml(data.company) || '–'}</p>
+      <p><strong>E-Mail:</strong> ${escapeHtml(data.email)}</p>
+      <p><strong>Projektziele & Herausforderungen:</strong></p>
+      <p>${escapeHtml(data.goals) || '–'}</p>
+      <p><strong>Einverständnis:</strong> ${data.consent ? 'Ja' : 'Nein'}</p>
+    `;
+
+    const res = await fetch('https://api.resend.com/emails', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${apiKey}`,
+      },
+      body: JSON.stringify({
+        from: FROM_EMAIL,
+        to: [RECIPIENT],
+        subject: `Kontaktanfrage von ${data.firstName} ${data.lastName}`,
+        html,
+      }),
+    });
+
+    if (!res.ok) {
+      const err = await res.text();
+      console.error('Resend error:', res.status, err);
+      return {
+        statusCode: 502,
+        headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' },
+        body: JSON.stringify({ error: 'Email send failed', details: err }),
+      };
+    }
 
     return {
       statusCode: 200,
-      headers: {
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*',
-      },
-      body: JSON.stringify({
-        success: true,
-        message: 'Form submitted successfully',
-      }),
+      headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' },
+      body: JSON.stringify({ success: true, message: 'Form submitted successfully' }),
     };
   } catch (error: any) {
     console.error('Error processing form:', error);
     return {
       statusCode: 500,
-      body: JSON.stringify({
-        error: 'Internal server error',
-        message: error.message,
-      }),
+      headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' },
+      body: JSON.stringify({ error: 'Internal server error', message: error?.message }),
     };
   }
 };
+
+function escapeHtml(text: string): string {
+  const map: Record<string, string> = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;',
+  };
+  return text.replace(/[&<>"']/g, (c) => map[c] ?? c);
+}
 
