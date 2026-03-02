@@ -98,7 +98,9 @@ function initLeadForm() {
         params.append(key, typeof value === 'string' ? value : String(value));
       }
 
-      const response = await fetch('/', {
+      // Netlify Forms: POST an die aktuelle Seite (z. B. /de/ oder /en/), nicht an /
+      const formAction = typeof window !== 'undefined' ? window.location.pathname || '/' : '/';
+      const response = await fetch(formAction, {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body: params.toString(),
