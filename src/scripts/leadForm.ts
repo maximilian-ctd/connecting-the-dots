@@ -119,7 +119,11 @@ function initLeadForm() {
           body: params.toString(),
         });
         if (!emailRes.ok) {
-          console.warn('E-Mail-Versand fehlgeschlagen:', emailRes.status);
+          const txt = await emailRes.text();
+          console.warn('E-Mail-Versand fehlgeschlagen:', emailRes.status, txt);
+        } else {
+          const txt = await emailRes.text();
+          console.log('E-Mail-Versand OK:', txt);
         }
       } catch (emailErr) {
         console.warn('E-Mail-Versand fehlgeschlagen:', emailErr);

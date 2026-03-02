@@ -25,6 +25,20 @@ const RECIPIENT = 'maximilian@connectingthe.de';
 const FROM_EMAIL = process.env.FROM_EMAIL || 'ConnectingTheDots <onboarding@resend.dev>';
 
 export const handler = async (event: NetlifyEvent, _context: NetlifyContext) => {
+  // Simple health check (useful for debugging env vars)
+  if (event.httpMethod === 'GET') {
+    return {
+      statusCode: 200,
+      headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' },
+      body: JSON.stringify({
+        ok: true,
+        hasResendKey: Boolean(process.env.RESEND_API_KEY),
+        fromEmail: FROM_EMAIL,
+        recipient: RECIPIENT,
+      }),
+    };
+  }
+
   if (event.httpMethod !== 'POST') {
     return {
       statusCode: 405,
@@ -34,6 +48,12 @@ export const handler = async (event: NetlifyEvent, _context: NetlifyContext) => 
   }
 
   try {
+    console.log('send-email invoked', {
+      method: event.httpMethod,
+      hasBody: Boolean(event.body),
+      contentType: event.headers?.['content-type'] || event.headers?.['Content-Type'],
+    });
+
     const formData = new URLSearchParams(event.body || '');
     const data: FormDataParsed = {
       'form-name': formData.get('form-name') || '',
@@ -97,10 +117,12 @@ export const handler = async (event: NetlifyEvent, _context: NetlifyContext) => 
       };
     }
 
+    const resendResponseText = await res.text();
+    console.log('Resend OK', resendResponseText);
     return {
       statusCode: 200,
       headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' },
-      body: JSON.stringify({ success: true, message: 'Form submitted successfully' }),
+      body: JSON.stringify({ success: true, message: 'Email sent', resend: resendResponseText }),
     };
   } catch (error: any) {
     console.error('Error processing form:', error);
