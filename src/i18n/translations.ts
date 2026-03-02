@@ -223,7 +223,7 @@ export const translations: Record<Language, Translations> = {
       bookACall: 'Termin buchen',
     },
     footer: {
-      description: 'Von der Idee bis zur Umsetzung — ConnectingTheDots hilft dir dabei, dein Unternehmen schneller und sicherer aufzubauen.',
+      description: 'Von der Idee bis zur Umsetzung, ConnectingTheDots hilft dir dabei, dein Unternehmen schneller und sicherer aufzubauen.',
       company: 'Unternehmen',
       aboutUs: 'Unser Team',
       blog: 'Blog',
@@ -238,7 +238,7 @@ export const translations: Record<Language, Translations> = {
     hero: {
       title1: 'Von der Idee',
       title2: 'zum erfolgreichen Unternehmen.',
-      subtitle: 'Wir helfen dir, deine Idee zu testen oder weiterzuwachsen – mit echten Ergebnissen statt leeren Versprechen.',
+      subtitle: 'Wir helfen dir, deine Idee zu testen oder weiterzuwachsen, mit echten Ergebnissen statt leeren Versprechen.',
       cta: 'Jetzt verbinden',
     },
     customerReferences: {
@@ -249,7 +249,7 @@ export const translations: Record<Language, Translations> = {
       subtitle: 'Drei Schritte von der Idee zum erfolgreichen Unternehmen.',
       step1: {
         title: '1. Testen',
-        description: 'Finde heraus, ob deine Idee wirklich funktioniert. Wir helfen dir dabei, deine Annahmen mit echten Kunden zu prüfen — schnell und ohne große Investitionen.',
+        description: 'Finde heraus, ob deine Idee wirklich funktioniert. Wir helfen dir dabei, deine Annahmen mit echten Kunden zu prüfen, schnell und ohne große Investitionen.',
       },
       step2: {
         title: '2. Umsetzen',
@@ -263,70 +263,70 @@ export const translations: Record<Language, Translations> = {
     },
     services: {
       title: 'Unsere Leistungen & Netzwerk',
-      subtitle: 'Wir helfen dir dabei, deine Idee zu testen und dein Unternehmen aufzubauen — schneller und mit weniger Risiko.',
+      subtitle: 'Wir helfen dir dabei, deine Idee zu testen und dein Unternehmen aufzubauen, schneller und mit weniger Risiko.',
       whatWeOffer: 'Was wir anbieten',
       leadGeneration: {
         title: 'Kundenakquise',
-        description: 'Wir helfen dir dabei, die richtigen Kunden zu finden und zu erreichen — mit gezielten Tests und bewährten Methoden.',
+        description: 'Wir helfen dir dabei, die richtigen Kunden zu finden und zu erreichen, mit gezielten Tests und bewährten Methoden.',
       },
       rapidPrototyping: {
         title: 'Schnelle Umsetzung',
-        description: 'Wir verwandeln deine Idee innerhalb von Tagen in etwas Testbares — schnell und ohne großen Aufwand.',
+        description: 'Wir verwandeln deine Idee innerhalb von Tagen in etwas Testbares, schnell und ohne großen Aufwand.',
       },
       ecommerceSetup: {
         title: 'E-Commerce Vertrieb (durch Online-Shop) oder Marktplatzexpansion',
-        description: 'Wir helfen dir dabei, deinen Online-Shop aufzubauen und zu betreiben — mit bewährten Tools und klaren Prozessen.',
+        description: 'Wir helfen dir dabei, deinen Online-Shop aufzubauen und zu betreiben, mit bewährten Tools und klaren Prozessen.',
       },
       performanceMarketing: {
         title: 'Performance Marketing',
-        description: 'Wir optimieren deine Marketing-Kampagnen für maximale Performance und ROI — datenbasiert und ergebnisorientiert.',
+        description: 'Wir optimieren deine Marketing-Kampagnen für maximale Performance und ROI, datenbasiert und ergebnisorientiert.',
       },
       interimManagement: {
         title: 'Interim Management',
-        description: 'Wir unterstützen dich vorübergehend bei Marketing, Vertrieb oder digitalen Projekten — bis dein Team bereit ist.',
+        description: 'Wir unterstützen dich vorübergehend bei Marketing, Vertrieb oder digitalen Projekten, bis dein Team bereit ist.',
       },
       whyConnectingTheDots: 'Warum ConnectingTheDots?',
-      benefit1: '<strong class="text-foreground font-semibold">Schnelle Ergebnisse</strong> — innerhalb von Wochen erfährst du, ob deine Idee funktioniert.',
-      benefit2: '<strong class="text-foreground font-semibold">Weniger Risiko</strong> — wir testen vorher, damit du keine teuren Fehler machst.',
-      benefit3: '<strong class="text-foreground font-semibold">Zugang zu Experten</strong> — wir haben ein Netzwerk aus Spezialisten für Design, technische Entwicklung und Marketing.',
-      benefit4: '<strong class="text-foreground font-semibold">Keine eigenen Ressourcen nötig</strong> — wir übernehmen die Arbeit, die du nicht selbst machen kannst.',
-      benefit5: '<strong class="text-foreground font-semibold">Bewährter Ablauf</strong> — unser 3-Schritte-Modell: Testen · Umsetzen · Wachsen.',
-      benefit6: '<strong class="text-foreground font-semibold">Klare Umsetzung</strong> — von der getesteten Idee bis zum laufenden Unternehmen.',
+      benefit1: '<strong class="text-foreground font-semibold">Schnelle Ergebnisse</strong>, innerhalb von Wochen erfährst du, ob deine Idee funktioniert.',
+      benefit2: '<strong class="text-foreground font-semibold">Weniger Risiko</strong>, wir testen vorher, damit du keine teuren Fehler machst.',
+      benefit3: '<strong class="text-foreground font-semibold">Zugang zu Experten</strong>, wir haben ein Netzwerk aus Spezialisten für Design, technische Entwicklung und Marketing.',
+      benefit4: '<strong class="text-foreground font-semibold">Keine eigenen Ressourcen nötig</strong>, wir übernehmen die Arbeit, die du nicht selbst machen kannst.',
+      benefit5: '<strong class="text-foreground font-semibold">Bewährter Ablauf</strong>, unser 3-Schritte-Modell: Testen · Umsetzen · Wachsen.',
+      benefit6: '<strong class="text-foreground font-semibold">Klare Umsetzung</strong>, von der getesteten Idee bis zum laufenden Unternehmen.',
     },
     caseStudy: {
       title: 'Use Case: DACH-Marktexpansion',
       subtitle: '',
       heading: 'Vom Markteintritt zum regionalen Wachstum',
       description1: 'ConnectingTheDots unterstützte GenesysAI beim Aufbau einer starken Marktposition in der DACH-Region.',
-      description2: 'Innerhalb von 6 Monaten halfen wir dabei, ihr Vertriebsnetzwerk von 1 auf 4 aktive Kanäle zu erweitern und Partnerschaften mit 4 neuen Lieferanten in Deutschland, Österreich und der Schweiz aufzubauen — was zusätzliche €1M Umsatz generierte.',
+      description2: 'Innerhalb von 6 Monaten halfen wir dabei, ihr Vertriebsnetzwerk von 1 auf 4 aktive Kanäle zu erweitern und Partnerschaften mit 4 neuen Lieferanten in Deutschland, Österreich und der Schweiz aufzubauen, was zusätzliche €1M Umsatz generierte.',
       kpi1: 'Vertriebskanäle',
       kpi2: 'Neue DACH-Lieferanten',
       kpi3: 'Zusätzlicher Umsatz',
-      testimonial: 'CTD unterstützte GenesysAI dabei, sein Angebot im EU-Markt zu testen und zu starten — innerhalb von Monaten entstanden starke Partnerschaften und funktionierende Vertriebskanäle.',
+      testimonial: 'CTD unterstützte GenesysAI dabei, sein Angebot im EU-Markt zu testen und zu starten, innerhalb von Monaten entstanden starke Partnerschaften und funktionierende Vertriebskanäle.',
     },
     aboutUs: {
       title: 'Unser Team',
-      teamMission: '„Wir verwandeln digitale Ideen effizient in marktreife Lösungen – mit klarer Strategie, belastbaren Markttests und präziser operativer Umsetzung."',
+      teamMission: '„Wir verwandeln digitale Ideen effizient in marktreife Lösungen, mit klarer Strategie, belastbaren Markttests und präziser operativer Umsetzung."',
       maximilian: {
         heading: 'Maximilian',
-        intro: 'Senior Consultant – Strategy & Market Validation',
+        intro: 'Senior Consultant, Strategy & Market Validation',
         experience: {
           title: 'Erfahrung',
           paragraph1: 'Maximilian Rebensburg verfügt über mehr als 15 Jahre Erfahrung in Digitalisierung, E-Commerce, Marktplatzstrategien und SaaS. Bei Unternehmen wie Tradebyte und Gute Marken verantwortete er den Aufbau neuer Märkte und Segmente und erzielte dabei signifikante Wachstumsraten.',
-          paragraph2: 'Er kombiniert strategische Marktentwicklung mit operativer Umsetzung – von Positionierung und Zielgruppendefinition über MVP-Tests bis hin zur Go-to-Market-Strategie. Sein Fokus liegt darauf, Unternehmen zu befähigen, neue Ideen und Produkte schnell, risikoarm und datenbasiert im Echtmarkt zu validieren.',
+          paragraph2: 'Er kombiniert strategische Marktentwicklung mit operativer Umsetzung, von Positionierung und Zielgruppendefinition über MVP-Tests bis hin zur Go-to-Market-Strategie. Sein Fokus liegt darauf, Unternehmen zu befähigen, neue Ideen und Produkte schnell, risikoarm und datenbasiert im Echtmarkt zu validieren.',
           paragraph3: '',
         },
         mission: {
           title: 'Mission',
-          paragraph1: 'In zahlreichen Projekten hat er festgestellt, dass insbesondere mittelständische Unternehmen den Markteintritt häufig unterschätzen: Produkte werden ohne ausreichend getesteten Message-Market-Fit, falscher Zielgruppe oder unklarer Preisstrategie gelauncht – was unnötig Zeit, Budget und interne Ressourcen bindet.',
-          paragraph2: 'Mit ConnectingTheDots verfolgt er daher die Mission, Unternehmen dabei zu unterstützen, ihre Ideen oder neuen Produkte schnell, risikoarm und datenbasiert im Echtmarkt zu validieren. Sein breites Netzwerk im DACH-Raum und Europa ermöglicht dabei nicht nur strategische Beratung, sondern auch operative Umsetzung – vom ersten Markttest bis zum strukturierten Rollout.',
+          paragraph1: 'In zahlreichen Projekten hat er festgestellt, dass insbesondere mittelständische Unternehmen den Markteintritt häufig unterschätzen: Produkte werden ohne ausreichend getesteten Message-Market-Fit, falscher Zielgruppe oder unklarer Preisstrategie gelauncht, was unnötig Zeit, Budget und interne Ressourcen bindet.',
+          paragraph2: 'Mit ConnectingTheDots verfolgt er daher die Mission, Unternehmen dabei zu unterstützen, ihre Ideen oder neuen Produkte schnell, risikoarm und datenbasiert im Echtmarkt zu validieren. Sein breites Netzwerk im DACH-Raum und Europa ermöglicht dabei nicht nur strategische Beratung, sondern auch operative Umsetzung, vom ersten Markttest bis zum strukturierten Rollout.',
         },
         linkedin: 'LinkedIn Profil',
         linkedinUrl: 'https://www.linkedin.com/in/maximilianrebensburg/',
       },
       juliane: {
         heading: 'Juliane',
-        intro: 'Senior Consultant – Brand, Commerce & Integration',
+        intro: 'Senior Consultant, Brand, Commerce & Integration',
         experience: {
           title: 'Erfahrung',
           paragraph1: 'Juliane Kissau bringt langjährige Erfahrung in E-Commerce, Markenaufbau und technischer Integration mit. Ihre Stationen bei Tradebyte, Spryker, GROSSE LIEBE, onQuality und X-Trade haben ihr ein tiefes Verständnis für digitale Wachstumsprozesse vermittelt.',
@@ -338,7 +338,7 @@ export const translations: Record<Language, Translations> = {
       ella: {
         heading: 'Ella',
         intro: 'Junior Feelgood Manager',
-        description: 'Ella ist unsere gute Seele im Team und sorgt jeden Tag für positive Stimmung im Büro. Als Feelgood Managerin achtet sie darauf, dass Pausen eingehalten, Snacks geteilt und gemeinsame Aktivitäten nicht zu kurz kommen. Mit ihrer offenen, fröhlichen Art bringt sie Wärme ins Team – und freut sich über jede zusätzliche Streicheleinheit.',
+        description: 'Ella ist unsere gute Seele im Team und sorgt jeden Tag für positive Stimmung im Büro. Als Feelgood Managerin achtet sie darauf, dass Pausen eingehalten, Snacks geteilt und gemeinsame Aktivitäten nicht zu kurz kommen. Mit ihrer offenen, fröhlichen Art bringt sie Wärme ins Team, und freut sich über jede zusätzliche Streicheleinheit.',
       },
     },
     leadForm: {
@@ -411,7 +411,7 @@ export const translations: Record<Language, Translations> = {
       bookACall: 'Book a Call',
     },
     footer: {
-      description: 'From market validation to operational execution — ConnectingTheDots bridges the gap between strategy and real market success.',
+      description: 'From market validation to operational execution, ConnectingTheDots bridges the gap between strategy and real market success.',
       company: 'Company',
       aboutUs: 'Our Team',
       blog: 'Blog',
@@ -434,7 +434,7 @@ export const translations: Record<Language, Translations> = {
     },
     howItWorks: {
       title: 'How It Works',
-      subtitle: 'From Idea to Market Success – Fast, Data-Driven, and Network-Supported.',
+      subtitle: 'From Idea to Market Success, Fast, Data-Driven, and Network-Supported.',
       step1: {
         title: '1. Validate',
         description: 'Find real market fit. Define key assumptions and test them with real customers through rapid, data-driven experiments.',
@@ -451,7 +451,7 @@ export const translations: Record<Language, Translations> = {
     },
     services: {
       title: 'Our Services & Network',
-      subtitle: 'From validation to growth — we combine data, people, and execution to help your business scale faster with less risk.',
+      subtitle: 'From validation to growth, we combine data, people, and execution to help your business scale faster with less risk.',
       whatWeOffer: 'What We Offer',
       leadGeneration: {
         title: 'Lead Generation',
@@ -459,7 +459,7 @@ export const translations: Record<Language, Translations> = {
       },
       rapidPrototyping: {
         title: 'Rapid Prototyping',
-        description: 'Turn ideas into testable MVPs within days — fast, lean, and data-driven.',
+        description: 'Turn ideas into testable MVPs within days, fast, lean, and data-driven.',
       },
       ecommerceSetup: {
         title: 'E-Commerce Sales (via Online Shop) or Marketplace Expansion',
@@ -467,54 +467,54 @@ export const translations: Record<Language, Translations> = {
       },
       performanceMarketing: {
         title: 'Performance Marketing',
-        description: 'We optimize your marketing campaigns for maximum performance and ROI — data-driven and results-oriented.',
+        description: 'We optimize your marketing campaigns for maximum performance and ROI, data-driven and results-oriented.',
       },
       interimManagement: {
         title: 'Interim Management',
-        description: 'Temporary leadership support for marketing, sales, or digital transformation — until your internal teams are ready.',
+        description: 'Temporary leadership support for marketing, sales, or digital transformation, until your internal teams are ready.',
       },
       whyConnectingTheDots: 'Why ConnectingTheDots?',
-      benefit1: '<strong class="text-foreground font-semibold">Market insights within weeks</strong> — get real customer feedback instead of assumptions.',
-      benefit2: '<strong class="text-foreground font-semibold">Reduced risk through data</strong> — every decision is based on measurable evidence.',
-      benefit3: '<strong class="text-foreground font-semibold">Access to an expert network</strong> — from UX and frontend to performance and e-commerce.',
-      benefit4: '<strong class="text-foreground font-semibold">No internal resources needed</strong> — we act as your external validation and growth team.',
-      benefit5: '<strong class="text-foreground font-semibold">Proven methodology</strong> — our 3-step model: Validate · Build · Scale.',
-      benefit6: '<strong class="text-foreground font-semibold">Scalable implementation</strong> — move from validated idea to operational growth seamlessly.',
+      benefit1: '<strong class="text-foreground font-semibold">Market insights within weeks</strong>, get real customer feedback instead of assumptions.',
+      benefit2: '<strong class="text-foreground font-semibold">Reduced risk through data</strong>, every decision is based on measurable evidence.',
+      benefit3: '<strong class="text-foreground font-semibold">Access to an expert network</strong>, from UX and frontend to performance and e-commerce.',
+      benefit4: '<strong class="text-foreground font-semibold">No internal resources needed</strong>, we act as your external validation and growth team.',
+      benefit5: '<strong class="text-foreground font-semibold">Proven methodology</strong>, our 3-step model: Validate · Build · Scale.',
+      benefit6: '<strong class="text-foreground font-semibold">Scalable implementation</strong>, move from validated idea to operational growth seamlessly.',
     },
     caseStudy: {
       title: 'Success Story: DACH Market Expansion',
       subtitle: '',
       heading: 'From Market Entry to Regional Growth',
       description1: 'ConnectingTheDots supported GenesysAI in establishing a strong market position in the DACH region.',
-      description2: 'Within 6 months, we helped expand their sales network from 1 to 4 active channels and built partnerships with 4 new suppliers across Germany, Austria, and Switzerland — generating €1M in additional revenue.',
+      description2: 'Within 6 months, we helped expand their sales network from 1 to 4 active channels and built partnerships with 4 new suppliers across Germany, Austria, and Switzerland, generating €1M in additional revenue.',
       kpi1: 'Sales Channels',
       kpi2: 'New DACH Suppliers',
       kpi3: 'Additional Revenue',
-      testimonial: 'CTD supported GenesysAI in validating and launching its offering in the EU market — building strong partnerships and scalable sales channels within months.',
+      testimonial: 'CTD supported GenesysAI in validating and launching its offering in the EU market, building strong partnerships and scalable sales channels within months.',
     },
     aboutUs: {
       title: 'Our Team',
-      teamMission: '"We efficiently transform digital ideas into market-ready solutions – with clear strategy, reliable market tests, and precise operational implementation."',
+      teamMission: '"We efficiently transform digital ideas into market-ready solutions, with clear strategy, reliable market tests, and precise operational implementation."',
       maximilian: {
         heading: 'Maximilian',
-        intro: 'Senior Consultant – Strategy & Market Validation',
+        intro: 'Senior Consultant, Strategy & Market Validation',
         experience: {
           title: 'Experience',
           paragraph1: 'Maximilian Rebensburg has over 15 years of experience in digitalization, e-commerce, marketplace strategies, and SaaS. At companies like Tradebyte and Gute Marken, he was responsible for building new markets and segments, achieving significant growth rates.',
-          paragraph2: 'He combines strategic market development with operational implementation – from positioning and target group definition to MVP testing and go-to-market strategies. His focus is on enabling companies to validate new ideas and products quickly, with low risk, and data-driven in the real market.',
+          paragraph2: 'He combines strategic market development with operational implementation, from positioning and target group definition to MVP testing and go-to-market strategies. His focus is on enabling companies to validate new ideas and products quickly, with low risk, and data-driven in the real market.',
           paragraph3: '',
         },
         mission: {
           title: 'Mission',
-          paragraph1: 'In numerous projects, he has found that especially medium-sized companies often underestimate market entry: products are launched without sufficiently tested message-market fit, wrong target groups, or unclear pricing strategies – which unnecessarily ties up time, budget, and internal resources.',
-          paragraph2: 'With ConnectingTheDots, he therefore pursues the mission of helping companies validate their ideas or new products quickly, with low risk, and data-driven in the real market. His broad network in the DACH region and Europe enables not only strategic consulting but also operational implementation – from the first market test to structured rollout.',
+          paragraph1: 'In numerous projects, he has found that especially medium-sized companies often underestimate market entry: products are launched without sufficiently tested message-market fit, wrong target groups, or unclear pricing strategies, which unnecessarily ties up time, budget, and internal resources.',
+          paragraph2: 'With ConnectingTheDots, he therefore pursues the mission of helping companies validate their ideas or new products quickly, with low risk, and data-driven in the real market. His broad network in the DACH region and Europe enables not only strategic consulting but also operational implementation, from the first market test to structured rollout.',
         },
         linkedin: 'LinkedIn Profile',
         linkedinUrl: 'https://www.linkedin.com/in/maximilianrebensburg/',
       },
       juliane: {
         heading: 'Juliane',
-        intro: 'Senior Consultant – Brand, Commerce & Integration',
+        intro: 'Senior Consultant, Brand, Commerce & Integration',
         experience: {
           title: 'Experience',
           paragraph1: 'Juliane Kissau brings extensive experience in e-commerce, brand building, and technical integration. Her roles at Tradebyte, Spryker, GROSSE LIEBE, onQuality, and X-Trade have given her a deep understanding of digital growth processes.',
@@ -526,7 +526,7 @@ export const translations: Record<Language, Translations> = {
       ella: {
         heading: 'Ella',
         intro: 'Junior Feelgood Manager',
-        description: 'Ella is our team\'s good soul and ensures a positive atmosphere in the office every day. As Feelgood Manager, she makes sure that breaks are taken, snacks are shared, and joint activities are not neglected. With her open, cheerful nature, she brings warmth to the team – and enjoys every extra cuddle.',
+        description: 'Ella is our team\'s good soul and ensures a positive atmosphere in the office every day. As Feelgood Manager, she makes sure that breaks are taken, snacks are shared, and joint activities are not neglected. With her open, cheerful nature, she brings warmth to the team, and enjoys every extra cuddle.',
       },
     },
     leadForm: {

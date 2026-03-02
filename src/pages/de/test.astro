@@ -9,18 +9,22 @@ import CaseStudy from '../../components/CaseStudy.astro';
 import LeadForm from '../../components/LeadForm.astro';
 import Footer from '../../components/Footer.astro';
 
-const lang = 'en';
-const currentPath = '/en';
+const lang = 'de';
+const currentPath = '/de/test';
 ---
 
-<Layout 
-	title="ConnectingTheDots · From idea to successful business" 
-	description="We help you test, implement, and grow your business idea. With experts for marketing, design, and technical development. Fast results, less risk, proven process."
+<Layout
+	title="Testseite · ConnectingTheDots (lokal)"
+	description="Lokale Testseite für Hero-Video, Carousel und Animationen."
 	lang={lang}
 	currentPath={currentPath}
 >
 	<Header lang={lang} currentPath={currentPath} />
 	<main>
+		<!-- Hinweis: Nur auf Localhost sichtbar -->
+		<div class="test-banner">
+			<p><strong>Lokale Testseite</strong>. Prüfe hier Hero-Video, Logo-Carousel und Absätze. Live: <a href="/de/">Zur Startseite</a></p>
+		</div>
 		<HeroSection lang={lang} />
 		<CustomerReferences lang={lang} />
 		<HowItWorks lang={lang} />
@@ -35,5 +39,25 @@ const currentPath = '/en';
 	main {
 		min-height: 100vh;
 	}
-</style>
 
+	.test-banner {
+		position: sticky;
+		top: 0;
+		z-index: 100;
+		background: #0f172a;
+		color: #e2e8f0;
+		padding: 0.5rem 1rem;
+		text-align: center;
+		font-size: 0.875rem;
+		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+	}
+
+	.test-banner a {
+		color: #7be0b7;
+		text-decoration: underline;
+	}
+
+	.test-banner a:hover {
+		color: #5dd4a0;
+	}
+</style>
