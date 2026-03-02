@@ -98,9 +98,8 @@ function initLeadForm() {
         params.append(key, typeof value === 'string' ? value : String(value));
       }
 
-      // Netlify Forms: POST an die aktuelle Seite (z. B. /de/ oder /en/), nicht an /
-      const formAction = typeof window !== 'undefined' ? window.location.pathname || '/' : '/';
-      const response = await fetch(formAction, {
+      // Netlify Forms: POST an /contact.html (statisches Formular), damit keine Redirects die Daten verlieren
+      const response = await fetch('/contact.html', {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body: params.toString(),
