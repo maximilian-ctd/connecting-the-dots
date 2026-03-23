@@ -84,6 +84,23 @@ const howItWorksVideoPosterSrc =
 
           <!-- Subtle gradient overlay -->
           <div class="absolute inset-0 bg-gradient-to-br from-accent/10 to-primary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+
+          <!-- Maximize (mobile friendly modal) -->
+          <button
+            id="howitworks-video-maximize"
+            type="button"
+            class="absolute top-3 right-3 z-10 bg-black/40 hover:bg-black/55 text-white rounded-full p-2 backdrop-blur-sm transition-colors"
+            aria-label="Video maximieren"
+          >
+            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M8 3H3v5" />
+              <path d="M21 8V3h-5" />
+              <path d="M3 16v5h5" />
+              <path d="M16 21h5v-5" />
+              <path d="M9 15l-6 6" />
+              <path d="M15 9l6-6" />
+            </svg>
+          </button>
           
           <div class="text-center relative z-10">
             <div 
@@ -187,6 +204,40 @@ const howItWorksVideoPosterSrc =
   </div>
 </section>
 
+<!-- Fullscreen modal for How it works video -->
+<div
+  id="howitworks-video-modal"
+  class="fixed inset-0 z-[80] hidden bg-black/95 p-2 sm:p-4"
+  role="dialog"
+  aria-modal="true"
+  aria-label="How it works Video im Vollbild"
+>
+  <div class="relative w-full h-full max-w-6xl mx-auto">
+    <button
+      id="howitworks-video-modal-close"
+      type="button"
+      class="absolute top-2 right-2 z-10 bg-black/50 hover:bg-black/70 text-white rounded-full p-2 backdrop-blur-sm transition-colors"
+      aria-label="Video schließen"
+    >
+      <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M18 6 6 18" />
+        <path d="M6 6l12 12" />
+      </svg>
+    </button>
+
+    <video
+      id="howitworks-video-modal-player"
+      class="w-full h-full object-contain rounded-2xl bg-black"
+      controls
+      playsinline
+      preload="metadata"
+      poster={howItWorksVideoPosterSrc}
+    >
+      <source src={howItWorksVideoSrc} type="video/mp4" />
+    </video>
+  </div>
+</div>
+
 <script is:inline>
   (function() {
     function initHowItWorks() {
@@ -207,6 +258,50 @@ const howItWorksVideoPosterSrc =
       const wrap = document.getElementById('howitworks-video-wrap');
       const video = document.getElementById('howitworks-video');
       const playButton = document.getElementById('play-button');
+      const modal = document.getElementById('howitworks-video-modal');
+      const modalPlayer = document.getElementById('howitworks-video-modal-player');
+      const maximizeBtn = document.getElementById('howitworks-video-maximize');
+      const modalCloseBtn = document.getElementById('howitworks-video-modal-close');
+      let wasPlayingBeforeModal = false;
+
+      function openModal() {
+        if (!modal || !modalPlayer) return;
+        wasPlayingBeforeModal = Boolean(video && video instanceof HTMLVideoElement ? !video.paused : false);
+
+        modal.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+
+        if (video && video instanceof HTMLVideoElement) {
+          // Sync time for a seamless experience
+          try {
+            modalPlayer.currentTime = video.currentTime || 0;
+          } catch (_) {}
+          // Pause background video so the user only sees one playback
+          video.pause();
+        }
+
+        // Ensure user sees playback immediately (if allowed by browser)
+        modalPlayer.play().catch(() => {});
+      }
+
+      function closeModal() {
+        if (!modal || !modalPlayer) return;
+        modal.classList.add('hidden');
+        document.body.style.overflow = '';
+
+        try {
+          modalPlayer.pause();
+        } catch (_) {}
+
+        if (video && video instanceof HTMLVideoElement) {
+          try {
+            video.currentTime = modalPlayer.currentTime || 0;
+          } catch (_) {}
+          if (wasPlayingBeforeModal) {
+            video.play().catch(() => {});
+          }
+        }
+      }
 
       async function startVideo() {
         if (!video) return;
@@ -225,6 +320,35 @@ const howItWorksVideoPosterSrc =
         // Avoid double-binding when script retries
         if (!wrap._howitworksVideoBound) {
           wrap._howitworksVideoBound = true;
+
+          if (maximizeBtn) {
+            maximizeBtn.addEventListener('click', (e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              openModal();
+            });
+          }
+
+          if (modalCloseBtn) {
+            modalCloseBtn.addEventListener('click', (e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              closeModal();
+            });
+          }
+
+          if (modal) {
+            modal.addEventListener('click', (e) => {
+              // Close only when clicking the backdrop (not the video itself)
+              if (e.target === modal) closeModal();
+            });
+          }
+
+          document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && modal && !modal.classList.contains('hidden')) {
+              closeModal();
+            }
+          });
 
           wrap.addEventListener('click', async () => {
             if (video.paused) {
