@@ -343,9 +343,9 @@
       }
     
     // Initialize network overlay for each card
-    const networkAnimations: CardNetwork[] = [];
+    const networkAnimations = [];
     featureCards.forEach((card) => {
-      const canvas = card.querySelector('.animated-dots-canvas') as HTMLCanvasElement;
+      const canvas = card.querySelector('.animated-dots-canvas');
       if (canvas) {
         const animation = new CardNetwork(canvas);
         networkAnimations.push(animation);
@@ -361,7 +361,7 @@
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry, index) => {
         if (entry.isIntersecting) {
-          const card = entry.target as HTMLElement;
+          const card = entry.target;
           const delay = parseInt(card.getAttribute('data-index') || '0') * 200;
           
           setTimeout(() => {
@@ -380,8 +380,8 @@
 
     // Hover-Effekte für Cards
     featureCards.forEach((card) => {
-      const cardWrapper = card.querySelector('.card-wrapper') as HTMLElement;
-      const iconWrapper = card.querySelector('.icon-wrapper') as HTMLElement;
+      const cardWrapper = card.querySelector('.card-wrapper');
+      const iconWrapper = card.querySelector('.icon-wrapper');
       
       if (cardWrapper && iconWrapper) {
         card.addEventListener('mouseenter', () => {

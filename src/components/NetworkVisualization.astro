@@ -13,14 +13,14 @@
 
 <script>
   function initNetworkVisualization() {
-    const canvas = document.getElementById('network-canvas') as HTMLCanvasElement;
+    const canvas = document.getElementById('network-canvas');
     
     if (!canvas) return;
 
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
-    let animationFrameId: number;
+    let animationFrameId;
     let isAnimating = true;
     let isReady = false;
 
@@ -43,31 +43,14 @@
     updateCanvasSize();
     window.addEventListener('resize', updateCanvasSize);
 
-    // Define satellite nodes
-    interface Node {
-      x: number;
-      y: number;
-      radius: number;
-      angle: number;
-      distance: number;
-    }
-
-    interface Particle {
-      progress: number;
-      speed: number;
-      nodeIndex: number;
-      size: number;
-      isInterStakeholder?: boolean;
-      fromNode?: number;
-      toNode?: number;
-    }
+    // Define satellite nodes (JS-only)
 
     const rect = canvas.getBoundingClientRect();
     const centerX = rect.width > 1024 ? rect.width * 0.70 : rect.width * 0.60;
     const centerY = rect.height / 2;
     const baseDistance = rect.width > 1024 ? 150 : 120;
 
-    const satelliteNodes: Node[] = [
+    const satelliteNodes = [
       { x: 0, y: 0, radius: 18, angle: -135, distance: baseDistance * 1.2 },
       { x: 0, y: 0, radius: 18, angle: -65, distance: baseDistance * 1.47 },
       { x: 0, y: 0, radius: 18, angle: -5, distance: baseDistance * 1.3 },
@@ -110,7 +93,7 @@
     ];
 
     // Create particles
-    const particles: Particle[] = [];
+    const particles = [];
     
     // Particles for center-to-stakeholder connections
     satelliteNodes.forEach((_, index) => {
@@ -144,13 +127,13 @@
 
     // Get point on quadratic bezier curve
     function getPointOnCurve(
-      fromX: number,
-      fromY: number,
-      controlX: number,
-      controlY: number,
-      toX: number,
-      toY: number,
-      t: number
+      fromX,
+      fromY,
+      controlX,
+      controlY,
+      toX,
+      toY,
+      t
     ) {
       const t1 = 1 - t;
       const x = t1 * t1 * fromX + 2 * t1 * t * controlX + t * t * toX;
@@ -159,7 +142,7 @@
     }
 
     // Draw sphere
-    function drawSphere(x: number, y: number, radius: number, isCenter: boolean = false) {
+    function drawSphere(x, y, radius, isCenter = false) {
       try {
         ctx.save();
 
@@ -235,7 +218,7 @@
         ctx.clearRect(0, 0, width, height);
 
         // Draw inter-stakeholder connections
-        const interControlPoints: Array<{ controlX: number; controlY: number }> = [];
+        const interControlPoints = [];
         interStakeholderConnections.forEach(([fromIdx, toIdx]) => {
           const fromNode = satelliteNodes[fromIdx];
           const toNode = satelliteNodes[toIdx];
@@ -274,7 +257,7 @@
 
         // Draw center-to-stakeholder connections
         const curvatures = [0.15, -0.2, 0.25, -0.15, 0.18, 0.2, -0.18];
-        const controlPoints: Array<{ controlX: number; controlY: number }> = [];
+        const controlPoints = [];
         
         satelliteNodes.forEach((node, index) => {
           const dx = node.x - centerX;

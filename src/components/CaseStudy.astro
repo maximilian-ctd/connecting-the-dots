@@ -150,7 +150,7 @@ const t = getTranslations(lang);
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          const element = entry.target as HTMLElement;
+          const element = entry.target;
           
           if (element.id === 'case-study-content') {
             setTimeout(() => {
@@ -181,7 +181,7 @@ const t = getTranslations(lang);
 
     // Animate KPI cards
     kpiCards.forEach((card, index) => {
-      const cardEl = card as HTMLElement;
+      const cardEl = card;
       const delay = index * 150;
       
       setTimeout(() => {

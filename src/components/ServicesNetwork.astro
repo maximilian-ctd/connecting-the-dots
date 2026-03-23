@@ -271,7 +271,7 @@ const t = getTranslations(lang);
 
     // Animate service items
     serviceItems.forEach((item, index) => {
-      const itemEl = item as HTMLElement;
+      const itemEl = item;
       const delay = index * 100;
       
       setTimeout(() => {
@@ -306,7 +306,7 @@ const t = getTranslations(lang);
 
     // Animate benefit items
     benefitItems.forEach((item, index) => {
-      const itemEl = item as HTMLElement;
+      const itemEl = item;
       const delay = index * 100;
       
       setTimeout(() => {
