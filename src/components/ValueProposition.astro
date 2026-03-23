@@ -89,33 +89,7 @@
 <script is:inline>
   // Subtle network overlay for each card
   class CardNetwork {
-    private canvas: HTMLCanvasElement;
-    private ctx: CanvasRenderingContext2D;
-    private nodes: Array<{
-      type: 'center' | 'satellite';
-      x: number;
-      y: number;
-      radius: number;
-      angle: number;
-      baseDistance: number;
-      baseDistanceX?: number;
-      baseDistanceY?: number;
-      drift: number;
-      phase: number;
-      speed: number;
-      intensity: number;
-      targetIntensity: number;
-      nextConnectionTime: number;
-    }>;
-    private animationFrameId: number;
-    private width: number;
-    private height: number;
-    private time: number;
-    private resizeHandler: () => void;
-    private accent: string = '#7be0b7';
-    private accentSoft: string = 'rgba(123, 224, 183, 0.35)';
-
-    constructor(canvas: HTMLCanvasElement) {
+    constructor(canvas) {
       this.canvas = canvas;
       const ctx = canvas.getContext('2d');
       if (!ctx) return;
@@ -130,11 +104,14 @@
         this.configureNodes();
         this.time = 0;
       };
+
+      this.accent = '#7be0b7';
+      this.accentSoft = 'rgba(123, 224, 183, 0.35)';
       
       this.init();
     }
 
-    private init() {
+    init() {
       this.resize();
       this.configureNodes();
       this.animate();
@@ -142,7 +119,7 @@
       window.addEventListener('resize', this.resizeHandler, { passive: true });
     }
 
-    private resize() {
+    resize() {
       const rect = this.canvas.getBoundingClientRect();
       this.width = rect.width;
       this.height = rect.height;
@@ -152,7 +129,7 @@
       this.ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
     }
 
-    private configureNodes() {
+    configureNodes() {
       this.nodes = [];
       const size = Math.min(this.width, this.height);
       const centerX = this.width * 0.5;
@@ -219,7 +196,7 @@
       }
     }
 
-    private animate = () => {
+    animate = () => {
       this.time += 0.01;
       this.ctx.clearRect(0, 0, this.width, this.height);
       
@@ -263,7 +240,7 @@
       this.animationFrameId = requestAnimationFrame(this.animate);
     }
 
-    private drawConnections(center: typeof this.nodes[0]) {
+    drawConnections(center) {
       this.ctx.save();
       this.ctx.lineCap = 'round';
       const timeFactor = (Math.sin(this.time * 0.6) + 1) / 2;
@@ -297,7 +274,7 @@
       this.ctx.restore();
     }
 
-    private drawNodes() {
+    drawNodes() {
       this.nodes.forEach((node, index) => {
         const pulse = 1 + Math.sin(this.time * (0.8 + index * 0.15) + node.phase) * 0.12;
         const radius = node.radius * pulse;
@@ -321,7 +298,7 @@
       });
     }
 
-    public destroy() {
+    destroy() {
       if (this.animationFrameId) {
         cancelAnimationFrame(this.animationFrameId);
       }
