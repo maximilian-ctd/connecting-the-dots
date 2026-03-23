@@ -30,7 +30,11 @@ const fullImageUrl = image.startsWith('http') ? image : new URL(image, siteUrl).
 ---
 
 <!doctype html>
-<html lang={lang} class="no-js">
+<html
+  lang={lang}
+  class="no-js"
+  data-env={currentPath.includes('/test') ? 'test' : 'prod'}
+>
 	<head>
 		<!-- Google Consent Mode v2 - MUSS vor Google Analytics geladen werden -->
 		<script is:inline>
