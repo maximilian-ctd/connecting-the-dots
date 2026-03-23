@@ -141,9 +141,23 @@ declare module 'astro:content' {
 
 	type ContentEntryMap = {
 		"blog": {
-"erster-post-de.md": {
-	id: "erster-post-de.md";
-  slug: "erster-post-de";
+"brillen-de-b2b-partnerplattform-validierung-de.md": {
+	id: "brillen-de-b2b-partnerplattform-validierung-de.md";
+  slug: "brillen-de-b2b-partnerplattform-validierung-de";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
+"genesysai-breuninger-marktplatz-launch-de.md": {
+	id: "genesysai-breuninger-marktplatz-launch-de.md";
+  slug: "genesysai-breuninger-marktplatz-launch-de";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
+"tourcont-ag-von-der-idee-zur-marktreife-de.md": {
+	id: "tourcont-ag-von-der-idee-zur-marktreife-de.md";
+  slug: "tourcont-ag-von-der-idee-zur-marktreife-de";
   body: string;
   collection: "blog";
   data: InferEntrySchema<"blog">
