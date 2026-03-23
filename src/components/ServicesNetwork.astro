@@ -46,7 +46,7 @@ const t = getTranslations(lang);
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
                 </svg>
               </div>
-              <div class="text-left space-y-1">
+              <div class="text-left">
                 <p class="text-lg font-semibold text-foreground">{t.services.leadGeneration.title}</p>
                 <p class="service-description text-sm leading-relaxed text-muted-foreground">
                   {t.services.leadGeneration.description}
@@ -258,6 +258,11 @@ const t = getTranslations(lang);
     function initServicesNetwork() {
       // Stelle sicher, dass no-js entfernt wurde
       document.documentElement.classList.remove('no-js');
+      const servicesSection = document.getElementById('services');
+      const isTestPath = typeof window !== 'undefined' && window.location.pathname.includes('/test');
+      if (servicesSection && isTestPath) {
+        servicesSection.classList.add('services-test-mode');
+      }
       
       const servicesCard = document.getElementById('services-card');
       const benefitsCard = document.getElementById('benefits-card');
@@ -407,32 +412,13 @@ const t = getTranslations(lang);
     transition: transform 0.3s ease;
   }
 
-  /* Was wir anbieten: Beschreibung erst bei Hover (Desktop) / Tap (Mobile) sichtbar
-     Gated nur im Test-Environment (data-env="test"), damit Live erst nach Freigabe angepasst wird. */
+  /* Standard (prod): Beschreibungen sichtbar */
   .service-description {
     max-height: none;
     opacity: 1;
     overflow: visible;
     transform: none;
     transition: none;
-    pointer-events: auto;
-  }
-
-  [data-env="test"] .service-description {
-    max-height: 0;
-    opacity: 0;
-    overflow: hidden;
-    transform: translateY(4px);
-    transition: max-height 0.35s ease, opacity 0.2s ease, transform 0.25s ease;
-    pointer-events: none;
-  }
-
-  [data-env="test"] .service-item:hover .service-description,
-  [data-env="test"] .service-item:focus-visible .service-description,
-  [data-env="test"] .service-item.is-open .service-description {
-    max-height: 260px;
-    opacity: 1;
-    transform: translateY(0);
     pointer-events: auto;
   }
 
@@ -458,5 +444,26 @@ const t = getTranslations(lang);
       opacity: 1;
       transform: translateX(0);
     }
+  }
+</style>
+
+<style is:global>
+  /* Test-Environment: Service-Beschreibung erst bei Hover/Tap sichtbar */
+  html[data-env="test"] #services .service-description {
+    max-height: 0 !important;
+    opacity: 0 !important;
+    overflow: hidden !important;
+    transform: translateY(4px) !important;
+    transition: max-height 0.35s ease, opacity 0.2s ease, transform 0.25s ease !important;
+    pointer-events: none !important;
+  }
+
+  html[data-env="test"] #services .service-item:hover .service-description,
+  html[data-env="test"] #services .service-item:focus-visible .service-description,
+  html[data-env="test"] #services .service-item.is-open .service-description {
+    max-height: 260px !important;
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+    pointer-events: auto !important;
   }
 </style>
