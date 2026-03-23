@@ -11,6 +11,10 @@ const howItWorksVideoSrc =
   lang === 'en'
     ? '/videos/ConnectingTheDots_HowItWorks_EN_720p.mp4'
     : '/videos/ConnectingTheDots_HowItWorks_DE_720p.mp4';
+const howItWorksVideoPosterSrc =
+  lang === 'en'
+    ? '/videos/ConnectingTheDots_HowItWorks_EN_poster.png'
+    : '/videos/ConnectingTheDots_HowItWorks_DE_poster.png';
 ---
 
 <section id="how-it-works" class="bg-white py-20 px-4 relative overflow-hidden">
@@ -66,10 +70,11 @@ const howItWorksVideoSrc =
         >
           <video
             id="howitworks-video"
-            class="absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-300"
+            class="absolute inset-0 w-full h-full object-cover"
             preload="none"
             playsinline
             loop
+            poster={howItWorksVideoPosterSrc}
           >
             <source src={howItWorksVideoSrc} type="video/mp4" />
           </video>
@@ -203,26 +208,16 @@ const howItWorksVideoSrc =
       const video = document.getElementById('howitworks-video');
       const playButton = document.getElementById('play-button');
 
-      function showOverlay() {
-        if (video) {
-          video.classList.remove('opacity-100');
-          video.classList.add('opacity-0');
-        }
-        if (playButton) playButton.classList.remove('hidden');
-      }
-
       async function startVideo() {
         if (!video) return;
         try {
           // Trigger load & playback on first click
           await video.play();
-          video.classList.remove('opacity-0');
-          video.classList.add('opacity-100');
           if (playButton) playButton.classList.add('hidden');
         } catch (e) {
           // Some browsers block sound until a trusted interaction; click should be trusted.
           console.error('Could not play HowItWorks video:', e);
-          showOverlay();
+          if (playButton) playButton.classList.remove('hidden');
         }
       }
 
@@ -231,17 +226,35 @@ const howItWorksVideoSrc =
         if (!wrap._howitworksVideoBound) {
           wrap._howitworksVideoBound = true;
 
-          wrap.addEventListener('click', startVideo);
+          wrap.addEventListener('click', async () => {
+            if (video.paused) {
+              await startVideo();
+            } else {
+              video.pause();
+              if (playButton) playButton.classList.remove('hidden');
+            }
+          });
           wrap.addEventListener('keydown', (e) => {
             if (e.key === 'Enter' || e.key === ' ') {
               e.preventDefault();
-              startVideo();
+              if (video.paused) {
+                startVideo();
+              } else {
+                video.pause();
+                if (playButton) playButton.classList.remove('hidden');
+              }
             }
           });
 
-          // When video pauses, show overlay again
+          // When video pauses, show play button again
           video.addEventListener('pause', () => {
-            showOverlay();
+            if (playButton) playButton.classList.remove('hidden');
+          });
+          video.addEventListener('play', () => {
+            if (playButton) playButton.classList.add('hidden');
+          });
+          video.addEventListener('ended', () => {
+            if (playButton) playButton.classList.remove('hidden');
           });
         }
       }
