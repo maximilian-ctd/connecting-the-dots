@@ -17,6 +17,13 @@ export default defineConfig({
           en: 'en-US',
         },
       },
+      filter: (page) =>
+        ![
+          'https://connectingthe.de/',
+          'https://connectingthe.de/datenschutz/',
+          'https://connectingthe.de/impressum/',
+          'https://connectingthe.de/de/test/',
+        ].includes(page),
     }),
   ],
   // Für Server-Side Rendering: output: 'server' und adapter: netlify() aktivieren

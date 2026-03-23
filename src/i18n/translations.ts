@@ -95,6 +95,7 @@ export interface Translations {
     benefit4: string;
     benefit5: string;
     benefit6: string;
+    benefit7: string;
   };
   
   // Case Study
@@ -235,7 +236,7 @@ export const translations: Record<Language, Translations> = {
       impressum: 'Impressum',
       datenschutz: 'Datenschutz',
       contact: 'Kontakt',
-      copyright: '© 2025 ConnectingTheDots. Alle Rechte vorbehalten.',
+      copyright: '© 2026 ConnectingTheDots. Alle Rechte vorbehalten.',
       linkedin: 'LinkedIn',
       email: 'E-Mail',
     },
@@ -300,6 +301,7 @@ export const translations: Record<Language, Translations> = {
       benefit4: '<strong class="text-foreground font-semibold">Keine eigenen Ressourcen nötig</strong>, wir übernehmen die Arbeit, die du nicht selbst machen kannst.',
       benefit5: '<strong class="text-foreground font-semibold">Bewährter Ablauf</strong>, unser 3-Schritte-Modell: Testen · Umsetzen · Wachsen.',
       benefit6: '<strong class="text-foreground font-semibold">Klare Umsetzung</strong>, von der getesteten Idee bis zum laufenden Unternehmen.',
+      benefit7: '<strong class="text-foreground font-semibold">15 Jahre Erfahrung</strong> in E-Commerce und Digitalberatung, strategisch und operativ aus einer Hand.',
     },
     caseStudy: {
       title: 'Use Case: DACH-Marktexpansion',
@@ -366,7 +368,7 @@ export const translations: Record<Language, Translations> = {
         linkHref: '/datenschutz',
       },
       submit: 'Anfrage absenden',
-      whatYouGet: 'Was du erhältst',
+      whatYouGet: 'Was du kostenlos erhältst',
       benefit1: 'Kostenloses Beratungsgespräch',
       benefit2: 'Individueller Plan für dein Projekt',
       benefit3: 'Zugang zu unserem Expertennetzwerk',
@@ -427,7 +429,7 @@ export const translations: Record<Language, Translations> = {
       impressum: 'Impressum',
       datenschutz: 'Privacy Policy',
       contact: 'Contact',
-      copyright: '© 2025 ConnectingTheDots. All rights reserved.',
+      copyright: '© 2026 ConnectingTheDots. All rights reserved.',
       linkedin: 'LinkedIn',
       email: 'Email',
     },
@@ -492,6 +494,7 @@ export const translations: Record<Language, Translations> = {
       benefit4: '<strong class="text-foreground font-semibold">No internal resources needed</strong>, we act as your external validation and growth team.',
       benefit5: '<strong class="text-foreground font-semibold">Proven methodology</strong>, our 3-step model: Validate · Build · Scale.',
       benefit6: '<strong class="text-foreground font-semibold">Scalable implementation</strong>, move from validated idea to operational growth seamlessly.',
+      benefit7: '<strong class="text-foreground font-semibold">15 years of experience</strong> in e-commerce and digital consulting, combining strategy and operations.',
     },
     caseStudy: {
       title: 'Success Story: DACH Market Expansion',
@@ -558,7 +561,7 @@ export const translations: Record<Language, Translations> = {
         linkHref: '/en/datenschutz',
       },
       submit: 'Submit request',
-      whatYouGet: 'What You Get',
+      whatYouGet: 'What you get for free',
       benefit1: 'Free consultation call',
       benefit2: 'Custom validation strategy',
       benefit3: 'Expert network access',

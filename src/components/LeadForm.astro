@@ -25,22 +25,12 @@ const consentLabel = t.leadForm.consentLabel;
       >
         {t.leadForm.title}
       </h2>
-      <p 
-        id="lead-form-subtitle"
-        class="text-lg text-muted-foreground max-w-2xl mx-auto"
-      >
-        {t.leadForm.subtitle}
-      </p>
     </div>
     
-    <div class="grid lg:grid-cols-2 gap-12">
-      <!-- Form -->
+    <div class="max-w-4xl mx-auto">
       <div id="lead-form-card" style="opacity: 1 !important; transform: none !important; visibility: visible !important;">
         <div class="bg-white border-0 shadow-sm rounded-2xl hover:shadow-xl transition-shadow">
-          <div class="px-6 pt-6 pb-4">
-            <h3 class="text-2xl font-semibold">{t.leadForm.getStarted}</h3>
-          </div>
-          <div class="px-6 pb-6 space-y-6">
+          <div class="px-6 pt-6 pb-6 space-y-6">
             <form 
               id="contact-form" 
               name="contact" 
@@ -158,91 +148,6 @@ const consentLabel = t.leadForm.consentLabel;
           </div>
         </div>
       </div>
-
-      <!-- Benefits -->
-      <div id="benefits-card">
-        <div class="bg-white border-0 shadow-sm rounded-2xl hover:shadow-xl transition-shadow">
-          <div class="px-6 pt-6 pb-4">
-            <h3 class="text-2xl font-semibold">{t.leadForm.whatYouGet}</h3>
-          </div>
-          <div class="px-6 pb-6 space-y-6">
-            <!-- Benefit 1 -->
-            <div 
-              class="benefit-item flex items-start gap-4 group"
-              data-index="0"
-            >
-              <div class="check-icon">
-                <svg class="w-6 h-6 text-accent flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                </svg>
-              </div>
-              <span class="leading-relaxed">{t.leadForm.benefit1}</span>
-            </div>
-
-            <!-- Benefit 2 -->
-            <div 
-              class="benefit-item flex items-start gap-4 group"
-              data-index="1"
-            >
-              <div class="check-icon">
-                <svg class="w-6 h-6 text-accent flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                </svg>
-              </div>
-              <span class="leading-relaxed">{t.leadForm.benefit2}</span>
-            </div>
-
-            <!-- Benefit 3 -->
-            <div 
-              class="benefit-item flex items-start gap-4 group"
-              data-index="2"
-            >
-              <div class="check-icon">
-                <svg class="w-6 h-6 text-accent flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                </svg>
-              </div>
-              <span class="leading-relaxed">{t.leadForm.benefit3}</span>
-            </div>
-
-            <!-- Benefit 4 -->
-            <div 
-              class="benefit-item flex items-start gap-4 group"
-              data-index="3"
-            >
-              <div class="check-icon">
-                <svg class="w-6 h-6 text-accent flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                </svg>
-              </div>
-              <span class="leading-relaxed">{t.leadForm.benefit4}</span>
-            </div>
-
-            <!-- Benefit 5 -->
-            <div 
-              class="benefit-item flex items-start gap-4 group"
-              data-index="4"
-            >
-              <div class="check-icon">
-                <svg class="w-6 h-6 text-accent flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                </svg>
-              </div>
-              <span class="leading-relaxed">{t.leadForm.benefit5}</span>
-            </div>
-            
-            <div class="bg-secondary p-6 rounded-xl mt-8">
-              <h4 class="mb-3 font-semibold">{t.leadForm.timeline}</h4>
-              <div class="space-y-2 text-sm text-muted-foreground">
-                <div>• {t.leadForm.timeline1}</div>
-                <div>• {t.leadForm.timeline2}</div>
-                <div>• {t.leadForm.timeline3}</div>
-                <div>• {t.leadForm.timeline4}</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
   </div>
 </section>
@@ -260,16 +165,5 @@ const consentLabel = t.leadForm.consentLabel;
     display: block !important;
   }
 
-  #benefits-card {
-    /* Will be set by JavaScript */
-  }
-
-  .benefit-item {
-    transition: transform 0.3s ease;
-  }
-
-  .check-icon {
-    transition: transform 0.5s ease;
-  }
 </style>
 
