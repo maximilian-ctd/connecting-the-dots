@@ -148,9 +148,30 @@ declare module 'astro:content' {
   collection: "blog";
   data: InferEntrySchema<"blog">
 } & { render(): Render[".md"] };
+"genesysai-breuninger-marketplace-launch-en.md": {
+	id: "genesysai-breuninger-marketplace-launch-en.md";
+  slug: "genesysai-breuninger-marketplace-launch-en";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
 "genesysai-breuninger-marktplatz-launch-de.md": {
 	id: "genesysai-breuninger-marktplatz-launch-de.md";
   slug: "genesysai-breuninger-marktplatz-launch-de";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
+"supervista-b2b-partner-platform-validation-en.md": {
+	id: "supervista-b2b-partner-platform-validation-en.md";
+  slug: "supervista-b2b-partner-platform-validation-en";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
+"tourcont-ag-from-idea-to-market-readiness-en.md": {
+	id: "tourcont-ag-from-idea-to-market-readiness-en.md";
+  slug: "tourcont-ag-from-idea-to-market-readiness-en";
   body: string;
   collection: "blog";
   data: InferEntrySchema<"blog">
