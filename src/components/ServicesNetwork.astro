@@ -309,10 +309,14 @@ const t = getTranslations(lang);
     serviceItems.forEach((item, index) => {
       const itemEl = item;
       const delay = index * 100;
-      const isTouchDevice =
+      const isMobileLike =
         typeof window !== 'undefined' &&
-        window.matchMedia &&
-        window.matchMedia('(hover: none)').matches;
+        (
+          (window.matchMedia && window.matchMedia('(max-width: 1023px)').matches) ||
+          (window.matchMedia && window.matchMedia('(hover: none)').matches) ||
+          ('ontouchstart' in window) ||
+          (navigator.maxTouchPoints > 0)
+        );
       
       setTimeout(() => {
         itemEl.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
@@ -344,9 +348,17 @@ const t = getTranslations(lang);
       });
 
       // Mobile: Tap toggelt "Text einblenden" (Hover gibt es dort nicht zuverlässig).
-      if (isTouchDevice) {
+      if (isMobileLike) {
         itemEl.addEventListener('click', (e) => {
           e.preventDefault();
+          // Auf mobilen Geräten nur ein offenes Element gleichzeitig,
+          // damit das Verhalten dem Desktop-Hover näher kommt.
+          serviceItems.forEach((otherItem) => {
+            if (otherItem !== itemEl) {
+              otherItem.classList.remove('is-open');
+              otherItem.setAttribute('aria-expanded', 'false');
+            }
+          });
           const isOpen = itemEl.classList.toggle('is-open');
           itemEl.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
         });
