@@ -149,6 +149,19 @@ export interface Translations {
       intro: string;
       description: string;
     };
+    sonnet: {
+      heading: string;
+      intro: string;
+      description: string;
+      badge: string;
+    };
+    opus: {
+      heading: string;
+      intro: string;
+      description: string;
+      badge: string;
+    };
+    aiDisclaimer: string;
   };
   
   // Lead Form
@@ -228,7 +241,7 @@ export const translations: Record<Language, Translations> = {
       bookACall: 'Termin buchen',
     },
     footer: {
-      description: 'Von der Idee bis zur Umsetzung, ConnectingTheDots hilft dir dabei, dein Unternehmen schneller und sicherer aufzubauen.',
+      description: 'ConnectingTheDots hilft Startups und KMU, ihre Geschäftsidee durch praktische Experimente im echten Markt zu validieren – und dann zu skalieren.',
       company: 'Unternehmen',
       aboutUs: 'Unser Team',
       blog: 'Blog',
@@ -242,8 +255,8 @@ export const translations: Record<Language, Translations> = {
     },
     hero: {
       title1: 'Von der Idee',
-      title2: 'zum erfolgreichen Unternehmen.',
-      subtitle: 'Wir helfen dir, deine Idee zu testen oder weiterzuwachsen, mit echten Ergebnissen statt leeren Versprechen.',
+      title2: 'zum nachhaltigen Erfolg.',
+      subtitle: 'Wir helfen Startups und KMU, über praxisorientierte Markttests schnell in den Markt zu kommen – ob Testverkäufe, Marktplatz-Listings oder B2B-Outreach. Mit echten Ergebnissen statt leeren Versprechen.',
       cta: 'Jetzt verbinden',
     },
     customerReferences: {
@@ -251,68 +264,68 @@ export const translations: Record<Language, Translations> = {
     },
     howItWorks: {
       title: 'Wie es funktioniert',
-      subtitle: 'Drei Schritte von der Idee zum erfolgreichen Unternehmen.',
+      subtitle: 'In drei Schritten von der Geschäftsidee zum validierten, skalierbaren Geschäftsmodell.',
       step1: {
         title: '1. Testen',
-        description: 'Finde heraus, ob deine Idee wirklich funktioniert. Wir helfen dir dabei, deine Annahmen mit echten Kunden zu prüfen, schnell und ohne große Investitionen.',
+        description: 'Validiere deine Geschäftsidee mit echten Kunden – durch Testverkäufe, Marktplatz-Listings, B2B-Outreach oder andere praktische Experimente. AI-gestützte Auswertung liefert dir in Tagen statt Wochen belastbare Ergebnisse.',
       },
       step2: {
         title: '2. Umsetzen',
-        description: 'Baue dein Unternehmen auf. Wir unterstützen dich mit Experten für Marketing, Design und technische Entwicklung, damit du schnell starten kannst.',
+        description: 'Wir setzen das passende Experiment auf: Online-Shop, Marktplatz-Launch, Kaltakquise-Kampagne oder Landing Page – inklusive Strategie und operativer Begleitung.',
       },
       step3: {
         title: '3. Wachsen',
-        description: 'Erweitere dein Unternehmen gezielt. Mit den Erkenntnissen aus den Tests und unserer Unterstützung kannst du sicher wachsen und deine Ziele erreichen.',
+        description: 'Skaliere über die Kanäle, die funktionieren. Mit echten Marktdaten als Grundlage für nachhaltiges Wachstum und weitere Vertriebswege.',
       },
       videoPlaceholder: 'Video: So arbeiten wir',
     },
     services: {
       title: 'Unsere Leistungen & Netzwerk',
-      subtitle: 'Wir helfen dir dabei, deine Idee zu testen und dein Unternehmen aufzubauen, schneller und mit weniger Risiko.',
+      subtitle: 'Wir helfen Startups und KMU, ihre Geschäftsidee durch praktische Experimente zu validieren – schneller, datenbasiert und mit weniger Risiko.',
       whatWeOffer: 'Was wir anbieten',
       leadGeneration: {
-        title: 'Kundenakquise',
-        description: 'Wir helfen dir dabei, die richtigen Kunden zu finden und zu erreichen, mit gezielten Tests und bewährten Methoden.',
+        title: 'Marktvalidierung & Kundenakquise',
+        description: 'Wir testen deine Geschäftsidee mit echten Kunden – durch Testverkäufe, B2B-Outreach, Marktplatz-Listings oder gezielte Experimente. Schnell und datenbasiert.',
       },
       rapidPrototyping: {
-        title: 'Schnelle Umsetzung',
-        description: 'Wir verwandeln deine Idee innerhalb von Tagen in etwas Testbares, schnell und ohne großen Aufwand.',
+        title: 'Rapid Go-to-Market',
+        description: 'Wir bringen dein Produkt innerhalb von Tagen in den Markt – ob über Marktplätze, eine Landing Page oder direkten B2B-Vertrieb. Ohne langes IT-Projekt.',
       },
       ecommerceSetup: {
-        title: 'E-Commerce Strategie',
-        description: 'Wir entwickeln mit dir die passende E-Commerce-Strategie über alle Kanäle: Online-Shop, Conversational und Social Commerce sowie Marktplätze. Zielbild, Kanalmix und Roadmap werden gemeinsam definiert.',
+        title: 'Vertriebsstrategie & Kanalmix',
+        description: 'Wir entwickeln mit dir die passende Vertriebsstrategie: Marktplätze, Online-Shop, B2B-Direktvertrieb, Social Commerce. Zielbild, Kanalmix und Roadmap – speziell für Startups und KMU.',
       },
       marketplaceManagement: {
-        title: 'Operatives Management',
-        description: 'Wir übernehmen oder unterstützen die operative Umsetzung: von Listings und Preisen über Bestands- und Prozesssteuerung bis zum Tagesgeschäft auf Marktplätzen und in Shops.',
+        title: 'Operatives Marktplatz-Management',
+        description: 'Wir übernehmen den laufenden Betrieb auf Marktplätzen: Listings, Preise, Bestandssteuerung, Performance-Optimierung und das komplette Tagesgeschäft.',
       },
       performanceMarketing: {
         title: 'Performance Marketing',
-        description: 'Wir optimieren deine Marketing-Kampagnen für maximale Performance und ROI, datenbasiert und ergebnisorientiert.',
+        description: 'Wir optimieren deine Kampagnen für maximale Performance und ROI auf Google, LinkedIn und weiteren Kanälen – datenbasiert und ergebnisorientiert.',
       },
       interimManagement: {
         title: 'Interim Management',
-        description: 'Wir unterstützen dich vorübergehend bei Marketing, Vertrieb oder digitalen Projekten, bis dein Team bereit ist.',
+        description: 'Vorübergehende operative Führung für Vertrieb, E-Commerce oder Go-to-Market-Projekte – bis dein Team bereit ist.',
       },
       whyConnectingTheDots: 'Warum ConnectingTheDots?',
-      benefit1: '<strong class="text-foreground font-semibold">Schnelle Ergebnisse</strong>, innerhalb von Wochen erfährst du, ob deine Idee funktioniert.',
-      benefit2: '<strong class="text-foreground font-semibold">Weniger Risiko</strong>, wir testen vorher, damit du keine teuren Fehler machst.',
-      benefit3: '<strong class="text-foreground font-semibold">Zugang zu Experten</strong>, wir haben ein Netzwerk aus Spezialisten für Design, technische Entwicklung und Marketing.',
-      benefit4: '<strong class="text-foreground font-semibold">Keine eigenen Ressourcen nötig</strong>, wir übernehmen die Arbeit, die du nicht selbst machen kannst.',
-      benefit5: '<strong class="text-foreground font-semibold">Bewährter Ablauf</strong>, unser 3-Schritte-Modell: Testen · Umsetzen · Wachsen.',
-      benefit6: '<strong class="text-foreground font-semibold">Klare Umsetzung</strong>, von der getesteten Idee bis zum laufenden Unternehmen.',
-      benefit7: '<strong class="text-foreground font-semibold">15 Jahre Erfahrung</strong> in E-Commerce und Digitalberatung, strategisch und operativ aus einer Hand.',
+      benefit1: '<strong class="text-foreground font-semibold">Schnelle Marktvalidierung</strong>, innerhalb von Wochen weißt du, ob deine Geschäftsidee im echten Markt funktioniert.',
+      benefit2: '<strong class="text-foreground font-semibold">Weniger Risiko</strong>, wir testen mit praktischen Experimenten, bevor du in eigene Infrastruktur investierst.',
+      benefit3: '<strong class="text-foreground font-semibold">AI-gestützte Auswertung</strong>, Marktdaten, Wettbewerber und Testverkäufe analysieren wir mit modernster AI – DSGVO-konform und in einem Bruchteil der üblichen Zeit.',
+      benefit4: '<strong class="text-foreground font-semibold">Keine eigenen Ressourcen nötig</strong>, wir übernehmen Strategie und operative Umsetzung deiner Experimente.',
+      benefit5: '<strong class="text-foreground font-semibold">Bewährtes 3-Schritte-Modell</strong>, Testen · Umsetzen · Wachsen – für Startups und KMU.',
+      benefit6: '<strong class="text-foreground font-semibold">Von der Idee zum Markterfolg</strong>, End-to-End-Begleitung vom ersten Experiment bis zur Skalierung.',
+      benefit7: '<strong class="text-foreground font-semibold">15 Jahre Erfahrung</strong>, Marktvalidierung, E-Commerce und Digitalberatung im DACH-Raum – strategisch und operativ aus einer Hand.',
     },
     caseStudy: {
-      title: 'Use Case: DACH-Marktexpansion',
+      title: 'Use Case: Marktvalidierung & Skalierung im DACH-Raum',
       subtitle: '',
-      heading: 'Vom Markteintritt zum regionalen Wachstum',
-      description1: 'ConnectingTheDots unterstützte GenesysAI beim Aufbau einer starken Marktposition in der DACH-Region.',
-      description2: 'Innerhalb von 6 Monaten halfen wir dabei, ihr Vertriebsnetzwerk von 1 auf 4 aktive Kanäle zu erweitern und Partnerschaften mit 4 neuen Lieferanten in Deutschland, Österreich und der Schweiz aufzubauen, was zusätzliche €1M Umsatz generierte.',
+      heading: 'Vom ersten Marktexperiment zum skalierbaren Vertriebserfolg',
+      description1: 'ConnectingTheDots unterstützte das Startup GenesysAI bei der Validierung und dem Aufbau von Vertriebskanälen in der DACH-Region – mit Marktplätzen als zentralem Experiment.',
+      description2: 'Innerhalb von 6 Monaten: Vertriebsnetzwerk von 1 auf 4 aktive Kanäle erweitert, erfolgreicher Breuninger-Launch, 4 neue DACH-Lieferanten und über €1M zusätzlicher Umsatz.',
       kpi1: 'Vertriebskanäle',
       kpi2: 'Neue DACH-Lieferanten',
       kpi3: 'Zusätzlicher Umsatz',
-      testimonial: 'CTD unterstützte GenesysAI dabei, sein Angebot im EU-Markt zu testen und zu starten, innerhalb von Monaten entstanden starke Partnerschaften und funktionierende Vertriebskanäle.',
+      testimonial: 'CTD unterstützte GenesysAI beim Markteintritt in der EU – innerhalb von Monaten entstanden starke Partnerschaften und skalierbare Vertriebskanäle.',
     },
     aboutUs: {
       title: 'Unser Team',
@@ -350,17 +363,30 @@ export const translations: Record<Language, Translations> = {
         intro: 'Junior Feelgood Manager',
         description: 'Ella ist unsere gute Seele im Team und sorgt jeden Tag für positive Stimmung im Büro. Als Feelgood Managerin achtet sie darauf, dass Pausen eingehalten, Snacks geteilt und gemeinsame Aktivitäten nicht zu kurz kommen. Mit ihrer offenen, fröhlichen Art bringt sie Wärme ins Team, und freut sich über jede zusätzliche Streicheleinheit.',
       },
+      sonnet: {
+        heading: 'Sonnet',
+        intro: 'AI Analyst – Schnelle Datenauswertung & Marktrecherche',
+        description: 'Sonnet ist unser schnellstes Teammitglied und spezialisiert auf die Auswertung großer Datenmengen in Rekordzeit. Ob Wettbewerbsanalysen, Marktrecherchen oder die Auswertung von Testverkaufsdaten – Sonnet liefert strukturierte Ergebnisse in Minuten statt Tagen. So können wir unseren Kunden schneller fundierte Empfehlungen geben.',
+        badge: 'AI-gestützt',
+      },
+      opus: {
+        heading: 'Opus',
+        intro: 'AI Strategist – Tiefenanalyse & komplexe Strategieentwicklung',
+        description: 'Opus ist unser Denker für die großen Fragen. Wo Sonnet Geschwindigkeit bringt, liefert Opus Tiefgang: komplexe Marktanalysen, strategische Szenarien und die Synthese aus quantitativen Daten und qualitativen Insights. Opus hilft uns, aus Rohdaten belastbare Strategien zu entwickeln – gründlich, strukturiert und nachvollziehbar.',
+        badge: 'AI-gestützt',
+      },
+      aiDisclaimer: 'Sonnet und Opus sind AI-Modelle von Anthropic (Claude). Wir setzen sie unter strikter Einhaltung der EU-DSGVO ein: Keine personenbezogenen Kundendaten werden an AI-Systeme übermittelt. Alle Analysen laufen auf anonymisierten bzw. aggregierten Daten. Verantwortung und finale Entscheidungen liegen immer beim menschlichen Team.',
     },
     leadForm: {
-      title: 'Erzähl uns von deinem Projekt',
-      subtitle: 'Wir helfen dir dabei, deine Idee zu testen und umzusetzen.',
+      title: 'Validiere deine Geschäftsidee',
+      subtitle: 'Ob Startup oder KMU – wir helfen dir, deine Idee durch praktische Experimente im echten Markt zu testen.',
       getStarted: 'Jetzt starten',
       firstName: 'Vorname',
       lastName: 'Nachname',
       company: 'Firma',
       email: 'E-Mail-Adresse',
       goals: 'Dein Projekt & deine Ziele',
-      goalsPlaceholder: 'Erzähl uns von deiner Idee, deinem Unternehmensmodell und was du erreichen möchtest...',
+      goalsPlaceholder: 'Erzähl uns von deiner Geschäftsidee, deinen Zielen und wie du sie am liebsten validieren möchtest...',
       consentLabel: {
         prefix: 'Ich stimme zu, kontaktiert zu werden und akzeptiere die ',
         linkText: 'Datenschutzerklärung',
@@ -369,11 +395,11 @@ export const translations: Record<Language, Translations> = {
       },
       submit: 'Anfrage absenden',
       whatYouGet: 'Was du kostenlos erhältst',
-      benefit1: 'Kostenloses Beratungsgespräch',
-      benefit2: 'Individueller Plan für dein Projekt',
+      benefit1: 'Kostenloses Beratungsgespräch zur Validierung',
+      benefit2: 'Individuelle Experiment- und Kanalstrategie',
       benefit3: 'Zugang zu unserem Expertennetzwerk',
-      benefit4: 'Klarer Fahrplan',
-      benefit5: 'Einschätzung der Risiken',
+      benefit4: 'Klare Roadmap für deinen Markteintritt',
+      benefit5: 'Risiko- und Markteinschätzung',
       timeline: 'Typischer Ablauf',
       timeline1: 'Erstgespräch: 1-2 Tage',
       timeline2: 'Planung: 3-5 Tage',
@@ -398,7 +424,7 @@ export const translations: Record<Language, Translations> = {
     },
     blog: {
       title: 'Blog',
-      subtitle: 'Projekte, News und Insights von ConnectingTheDots',
+      subtitle: 'Validierungsstrategien, Go-to-Market-Insights und Startup-Erfolgsgeschichten',
       readMore: 'Weiterlesen',
       readTime: 'Min. Lesezeit',
       publishedOn: 'Veröffentlicht am',
@@ -421,7 +447,7 @@ export const translations: Record<Language, Translations> = {
       bookACall: 'Book a Call',
     },
     footer: {
-      description: 'From market validation to operational execution, ConnectingTheDots bridges the gap between strategy and real market success.',
+      description: 'ConnectingTheDots helps startups and SMEs validate their business ideas through practical real-market experiments – and then scale.',
       company: 'Company',
       aboutUs: 'Our Team',
       blog: 'Blog',
@@ -434,9 +460,9 @@ export const translations: Record<Language, Translations> = {
       email: 'Email',
     },
     hero: {
-      title1: 'From validation',
-      title2: 'to market domination.',
-      subtitle: 'Grow faster with data-driven validation, operational support, and access to our trusted ecosystem.',
+      title1: 'From idea',
+      title2: 'to lasting success.',
+      subtitle: 'We help startups and SMEs get to market fast through hands-on market tests – whether test sales, marketplace listings, or B2B outreach. Real results, not empty promises.',
       cta: "Let's connect",
     },
     customerReferences: {
@@ -444,68 +470,68 @@ export const translations: Record<Language, Translations> = {
     },
     howItWorks: {
       title: 'How It Works',
-      subtitle: 'From Idea to Market Success, Fast, Data-Driven, and Network-Supported.',
+      subtitle: 'Three steps from business idea to validated, scalable business model.',
       step1: {
         title: '1. Validate',
-        description: 'Find real market fit. Define key assumptions and test them with real customers through rapid, data-driven experiments.',
+        description: 'Test your business idea with real customers – through test sales, marketplace listings, B2B outreach, or other practical experiments. AI-powered analysis delivers actionable results in days, not weeks.',
       },
       step2: {
-        title: '2. Build',
-        description: 'Turn validation into action. Execute go-to-market strategies with our network of performance experts, UX designers, and tech partners.',
+        title: '2. Launch',
+        description: 'We set up the right experiment: online shop, marketplace launch, cold outreach campaign, or landing page – including strategy and hands-on support.',
       },
       step3: {
         title: '3. Scale',
-        description: 'Grow with confidence. Use validated insights and operational support to expand, optimize, and dominate your market.',
+        description: 'Scale through the channels that work. With real market data as the foundation for sustainable growth and further sales channels.',
       },
       videoPlaceholder: 'Video: See our methodology in action',
     },
     services: {
       title: 'Our Services & Network',
-      subtitle: 'From validation to growth, we combine data, people, and execution to help your business scale faster with less risk.',
+      subtitle: 'We help startups and SMEs validate their business ideas through practical experiments – faster, data-driven, and with less risk.',
       whatWeOffer: 'What We Offer',
       leadGeneration: {
-        title: 'Lead Generation',
-        description: 'Identify and reach your ideal customers through targeted digital experiments and performance channels.',
+        title: 'Market Validation & Customer Acquisition',
+        description: 'Test your business idea with real customers – through test sales, B2B outreach, marketplace listings, or targeted experiments. Fast and data-driven.',
       },
       rapidPrototyping: {
-        title: 'Rapid Prototyping',
-        description: 'Turn ideas into testable MVPs within days, fast, lean, and data-driven.',
+        title: 'Rapid Go-to-Market',
+        description: 'Get your product to market within days – whether via marketplaces, a landing page, or direct B2B sales. No lengthy IT project required.',
       },
       ecommerceSetup: {
-        title: 'E-Commerce Strategy',
-        description: 'We develop the right e-commerce strategy with you across all channels: online shop, conversational and social commerce, and marketplaces. Target picture, channel mix, and roadmap are defined together.',
+        title: 'Sales Strategy & Channel Mix',
+        description: 'We build your sales strategy: marketplaces, online shop, B2B direct sales, social commerce. Target picture, channel mix, and roadmap – tailored for startups and SMEs.',
       },
       marketplaceManagement: {
-        title: 'Operational Management',
-        description: 'We take on or support operational execution: from listings and pricing to inventory and process control, and day-to-day operations on marketplaces and in shops.',
+        title: 'Operational Marketplace Management',
+        description: 'We handle day-to-day marketplace operations: listings, pricing, inventory control, performance optimization, and the complete operational workflow.',
       },
       performanceMarketing: {
         title: 'Performance Marketing',
-        description: 'We optimize your marketing campaigns for maximum performance and ROI, data-driven and results-oriented.',
+        description: 'We optimize your campaigns for maximum ROI across Google, LinkedIn, and other channels – data-driven and results-oriented.',
       },
       interimManagement: {
         title: 'Interim Management',
-        description: 'Temporary leadership support for marketing, sales, or digital transformation, until your internal teams are ready.',
+        description: 'Temporary operational leadership for sales, e-commerce, or go-to-market projects – until your team is ready.',
       },
       whyConnectingTheDots: 'Why ConnectingTheDots?',
-      benefit1: '<strong class="text-foreground font-semibold">Market insights within weeks</strong>, get real customer feedback instead of assumptions.',
-      benefit2: '<strong class="text-foreground font-semibold">Reduced risk through data</strong>, every decision is based on measurable evidence.',
-      benefit3: '<strong class="text-foreground font-semibold">Access to an expert network</strong>, from UX and frontend to performance and e-commerce.',
-      benefit4: '<strong class="text-foreground font-semibold">No internal resources needed</strong>, we act as your external validation and growth team.',
-      benefit5: '<strong class="text-foreground font-semibold">Proven methodology</strong>, our 3-step model: Validate · Build · Scale.',
-      benefit6: '<strong class="text-foreground font-semibold">Scalable implementation</strong>, move from validated idea to operational growth seamlessly.',
-      benefit7: '<strong class="text-foreground font-semibold">15 years of experience</strong> in e-commerce and digital consulting, combining strategy and operations.',
+      benefit1: '<strong class="text-foreground font-semibold">Fast market validation</strong>, know within weeks if your business idea works in the real market.',
+      benefit2: '<strong class="text-foreground font-semibold">Reduced risk</strong>, test with practical experiments before investing in your own infrastructure.',
+      benefit3: '<strong class="text-foreground font-semibold">AI-powered analysis</strong>, we analyze market data, competitors, and test sales with cutting-edge AI – GDPR-compliant and in a fraction of the usual time.',
+      benefit4: '<strong class="text-foreground font-semibold">No internal resources needed</strong>, we handle strategy and hands-on execution of your experiments.',
+      benefit5: '<strong class="text-foreground font-semibold">Proven 3-step model</strong>, Validate · Launch · Scale – for startups and SMEs.',
+      benefit6: '<strong class="text-foreground font-semibold">From idea to market success</strong>, end-to-end support from first experiment to full-scale operations.',
+      benefit7: '<strong class="text-foreground font-semibold">15 years of experience</strong>, market validation, e-commerce, and digital consulting in the DACH region – strategy and operations from one source.',
     },
     caseStudy: {
-      title: 'Success Story: DACH Market Expansion',
+      title: 'Use Case: Market Validation & Scaling in DACH',
       subtitle: '',
-      heading: 'From Market Entry to Regional Growth',
-      description1: 'ConnectingTheDots supported GenesysAI in establishing a strong market position in the DACH region.',
-      description2: 'Within 6 months, we helped expand their sales network from 1 to 4 active channels and built partnerships with 4 new suppliers across Germany, Austria, and Switzerland, generating €1M in additional revenue.',
+      heading: 'From first market experiment to scalable sales success',
+      description1: 'ConnectingTheDots helped startup GenesysAI validate and build sales channels in the DACH region – with marketplaces as the central experiment.',
+      description2: 'Within 6 months: sales network expanded from 1 to 4 active channels, successful Breuninger launch, 4 new DACH suppliers, and over €1M in additional revenue.',
       kpi1: 'Sales Channels',
       kpi2: 'New DACH Suppliers',
       kpi3: 'Additional Revenue',
-      testimonial: 'CTD supported GenesysAI in validating and launching its offering in the EU market, building strong partnerships and scalable sales channels within months.',
+      testimonial: 'CTD helped GenesysAI enter the EU market – building strong partnerships and scalable sales channels within months.',
     },
     aboutUs: {
       title: 'Our Team',
@@ -543,17 +569,30 @@ export const translations: Record<Language, Translations> = {
         intro: 'Junior Feelgood Manager',
         description: 'Ella is our team\'s good soul and ensures a positive atmosphere in the office every day. As Feelgood Manager, she makes sure that breaks are taken, snacks are shared, and joint activities are not neglected. With her open, cheerful nature, she brings warmth to the team, and enjoys every extra cuddle.',
       },
+      sonnet: {
+        heading: 'Sonnet',
+        intro: 'AI Analyst – Fast Data Analysis & Market Research',
+        description: 'Sonnet is our fastest team member, specialized in processing large amounts of data in record time. Whether competitive analyses, market research, or evaluating test sales data – Sonnet delivers structured results in minutes instead of days. This allows us to provide our clients with faster, data-backed recommendations.',
+        badge: 'AI-powered',
+      },
+      opus: {
+        heading: 'Opus',
+        intro: 'AI Strategist – Deep Analysis & Complex Strategy Development',
+        description: 'Opus is our deep thinker for the big questions. Where Sonnet brings speed, Opus delivers depth: complex market analyses, strategic scenarios, and the synthesis of quantitative data with qualitative insights. Opus helps us turn raw data into robust strategies – thorough, structured, and transparent.',
+        badge: 'AI-powered',
+      },
+      aiDisclaimer: 'Sonnet and Opus are AI models by Anthropic (Claude). We use them in strict compliance with EU GDPR: No personal customer data is shared with AI systems. All analyses run on anonymized or aggregated data. Responsibility and final decisions always rest with our human team.',
     },
     leadForm: {
-      title: 'Request Your Use Case',
-      subtitle: 'Ready to validate? Tell us about your project.',
+      title: 'Validate Your Business Idea',
+      subtitle: 'Whether startup or SME – we help you test your idea through practical real-market experiments.',
       getStarted: 'Get Started Today',
       firstName: 'First Name',
       lastName: 'Last Name',
       company: 'Company',
       email: 'Email Address',
       goals: 'Project Goals & Challenges',
-      goalsPlaceholder: "Tell us about your business model, target market, and what you'd like to validate...",
+      goalsPlaceholder: "Tell us about your business idea, your goals, and how you'd like to validate it...",
       consentLabel: {
         prefix: 'I agree to be contacted and accept the ',
         linkText: 'privacy policy',
@@ -562,11 +601,11 @@ export const translations: Record<Language, Translations> = {
       },
       submit: 'Submit request',
       whatYouGet: 'What you get for free',
-      benefit1: 'Free consultation call',
-      benefit2: 'Custom validation strategy',
+      benefit1: 'Free validation consultation',
+      benefit2: 'Custom experiment & channel strategy',
       benefit3: 'Expert network access',
-      benefit4: 'Clear roadmap',
-      benefit5: 'Risk assessment',
+      benefit4: 'Clear go-to-market roadmap',
+      benefit5: 'Market & risk assessment',
       timeline: 'Typical Timeline',
       timeline1: 'Initial consultation: 1-2 days',
       timeline2: 'Strategy development: 3-5 days',
@@ -591,7 +630,7 @@ export const translations: Record<Language, Translations> = {
     },
     blog: {
       title: 'Blog',
-      subtitle: 'Projects, News and Insights from ConnectingTheDots',
+      subtitle: 'Validation strategies, go-to-market insights, and startup success stories',
       readMore: 'Read More',
       readTime: 'min read',
       publishedOn: 'Published on',

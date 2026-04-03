@@ -179,6 +179,68 @@ const t = getTranslations(lang);
 						</div>
 					</div>
 				</div>
+
+				<!-- AI Team Members Section -->
+				<div class="pt-8">
+					<div class="text-center mb-12">
+						<div class="inline-flex items-center gap-2 px-4 py-2 bg-accent/10 rounded-full mb-6">
+							<span class="h-2 w-2 rounded-full bg-accent animate-pulse"></span>
+							<span class="text-sm font-medium text-accent">{t.aboutUs.sonnet.badge}</span>
+						</div>
+						<h2 class="text-3xl font-bold mb-4">Our AI Team Members</h2>
+						<p class="text-muted-foreground max-w-2xl mx-auto">Alongside our human team, we leverage cutting-edge AI technology to work faster and more data-driven.</p>
+					</div>
+
+					<div class="grid lg:grid-cols-2 gap-8">
+						<!-- Sonnet -->
+						<div class="bg-white border border-accent/20 rounded-3xl shadow-lg overflow-hidden">
+							<div class="relative h-16 bg-gradient-to-r from-accent/20 via-accent/10 to-transparent">
+								<div class="absolute top-4 right-4 inline-flex items-center gap-1.5 px-3 py-1 bg-accent/15 rounded-full">
+									<span class="h-1.5 w-1.5 rounded-full bg-accent animate-pulse"></span>
+									<span class="text-xs font-medium text-accent">{t.aboutUs.sonnet.badge}</span>
+								</div>
+							</div>
+							<div class="p-8">
+								<div class="flex items-center gap-4 mb-4">
+									<div class="w-14 h-14 rounded-2xl bg-accent/10 flex items-center justify-center text-2xl">⚡</div>
+									<div>
+										<h3 class="text-2xl font-bold text-foreground">{t.aboutUs.sonnet.heading}</h3>
+										<p class="text-sm text-muted-foreground font-medium">{t.aboutUs.sonnet.intro}</p>
+									</div>
+								</div>
+								<p class="text-muted-foreground leading-relaxed">{t.aboutUs.sonnet.description}</p>
+							</div>
+						</div>
+
+						<!-- Opus -->
+						<div class="bg-white border border-accent/20 rounded-3xl shadow-lg overflow-hidden">
+							<div class="relative h-16 bg-gradient-to-r from-accent/20 via-accent/10 to-transparent">
+								<div class="absolute top-4 right-4 inline-flex items-center gap-1.5 px-3 py-1 bg-accent/15 rounded-full">
+									<span class="h-1.5 w-1.5 rounded-full bg-accent animate-pulse"></span>
+									<span class="text-xs font-medium text-accent">{t.aboutUs.opus.badge}</span>
+								</div>
+							</div>
+							<div class="p-8">
+								<div class="flex items-center gap-4 mb-4">
+									<div class="w-14 h-14 rounded-2xl bg-accent/10 flex items-center justify-center text-2xl">🧠</div>
+									<div>
+										<h3 class="text-2xl font-bold text-foreground">{t.aboutUs.opus.heading}</h3>
+										<p class="text-sm text-muted-foreground font-medium">{t.aboutUs.opus.intro}</p>
+									</div>
+								</div>
+								<p class="text-muted-foreground leading-relaxed">{t.aboutUs.opus.description}</p>
+							</div>
+						</div>
+					</div>
+
+					<!-- GDPR Disclaimer -->
+					<div class="mt-8 bg-secondary/50 rounded-2xl p-6 border border-accent/10">
+						<div class="flex items-start gap-3">
+							<div class="mt-0.5 text-lg">🔒</div>
+							<p class="text-sm text-muted-foreground leading-relaxed">{t.aboutUs.aiDisclaimer}</p>
+						</div>
+					</div>
+				</div>
 			</div>
 		</section>
 	</main>

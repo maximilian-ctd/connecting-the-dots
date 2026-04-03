@@ -1,0 +1,141 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import Header from '../../../components/Header.astro';
+import LeadForm from '../../../components/LeadForm.astro';
+import Footer from '../../../components/Footer.astro';
+
+const lang = 'de';
+const currentPath = '/de/cases/e-commerce-validierung';
+
+const page = {
+  title: 'ConnectingTheDots · E-Commerce-Validierung für Startups',
+  description: 'Wie TheList innerhalb von 8 Wochen ihre D2C-Idee über Testverkäufe und Marktplatz-Listings validierte – und danach skalierte.',
+  hero: {
+    eyebrow: 'Case Study: TheList',
+    title: 'Von der Produktidee zum ersten Online-Umsatz – in 8 Wochen.',
+    subtitle: 'Du hast ein Produkt, aber keine Ahnung ob es online funktioniert? Wir helfen dir, deine E-Commerce-Idee durch echte Testverkäufe zu validieren – über Online-Shop, Marktplätze oder Social Commerce.',
+    cta: 'Kostenloses Erstgespräch buchen',
+  },
+  challenge: {
+    title: 'Die Herausforderung',
+    text: 'TheList – ein junges Lifestyle-Label aus München – hatte eine kuratierte Produktlinie, aber keine Erfahrung im Online-Vertrieb. Die Gründer wollten herausfinden, ob sich ihre Produkte online verkaufen lassen, bevor sie in einen eigenen Shop und Lager investieren.',
+  },
+  approach: {
+    title: 'Unser Ansatz: Testen statt raten',
+    steps: [
+      { icon: '🧪', title: 'Hypothese definieren', text: 'Gemeinsam identifizierten wir die Top-3-Produkte und definierten testbare Hypothesen zu Zielgruppe, Preispunkt und Kanal.' },
+      { icon: '🚀', title: 'Schneller Markttest', text: 'Innerhalb von 2 Wochen: Listings auf Amazon und einem Nischen-Marktplatz aufgesetzt, parallel eine einfache Shopify-Landingpage mit Paid-Traffic getestet.' },
+      { icon: '📊', title: 'Daten auswerten', text: 'Nach 6 Wochen Testphase: Conversion-Raten, Retourenquoten und Customer Feedback ausgewertet – klare Datenbasis für die Go/No-Go-Entscheidung.' },
+    ],
+  },
+  results: {
+    title: 'Ergebnisse nach 8 Wochen',
+    kpis: [
+      { value: '340+', label: 'Testverkäufe', icon: '🛒' },
+      { value: '3', label: 'Validierte Kanäle', icon: '📈' },
+      { value: '4,2%', label: 'Conversion Rate', icon: '🎯' },
+    ],
+    quote: 'Ohne CTD hätten wir Monate und Tausende Euro in einen Shop investiert, der vielleicht nicht funktioniert hätte. Stattdessen wussten wir nach 8 Wochen genau, was läuft.',
+    quoteAuthor: 'Lisa M., Co-Founder TheList',
+  },
+  forWhom: {
+    title: 'Für wen ist das?',
+    items: [
+      'Startups mit physischen oder digitalen Produkten, die online validiert werden sollen',
+      'Gründer:innen, die vor der Investition in Infrastruktur Marktfeedback brauchen',
+      'DTC-Brands, die den besten Kanal finden wollen: eigener Shop, Marktplätze oder beides',
+    ],
+  },
+};
+---
+
+<Layout
+  title={page.title}
+  description={page.description}
+  lang={lang}
+  currentPath={currentPath}
+>
+  <Header lang={lang} currentPath={currentPath} />
+  <main>
+    <!-- Hero -->
+    <section class="relative bg-white pt-32 pb-20 px-4 overflow-hidden">
+      <div class="absolute inset-0 bg-gradient-to-br from-accent/5 via-transparent to-accent/3"></div>
+      <div class="max-w-4xl mx-auto relative z-10 text-center">
+        <span class="inline-block text-xs uppercase tracking-[0.3em] text-accent font-semibold mb-4">{page.hero.eyebrow}</span>
+        <h1 class="text-4xl lg:text-5xl font-bold leading-tight mb-6">{page.hero.title}</h1>
+        <p class="text-lg text-muted-foreground max-w-2xl mx-auto mb-10 leading-relaxed">{page.hero.subtitle}</p>
+        <a href="#contact" class="inline-flex items-center justify-center py-4 px-8 text-lg rounded-xl text-accent-foreground bg-accent shadow-[0_22px_48px_rgba(123,224,183,0.35)] transition-all hover:-translate-y-[2px] hover:shadow-[0_30px_58px_rgba(123,224,183,0.4)] active:scale-[0.98]">
+          {page.hero.cta}
+          <svg class="ml-2 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+        </a>
+      </div>
+    </section>
+
+    <!-- Herausforderung -->
+    <section class="bg-secondary py-16 px-4">
+      <div class="max-w-3xl mx-auto">
+        <h2 class="text-2xl lg:text-3xl font-bold mb-6">{page.challenge.title}</h2>
+        <p class="text-muted-foreground leading-relaxed text-lg">{page.challenge.text}</p>
+      </div>
+    </section>
+
+    <!-- Ansatz: 3 Schritte -->
+    <section class="bg-white py-20 px-4">
+      <div class="max-w-5xl mx-auto">
+        <h2 class="text-2xl lg:text-3xl font-bold text-center mb-14">{page.approach.title}</h2>
+        <div class="grid md:grid-cols-3 gap-8">
+          {page.approach.steps.map((step) => (
+            <div class="border border-accent/20 bg-white rounded-2xl p-8 shadow-sm hover:shadow-md transition-shadow">
+              <div class="text-4xl mb-4">{step.icon}</div>
+              <h3 class="text-xl font-semibold mb-3">{step.title}</h3>
+              <p class="text-muted-foreground leading-relaxed">{step.text}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Ergebnisse -->
+    <section class="bg-secondary py-20 px-4">
+      <div class="max-w-5xl mx-auto">
+        <h2 class="text-2xl lg:text-3xl font-bold text-center mb-14">{page.results.title}</h2>
+        <div class="grid grid-cols-3 gap-6 mb-14">
+          {page.results.kpis.map((kpi) => (
+            <div class="border border-accent/20 bg-white/60 backdrop-blur rounded-2xl p-8 text-center shadow-sm">
+              <div class="text-3xl mb-3">{kpi.icon}</div>
+              <div class="text-3xl font-bold text-foreground mb-2">{kpi.value}</div>
+              <div class="text-sm text-muted-foreground">{kpi.label}</div>
+            </div>
+          ))}
+        </div>
+        <div class="max-w-3xl mx-auto bg-white rounded-2xl p-8 shadow-sm border border-accent/10">
+          <blockquote class="text-lg italic text-foreground leading-relaxed mb-4">"{page.results.quote}"</blockquote>
+          <p class="text-sm text-accent font-semibold">{page.results.quoteAuthor}</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Für wen -->
+    <section class="bg-white py-16 px-4">
+      <div class="max-w-3xl mx-auto">
+        <h2 class="text-2xl lg:text-3xl font-bold mb-8">{page.forWhom.title}</h2>
+        <ul class="space-y-4">
+          {page.forWhom.items.map((item) => (
+            <li class="flex items-start gap-3">
+              <span class="mt-1.5 h-2 w-2 rounded-full bg-accent flex-shrink-0"></span>
+              <span class="text-muted-foreground leading-relaxed">{item}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+
+    <!-- Lead Form -->
+    <LeadForm lang={lang} />
+  </main>
+  <Footer lang={lang} currentPath={currentPath} />
+</Layout>
+
+<style>
+  main { min-height: 100vh; }
+</style>

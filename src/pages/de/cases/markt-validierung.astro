@@ -1,0 +1,141 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import Header from '../../../components/Header.astro';
+import LeadForm from '../../../components/LeadForm.astro';
+import Footer from '../../../components/Footer.astro';
+
+const lang = 'de';
+const currentPath = '/de/cases/markt-validierung';
+
+const page = {
+  title: 'ConnectingTheDots · Marktvalidierung für KMU – Neue Ideen risikoarm testen',
+  description: 'Wie Brillen.de eine neue Service-Idee durch B2B-Outreach und Testverkäufe validierte – ohne das Kerngeschäft zu belasten.',
+  hero: {
+    eyebrow: 'Case Study: Brillen.de',
+    title: 'Neue Geschäftsidee? Teste sie im echten Markt – nicht im Meeting.',
+    subtitle: 'Du hast eine neue Service- oder Produktidee, aber keine Zeit für monatelange Marktforschung? Wir helfen KMU, ihre Ideen durch praktische Experimente zu validieren – von B2B-Kaltakquise bis Testverkäufe.',
+    cta: 'Kostenloses Erstgespräch buchen',
+  },
+  challenge: {
+    title: 'Die Herausforderung',
+    text: 'Brillen.de – ein etablierter Optik-Händler – wollte einen neuen B2B-Service für Unternehmen testen: betriebliche Sehtests als Benefit für Mitarbeitende. Die Idee klang vielversprechend, aber das Unternehmen hatte weder B2B-Vertriebserfahrung noch Zeit, ein neues Team dafür aufzubauen.',
+  },
+  approach: {
+    title: 'Unser Ansatz: Echtes Marktfeedback in 6 Wochen',
+    steps: [
+      { icon: '📞', title: 'B2B-Outreach-Experiment', text: 'Wir definierten die Zielgruppe (HR-Leiter, 50-500 MA) und führten innerhalb von 3 Wochen 120+ Kaltakquise-Gespräche – mit einem klar strukturierten Pitch und Tracking aller Reaktionen.' },
+      { icon: '🧪', title: 'Service-Paket testen', text: 'Parallel erstellten wir eine einfache Landingpage mit konkretem Angebot und testeten die Resonanz über LinkedIn Ads und E-Mail-Outreach an ausgewählte Unternehmen.' },
+      { icon: '📋', title: 'Auswerten & entscheiden', text: 'Nach 6 Wochen: Conversion-Daten, qualitatives Feedback und Preissensitivität ausgewertet. Klare Entscheidungsgrundlage für den Vorstand.' },
+    ],
+  },
+  results: {
+    title: 'Ergebnisse nach 6 Wochen',
+    kpis: [
+      { value: '120+', label: 'B2B-Gespräche geführt', icon: '📞' },
+      { value: '18', label: 'Qualifizierte Leads', icon: '🤝' },
+      { value: '3', label: 'Pilotprojekte gestartet', icon: '🎯' },
+    ],
+    quote: 'Wir hätten intern Monate diskutiert, ob die Idee funktioniert. CTD hat uns in 6 Wochen echte Zahlen geliefert – das hat den Vorstand überzeugt.',
+    quoteAuthor: 'Thomas K., Leiter Business Development, Brillen.de',
+  },
+  forWhom: {
+    title: 'Für wen ist das?',
+    items: [
+      'KMU, die eine neue Service- oder Produktidee validieren wollen, ohne das Kerngeschäft zu belasten',
+      'Unternehmen, die B2B-Marktpotenzial testen möchten, aber kein Vertriebsteam dafür haben',
+      'Geschäftsführer und Innovationsverantwortliche, die datenbasierte Entscheidungsgrundlagen brauchen',
+    ],
+  },
+};
+---
+
+<Layout
+  title={page.title}
+  description={page.description}
+  lang={lang}
+  currentPath={currentPath}
+>
+  <Header lang={lang} currentPath={currentPath} />
+  <main>
+    <!-- Hero -->
+    <section class="relative bg-white pt-32 pb-20 px-4 overflow-hidden">
+      <div class="absolute inset-0 bg-gradient-to-br from-accent/5 via-transparent to-accent/3"></div>
+      <div class="max-w-4xl mx-auto relative z-10 text-center">
+        <span class="inline-block text-xs uppercase tracking-[0.3em] text-accent font-semibold mb-4">{page.hero.eyebrow}</span>
+        <h1 class="text-4xl lg:text-5xl font-bold leading-tight mb-6">{page.hero.title}</h1>
+        <p class="text-lg text-muted-foreground max-w-2xl mx-auto mb-10 leading-relaxed">{page.hero.subtitle}</p>
+        <a href="#contact" class="inline-flex items-center justify-center py-4 px-8 text-lg rounded-xl text-accent-foreground bg-accent shadow-[0_22px_48px_rgba(123,224,183,0.35)] transition-all hover:-translate-y-[2px] hover:shadow-[0_30px_58px_rgba(123,224,183,0.4)] active:scale-[0.98]">
+          {page.hero.cta}
+          <svg class="ml-2 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+        </a>
+      </div>
+    </section>
+
+    <!-- Herausforderung -->
+    <section class="bg-secondary py-16 px-4">
+      <div class="max-w-3xl mx-auto">
+        <h2 class="text-2xl lg:text-3xl font-bold mb-6">{page.challenge.title}</h2>
+        <p class="text-muted-foreground leading-relaxed text-lg">{page.challenge.text}</p>
+      </div>
+    </section>
+
+    <!-- Ansatz: 3 Schritte -->
+    <section class="bg-white py-20 px-4">
+      <div class="max-w-5xl mx-auto">
+        <h2 class="text-2xl lg:text-3xl font-bold text-center mb-14">{page.approach.title}</h2>
+        <div class="grid md:grid-cols-3 gap-8">
+          {page.approach.steps.map((step) => (
+            <div class="border border-accent/20 bg-white rounded-2xl p-8 shadow-sm hover:shadow-md transition-shadow">
+              <div class="text-4xl mb-4">{step.icon}</div>
+              <h3 class="text-xl font-semibold mb-3">{step.title}</h3>
+              <p class="text-muted-foreground leading-relaxed">{step.text}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Ergebnisse -->
+    <section class="bg-secondary py-20 px-4">
+      <div class="max-w-5xl mx-auto">
+        <h2 class="text-2xl lg:text-3xl font-bold text-center mb-14">{page.results.title}</h2>
+        <div class="grid grid-cols-3 gap-6 mb-14">
+          {page.results.kpis.map((kpi) => (
+            <div class="border border-accent/20 bg-white/60 backdrop-blur rounded-2xl p-8 text-center shadow-sm">
+              <div class="text-3xl mb-3">{kpi.icon}</div>
+              <div class="text-3xl font-bold text-foreground mb-2">{kpi.value}</div>
+              <div class="text-sm text-muted-foreground">{kpi.label}</div>
+            </div>
+          ))}
+        </div>
+        <div class="max-w-3xl mx-auto bg-white rounded-2xl p-8 shadow-sm border border-accent/10">
+          <blockquote class="text-lg italic text-foreground leading-relaxed mb-4">"{page.results.quote}"</blockquote>
+          <p class="text-sm text-accent font-semibold">{page.results.quoteAuthor}</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Für wen -->
+    <section class="bg-white py-16 px-4">
+      <div class="max-w-3xl mx-auto">
+        <h2 class="text-2xl lg:text-3xl font-bold mb-8">{page.forWhom.title}</h2>
+        <ul class="space-y-4">
+          {page.forWhom.items.map((item) => (
+            <li class="flex items-start gap-3">
+              <span class="mt-1.5 h-2 w-2 rounded-full bg-accent flex-shrink-0"></span>
+              <span class="text-muted-foreground leading-relaxed">{item}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+
+    <!-- Lead Form -->
+    <LeadForm lang={lang} />
+  </main>
+  <Footer lang={lang} currentPath={currentPath} />
+</Layout>
+
+<style>
+  main { min-height: 100vh; }
+</style>

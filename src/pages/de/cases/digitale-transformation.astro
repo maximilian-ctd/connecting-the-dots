@@ -1,0 +1,141 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import Header from '../../../components/Header.astro';
+import LeadForm from '../../../components/LeadForm.astro';
+import Footer from '../../../components/Footer.astro';
+
+const lang = 'de';
+const currentPath = '/de/cases/digitale-transformation';
+
+const page = {
+  title: 'ConnectingTheDots · Digitale Transformation für den Mittelstand',
+  description: 'Wie TourCont AG den Sprung ins Digitale schaffte – von der Konzeptentwicklung über erste Pilotprojekte bis zum validierten digitalen Geschäftsmodell.',
+  hero: {
+    eyebrow: 'Case Study: TourCont AG',
+    title: 'Digital werden muss nicht kompliziert sein – wenn man richtig anfängt.',
+    subtitle: 'Euer Kerngeschäft funktioniert, aber die Digitalisierung kommt nicht voran? Wir helfen Mittelständlern, den ersten Schritt zu machen – mit einem klaren Konzept und schnellen Pilotprojekten statt PowerPoint-Strategien.',
+    cta: 'Kostenloses Erstgespräch buchen',
+  },
+  challenge: {
+    title: 'Die Herausforderung',
+    text: 'TourCont AG – ein mittelständischer Anbieter von Tourismus-Dienstleistungen im DACH-Raum – wusste, dass sie digitaler werden mussten. Aber intern fehlten Know-how, Zeit und eine klare Vorstellung, wo man anfangen sollte. Bisherige Digitalisierungsinitiativen waren an internen Widerständen und unklaren Zielen gescheitert.',
+  },
+  approach: {
+    title: 'Unser Ansatz: Vom Konzept zum Pilotprojekt in 10 Wochen',
+    steps: [
+      { icon: '🔍', title: 'Potenzialanalyse', text: 'In Workshops mit Geschäftsführung und Fachabteilungen identifizierten wir 5 konkrete Digitalisierungschancen – priorisiert nach Aufwand, Impact und Machbarkeit.' },
+      { icon: '🛠️', title: 'Pilotprojekt aufsetzen', text: 'Wir wählten das vielversprechendste Szenario – einen digitalen Buchungsservice für B2B-Kunden – und setzten einen Prototyp mit echten Kunden in 4 Wochen um.' },
+      { icon: '✅', title: 'Validieren & skalieren', text: 'Der Pilotservice wurde mit 15 ausgewählten Bestandskunden getestet. Nach 6 Wochen lagen belastbare Nutzungsdaten vor – die Basis für die Vorstandsentscheidung zum Rollout.' },
+    ],
+  },
+  results: {
+    title: 'Ergebnisse nach 10 Wochen',
+    kpis: [
+      { value: '5', label: 'Digitalisierungschancen identifiziert', icon: '🔍' },
+      { value: '15', label: 'Pilotkunden im Test', icon: '👥' },
+      { value: '72%', label: 'Adoptionsrate im Pilot', icon: '📈' },
+    ],
+    quote: 'CTD hat uns nicht mit einer 80-Seiten-Strategie überflutet, sondern einen konkreten Prototyp gebaut, den unsere Kunden sofort nutzen konnten. Das hat intern alle überzeugt.',
+    quoteAuthor: 'Markus W., Geschäftsführer TourCont AG',
+  },
+  forWhom: {
+    title: 'Für wen ist das?',
+    items: [
+      'Mittelständische Unternehmen, die wissen, dass sie digitaler werden müssen – aber nicht wissen, wo sie anfangen sollen',
+      'Geschäftsführer, die eine pragmatische Digitalisierung wollen – nicht PowerPoint, sondern Prototypen',
+      'Unternehmen mit funktionierendem Kerngeschäft, die neue digitale Umsatzquellen oder Services erschließen möchten',
+    ],
+  },
+};
+---
+
+<Layout
+  title={page.title}
+  description={page.description}
+  lang={lang}
+  currentPath={currentPath}
+>
+  <Header lang={lang} currentPath={currentPath} />
+  <main>
+    <!-- Hero -->
+    <section class="relative bg-white pt-32 pb-20 px-4 overflow-hidden">
+      <div class="absolute inset-0 bg-gradient-to-br from-accent/5 via-transparent to-accent/3"></div>
+      <div class="max-w-4xl mx-auto relative z-10 text-center">
+        <span class="inline-block text-xs uppercase tracking-[0.3em] text-accent font-semibold mb-4">{page.hero.eyebrow}</span>
+        <h1 class="text-4xl lg:text-5xl font-bold leading-tight mb-6">{page.hero.title}</h1>
+        <p class="text-lg text-muted-foreground max-w-2xl mx-auto mb-10 leading-relaxed">{page.hero.subtitle}</p>
+        <a href="#contact" class="inline-flex items-center justify-center py-4 px-8 text-lg rounded-xl text-accent-foreground bg-accent shadow-[0_22px_48px_rgba(123,224,183,0.35)] transition-all hover:-translate-y-[2px] hover:shadow-[0_30px_58px_rgba(123,224,183,0.4)] active:scale-[0.98]">
+          {page.hero.cta}
+          <svg class="ml-2 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+        </a>
+      </div>
+    </section>
+
+    <!-- Herausforderung -->
+    <section class="bg-secondary py-16 px-4">
+      <div class="max-w-3xl mx-auto">
+        <h2 class="text-2xl lg:text-3xl font-bold mb-6">{page.challenge.title}</h2>
+        <p class="text-muted-foreground leading-relaxed text-lg">{page.challenge.text}</p>
+      </div>
+    </section>
+
+    <!-- Ansatz: 3 Schritte -->
+    <section class="bg-white py-20 px-4">
+      <div class="max-w-5xl mx-auto">
+        <h2 class="text-2xl lg:text-3xl font-bold text-center mb-14">{page.approach.title}</h2>
+        <div class="grid md:grid-cols-3 gap-8">
+          {page.approach.steps.map((step) => (
+            <div class="border border-accent/20 bg-white rounded-2xl p-8 shadow-sm hover:shadow-md transition-shadow">
+              <div class="text-4xl mb-4">{step.icon}</div>
+              <h3 class="text-xl font-semibold mb-3">{step.title}</h3>
+              <p class="text-muted-foreground leading-relaxed">{step.text}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Ergebnisse -->
+    <section class="bg-secondary py-20 px-4">
+      <div class="max-w-5xl mx-auto">
+        <h2 class="text-2xl lg:text-3xl font-bold text-center mb-14">{page.results.title}</h2>
+        <div class="grid grid-cols-3 gap-6 mb-14">
+          {page.results.kpis.map((kpi) => (
+            <div class="border border-accent/20 bg-white/60 backdrop-blur rounded-2xl p-8 text-center shadow-sm">
+              <div class="text-3xl mb-3">{kpi.icon}</div>
+              <div class="text-3xl font-bold text-foreground mb-2">{kpi.value}</div>
+              <div class="text-sm text-muted-foreground">{kpi.label}</div>
+            </div>
+          ))}
+        </div>
+        <div class="max-w-3xl mx-auto bg-white rounded-2xl p-8 shadow-sm border border-accent/10">
+          <blockquote class="text-lg italic text-foreground leading-relaxed mb-4">"{page.results.quote}"</blockquote>
+          <p class="text-sm text-accent font-semibold">{page.results.quoteAuthor}</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Für wen -->
+    <section class="bg-white py-16 px-4">
+      <div class="max-w-3xl mx-auto">
+        <h2 class="text-2xl lg:text-3xl font-bold mb-8">{page.forWhom.title}</h2>
+        <ul class="space-y-4">
+          {page.forWhom.items.map((item) => (
+            <li class="flex items-start gap-3">
+              <span class="mt-1.5 h-2 w-2 rounded-full bg-accent flex-shrink-0"></span>
+              <span class="text-muted-foreground leading-relaxed">{item}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+
+    <!-- Lead Form -->
+    <LeadForm lang={lang} />
+  </main>
+  <Footer lang={lang} currentPath={currentPath} />
+</Layout>
+
+<style>
+  main { min-height: 100vh; }
+</style>

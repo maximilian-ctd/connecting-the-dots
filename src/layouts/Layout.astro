@@ -18,7 +18,7 @@ interface Props {
 
 const { 
 	title, 
-	description = "ConnectingTheDots · Von der Idee zum erfolgreichen Unternehmen. Wir helfen dir dabei, deine Unternehmensidee zu testen, umzusetzen und zu wachsen.",
+	description = "ConnectingTheDots · Wir helfen Startups und KMU, ihre Geschäftsidee durch praktische Experimente im echten Markt zu validieren – von Testverkäufen über Marktplätze bis B2B-Outreach.",
 	lang = 'de', 
 	currentPath = Astro.url.pathname,
 	image = new URL('/images/Logo_CTD.png', Astro.site).href,
@@ -117,7 +117,7 @@ const shouldNoindex = noindex || currentPath.includes('/test');
 		<title>{title}</title>
 		<meta name="title" content={title} />
 		<meta name="description" content={description} />
-		<meta name="keywords" content={lang === 'de' ? 'Unternehmensberatung, Business Development, Startup Beratung, Marktvalidierung, E-Commerce, Performance Marketing, Interim Management, DACH Markt' : 'Business Consulting, Business Development, Startup Consulting, Market Validation, E-Commerce, Performance Marketing, Interim Management, DACH Market'} />
+		<meta name="keywords" content={lang === 'de' ? 'Geschäftsidee validieren, Marktvalidierung, Startup Beratung, Go-to-Market Strategie, Geschäftsidee testen, KMU Beratung, E-Commerce Strategie, Marktplatz Launch, B2B Vertrieb, Testverkäufe, DACH Marktplätze' : 'Business idea validation, market validation, startup consulting, go-to-market strategy, test sales, SME consulting, e-commerce strategy, marketplace launch, B2B outreach, DACH market entry'} />
 		<meta name="author" content="ConnectingTheDots" />
 		<meta name="robots" content={shouldNoindex ? 'noindex, nofollow' : 'index, follow'} />
 		<meta name="googlebot" content={shouldNoindex ? 'noindex, nofollow' : 'index, follow'} />
@@ -205,7 +205,7 @@ const shouldNoindex = noindex || currentPath.includes('/test');
 			<script type="application/ld+json" set:html={JSON.stringify({
 				"@context": "https://schema.org",
 				"@type": "Service",
-				"serviceType": "Business Consulting",
+				"serviceType": "Business Validation & Go-to-Market Consulting",
 				"provider": {
 					"@type": "Organization",
 					"name": "ConnectingTheDots"
@@ -216,38 +216,38 @@ const shouldNoindex = noindex || currentPath.includes('/test');
 				},
 				"hasOfferCatalog": {
 					"@type": "OfferCatalog",
-					"name": "Business Services",
+					"name": "Validierungs- & Go-to-Market-Services für Startups und KMU",
 					"itemListElement": [
 						{
 							"@type": "Offer",
 							"itemOffered": {
 								"@type": "Service",
-								"name": "Kundenakquise",
-								"description": "Wir helfen dir dabei, deine Zielgruppe zu finden und zu erreichen."
+								"name": "Marktvalidierung & Kundenakquise",
+								"description": "Geschäftsidee durch praktische Experimente testen – Testverkäufe, B2B-Outreach, Marktplatz-Listings. Schnell und datenbasiert."
 							}
 						},
 						{
 							"@type": "Offer",
 							"itemOffered": {
 								"@type": "Service",
-								"name": "Schnelle Umsetzung",
-								"description": "Turn ideas into testable MVPs within days."
+								"name": "Rapid Go-to-Market",
+								"description": "Produkte innerhalb von Tagen in den Markt bringen – über Marktplätze, Landing Pages oder direkten B2B-Vertrieb."
 							}
 						},
 						{
 							"@type": "Offer",
 							"itemOffered": {
 								"@type": "Service",
-								"name": "E-Commerce Strategie",
-								"description": "E-Commerce-Strategie über alle Kanäle: Online-Shop, Conversational und Social Commerce, Marktplätze."
+								"name": "Vertriebsstrategie & Kanalmix",
+								"description": "Multichannel-Strategie für Startups und KMU: Marktplätze, Online-Shop, B2B-Direktvertrieb, Social Commerce."
 							}
 						},
 						{
 							"@type": "Offer",
 							"itemOffered": {
 								"@type": "Service",
-								"name": "Operatives Management",
-								"description": "Operative Umsetzung: Listings, Preise, Bestand, Prozesse, Tagesgeschäft auf Marktplätzen und in Shops."
+								"name": "Operatives Marktplatz-Management",
+								"description": "Laufender Betrieb auf Marktplätzen: Listings, Preise, Bestandssteuerung, Performance-Optimierung und Tagesgeschäft."
 							}
 						},
 						{
@@ -255,7 +255,7 @@ const shouldNoindex = noindex || currentPath.includes('/test');
 							"itemOffered": {
 								"@type": "Service",
 								"name": "Performance Marketing",
-								"description": "Wir optimieren deine Marketing-Kampagnen für maximale Performance und ROI."
+								"description": "Kampagnen-Optimierung für maximale Performance und ROI auf Google, LinkedIn und weiteren Kanälen."
 							}
 						},
 						{
@@ -263,7 +263,7 @@ const shouldNoindex = noindex || currentPath.includes('/test');
 							"itemOffered": {
 								"@type": "Service",
 								"name": "Interim Management",
-								"description": "Wir unterstützen dich vorübergehend bei Marketing, Vertrieb oder digitalen Projekten."
+								"description": "Vorübergehende operative Führung für Vertrieb, E-Commerce oder Go-to-Market-Projekte."
 							}
 						}
 					]
