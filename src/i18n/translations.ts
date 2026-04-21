@@ -25,14 +25,16 @@ export interface Translations {
     copyright: string;
     linkedin: string;
     email: string;
+    bafaBadge: string;
   };
-  
+
   // Hero Section
   hero: {
     title1: string;
     title2: string;
     subtitle: string;
     cta: string;
+    bafaBadge: string;
   };
   
   // Customer References
@@ -188,6 +190,7 @@ export interface Translations {
     benefit3: string;
     benefit4: string;
     benefit5: string;
+    bafaHint: string;
     timeline: string;
     timeline1: string;
     timeline2: string;
@@ -252,12 +255,14 @@ export const translations: Record<Language, Translations> = {
       copyright: '© 2026 ConnectingTheDots. Alle Rechte vorbehalten.',
       linkedin: 'LinkedIn',
       email: 'E-Mail',
+      bafaBadge: 'BAFA-gelisteter Berater',
     },
     hero: {
       title1: 'Von der Idee',
       title2: 'zum nachhaltigen Erfolg.',
       subtitle: 'Wir helfen Startups und KMU, über praxisorientierte Markttests schnell in den Markt zu kommen – ob Testverkäufe, Marktplatz-Listings oder B2B-Outreach. Mit echten Ergebnissen statt leeren Versprechen.',
       cta: 'Jetzt verbinden',
+      bafaBadge: 'BAFA-gelisteter Berater',
     },
     customerReferences: {
       title: 'Unsere Kunden',
@@ -400,6 +405,7 @@ export const translations: Record<Language, Translations> = {
       benefit3: 'Zugang zu unserem Expertennetzwerk',
       benefit4: 'Klare Roadmap für deinen Markteintritt',
       benefit5: 'Risiko- und Markteinschätzung',
+      bafaHint: 'BAFA-gelistet – Fördermöglichkeiten für Beratungsleistungen',
       timeline: 'Typischer Ablauf',
       timeline1: 'Erstgespräch: 1-2 Tage',
       timeline2: 'Planung: 3-5 Tage',
@@ -458,12 +464,14 @@ export const translations: Record<Language, Translations> = {
       copyright: '© 2026 ConnectingTheDots. All rights reserved.',
       linkedin: 'LinkedIn',
       email: 'Email',
+      bafaBadge: 'BAFA-listed consultant',
     },
     hero: {
       title1: 'From idea',
       title2: 'to lasting success.',
       subtitle: 'We help startups and SMEs get to market fast through hands-on market tests – whether test sales, marketplace listings, or B2B outreach. Real results, not empty promises.',
       cta: "Let's connect",
+      bafaBadge: 'BAFA-listed consultant',
     },
     customerReferences: {
       title: 'Trusted by innovative companies',
@@ -606,6 +614,7 @@ export const translations: Record<Language, Translations> = {
       benefit3: 'Expert network access',
       benefit4: 'Clear go-to-market roadmap',
       benefit5: 'Market & risk assessment',
+      bafaHint: 'BAFA-listed – funding options for consulting services',
       timeline: 'Typical Timeline',
       timeline1: 'Initial consultation: 1-2 days',
       timeline2: 'Strategy development: 3-5 days',

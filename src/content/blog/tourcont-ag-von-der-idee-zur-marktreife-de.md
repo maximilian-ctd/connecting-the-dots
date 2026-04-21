@@ -1,7 +1,7 @@
 ---
 title: "TourCont AG: Von der Idee zur Marktreife"
 description: "Wie TourCont AG mit klarer Go to Market und Launchstrategie in kurzer Zeit eine belastbare Grundlage für Markteintritt und Wachstum aufgebaut hat."
-pubDate: 2022-09-15
+pubDate: 2025-09-15
 author: "ConnectingTheDots"
 tags: ["Go to Market", "Launchstrategie", "Businessmodell", "Markteintritt", "Gründung"]
 lang: de
@@ -86,6 +86,12 @@ Aus einer initialen Idee entstand:
 * Eine umsetzbare Launchstrategie
 
 Damit verfügt TourCont AG heute über die entscheidenden Voraussetzungen für einen erfolgreichen Start und nachhaltiges Wachstum.
+
+## Stimme des Auftraggebers
+
+> *„Wir sind in der Gründungsphase der TourCont AG mit unserer Idee zu den geplanten Reiseveranstalter-Apps an Maximilian herangetreten. Zu dem Zeitpunkt hatten wir zwar eine starke Vision, aber noch keinen klaren Plan für den Markteintritt. ConnectingTheDots hat uns in kurzer Zeit geholfen, unsere Geschäftsidee zu schärfen, den Businessplan zu präzisieren, ein skalierbares Geschäftsmodell zu entwickeln und eine fokussierte Launchstrategie aufzusetzen. Was uns besonders überzeugt hat: der pragmatische Ansatz. Keine endlosen Strategiepapiere, sondern ein klarer Fahrplan mit dem Ziel, schnell am echten Markt zu validieren. Maximilian war dabei nicht nur Berater, sondern echter Sparringspartner, der mitgedacht und mitgestaltet hat. Das Ergebnis: eine klare Positionierung, eine strukturierte Roadmap und die Grundlage für unseren erfolgreichen Markteintritt."*
+>
+> **— Markus Schreiber, Co-Founder TourCont AG**
 
 ## Fazit: Erfolgreiche Gründungen brauchen klare Go to Market Strategien
 

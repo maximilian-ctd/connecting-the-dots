@@ -1,7 +1,7 @@
 ---
 title: "TourCont AG: From idea to market readiness"
 description: "How TourCont AG built a solid foundation for market entry and growth through a clear go to market and launch strategy."
-pubDate: 2022-09-15
+pubDate: 2025-09-15
 author: "ConnectingTheDots"
 tags: ["Go to Market", "Launch Strategy", "Business Model", "Market Entry", "Founding"]
 lang: en
@@ -86,6 +86,12 @@ From the initial idea, the team established:
 * An executable launch strategy
 
 As a result, TourCont AG gained the key prerequisites for a successful start and sustainable growth.
+
+## Client Testimonial
+
+> *"We approached Maximilian during the founding phase of TourCont AG with our idea for the planned tour operator apps. At that point, we had a strong vision but no clear plan for market entry. ConnectingTheDots helped us in a short time to sharpen our business idea, refine the business plan, develop a scalable business model, and set up a focused launch strategy. What convinced us most was the pragmatic approach. No endless strategy papers, but a clear roadmap with the goal of validating quickly in the real market. Maximilian was not just a consultant, but a true sparring partner who thought and shaped things alongside us. The result: a clear positioning, a structured roadmap, and the foundation for our successful market entry."*
+>
+> **— Markus Schreiber, Co-Founder TourCont AG**
 
 ## Conclusion: Successful ventures need clear go to market strategies
 
