@@ -9,6 +9,8 @@ interface ConsentState {
 
 const CONSENT_STORAGE_KEY = 'cookie_consent';
 const CONSENT_VERSION = '1.0';
+const HUBSPOT_SCRIPT_ID = 'hs-script-loader';
+const HUBSPOT_SCRIPT_SRC = '//js-eu1.hs-scripts.com/148371554.js';
 
 // Lade gespeicherten Consent
 function loadConsent(): ConsentState | null {
@@ -42,6 +44,20 @@ function saveConsent(consent: ConsentState): void {
   }
 }
 
+function loadHubSpotScript(): void {
+  if (typeof document === 'undefined') return;
+  if (document.getElementById(HUBSPOT_SCRIPT_ID)) return;
+
+  const script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.id = HUBSPOT_SCRIPT_ID;
+  script.async = true;
+  script.defer = true;
+  script.src = HUBSPOT_SCRIPT_SRC;
+
+  document.head.appendChild(script);
+}
+
 
 // Aktualisiere Consent
 export function updateConsent(analytics: boolean): void {
@@ -57,6 +73,10 @@ export function updateConsent(analytics: boolean): void {
   // Aktualisiere Google Consent Mode
   if (typeof window !== 'undefined' && (window as any).gtag) {
     (window as any).gtag('consent', 'update', consent);
+  }
+
+  if (analytics) {
+    loadHubSpotScript();
   }
 }
 
@@ -107,6 +127,11 @@ export function toggleCustomize(): void {
 // Initialisierung beim Laden
 export function initConsent(): void {
   const consent = loadConsent();
+
+  // Lade HubSpot nur bei vorhandener Analyse-Einwilligung
+  if (consent?.analytics_storage === 'granted') {
+    loadHubSpotScript();
+  }
   
   // Zeige Banner nur wenn noch kein Consent vorhanden
   if (!consent) {

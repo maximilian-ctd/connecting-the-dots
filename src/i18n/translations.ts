@@ -417,7 +417,7 @@ export const translations: Record<Language, Translations> = {
     },
     cookieBanner: {
       title: 'Cookie-Einstellungen',
-      description: 'Wir verwenden Cookies, um Ihnen die bestmögliche Erfahrung zu bieten. Einige Cookies sind für den Betrieb der Website notwendig, während andere uns helfen, diese Website und die Nutzererfahrung zu verbessern (Tracking-Cookies). Sie können selbst entscheiden, ob Sie die Cookies zulassen möchten.',
+      description: 'Wir verwenden Cookies, um Ihnen die bestmögliche Erfahrung zu bieten. Einige Cookies sind für den Betrieb der Website notwendig, während andere uns helfen, diese Website und die Nutzererfahrung zu verbessern (z. B. Google Analytics und HubSpot). Sie können selbst entscheiden, ob Sie die Cookies zulassen möchten.',
       acceptAll: 'Alle akzeptieren',
       acceptNecessary: 'Nur notwendige',
       customize: 'Anpassen',
@@ -425,7 +425,7 @@ export const translations: Record<Language, Translations> = {
       necessary: 'Notwendige Cookies',
       necessaryDescription: 'Diese Cookies sind für die Grundfunktionen der Website erforderlich und können nicht deaktiviert werden.',
       analytics: 'Analyse-Cookies',
-      analyticsDescription: 'Diese Cookies helfen uns zu verstehen, wie Besucher mit der Website interagieren, indem Informationen anonym gesammelt und gemeldet werden.',
+      analyticsDescription: 'Diese Cookies helfen uns zu verstehen, wie Besucher mit der Website interagieren. Wir nutzen hierfür unter anderem Google Analytics und HubSpot.',
       save: 'Einstellungen speichern',
     },
     blog: {
@@ -626,7 +626,7 @@ export const translations: Record<Language, Translations> = {
     },
     cookieBanner: {
       title: 'Cookie Settings',
-      description: 'We use cookies to provide you with the best possible experience. Some cookies are necessary for the website to function, while others help us improve this website and the user experience (tracking cookies). You can choose whether to allow cookies.',
+      description: 'We use cookies to provide you with the best possible experience. Some cookies are necessary for the website to function, while others help us improve this website and the user experience (e.g., Google Analytics and HubSpot). You can choose whether to allow cookies.',
       acceptAll: 'Accept All',
       acceptNecessary: 'Necessary Only',
       customize: 'Customize',
@@ -634,7 +634,7 @@ export const translations: Record<Language, Translations> = {
       necessary: 'Necessary Cookies',
       necessaryDescription: 'These cookies are required for the basic functions of the website and cannot be disabled.',
       analytics: 'Analytics Cookies',
-      analyticsDescription: 'These cookies help us understand how visitors interact with the website by collecting and reporting information anonymously.',
+      analyticsDescription: 'These cookies help us understand how visitors interact with the website. We use tools such as Google Analytics and HubSpot for this purpose.',
       save: 'Save Settings',
     },
     blog: {
