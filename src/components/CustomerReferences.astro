@@ -7,6 +7,22 @@ interface Props {
 
 const { lang = 'de' } = Astro.props;
 const t = getTranslations(lang);
+
+/** Ein Eintrag pro Logo – für das Scroll-Banner zweimal gerendert. Neue Logos: Datei nach `public/images/`, dann hier ergänzen. */
+const referenceLogos: { src: string; alt: string }[] = [
+  { src: '/images/b98556db3c843164bbb3a774ce55b5998de2f009.png', alt: 'Brillen.de Logo' },
+  { src: '/images/7a9b772364c890df4c839614fcf75a603c689245.png', alt: 'MyPostcard Logo' },
+  { src: '/images/0868420e2592f1a8944649400632588296d3c22b.png', alt: 'Vista Point Verlag Logo' },
+  { src: '/images/280197cc4f34417bd05646dffc7f56e6f8a15317.png', alt: 'theGenesys.ai Logo' },
+  { src: '/images/8b1fe9a88cb76ecfb2bd075f1fd259a1ead00078.png', alt: 'TheList.app Logo' },
+  { src: '/images/41144ac6829b4b8ce105a021e42e2c7135c8ab45.png', alt: 'TourCont Logo' },
+  { src: '/images/logo-maison-o.png', alt: 'Maison Ô Logo' },
+  { src: '/images/logo-cadan.svg', alt: 'Cadan Logo' },
+  { src: '/images/logo-luxhype.svg', alt: 'Luxhype Logo' },
+  { src: '/images/shine-love.avif', alt: 'Shine & Love Logo' },
+];
+
+const logoCount = referenceLogos.length;
 ---
 
 <section class="bg-gradient-to-br from-white via-secondary/30 to-white py-6 overflow-hidden">
@@ -25,131 +41,21 @@ const t = getTranslations(lang);
         id="customer-scroll"
         class="flex gap-8"
       >
-        <!-- Erste Reihe Logos -->
-        <div class="flex gap-8 flex-shrink-0">
-          <div class="logo-card">
-            <img 
-              src="/images/b98556db3c843164bbb3a774ce55b5998de2f009.png" 
-              alt="Brillen.de Logo"
-              class="logo-img"
-            />
+        {[0, 1].map((row) => (
+          <div class="flex gap-8 flex-shrink-0" aria-hidden={row === 1 ? 'true' : undefined}>
+            {referenceLogos.map((logo) => (
+              <div class="logo-card">
+                <img src={logo.src} alt={logo.alt} class="logo-img" loading="lazy" />
+              </div>
+            ))}
           </div>
-          <div class="logo-card">
-            <img 
-              src="/images/7a9b772364c890df4c839614fcf75a603c689245.png" 
-              alt="MyPostcard Logo"
-              class="logo-img"
-            />
-          </div>
-          <div class="logo-card">
-            <img 
-              src="/images/0868420e2592f1a8944649400632588296d3c22b.png" 
-              alt="Vista Point Verlag Logo"
-              class="logo-img"
-            />
-          </div>
-          <div class="logo-card">
-            <img 
-              src="/images/280197cc4f34417bd05646dffc7f56e6f8a15317.png" 
-              alt="theGenesys.ai Logo"
-              class="logo-img"
-            />
-          </div>
-          <div class="logo-card">
-            <img 
-              src="/images/8b1fe9a88cb76ecfb2bd075f1fd259a1ead00078.png" 
-              alt="TheList.app Logo"
-              class="logo-img"
-            />
-          </div>
-          <div class="logo-card">
-            <img
-              src="/images/41144ac6829b4b8ce105a021e42e2c7135c8ab45.png"
-              alt="TourCont Logo"
-              class="logo-img"
-            />
-          </div>
-          <div class="logo-card">
-            <img
-              src="/images/logo-maison-o.svg"
-              alt="Maison Ô Logo"
-              class="logo-img"
-            />
-          </div>
-          <div class="logo-card">
-            <img
-              src="/images/logo-cadan.svg"
-              alt="Cadan Logo"
-              class="logo-img"
-            />
-          </div>
-        </div>
-
-        <!-- Zweite Reihe Logos (Duplikat für seamless scroll) -->
-        <div class="flex gap-8 flex-shrink-0">
-          <div class="logo-card">
-            <img 
-              src="/images/b98556db3c843164bbb3a774ce55b5998de2f009.png" 
-              alt="Brillen.de Logo"
-              class="logo-img"
-            />
-          </div>
-          <div class="logo-card">
-            <img 
-              src="/images/7a9b772364c890df4c839614fcf75a603c689245.png" 
-              alt="MyPostcard Logo"
-              class="logo-img"
-            />
-          </div>
-          <div class="logo-card">
-            <img 
-              src="/images/0868420e2592f1a8944649400632588296d3c22b.png" 
-              alt="Vista Point Verlag Logo"
-              class="logo-img"
-            />
-          </div>
-          <div class="logo-card">
-            <img 
-              src="/images/280197cc4f34417bd05646dffc7f56e6f8a15317.png" 
-              alt="theGenesys.ai Logo"
-              class="logo-img"
-            />
-          </div>
-          <div class="logo-card">
-            <img 
-              src="/images/8b1fe9a88cb76ecfb2bd075f1fd259a1ead00078.png" 
-              alt="TheList.app Logo"
-              class="logo-img"
-            />
-          </div>
-          <div class="logo-card">
-            <img
-              src="/images/41144ac6829b4b8ce105a021e42e2c7135c8ab45.png"
-              alt="TourCont Logo"
-              class="logo-img"
-            />
-          </div>
-          <div class="logo-card">
-            <img
-              src="/images/logo-maison-o.svg"
-              alt="Maison Ô Logo"
-              class="logo-img"
-            />
-          </div>
-          <div class="logo-card">
-            <img
-              src="/images/logo-cadan.svg"
-              alt="Cadan Logo"
-              class="logo-img"
-            />
-          </div>
-        </div>
+        ))}
       </div>
     </div>
   </div>
 </section>
 
-<script is:inline>
+<script define:vars={{ logoCount }}>
   (function() {
     'use strict';
     
@@ -159,7 +65,7 @@ const t = getTranslations(lang);
     const scrollSpeed = 0.5;
     const cardWidth = 180;
     const gap = 32;
-    const totalWidth = (cardWidth + gap) * 8;
+    const totalWidth = (cardWidth + gap) * logoCount;
 
     function initCustomerReferences() {
       document.documentElement.classList.remove('no-js');

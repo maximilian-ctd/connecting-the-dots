@@ -1,0 +1,182 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import Header from '../../../components/Header.astro';
+import LeadForm from '../../../components/LeadForm.astro';
+import Footer from '../../../components/Footer.astro';
+
+const lang = 'de';
+const currentPath = '/de/cases/social-commerce-live-shopping';
+
+const page = {
+  title: 'ConnectingTheDots · Social Commerce & Live Shopping – TikTok Shop, Whatnot, eBay Live',
+  description: 'Schneller Einstieg in Social Commerce und Live Shopping: TikTok Shop, Whatnot, eBay Live. Wir machen den Marktstart – ohne Strategiepapiere, ohne ewige Abstimmung.',
+  hero: {
+    eyebrow: 'Social Commerce & Live Shopping',
+    title: 'TikTok Shop, Whatnot, eBay Live – in Tagen live, nicht in Monaten.',
+    subtitle: 'Social Commerce und Live Shopping explodieren gerade. Wir bringen dich schnell und unkompliziert auf die Plattformen, die jetzt wachsen – ohne endlose Strategiepapiere und Abstimmungsrunden. Einfach machen.',
+    cta: 'Jetzt starten – Erstgespräch buchen',
+  },
+  platforms: {
+    title: 'Die Plattformen, die gerade boomen',
+    items: [
+      { icon: '🎵', name: 'TikTok Shop', desc: 'Verkaufe direkt in der App, die Gen Z und Millennials dominiert. Shoppable Videos, LIVE Shopping und Affiliate-Programme – alles in einem Kanal.', stat: '#1 wachsender Social Commerce Kanal' },
+      { icon: '🔴', name: 'Whatnot', desc: 'Die führende Live-Shopping-Plattform für Collectibles, Fashion, Beauty und mehr. Auktion + Entertainment = höhere Warenkörbe und loyale Kunden.', stat: 'Live Shopping mit bis zu 5x höherer Conversion' },
+      { icon: '🛍️', name: 'eBay Live', desc: 'eBay bringt Live Shopping auf eine der größten Handelsplattformen der Welt. Bestandskunden aktivieren und neue Zielgruppen über interaktive Streams erreichen.', stat: 'Zugang zu 135 Mio. aktiven Käufern' },
+    ],
+  },
+  approach: {
+    title: 'Unser Ansatz: Machen, nicht planen',
+    steps: [
+      { icon: '⚡', title: 'Setup in Tagen', text: 'Account-Einrichtung, Produktlisting und Onboarding – wir machen alles operativ, damit du schnellstmöglich live bist. Kein monatelanges IT-Projekt.' },
+      { icon: '🎬', title: 'Erste Verkäufe starten', text: 'Ob Shoppable Video auf TikTok, Live-Auktion auf Whatnot oder Stream auf eBay Live – wir starten mit echten Verkäufen und lernen am Markt.' },
+      { icon: '📈', title: 'Skalieren, was funktioniert', text: 'Datenbasierte Optimierung: Was funktioniert, wird ausgebaut. Neue Formate, größere Reichweite, mehr Kanäle – schnell und ohne Bürokratie.' },
+    ],
+  },
+  results: {
+    title: 'Warum Social Commerce jetzt?',
+    kpis: [
+      { value: '$107 Mrd.', label: 'Social Commerce Markt 2025 (weltweit)', icon: '🌍' },
+      { value: '5x', label: 'Höhere Conversion bei Live Shopping vs. klassisch', icon: '🔥' },
+      { value: '67%', label: 'Der Gen Z haben über Social Media eingekauft', icon: '📱' },
+    ],
+    quote: 'CTD unterstützte GenesysAI beim Markteintritt in der EU – innerhalb von Monaten entstanden starke Partnerschaften und skalierbare Vertriebskanäle.',
+    quoteAuthor: 'Andreas Skorski, Gründer GenesysAI',
+  },
+  forWhom: {
+    title: 'Für wen ist das?',
+    items: [
+      'Brands und Händler, die Social Commerce als neuen Vertriebskanal erschließen wollen',
+      'Unternehmen, die TikTok Shop, Whatnot oder eBay Live testen möchten – ohne monatelange Vorbereitung',
+      'D2C-Brands, die jüngere Zielgruppen über Social Plattformen erreichen wollen',
+      'Marktplatz-Seller, die ihre Reichweite über Live Shopping erweitern möchten',
+    ],
+  },
+  whyCTD: {
+    title: 'Warum ConnectingTheDots?',
+    items: [
+      { icon: '🚀', title: 'Einfach machen', text: 'Keine Strategiepapiere, keine ewigen Abstimmungsrunden. Wir starten direkt – und optimieren auf Basis echter Daten.' },
+      { icon: '🔗', title: 'Plattform-Netzwerk', text: 'Direkte Kontakte zu TikTok Shop, Whatnot und eBay Live. Wir kennen die Ansprechpartner und die Prozesse.' },
+      { icon: '🛠️', title: 'End-to-End Umsetzung', text: 'Von Account-Setup über Content-Strategie bis zum laufenden Betrieb – alles aus einer Hand.' },
+      { icon: '📊', title: '15 Jahre Erfahrung', text: 'Growth, Business Development und Markterschließung im DACH-Raum und Europa – strategisch und operativ.' },
+    ],
+  },
+};
+---
+
+<Layout
+  title={page.title}
+  description={page.description}
+  lang={lang}
+  currentPath={currentPath}
+>
+  <Header lang={lang} currentPath={currentPath} />
+  <main>
+    <!-- Hero -->
+    <section class="relative bg-white pt-32 pb-20 px-4 overflow-hidden">
+      <div class="absolute inset-0 bg-gradient-to-br from-accent/5 via-transparent to-accent/3"></div>
+      <div class="max-w-4xl mx-auto relative z-10 text-center">
+        <span class="inline-block text-xs uppercase tracking-[0.3em] text-accent font-semibold mb-4">{page.hero.eyebrow}</span>
+        <h1 class="text-4xl lg:text-5xl font-bold leading-tight mb-6">{page.hero.title}</h1>
+        <p class="text-lg text-muted-foreground max-w-2xl mx-auto mb-10 leading-relaxed">{page.hero.subtitle}</p>
+        <a href="#contact" class="inline-flex items-center justify-center py-4 px-8 text-lg rounded-xl text-accent-foreground bg-accent shadow-[0_22px_48px_rgba(123,224,183,0.35)] transition-all hover:-translate-y-[2px] hover:shadow-[0_30px_58px_rgba(123,224,183,0.4)] active:scale-[0.98]">
+          {page.hero.cta}
+          <svg class="ml-2 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+        </a>
+      </div>
+    </section>
+
+    <!-- Plattformen -->
+    <section class="bg-secondary py-20 px-4">
+      <div class="max-w-5xl mx-auto">
+        <h2 class="text-2xl lg:text-3xl font-bold text-center mb-14">{page.platforms.title}</h2>
+        <div class="grid md:grid-cols-3 gap-8">
+          {page.platforms.items.map((platform) => (
+            <div class="border border-accent/20 bg-white rounded-2xl p-8 shadow-sm hover:shadow-lg transition-all hover:-translate-y-1">
+              <div class="text-4xl mb-4">{platform.icon}</div>
+              <h3 class="text-xl font-semibold mb-3">{platform.name}</h3>
+              <p class="text-muted-foreground leading-relaxed mb-4">{platform.desc}</p>
+              <span class="inline-block text-xs font-semibold text-accent bg-accent/10 px-3 py-1 rounded-full">{platform.stat}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Ansatz: 3 Schritte -->
+    <section class="bg-white py-20 px-4">
+      <div class="max-w-5xl mx-auto">
+        <h2 class="text-2xl lg:text-3xl font-bold text-center mb-14">{page.approach.title}</h2>
+        <div class="grid md:grid-cols-3 gap-8">
+          {page.approach.steps.map((step) => (
+            <div class="border border-accent/20 bg-white rounded-2xl p-8 shadow-sm hover:shadow-md transition-shadow">
+              <div class="text-4xl mb-4">{step.icon}</div>
+              <h3 class="text-xl font-semibold mb-3">{step.title}</h3>
+              <p class="text-muted-foreground leading-relaxed">{step.text}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Marktzahlen -->
+    <section class="bg-secondary py-20 px-4">
+      <div class="max-w-5xl mx-auto">
+        <h2 class="text-2xl lg:text-3xl font-bold text-center mb-14">{page.results.title}</h2>
+        <div class="grid grid-cols-3 gap-6 mb-14">
+          {page.results.kpis.map((kpi) => (
+            <div class="border border-accent/20 bg-white/60 backdrop-blur rounded-2xl p-8 text-center shadow-sm">
+              <div class="text-3xl mb-3">{kpi.icon}</div>
+              <div class="text-3xl font-bold text-foreground mb-2">{kpi.value}</div>
+              <div class="text-sm text-muted-foreground">{kpi.label}</div>
+            </div>
+          ))}
+        </div>
+        <div class="max-w-3xl mx-auto bg-white rounded-2xl p-8 shadow-sm border border-accent/10">
+          <blockquote class="text-lg italic text-foreground leading-relaxed mb-4">"{page.results.quote}"</blockquote>
+          <p class="text-sm text-accent font-semibold">{page.results.quoteAuthor}</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Warum CTD -->
+    <section class="bg-white py-20 px-4">
+      <div class="max-w-5xl mx-auto">
+        <h2 class="text-2xl lg:text-3xl font-bold text-center mb-14">{page.whyCTD.title}</h2>
+        <div class="grid md:grid-cols-2 gap-8">
+          {page.whyCTD.items.map((item) => (
+            <div class="flex gap-4 p-6 bg-secondary/50 rounded-2xl">
+              <div class="text-3xl flex-shrink-0">{item.icon}</div>
+              <div>
+                <h3 class="text-lg font-semibold mb-2">{item.title}</h3>
+                <p class="text-muted-foreground leading-relaxed">{item.text}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Für wen -->
+    <section class="bg-secondary py-16 px-4">
+      <div class="max-w-3xl mx-auto">
+        <h2 class="text-2xl lg:text-3xl font-bold mb-8">{page.forWhom.title}</h2>
+        <ul class="space-y-4">
+          {page.forWhom.items.map((item) => (
+            <li class="flex items-start gap-3">
+              <span class="mt-1.5 h-2 w-2 rounded-full bg-accent flex-shrink-0"></span>
+              <span class="text-muted-foreground leading-relaxed">{item}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+
+    <!-- Lead Form -->
+    <LeadForm lang={lang} />
+  </main>
+  <Footer lang={lang} currentPath={currentPath} />
+</Layout>
+
+<style>
+  main { min-height: 100vh; }
+</style>

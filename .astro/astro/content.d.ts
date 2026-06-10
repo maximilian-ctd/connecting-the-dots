@@ -162,6 +162,20 @@ declare module 'astro:content' {
   collection: "blog";
   data: InferEntrySchema<"blog">
 } & { render(): Render[".md"] };
+"social-commerce-live-shopping-tiktok-whatnot-ebay-de.md": {
+	id: "social-commerce-live-shopping-tiktok-whatnot-ebay-de.md";
+  slug: "social-commerce-live-shopping-tiktok-whatnot-ebay-de";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
+"social-commerce-live-shopping-tiktok-whatnot-ebay-en.md": {
+	id: "social-commerce-live-shopping-tiktok-whatnot-ebay-en.md";
+  slug: "social-commerce-live-shopping-tiktok-whatnot-ebay-en";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
 "supervista-b2b-partner-platform-validation-en.md": {
 	id: "supervista-b2b-partner-platform-validation-en.md";
   slug: "supervista-b2b-partner-platform-validation-en";
