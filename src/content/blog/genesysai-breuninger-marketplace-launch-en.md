@@ -20,7 +20,7 @@ GenesysAI expanded its digital sales strategy and successfully launched on the B
 
 - **Client:** GenesysAI
 - **Marketplace:** Breuninger (Premium, DACH region)
-- **Model:** EAN Match & Backfill — minimal technical effort
+- **Model:** EAN Match & Backfill.minimal technical effort
 - **CTD Services:** First contact, contract, KYC, project management, operational management
 - **Result:** Fast, structured go-live on a premium marketplace
 
@@ -32,7 +32,7 @@ GenesysAI expanded its digital sales strategy and successfully launched on the B
 
 The Breuninger marketplace is one of the **leading premium marketplaces in the DACH region** and gives brands access to a high-quality audience with strong purchasing power.
 
-For companies like GenesysAI, this opens up new opportunities to **increase reach and unlock additional revenue potential** — without building their own platform infrastructure.
+For companies like GenesysAI, this opens up new opportunities to **increase reach and unlock additional revenue potential**.without building their own platform infrastructure.
 
 <div class="kpi-grid">
 <div class="kpi-card">
@@ -70,7 +70,7 @@ For companies like GenesysAI, this opens up new opportunities to **increase reac
 Benefits of EAN match listing:
 
 - **No extensive content creation** required
-- **Minimal technical implementation** — no complex IT project
+- **Minimal technical implementation**.no complex IT project
 - **Fast go-live** for large assortments
 - **Reduced resource requirements** with full marketplace access
 - **Immediate use** of marketplace reach
@@ -87,7 +87,7 @@ The marketplace launch was **fully supported by ConnectingTheDots**. The service
 
 ### First contact and contract closing
 
-ConnectingTheDots initiated the exchange with the Breuninger marketplace and guided GenesysAI through the **entire contract process** — from initial alignment to final activation.
+ConnectingTheDots initiated the exchange with the Breuninger marketplace and guided GenesysAI through the **entire contract process**.from initial alignment to final activation.
 
 <span class="phase-tag">Phase 2</span>
 
@@ -156,9 +156,9 @@ For companies that want to test marketplaces or quickly build reach, EAN-based l
 
 ## Client Testimonial
 
-> *"CTD supported GenesysAI in entering the EU market — within months, strong partnerships and scalable sales channels were established."*
+> *"CTD supported GenesysAI in entering the EU market.within months, strong partnerships and scalable sales channels were established."*
 >
-> **— Andreas Skorski, Founder of GenesysAI**
+> **. Andreas Skorski, Founder of GenesysAI**
 
 ---
 

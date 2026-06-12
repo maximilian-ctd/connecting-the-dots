@@ -65,11 +65,11 @@ Aufbauend auf der Positionierung wurde ein Geschäftsmodell entwickelt, das **ku
 
 <div class="callout">
 
-**Pragmatisch statt theoretisch:** Kein abstraktes Konstrukt, sondern ein Modell, das sich schnell im Markt testen lässt — mit dem Ziel, früh erste Umsätze zu generieren und gleichzeitig eine Grundlage für nachhaltiges Wachstum zu schaffen.
+**Pragmatisch statt theoretisch:** Kein abstraktes Konstrukt, sondern ein Modell, das sich schnell im Markt testen lässt.mit dem Ziel, früh erste Umsätze zu generieren und gleichzeitig eine Grundlage für nachhaltiges Wachstum zu schaffen.
 
 </div>
 
-ConnectingTheDots unterstützte die strukturierte Entwicklung von **Angebotslogik, Preisstrategie und operativen Grundlagen** — immer mit Blick auf effiziente Markteinführung und Skalierbarkeit.
+ConnectingTheDots unterstützte die strukturierte Entwicklung von **Angebotslogik, Preisstrategie und operativen Grundlagen**.immer mit Blick auf effiziente Markteinführung und Skalierbarkeit.
 
 ---
 
@@ -109,13 +109,13 @@ Diese Struktur ermöglicht **gezielten Ressourceneinsatz** und vermeidet unnöti
 
 Der wichtigste Hebel im gesamten Projekt: eine **praxisnahe Launchstrategie**, ausgelegt auf Geschwindigkeit, Fokus und Umsetzbarkeit.
 
-**Der Lean-Launch-Ansatz:** Schneller Markteintritt mit einem klar definierten Angebot, um früh echtes Kundenfeedback zu generieren — statt lange im Vorfeld zu planen.
+**Der Lean-Launch-Ansatz:** Schneller Markteintritt mit einem klar definierten Angebot, um früh echtes Kundenfeedback zu generieren.statt lange im Vorfeld zu planen.
 
 Zentrale Elemente der Strategie:
 
-- **Klare Zielgruppen-Fokussierung** — Vertriebsaktivitäten gezielt aufbauen, ohne Streuverluste
-- **Effizienter Kanalmix** — Direkter Marktzugang über persönliches Netzwerk, gezielten Outbound und erste Partnerschaften
-- **Schnelle Iteration** — Früh am Markt lernen und das Angebot optimieren
+- **Klare Zielgruppen-Fokussierung**.Vertriebsaktivitäten gezielt aufbauen, ohne Streuverluste
+- **Effizienter Kanalmix**.Direkter Marktzugang über persönliches Netzwerk, gezielten Outbound und erste Partnerschaften
+- **Schnelle Iteration**.Früh am Markt lernen und das Angebot optimieren
 
 <div class="callout">
 
@@ -191,7 +191,7 @@ Damit verfügt TourCont AG über die **entscheidenden Voraussetzungen** für ein
 
 > *„Wir sind in der Gründungsphase der TourCont AG mit unserer Idee zu den geplanten Reiseveranstalter-Apps an Maximilian herangetreten. Zu dem Zeitpunkt hatten wir zwar eine starke Vision, aber noch keinen klaren Plan für den Markteintritt. ConnectingTheDots hat uns in kurzer Zeit geholfen, unsere Geschäftsidee zu schärfen, den Businessplan zu präzisieren, ein skalierbares Geschäftsmodell zu entwickeln und eine fokussierte Launchstrategie aufzusetzen. Was uns besonders überzeugt hat: der pragmatische Ansatz. Keine endlosen Strategiepapiere, sondern ein klarer Fahrplan mit dem Ziel, schnell am echten Markt zu validieren. Maximilian war dabei nicht nur Berater, sondern echter Sparringspartner, der mitgedacht und mitgestaltet hat. Das Ergebnis: eine klare Positionierung, eine strukturierte Roadmap und die Grundlage für unseren erfolgreichen Markteintritt."*
 >
-> **— Markus Schreiber, Co-Founder TourCont AG**
+> **. Markus Schreiber, Co-Founder TourCont AG**
 
 ---
 

@@ -20,7 +20,7 @@ GenesysAI erweitert seine digitale Vertriebsstrategie und startet erfolgreich au
 
 - **Kunde:** GenesysAI
 - **Marktplatz:** Breuninger (Premium, DACH)
-- **Modell:** EAN Match & Backfill — minimaler technischer Aufwand
+- **Modell:** EAN Match & Backfill.minimaler technischer Aufwand
 - **Leistung CTD:** Erstkontakt, Vertrag, KYC, Projektmanagement, operatives Management
 - **Ergebnis:** Schneller, strukturierter Go-Live auf Premium-Marktplatz
 
@@ -32,7 +32,7 @@ GenesysAI erweitert seine digitale Vertriebsstrategie und startet erfolgreich au
 
 Der Breuninger Marktplatz zählt zu den **führenden Premium-Marktplätzen im DACH-Raum** und bietet Marken Zugang zu einer hochwertigen Zielgruppe mit hoher Kaufkraft.
 
-Für Unternehmen wie GenesysAI eröffnet dies neue Möglichkeiten, **Reichweite zu erhöhen und zusätzliche Umsatzpotenziale** zu erschließen — ohne den Aufbau eigener Plattformstrukturen.
+Für Unternehmen wie GenesysAI eröffnet dies neue Möglichkeiten, **Reichweite zu erhöhen und zusätzliche Umsatzpotenziale** zu erschließen.ohne den Aufbau eigener Plattformstrukturen.
 
 <div class="kpi-grid">
 <div class="kpi-card">
@@ -70,7 +70,7 @@ Für Unternehmen wie GenesysAI eröffnet dies neue Möglichkeiten, **Reichweite 
 Vorteile des EAN Match Listings:
 
 - **Kein aufwendiger Content-Aufbau** notwendig
-- **Minimale technische Implementierung** — kein komplexes IT-Projekt
+- **Minimale technische Implementierung**.kein komplexes IT-Projekt
 - **Schneller Go-Live** großer Sortimente
 - **Reduzierter Ressourcenaufwand** bei vollem Marktplatz-Zugang
 - **Sofortige Nutzung** der Marktplatzreichweite
@@ -87,7 +87,7 @@ Die Umsetzung des Marktplatz-Launches wurde **vollständig durch ConnectingTheDo
 
 ### Erstkontaktaufnahme und Vertragsabschluss
 
-ConnectingTheDots initiierte den Austausch mit dem Breuninger Marktplatz und begleitete GenesysAI strukturiert durch den **gesamten Vertragsprozess** — von der ersten Abstimmung bis zur finalen Aktivierung.
+ConnectingTheDots initiierte den Austausch mit dem Breuninger Marktplatz und begleitete GenesysAI strukturiert durch den **gesamten Vertragsprozess**.von der ersten Abstimmung bis zur finalen Aktivierung.
 
 <span class="phase-tag">Phase 2</span>
 
@@ -156,9 +156,9 @@ Gerade für Unternehmen, die Marktplätze testen oder kurzfristig Reichweite auf
 
 ## Stimme des Auftraggebers
 
-> *„CTD unterstützte GenesysAI beim Markteintritt in der EU — innerhalb von Monaten entstanden starke Partnerschaften und skalierbare Vertriebskanäle."*
+> *„CTD unterstützte GenesysAI beim Markteintritt in der EU.innerhalb von Monaten entstanden starke Partnerschaften und skalierbare Vertriebskanäle."*
 >
-> **— Andreas Skorski, Gründer GenesysAI**
+> **. Andreas Skorski, Gründer GenesysAI**
 
 ---
 

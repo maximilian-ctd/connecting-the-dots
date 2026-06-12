@@ -65,11 +65,11 @@ Building on the positioning, a business model was developed that supports **shor
 
 <div class="callout">
 
-**Pragmatic over theoretical:** Not an abstract construct, but a model that can be tested quickly in the market — with the goal of enabling early revenue while creating a foundation for sustainable growth.
+**Pragmatic over theoretical:** Not an abstract construct, but a model that can be tested quickly in the market.with the goal of enabling early revenue while creating a foundation for sustainable growth.
 
 </div>
 
-ConnectingTheDots supported the structured development of **value proposition logic, pricing strategy, and operational fundamentals** — always with a focus on efficient market introduction and scalability.
+ConnectingTheDots supported the structured development of **value proposition logic, pricing strategy, and operational fundamentals**.always with a focus on efficient market introduction and scalability.
 
 ---
 
@@ -109,13 +109,13 @@ This structure enables **targeted use of resources** and avoids unnecessary dela
 
 The strongest lever in the project: a **practical launch strategy** designed for speed, focus, and feasibility.
 
-**The Lean Launch approach:** Entering the market quickly with a clearly defined offer to generate early customer feedback — rather than planning too long upfront.
+**The Lean Launch approach:** Entering the market quickly with a clearly defined offer to generate early customer feedback.rather than planning too long upfront.
 
 Key elements of the strategy:
 
-- **Clear target audience focus** — Building initial sales activities with precision, without unnecessary scatter
-- **Efficient channel mix** — Direct market access through personal networks, targeted outbound, and early partnerships
-- **Fast iteration** — Learning early in the market and optimizing the offer
+- **Clear target audience focus**.Building initial sales activities with precision, without unnecessary scatter
+- **Efficient channel mix**.Direct market access through personal networks, targeted outbound, and early partnerships
+- **Fast iteration**.Learning early in the market and optimizing the offer
 
 <div class="callout">
 
@@ -191,7 +191,7 @@ As a result, TourCont AG gained the **key prerequisites** for a successful start
 
 > *"We approached Maximilian during the founding phase of TourCont AG with our idea for the planned tour operator apps. At that point, we had a strong vision but no clear plan for market entry. ConnectingTheDots helped us in a short time to sharpen our business idea, refine the business plan, develop a scalable business model, and set up a focused launch strategy. What convinced us most was the pragmatic approach. No endless strategy papers, but a clear roadmap with the goal of validating quickly in the real market. Maximilian was not just a consultant, but a true sparring partner who thought and shaped things alongside us. The result: a clear positioning, a structured roadmap, and the foundation for our successful market entry."*
 >
-> **— Markus Schreiber, Co-Founder TourCont AG**
+> **. Markus Schreiber, Co-Founder TourCont AG**
 
 ---
 
