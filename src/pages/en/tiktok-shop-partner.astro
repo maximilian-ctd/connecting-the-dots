@@ -4,102 +4,102 @@ import Header from '../../components/Header.astro';
 import LeadForm from '../../components/LeadForm.astro';
 import Footer from '../../components/Footer.astro';
 
-const lang = 'de';
-const currentPath = '/de/tiktok-shop-partner';
+const lang = 'en';
+const currentPath = '/en/tiktok-shop-partner';
 
 const page = {
-  title: 'TikTok Shop Partner (TSP): Full-Service-Netzwerk · ConnectingTheDots',
-  description: 'Offizielles TikTok Shop Partner-Netzwerk: Commerce, Brand und Technologie aus einer Hand. Ein Vertrag, drei Spezialisten – Setup, LIVE Shopping und Betrieb für Brands und Händler in DE/EU.',
+  title: 'TikTok Shop Partner (TSP): full-service network · ConnectingTheDots',
+  description: 'Official TikTok Shop Partner network: commerce, brand and technology from a single point of contact. One agreement, three specialists – setup, LIVE Shopping and operations for brands and retailers in DE/EU.',
   hero: {
     eyebrow: 'TikTok Shop Partner (TSP)',
-    title: 'Dein TikTok Shop Partner: Commerce, Brand und Technologie aus einer Hand.',
-    subtitle: 'Als Teil eines registrierten TikTok Shop Partner-Netzwerks bringen wir Brands und Händler full-service auf TikTok Shop – ein Ansprechpartner, drei Spezialisten, von der Strategie über das Setup bis zum laufenden Betrieb.',
-    cta: 'Partnergespräch anfragen',
+    title: 'Your TikTok Shop Partner: commerce, brand and technology from a single point of contact.',
+    subtitle: 'As part of a registered TikTok Shop Partner network we bring brands and retailers full-service onto TikTok Shop – one point of contact, three specialists, from strategy and setup to day-to-day operations.',
+    cta: 'Request a partner call',
   },
   partners: {
-    title: 'Eine Partner-Entität, drei Spezialstärken',
-    intro: 'Cadan Software GmbH ist der registrierte TikTok Shop Partner. Die Umsetzung läuft über ein eingespieltes Spezialisten-Netzwerk – so bekommst du Commerce, Brand und Technologie aus einem Guss, mit einem einzigen Ansprechpartner.',
+    title: 'One partner entity, three specialist strengths',
+    intro: 'Cadan Software GmbH is the registered TikTok Shop Partner. Delivery runs through a tight network of specialists, so sellers get commerce, brand and technology from a single point of contact.',
     items: [
-      { tag: 'TSP & Technologie', name: 'Cadan Software GmbH', desc: 'Die vertragsführende TikTok-Shop-Partner-Entität. Liefert das AI/SaaS- und Daten-Backbone für Analytics, Automatisierung und Reporting.', icon: '⚙️' },
-      { tag: 'Commerce Operations', name: 'ConnectingTheDots', desc: 'Betreibt den kommerziellen Motor: Marktplatz- und TikTok-Shop-Strategie, Onboarding, Creator & Affiliate, Ads und das Tagesgeschäft.', icon: '🚀' },
-      { tag: 'Brand & Creative', name: 'Make Branding', desc: 'Branding, Webdesign, Content und Online-Marketing. Macht aus dem Shop eine Marke, die auf TikTok konvertiert.', icon: '🎨', href: 'https://makebranding.de' },
+      { tag: 'TSP & Technology', name: 'Cadan Software GmbH', desc: 'The contracting TikTok Shop Partner entity. Brings the AI/SaaS and data backbone for analytics, automation and reporting.', icon: '⚙️' },
+      { tag: 'Commerce Operations', name: 'ConnectingTheDots', desc: 'Runs the commercial engine: marketplace and TikTok Shop strategy, onboarding, creator & affiliate, ads and day-to-day operations.', icon: '🚀' },
+      { tag: 'Brand & Creative', name: 'Make Branding', desc: 'Branding, webdesign, content and online marketing. Turns the shop into a brand that converts on TikTok.', icon: '🎨', href: 'https://makebranding.de' },
     ],
   },
   glance: {
-    title: 'Commerce, Brand und Technologie – kombiniert',
-    intro: 'Das Netzwerk verbindet eine registrierte GmbH mit 15+ Jahren Hands-on-Commerce-Erfahrung und eine Kreativagentur. Du briefst einmal, wir koordinieren den Rest – ohne mehrere Dienstleister zu jonglieren.',
+    title: 'Commerce, brand and technology, combined',
+    intro: 'The network pairs a registered GmbH with 15+ years of hands-on commerce experience and a creative agency, covering everything a TikTok Shop seller needs without juggling multiple vendors.',
     stats: [
-      { value: '15+', label: 'Jahre E-Commerce- & Go-to-Market-Erfahrung' },
-      { value: '50+', label: 'Betreute Brands über mehrere Kanäle' },
-      { value: '3', label: 'Spezialpartner unter einer TSP-Entität' },
+      { value: '15+', label: 'Years of e-commerce & go-to-market experience' },
+      { value: '50+', label: 'Brands supported across channels' },
+      { value: '3', label: 'Specialist partners under one TSP entity' },
     ],
-    bafa: 'BAFA-gelistete Beratung im Netzwerk – förderfähig für öffentliche Zuschüsse zu Beratungsleistungen in Deutschland.',
+    bafa: 'BAFA-listed consultancy in the network, eligible for German public funding of advisory services.',
   },
   capabilities: {
-    title: 'Alles, was ein TikTok-Shop-Seller braucht',
-    intro: 'Full-Service über das Netzwerk – Commerce (CTD), Brand (Make) und Technologie (Cadan).',
+    title: 'Everything a TikTok Shop seller needs',
+    intro: 'Full-service across the network – commerce (CTD), brand (Make) and technology (Cadan).',
     items: [
-      { icon: '🧭', title: 'Marktplatz-Strategie', text: 'Kanalmix, Positionierung & Roadmap' },
-      { icon: '✅', title: 'TikTok Shop Onboarding', text: 'Setup, Zertifizierung & Go-Live' },
-      { icon: '🛠️', title: 'Shop Operations', text: 'Listings, Pricing & Tagesgeschäft' },
-      { icon: '🎨', title: 'Brand & Creative Direction', text: 'Identität, Art Direction & Assets' },
-      { icon: '🖥️', title: 'Content & Webdesign', text: 'Storefront, Content & Landingpages' },
-      { icon: '📣', title: 'Retail Media & Ads', text: 'Paid-Kampagnen & ROAS' },
-      { icon: '🤝', title: 'Creator & Affiliate', text: 'Sourcing, Programme & Aktivierung' },
-      { icon: '📊', title: 'Reporting & AI-Analytics', text: 'KPIs, Dashboards & Insights' },
-      { icon: '🔗', title: 'Shopify & Integrationen', text: 'Produkt-Sync & Systeme' },
+      { icon: '🧭', title: 'Marketplace Strategy', text: 'Channel mix, positioning & roadmap' },
+      { icon: '✅', title: 'TikTok Shop Onboarding', text: 'Setup, certification & go-live' },
+      { icon: '🛠️', title: 'Shop Operations', text: 'Listings, pricing & day-to-day' },
+      { icon: '🎨', title: 'Brand & Creative Direction', text: 'Identity, art direction & assets' },
+      { icon: '🖥️', title: 'Content & Webdesign', text: 'Storefront, content & landing pages' },
+      { icon: '📣', title: 'Retail Media & Ads', text: 'Paid campaigns & ROAS' },
+      { icon: '🤝', title: 'Creator & Affiliate', text: 'Sourcing, programs & activation' },
+      { icon: '📊', title: 'Reporting & AI Analytics', text: 'KPIs, dashboards & insight' },
+      { icon: '🔗', title: 'Shopify & Integrations', text: 'Product sync & systems' },
     ],
   },
   fit: {
-    title: 'Warum wir zu TikTok Shop passen',
+    title: 'Why we fit TikTok Shop',
     items: [
-      { icon: '🔴', title: 'Im Kanal zu Hause', text: 'Wir betreiben TikTok Shop, Marktplätze und Shopify täglich – nicht in der Theorie, sondern als laufenden Händlerbetrieb.' },
-      { icon: '⚡', title: 'Direkter Partnerzugang', text: 'Eine direkte Linie ins TikTok-Shop-Team, um Onboarding und Probleme schnell zu lösen.' },
-      { icon: '💡', title: 'Marke, die konvertiert', text: 'Make Branding baut die Creatives und Inhalte, die Produkte auf TikTok wirklich verkaufen.' },
-      { icon: '💎', title: 'Tiefe in strategischen Verticals', text: 'Kategorie-Erfahrung in Schmuck, Beauty, Premium-Fashion und Home & Living – allesamt High-Conversion-Verticals auf TikTok.' },
+      { icon: '🔴', title: 'Native to the channel', text: 'We operate TikTok Shop, marketplaces and Shopify daily, not as theory but as live merchant operations.' },
+      { icon: '⚡', title: 'Direct partner access', text: 'A direct line into the TikTok Shop team to unblock onboarding and issues fast.' },
+      { icon: '💡', title: 'Brand that converts', text: 'Make Branding builds the creative and content that makes products sell on TikTok.' },
+      { icon: '💎', title: 'Depth in strategic verticals', text: 'Category experience in jewelry, beauty, premium fashion and home & living – all high-conversion TikTok verticals.' },
     ],
   },
   caseStudy: {
     eyebrow: 'TikTok Shop Case Study',
-    title: 'Shine&Love by BrautSchön: live in 4 Wochen',
-    meta: '925-Silberschmuck, Braut- & Haaraccessoires · Shopify · Jewelry & Bridal',
+    title: 'Shine&Love by BrautSchön: live in 4 weeks',
+    meta: '925 silver jewelry, bridal & hair accessories · Shopify · Jewelry & bridal',
     delivered: [
-      'TikTok Shop DE Marktanalyse & Go-to-Market-Strategie',
-      'Shopify-x-TikTok-Shop-Integration (Produktdaten-Sync)',
-      'Creator- & Affiliate-Programm: Setup und Sourcing',
-      'Content-Strategie und Kampagnenplanung',
-      'Kostenmodell mit Break-even und Skalierungs-Roadmap',
+      'TikTok Shop DE market analysis & go-to-market strategy',
+      'Shopify x TikTok Shop integration (product data sync)',
+      'Creator & affiliate program setup and sourcing',
+      'Content strategy and campaign planning',
+      'Cost model with break-even and scaling roadmap',
     ],
-    quote: 'Als Schmuckmarke auf Shopify war TikTok Shop für uns komplett Neuland. Maximilian hat unsere Produkte in nur vier Wochen verkaufsbereit live gebracht und Altlasten gelöst, die ohne seine direkte Linie zu TikTok nicht möglich gewesen wären. Wer als Marke auf TikTok Shop verkaufen will, ist hier richtig.',
-    quoteAuthor: 'Cathrin Hesping, Inhaberin BrautSchön GmbH / Shine&Love',
+    quote: 'As a jewelry brand on Shopify, TikTok Shop was completely new territory for us. Maximilian got our products live and sellable in just four weeks and solved legacy issues that would not have been possible without his direct line to TikTok. If you want to sell on TikTok Shop as a brand, this is the right place.',
+    quoteAuthor: 'Cathrin Hesping, Owner, BrautSchön GmbH / Shine&Love',
   },
   why: {
-    title: 'Was dieses Netzwerk zu einem starken TSP macht',
+    title: 'What makes this network a strong TSP',
     items: [
-      { icon: '🏃', title: 'Operatoren, keine reinen Berater', text: 'Wir betreiben TikTok Shop, Marktplätze und Shopify im Tagesgeschäft.' },
-      { icon: '🔓', title: 'Direkter TikTok-Partnerzugang', text: 'Eine direkte Linie ins TikTok-Shop-Team, um Onboarding und Probleme schnell zu lösen.' },
-      { icon: '🧩', title: 'Commerce + Brand + Tech', text: 'Ein Vertrag deckt Strategie, Operations, Creative und das Daten-Backbone ab.' },
-      { icon: '🏬', title: 'Marktplatz- & Vertical-Tiefe', text: 'Jahre im Zalando-/Tradebyte-Ökosystem und in den Verticals Premium-Schmuck, Beauty und Home & Living.' },
-      { icon: '🤖', title: 'AI-gestützte Analyse', text: 'Markt- und Verkaufsdaten mit moderner AI ausgewertet – DSGVO-konform und schnell.' },
-      { icon: '🇩🇪', title: 'BAFA-gelistetes Netzwerk', text: 'Öffentliche Förderung für Beratungsleistungen in Deutschland möglich.' },
+      { icon: '🏃', title: 'Operators, not just advisors', text: 'We run live TikTok Shop, marketplace and Shopify operations day-to-day.' },
+      { icon: '🔓', title: 'Direct TikTok partner access', text: 'A direct line into the TikTok Shop team to unblock onboarding and issues fast.' },
+      { icon: '🧩', title: 'Commerce + brand + tech', text: 'One agreement covers strategy, operations, creative and the data backbone.' },
+      { icon: '🏬', title: 'Marketplace & vertical depth', text: 'Years inside the Zalando/Tradebyte ecosystem and in premium jewelry, beauty and home & living.' },
+      { icon: '🤖', title: 'AI-supported analysis', text: 'Market and sales data analyzed with modern AI, GDPR-compliant and fast.' },
+      { icon: '🇩🇪', title: 'BAFA-listed network', text: 'German public funding available for advisory engagements.' },
     ],
   },
   faq: {
-    title: 'Häufige Fragen zur TikTok Shop Partnerschaft',
+    title: 'Frequently asked questions about the TikTok Shop partnership',
     items: [
-      { q: 'Was ist ein TikTok Shop Partner (TSP)?', a: 'Ein TikTok Shop Partner (TSP) ist ein von TikTok anerkannter Dienstleister, der Brands und Händlern beim Aufbau und Betrieb ihres TikTok Shops hilft – von Onboarding und Shop-Management über Creator und Ads bis zur Skalierung. Unser Netzwerk bündelt Commerce, Brand und Technologie unter einer registrierten Partner-Entität.' },
-      { q: 'Wer ist die vertragsführende Partner-Entität?', a: 'Vertragspartner ist die Cadan Software GmbH als registrierter TikTok Shop Partner und Technologie-Backbone. Die kommerzielle Umsetzung übernimmt ConnectingTheDots, Brand und Creative kommen von Make Branding – alles über einen einzigen Ansprechpartner.' },
-      { q: 'Welche Leistungen deckt das Netzwerk ab?', a: 'Full-Service: Marktplatz- und TikTok-Shop-Strategie, Onboarding und Zertifizierung, Shop-Operations, Creator & Affiliate, Retail Media & Ads, Brand & Creative, Content & Webdesign, Reporting mit AI-Analytics sowie Shopify- und System-Integrationen.' },
-      { q: 'Für welche Märkte und Kategorien?', a: 'Schwerpunkt Deutschland und EU. Besondere Tiefe haben wir in den strategischen Verticals Schmuck, Beauty, Premium-Fashion und Home & Living – allesamt High-Conversion-Kategorien auf TikTok –, arbeiten aber kategorieübergreifend.' },
-      { q: 'Ist eine BAFA-Förderung möglich?', a: 'Im Netzwerk ist eine BAFA-gelistete Beratung vertreten. Damit können Beratungsleistungen unter den geltenden Bedingungen über öffentliche Zuschüsse förderfähig sein. Die konkrete Förderfähigkeit klären wir im Erstgespräch.' },
-      { q: 'Wie schnell kann ein Shop live gehen?', a: 'Sobald Verifizierung und Produktkatalog stehen, sind erste Shops in wenigen Wochen verkaufsbereit. In unserer Referenz Shine&Love war der Shop in vier Wochen live – inklusive Shopify-Integration, Creator-Setup und Kampagnenplanung.' },
+      { q: 'What is a TikTok Shop Partner (TSP)?', a: 'A TikTok Shop Partner (TSP) is a TikTok-recognized service provider that helps brands and retailers build and run their TikTok Shop – from onboarding and shop management to creators, ads and scaling. Our network combines commerce, brand and technology under one registered partner entity.' },
+      { q: 'Who is the contracting partner entity?', a: 'The contracting party is Cadan Software GmbH as the registered TikTok Shop Partner and technology backbone. The commercial delivery is handled by ConnectingTheDots, brand and creative come from Make Branding – all through a single point of contact.' },
+      { q: 'What services does the network cover?', a: 'Full-service: marketplace and TikTok Shop strategy, onboarding and certification, shop operations, creator & affiliate, retail media & ads, brand & creative, content & webdesign, reporting with AI analytics, and Shopify and system integrations.' },
+      { q: 'Which markets and categories?', a: 'Focus on Germany and the EU. We have particular depth in the strategic verticals jewelry, beauty, premium fashion and home & living – all high-conversion categories on TikTok – but work across categories.' },
+      { q: 'Is BAFA funding possible?', a: 'The network includes a BAFA-listed consultancy. Advisory services may therefore be eligible for German public funding under the applicable conditions. We clarify concrete eligibility in the intro call.' },
+      { q: 'How fast can a shop go live?', a: 'Once verification and the product catalog are in place, first shops are ready to sell within a few weeks. In our Shine&Love reference the shop was live in four weeks – including Shopify integration, creator setup and campaign planning.' },
     ],
   },
   related: {
-    title: 'Auch interessant',
+    title: 'Also of interest',
     links: [
-      { href: '/de/tiktok-shop', label: 'Auf TikTok Shop verkaufen: Setup, LIVE Shopping & Betrieb' },
-      { href: '/de/cases/social-commerce-live-shopping', label: 'Social Commerce & Live Shopping im Überblick' },
+      { href: '/en/tiktok-shop', label: 'Sell on TikTok Shop: setup, LIVE Shopping & operations' },
+      { href: '/en/cases/social-commerce-live-shopping', label: 'Social Commerce & Live Shopping at a glance' },
     ],
   },
 };
@@ -118,19 +118,19 @@ const serviceSchema = {
   "@context": "https://schema.org",
   "@type": "Service",
   "serviceType": "TikTok Shop Partner (TSP) – Full-Service Operations",
-  "name": "TikTok Shop Partner-Netzwerk für Brands und Händler",
+  "name": "TikTok Shop Partner network for brands and retailers",
   "description": page.description,
   "provider": { "@type": "Organization", "name": "ConnectingTheDots", "url": "https://connectingthe.de" },
   "areaServed": { "@type": "Country", "name": ["DE", "AT", "CH"] },
-  "url": "https://connectingthe.de/de/tiktok-shop-partner",
+  "url": "https://connectingthe.de/en/tiktok-shop-partner",
 };
 
 const breadcrumbSchema = {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
   "itemListElement": [
-    { "@type": "ListItem", "position": 1, "name": "Start", "item": "https://connectingthe.de/de/" },
-    { "@type": "ListItem", "position": 2, "name": "TikTok Shop Partner", "item": "https://connectingthe.de/de/tiktok-shop-partner" },
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://connectingthe.de/en/" },
+    { "@type": "ListItem", "position": 2, "name": "TikTok Shop Partner", "item": "https://connectingthe.de/en/tiktok-shop-partner" },
   ],
 };
 ---
@@ -163,7 +163,7 @@ const breadcrumbSchema = {
       </div>
     </section>
 
-    <!-- Die Partnerschaft -->
+    <!-- The partnership -->
     <section class="bg-secondary py-20 px-4">
       <div class="max-w-5xl mx-auto">
         <h2 class="text-2xl lg:text-3xl font-bold text-center mb-4">{page.partners.title}</h2>
@@ -187,7 +187,7 @@ const breadcrumbSchema = {
       </div>
     </section>
 
-    <!-- Auf einen Blick + Stats -->
+    <!-- At a glance + stats -->
     <section class="bg-white py-20 px-4">
       <div class="max-w-4xl mx-auto text-center">
         <h2 class="text-2xl lg:text-3xl font-bold mb-6">{page.glance.title}</h2>
@@ -223,7 +223,7 @@ const breadcrumbSchema = {
       </div>
     </section>
 
-    <!-- Warum wir passen -->
+    <!-- Why we fit -->
     <section class="bg-white py-20 px-4">
       <div class="max-w-5xl mx-auto">
         <h2 class="text-2xl lg:text-3xl font-bold text-center mb-14">{page.fit.title}</h2>
@@ -249,7 +249,7 @@ const breadcrumbSchema = {
         <p class="text-sm text-muted-foreground text-center mb-12">{page.caseStudy.meta}</p>
         <div class="grid md:grid-cols-2 gap-8 items-start">
           <div class="bg-white rounded-2xl p-8 shadow-sm border border-accent/10">
-            <h3 class="text-sm font-semibold uppercase tracking-wide text-accent mb-4">Was das Netzwerk geliefert hat</h3>
+            <h3 class="text-sm font-semibold uppercase tracking-wide text-accent mb-4">What the network delivered</h3>
             <ul class="space-y-3">
               {page.caseStudy.delivered.map((d) => (
                 <li class="flex items-start gap-3">
@@ -263,15 +263,15 @@ const breadcrumbSchema = {
             </div>
           </div>
           <div class="bg-white rounded-2xl p-8 shadow-sm border border-accent/10">
-            <blockquote class="text-lg italic text-foreground leading-relaxed mb-4">„{page.caseStudy.quote}"</blockquote>
+            <blockquote class="text-lg italic text-foreground leading-relaxed mb-4">“{page.caseStudy.quote}”</blockquote>
             <p class="text-sm text-accent font-semibold">{page.caseStudy.quoteAuthor}</p>
-            <p class="text-xs text-muted-foreground mt-2">Referenz mit Genehmigung verwendet.</p>
+            <p class="text-xs text-muted-foreground mt-2">Reference used with permission.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Warum Partner mit uns -->
+    <!-- Why partner with us -->
     <section class="bg-white py-20 px-4">
       <div class="max-w-5xl mx-auto">
         <h2 class="text-2xl lg:text-3xl font-bold text-center mb-14">{page.why.title}</h2>

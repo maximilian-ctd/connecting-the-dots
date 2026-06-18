@@ -51,6 +51,14 @@ const t = getTranslations(lang);
                 <p class="service-description text-sm leading-relaxed text-muted-foreground">
                   {t.services.leadGeneration.description}
                 </p>
+                <a
+                  href={`/${lang}/tiktok-shop`}
+                  onclick="event.stopPropagation()"
+                  class="mt-2 inline-flex items-center gap-1 text-sm font-medium text-accent hover:underline"
+                >
+                  {lang === 'de' ? 'Mehr zu TikTok Shop' : 'More on TikTok Shop'}
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                </a>
               </div>
             </div>
 
@@ -165,8 +173,16 @@ const t = getTranslations(lang);
       <!-- Why ConnectingTheDots Card -->
       <div id="benefits-card" class="opacity-0 h-full">
         <div class="bg-white border-0 shadow-sm rounded-2xl hover:shadow-xl transition-shadow h-full flex flex-col">
-          <div class="pb-6 px-6 pt-6">
+          <div class="pb-6 px-6 pt-6 space-y-3">
             <h3 class="text-2xl font-semibold">{t.services.whyConnectingTheDots}</h3>
+            <a
+              href={`/${lang}/tiktok-shop-partner`}
+              class="inline-flex items-center gap-2 px-3 py-1.5 bg-secondary rounded-full border border-accent/20 hover:border-accent/50 transition-colors text-sm font-medium text-foreground"
+            >
+              <svg class="w-4 h-4 text-accent flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path d="M10 1.5l2.6 5.27 5.82.85-4.21 4.1.99 5.78L10 14.77l-5.2 2.73.99-5.78L1.58 7.62l5.82-.85L10 1.5z"></path></svg>
+              {lang === 'de' ? 'Teil eines TikTok Shop Partner-Netzwerks' : 'Part of a TikTok Shop Partner network'}
+              <svg class="w-3.5 h-3.5 text-muted-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+            </a>
           </div>
           <div class="px-6 pb-6 space-y-4 flex-1">
             <!-- Benefit 1 -->

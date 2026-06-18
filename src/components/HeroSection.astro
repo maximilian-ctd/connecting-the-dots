@@ -58,14 +58,23 @@ const heroVideoSrc = '/videos/Video_Generation_for_Website_Hero.mp4';
                 </span>
               </a>
             </div>
-            <!-- BAFA Trust Badge -->
-            <div class="flex items-center gap-2 pt-2">
+            <!-- Trust Badges -->
+            <div class="flex flex-wrap items-center gap-2 pt-2">
               <div class="flex items-center gap-2 px-4 py-2 bg-white/50 backdrop-blur-sm rounded-full border border-accent/20">
                 <svg class="w-4 h-4 text-accent flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                   <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
                 </svg>
                 <span class="text-xs font-medium text-slate-700">{t.hero.bafaBadge}</span>
               </div>
+              <a
+                href={`/${lang}/tiktok-shop-partner`}
+                class="flex items-center gap-2 px-4 py-2 bg-white/50 backdrop-blur-sm rounded-full border border-accent/20 hover:border-accent/50 hover:bg-white/70 transition-colors"
+              >
+                <svg class="w-4 h-4 text-accent flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M10 1.5l2.6 5.27 5.82.85-4.21 4.1.99 5.78L10 14.77l-5.2 2.73.99-5.78L1.58 7.62l5.82-.85L10 1.5z"></path>
+                </svg>
+                <span class="text-xs font-medium text-slate-700">{lang === 'de' ? 'TikTok Shop Partner-Netzwerk' : 'TikTok Shop Partner network'}</span>
+              </a>
             </div>
           </div>
         </div>
