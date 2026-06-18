@@ -201,6 +201,9 @@ const shouldNoindex = noindex || currentPath.includes('/test');
 			}
 		})} />
 		
+		<!-- Seitenspezifisches Head-Markup (z. B. FAQ-/Service-JSON-LD pro Landingpage) -->
+		<slot name="head" />
+
 		{currentPath.includes('/de/') || currentPath === '/de' || currentPath === '/' ? (
 			<script type="application/ld+json" set:html={JSON.stringify({
 				"@context": "https://schema.org",

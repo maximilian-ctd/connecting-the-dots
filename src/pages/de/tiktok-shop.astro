@@ -1,0 +1,216 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import LeadForm from '../../components/LeadForm.astro';
+import Footer from '../../components/Footer.astro';
+
+const lang = 'de';
+const currentPath = '/de/tiktok-shop';
+
+const page = {
+  title: 'TikTok Shop verkaufen: Setup, LIVE Shopping & Betrieb · ConnectingTheDots',
+  description: 'TikTok Shop für Brands und Händler: Wir richten deinen Shop ein, starten LIVE Shopping und bringen die ersten Verkäufe – in Tagen, nicht Monaten. Jetzt starten.',
+  hero: {
+    eyebrow: 'TikTok Shop Agentur',
+    title: 'Auf TikTok Shop verkaufen – in Tagen live, nicht in Monaten.',
+    subtitle: 'TikTok Shop ist der am schnellsten wachsende Social-Commerce-Kanal. Wir richten deinen TikTok Shop ein, bringen deine Produkte in shoppable Videos und LIVE Shopping und starten mit echten Verkäufen. Ohne monatelanges Projekt.',
+    cta: 'TikTok Shop starten',
+    secondary: 'Kostenloses Erstgespräch · Antwort in 24 Std.',
+  },
+  why: {
+    title: 'Warum TikTok Shop jetzt?',
+    intro: 'TikTok ist längst mehr als Unterhaltung – es ist eine Verkaufsplattform. Nutzer entdecken Produkte im Feed und kaufen direkt in der App, ohne sie je zu verlassen. Wer früh dabei ist, sichert sich Reichweite, solange die Klickpreise noch niedrig sind.',
+    kpis: [
+      { value: '#1', label: 'Am schnellsten wachsender Social-Commerce-Kanal', icon: '🚀' },
+      { value: '1 Mrd.+', label: 'Aktive TikTok-Nutzer weltweit', icon: '🌍' },
+      { value: 'bis 5x', label: 'Höhere Conversion durch LIVE Shopping vs. klassisch', icon: '🔥' },
+    ],
+  },
+  services: {
+    title: 'Was wir für dich übernehmen',
+    items: [
+      { icon: '⚙️', title: 'TikTok Shop einrichten', text: 'Account-Verifizierung, Shop-Setup, Produktkatalog, Versand- und Zahlungsanbindung. Wir übernehmen die komplette Einrichtung, damit dein TikTok Shop verkaufsbereit ist – ohne dass du dich durch die Plattform kämpfst.' },
+      { icon: '🎬', title: 'Shoppable Videos & Content', text: 'Produkte direkt im Video verkaufbar machen. Wir bauen mit dir Content-Formate auf, die im Feed funktionieren, und binden Creator über das TikTok-Affiliate-Programm ein.' },
+      { icon: '🔴', title: 'TikTok LIVE Shopping', text: 'Live-Streams mit verkaufbaren Produkten in Echtzeit. Wir planen, setzen auf und moderieren LIVE-Sessions, die nachweislich höhere Warenkörbe und Conversion bringen.' },
+      { icon: '📈', title: 'Betrieb & Skalierung', text: 'Listings pflegen, Kampagnen aussteuern, Performance messen. Was funktioniert, bauen wir aus – datenbasiert, mit AI-gestützter Auswertung, ohne Abstimmungsschleifen.' },
+    ],
+  },
+  forWhom: {
+    title: 'Für wen ist TikTok Shop das Richtige?',
+    items: [
+      'Brands und D2C-Händler, die jüngere Zielgruppen (Gen Z, Millennials) direkt erreichen wollen',
+      'Hersteller mit erklärungs- oder vorführbaren Produkten (Beauty, Fashion, Home, Food, Gadgets)',
+      'Marktplatz-Seller, die einen neuen, wachsenden Kanal mit eigenem Publikum erschließen möchten',
+      'Unternehmen, die TikTok Shop testen wollen, ohne ein internes Team aufzubauen',
+    ],
+  },
+  faq: {
+    title: 'Häufige Fragen zu TikTok Shop',
+    items: [
+      { q: 'Ist TikTok Shop in Deutschland verfügbar?', a: 'Ja. TikTok Shop ist in Deutschland für Händler und Brands ausgerollt. Wir prüfen mit dir die Voraussetzungen, übernehmen die Verifizierung und richten deinen Shop verkaufsbereit ein.' },
+      { q: 'Wie kann ich als Händler auf TikTok Shop verkaufen?', a: 'Du brauchst ein verifiziertes Verkäuferkonto, einen Produktkatalog sowie eine Versand- und Zahlungsanbindung. Wir übernehmen das komplette Setup und bringen deine ersten Produkte live – in der Regel innerhalb weniger Tage.' },
+      { q: 'Was kostet TikTok Shop?', a: 'Das Anlegen eines TikTok Shops ist kostenlos; TikTok erhebt eine Verkaufsprovision pro Bestellung. Unsere Leistung kalkulieren wir transparent nach Umfang – vom einmaligen Setup bis zum laufenden Betrieb. Im Erstgespräch bekommst du eine klare Einschätzung.' },
+      { q: 'Brauche ich viele Follower, um auf TikTok Shop zu verkaufen?', a: 'Nein. Verkäufe entstehen über shoppable Videos, Anzeigen, LIVE Shopping und das Affiliate-Programm – nicht allein über deine Followerzahl. Auch neue Accounts können über die richtigen Formate und Creator-Kooperationen schnell Reichweite aufbauen.' },
+      { q: 'Was ist TikTok LIVE Shopping?', a: 'Bei TikTok LIVE Shopping präsentierst du Produkte in einem Live-Stream, die Zuschauer direkt im Stream kaufen können. Das interaktive Format erzielt deutlich höhere Conversion als statische Listings. Wir planen, produzieren und moderieren die Sessions mit dir.' },
+      { q: 'Wie schnell bin ich live?', a: 'Sobald die Verifizierung und der Katalog stehen, geht es oft in wenigen Tagen los – nicht in Monaten. Wir arbeiten operativ und starten bewusst früh mit echten Verkäufen, statt lange zu planen.' },
+    ],
+  },
+  related: {
+    title: 'Auch interessant',
+    links: [
+      { href: '/de/cases/social-commerce-live-shopping', label: 'Social Commerce & Live Shopping im Überblick' },
+      { href: '/de/blog', label: 'Blog: Social Commerce, TikTok Shop, Whatnot & eBay Live' },
+    ],
+  },
+};
+
+// Strukturierte Daten: FAQ (Rich Results) + TikTok-Shop-spezifischer Service
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": page.faq.items.map((item) => ({
+    "@type": "Question",
+    "name": item.q,
+    "acceptedAnswer": { "@type": "Answer", "text": item.a },
+  })),
+};
+
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "serviceType": "TikTok Shop Setup, LIVE Shopping & Management",
+  "name": "TikTok Shop für Brands und Händler",
+  "description": page.description,
+  "provider": { "@type": "Organization", "name": "ConnectingTheDots", "url": "https://connectingthe.de" },
+  "areaServed": { "@type": "Country", "name": ["DE", "AT", "CH"] },
+  "url": "https://connectingthe.de/de/tiktok-shop",
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Start", "item": "https://connectingthe.de/de/" },
+    { "@type": "ListItem", "position": 2, "name": "TikTok Shop", "item": "https://connectingthe.de/de/tiktok-shop" },
+  ],
+};
+---
+
+<Layout
+  title={page.title}
+  description={page.description}
+  lang={lang}
+  currentPath={currentPath}
+>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  </Fragment>
+
+  <Header lang={lang} currentPath={currentPath} />
+  <main>
+    <!-- Hero -->
+    <section class="relative bg-white pt-32 pb-20 px-4 overflow-hidden">
+      <div class="absolute inset-0 bg-gradient-to-br from-accent/5 via-transparent to-accent/3"></div>
+      <div class="max-w-4xl mx-auto relative z-10 text-center">
+        <span class="inline-block text-xs uppercase tracking-[0.3em] text-accent font-semibold mb-4">{page.hero.eyebrow}</span>
+        <h1 class="text-4xl lg:text-5xl font-bold leading-tight mb-6">{page.hero.title}</h1>
+        <p class="text-lg text-muted-foreground max-w-2xl mx-auto mb-8 leading-relaxed">{page.hero.subtitle}</p>
+        <a href="#contact" class="inline-flex items-center justify-center py-4 px-8 text-lg rounded-xl text-accent-foreground bg-accent shadow-[0_22px_48px_rgba(123,224,183,0.35)] transition-all hover:-translate-y-[2px] hover:shadow-[0_30px_58px_rgba(123,224,183,0.4)] active:scale-[0.98]">
+          {page.hero.cta}
+          <svg class="ml-2 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+        </a>
+        <p class="text-sm text-muted-foreground mt-4">{page.hero.secondary}</p>
+      </div>
+    </section>
+
+    <!-- Warum jetzt + KPIs -->
+    <section class="bg-secondary py-20 px-4">
+      <div class="max-w-4xl mx-auto text-center">
+        <h2 class="text-2xl lg:text-3xl font-bold mb-6">{page.why.title}</h2>
+        <p class="text-lg text-muted-foreground leading-relaxed mb-14 max-w-3xl mx-auto">{page.why.intro}</p>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+          {page.why.kpis.map((kpi) => (
+            <div class="border border-accent/20 bg-white/70 backdrop-blur rounded-2xl p-8 text-center shadow-sm">
+              <div class="text-3xl mb-3">{kpi.icon}</div>
+              <div class="text-3xl font-bold text-foreground mb-2">{kpi.value}</div>
+              <div class="text-sm text-muted-foreground">{kpi.label}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Leistungen -->
+    <section class="bg-white py-20 px-4">
+      <div class="max-w-5xl mx-auto">
+        <h2 class="text-2xl lg:text-3xl font-bold text-center mb-14">{page.services.title}</h2>
+        <div class="grid md:grid-cols-2 gap-8">
+          {page.services.items.map((item) => (
+            <div class="border border-accent/20 bg-white rounded-2xl p-8 shadow-sm hover:shadow-lg transition-all hover:-translate-y-1">
+              <div class="text-4xl mb-4">{item.icon}</div>
+              <h3 class="text-xl font-semibold mb-3">{item.title}</h3>
+              <p class="text-muted-foreground leading-relaxed">{item.text}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Für wen -->
+    <section class="bg-secondary py-16 px-4">
+      <div class="max-w-3xl mx-auto">
+        <h2 class="text-2xl lg:text-3xl font-bold mb-8">{page.forWhom.title}</h2>
+        <ul class="space-y-4">
+          {page.forWhom.items.map((item) => (
+            <li class="flex items-start gap-3">
+              <span class="mt-1.5 h-2 w-2 rounded-full bg-accent flex-shrink-0"></span>
+              <span class="text-muted-foreground leading-relaxed">{item}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="bg-white py-20 px-4">
+      <div class="max-w-3xl mx-auto">
+        <h2 class="text-2xl lg:text-3xl font-bold text-center mb-12">{page.faq.title}</h2>
+        <div class="space-y-4">
+          {page.faq.items.map((item) => (
+            <details class="group border border-accent/20 rounded-2xl bg-secondary/40 p-6 [&_summary]:cursor-pointer">
+              <summary class="flex items-center justify-between gap-4 font-semibold text-foreground list-none">
+                <span>{item.q}</span>
+                <svg class="h-5 w-5 flex-shrink-0 text-accent transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+              </summary>
+              <p class="text-muted-foreground leading-relaxed mt-4">{item.a}</p>
+            </details>
+          ))}
+        </div>
+
+        <!-- Interne Verlinkung -->
+        <div class="mt-14 text-center">
+          <h2 class="text-lg font-semibold mb-4">{page.related.title}</h2>
+          <div class="flex flex-wrap justify-center gap-3">
+            {page.related.links.map((link) => (
+              <a href={link.href} class="inline-flex items-center text-sm text-accent font-medium hover:underline">
+                {link.label}
+                <svg class="ml-1 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+              </a>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Lead Form -->
+    <LeadForm lang={lang} />
+  </main>
+  <Footer lang={lang} currentPath={currentPath} />
+</Layout>
+
+<style>
+  main { min-height: 100vh; }
+  details summary::-webkit-details-marker { display: none; }
+</style>

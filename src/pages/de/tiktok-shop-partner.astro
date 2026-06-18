@@ -1,0 +1,323 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import LeadForm from '../../components/LeadForm.astro';
+import Footer from '../../components/Footer.astro';
+
+const lang = 'de';
+const currentPath = '/de/tiktok-shop-partner';
+
+const page = {
+  title: 'TikTok Shop Partner (TSP): Full-Service-Netzwerk · ConnectingTheDots',
+  description: 'Offizielles TikTok Shop Partner-Netzwerk: Commerce, Brand und Technologie aus einer Hand. Ein Vertrag, drei Spezialisten – Setup, LIVE Shopping und Betrieb für Brands und Händler in DE/EU.',
+  hero: {
+    eyebrow: 'TikTok Shop Partner (TSP)',
+    title: 'Dein TikTok Shop Partner: Commerce, Brand und Technologie aus einer Hand.',
+    subtitle: 'Als Teil eines registrierten TikTok Shop Partner-Netzwerks bringen wir Brands und Händler full-service auf TikTok Shop – ein Ansprechpartner, drei Spezialisten, von der Strategie über das Setup bis zum laufenden Betrieb.',
+    cta: 'Partnergespräch anfragen',
+  },
+  partners: {
+    title: 'Eine Partner-Entität, drei Spezialstärken',
+    intro: 'Cadan Software GmbH ist der registrierte TikTok Shop Partner. Die Umsetzung läuft über ein eingespieltes Spezialisten-Netzwerk – so bekommst du Commerce, Brand und Technologie aus einem Guss, mit einem einzigen Ansprechpartner.',
+    items: [
+      { tag: 'TSP & Technologie', name: 'Cadan Software GmbH', desc: 'Die vertragsführende TikTok-Shop-Partner-Entität. Liefert das AI/SaaS- und Daten-Backbone für Analytics, Automatisierung und Reporting.', icon: '⚙️' },
+      { tag: 'Commerce Operations', name: 'ConnectingTheDots', desc: 'Betreibt den kommerziellen Motor: Marktplatz- und TikTok-Shop-Strategie, Onboarding, Creator & Affiliate, Ads und das Tagesgeschäft.', icon: '🚀' },
+      { tag: 'Brand & Creative', name: 'Make Branding', desc: 'Branding, Webdesign, Content und Online-Marketing. Macht aus dem Shop eine Marke, die auf TikTok konvertiert.', icon: '🎨' },
+    ],
+  },
+  glance: {
+    title: 'Commerce, Brand und Technologie – kombiniert',
+    intro: 'Das Netzwerk verbindet eine registrierte GmbH mit 15+ Jahren Hands-on-Commerce-Erfahrung und eine Kreativagentur. Du briefst einmal, wir koordinieren den Rest – ohne mehrere Dienstleister zu jonglieren.',
+    stats: [
+      { value: '15+', label: 'Jahre E-Commerce- & Go-to-Market-Erfahrung' },
+      { value: '50+', label: 'Betreute Brands über mehrere Kanäle' },
+      { value: '3', label: 'Spezialpartner unter einer TSP-Entität' },
+    ],
+    bafa: 'BAFA-gelistete Beratung im Netzwerk – förderfähig für öffentliche Zuschüsse zu Beratungsleistungen in Deutschland.',
+  },
+  capabilities: {
+    title: 'Alles, was ein TikTok-Shop-Seller braucht',
+    intro: 'Full-Service über das Netzwerk – Commerce (CTD), Brand (Make) und Technologie (Cadan).',
+    items: [
+      { icon: '🧭', title: 'Marktplatz-Strategie', text: 'Kanalmix, Positionierung & Roadmap' },
+      { icon: '✅', title: 'TikTok Shop Onboarding', text: 'Setup, Zertifizierung & Go-Live' },
+      { icon: '🛠️', title: 'Shop Operations', text: 'Listings, Pricing & Tagesgeschäft' },
+      { icon: '🎨', title: 'Brand & Creative Direction', text: 'Identität, Art Direction & Assets' },
+      { icon: '🖥️', title: 'Content & Webdesign', text: 'Storefront, Content & Landingpages' },
+      { icon: '📣', title: 'Retail Media & Ads', text: 'Paid-Kampagnen & ROAS' },
+      { icon: '🤝', title: 'Creator & Affiliate', text: 'Sourcing, Programme & Aktivierung' },
+      { icon: '📊', title: 'Reporting & AI-Analytics', text: 'KPIs, Dashboards & Insights' },
+      { icon: '🔗', title: 'Shopify & Integrationen', text: 'Produkt-Sync & Systeme' },
+    ],
+  },
+  fit: {
+    title: 'Warum wir zu TikTok Shop passen',
+    items: [
+      { icon: '🔴', title: 'Im Kanal zu Hause', text: 'Wir betreiben TikTok Shop, Marktplätze und Shopify täglich – nicht in der Theorie, sondern als laufenden Händlerbetrieb.' },
+      { icon: '⚡', title: 'Direkter Partnerzugang', text: 'Eine direkte Linie ins TikTok-Shop-Team, um Onboarding und Probleme schnell zu lösen.' },
+      { icon: '💡', title: 'Marke, die konvertiert', text: 'Make Branding baut die Creatives und Inhalte, die Produkte auf TikTok wirklich verkaufen.' },
+      { icon: '💎', title: 'Tiefe in strategischen Verticals', text: 'Kategorie-Erfahrung in Schmuck, Beauty, Premium-Fashion und Home & Living – allesamt High-Conversion-Verticals auf TikTok.' },
+    ],
+  },
+  caseStudy: {
+    eyebrow: 'TikTok Shop Case Study',
+    title: 'Shine&Love by BrautSchön: live in 4 Wochen',
+    meta: '925-Silberschmuck, Braut- & Haaraccessoires · Shopify · Jewelry & Bridal',
+    delivered: [
+      'TikTok Shop DE Marktanalyse & Go-to-Market-Strategie',
+      'Shopify-x-TikTok-Shop-Integration (Produktdaten-Sync)',
+      'Creator- & Affiliate-Programm: Setup und Sourcing',
+      'Content-Strategie und Kampagnenplanung',
+      'Kostenmodell mit Break-even und Skalierungs-Roadmap',
+    ],
+    quote: 'Als Schmuckmarke auf Shopify war TikTok Shop für uns komplett Neuland. Maximilian hat unsere Produkte in nur vier Wochen verkaufsbereit live gebracht und Altlasten gelöst, die ohne seine direkte Linie zu TikTok nicht möglich gewesen wären. Wer als Marke auf TikTok Shop verkaufen will, ist hier richtig.',
+    quoteAuthor: 'Cathrin Hesping, Inhaberin BrautSchön GmbH / Shine&Love',
+  },
+  why: {
+    title: 'Was dieses Netzwerk zu einem starken TSP macht',
+    items: [
+      { icon: '🏃', title: 'Operatoren, keine reinen Berater', text: 'Wir betreiben TikTok Shop, Marktplätze und Shopify im Tagesgeschäft.' },
+      { icon: '🔓', title: 'Direkter TikTok-Partnerzugang', text: 'Eine direkte Linie ins TikTok-Shop-Team, um Onboarding und Probleme schnell zu lösen.' },
+      { icon: '🧩', title: 'Commerce + Brand + Tech', text: 'Ein Vertrag deckt Strategie, Operations, Creative und das Daten-Backbone ab.' },
+      { icon: '🏬', title: 'Marktplatz- & Vertical-Tiefe', text: 'Jahre im Zalando-/Tradebyte-Ökosystem und in den Verticals Premium-Schmuck, Beauty und Home & Living.' },
+      { icon: '🤖', title: 'AI-gestützte Analyse', text: 'Markt- und Verkaufsdaten mit moderner AI ausgewertet – DSGVO-konform und schnell.' },
+      { icon: '🇩🇪', title: 'BAFA-gelistetes Netzwerk', text: 'Öffentliche Förderung für Beratungsleistungen in Deutschland möglich.' },
+    ],
+  },
+  faq: {
+    title: 'Häufige Fragen zur TikTok Shop Partnerschaft',
+    items: [
+      { q: 'Was ist ein TikTok Shop Partner (TSP)?', a: 'Ein TikTok Shop Partner (TSP) ist ein von TikTok anerkannter Dienstleister, der Brands und Händlern beim Aufbau und Betrieb ihres TikTok Shops hilft – von Onboarding und Shop-Management über Creator und Ads bis zur Skalierung. Unser Netzwerk bündelt Commerce, Brand und Technologie unter einer registrierten Partner-Entität.' },
+      { q: 'Wer ist die vertragsführende Partner-Entität?', a: 'Vertragspartner ist die Cadan Software GmbH als registrierter TikTok Shop Partner und Technologie-Backbone. Die kommerzielle Umsetzung übernimmt ConnectingTheDots, Brand und Creative kommen von Make Branding – alles über einen einzigen Ansprechpartner.' },
+      { q: 'Welche Leistungen deckt das Netzwerk ab?', a: 'Full-Service: Marktplatz- und TikTok-Shop-Strategie, Onboarding und Zertifizierung, Shop-Operations, Creator & Affiliate, Retail Media & Ads, Brand & Creative, Content & Webdesign, Reporting mit AI-Analytics sowie Shopify- und System-Integrationen.' },
+      { q: 'Für welche Märkte und Kategorien?', a: 'Schwerpunkt Deutschland und EU. Besondere Tiefe haben wir in den strategischen Verticals Schmuck, Beauty, Premium-Fashion und Home & Living – allesamt High-Conversion-Kategorien auf TikTok –, arbeiten aber kategorieübergreifend.' },
+      { q: 'Ist eine BAFA-Förderung möglich?', a: 'Im Netzwerk ist eine BAFA-gelistete Beratung vertreten. Damit können Beratungsleistungen unter den geltenden Bedingungen über öffentliche Zuschüsse förderfähig sein. Die konkrete Förderfähigkeit klären wir im Erstgespräch.' },
+      { q: 'Wie schnell kann ein Shop live gehen?', a: 'Sobald Verifizierung und Produktkatalog stehen, sind erste Shops in wenigen Wochen verkaufsbereit. In unserer Referenz Shine&Love war der Shop in vier Wochen live – inklusive Shopify-Integration, Creator-Setup und Kampagnenplanung.' },
+    ],
+  },
+  related: {
+    title: 'Auch interessant',
+    links: [
+      { href: '/de/tiktok-shop', label: 'Auf TikTok Shop verkaufen: Setup, LIVE Shopping & Betrieb' },
+      { href: '/de/cases/social-commerce-live-shopping', label: 'Social Commerce & Live Shopping im Überblick' },
+    ],
+  },
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": page.faq.items.map((item) => ({
+    "@type": "Question",
+    "name": item.q,
+    "acceptedAnswer": { "@type": "Answer", "text": item.a },
+  })),
+};
+
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "serviceType": "TikTok Shop Partner (TSP) – Full-Service Operations",
+  "name": "TikTok Shop Partner-Netzwerk für Brands und Händler",
+  "description": page.description,
+  "provider": { "@type": "Organization", "name": "ConnectingTheDots", "url": "https://connectingthe.de" },
+  "areaServed": { "@type": "Country", "name": ["DE", "AT", "CH"] },
+  "url": "https://connectingthe.de/de/tiktok-shop-partner",
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Start", "item": "https://connectingthe.de/de/" },
+    { "@type": "ListItem", "position": 2, "name": "TikTok Shop Partner", "item": "https://connectingthe.de/de/tiktok-shop-partner" },
+  ],
+};
+---
+
+<Layout
+  title={page.title}
+  description={page.description}
+  lang={lang}
+  currentPath={currentPath}
+>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  </Fragment>
+
+  <Header lang={lang} currentPath={currentPath} />
+  <main>
+    <!-- Hero -->
+    <section class="relative bg-white pt-32 pb-20 px-4 overflow-hidden">
+      <div class="absolute inset-0 bg-gradient-to-br from-accent/5 via-transparent to-accent/3"></div>
+      <div class="max-w-4xl mx-auto relative z-10 text-center">
+        <span class="inline-block text-xs uppercase tracking-[0.3em] text-accent font-semibold mb-4">{page.hero.eyebrow}</span>
+        <h1 class="text-4xl lg:text-5xl font-bold leading-tight mb-6">{page.hero.title}</h1>
+        <p class="text-lg text-muted-foreground max-w-2xl mx-auto mb-8 leading-relaxed">{page.hero.subtitle}</p>
+        <a href="#contact" class="inline-flex items-center justify-center py-4 px-8 text-lg rounded-xl text-accent-foreground bg-accent shadow-[0_22px_48px_rgba(123,224,183,0.35)] transition-all hover:-translate-y-[2px] hover:shadow-[0_30px_58px_rgba(123,224,183,0.4)] active:scale-[0.98]">
+          {page.hero.cta}
+          <svg class="ml-2 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+        </a>
+      </div>
+    </section>
+
+    <!-- Die Partnerschaft -->
+    <section class="bg-secondary py-20 px-4">
+      <div class="max-w-5xl mx-auto">
+        <h2 class="text-2xl lg:text-3xl font-bold text-center mb-4">{page.partners.title}</h2>
+        <p class="text-lg text-muted-foreground leading-relaxed mb-14 max-w-3xl mx-auto text-center">{page.partners.intro}</p>
+        <div class="grid md:grid-cols-3 gap-8">
+          {page.partners.items.map((p) => (
+            <div class="border border-accent/20 bg-white rounded-2xl p-8 shadow-sm hover:shadow-lg transition-all hover:-translate-y-1">
+              <div class="text-4xl mb-4">{p.icon}</div>
+              <span class="inline-block text-xs uppercase tracking-[0.2em] text-accent font-semibold mb-2">{p.tag}</span>
+              <h3 class="text-xl font-semibold mb-3">{p.name}</h3>
+              <p class="text-muted-foreground leading-relaxed">{p.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Auf einen Blick + Stats -->
+    <section class="bg-white py-20 px-4">
+      <div class="max-w-4xl mx-auto text-center">
+        <h2 class="text-2xl lg:text-3xl font-bold mb-6">{page.glance.title}</h2>
+        <p class="text-lg text-muted-foreground leading-relaxed mb-14 max-w-3xl mx-auto">{page.glance.intro}</p>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-10">
+          {page.glance.stats.map((s) => (
+            <div class="border border-accent/20 bg-secondary/40 rounded-2xl p-8 text-center shadow-sm">
+              <div class="text-4xl font-bold text-foreground mb-2">{s.value}</div>
+              <div class="text-sm text-muted-foreground">{s.label}</div>
+            </div>
+          ))}
+        </div>
+        <div class="max-w-2xl mx-auto bg-accent/10 border border-accent/20 rounded-2xl p-5 text-sm text-foreground font-medium">
+          🇩🇪 {page.glance.bafa}
+        </div>
+      </div>
+    </section>
+
+    <!-- Capabilities -->
+    <section class="bg-secondary py-20 px-4">
+      <div class="max-w-5xl mx-auto">
+        <h2 class="text-2xl lg:text-3xl font-bold text-center mb-4">{page.capabilities.title}</h2>
+        <p class="text-muted-foreground text-center mb-14 max-w-2xl mx-auto">{page.capabilities.intro}</p>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {page.capabilities.items.map((c) => (
+            <div class="border border-accent/20 bg-white rounded-2xl p-6 shadow-sm">
+              <div class="text-3xl mb-3">{c.icon}</div>
+              <h3 class="text-base font-semibold mb-1">{c.title}</h3>
+              <p class="text-sm text-muted-foreground leading-relaxed">{c.text}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Warum wir passen -->
+    <section class="bg-white py-20 px-4">
+      <div class="max-w-5xl mx-auto">
+        <h2 class="text-2xl lg:text-3xl font-bold text-center mb-14">{page.fit.title}</h2>
+        <div class="grid md:grid-cols-2 gap-8">
+          {page.fit.items.map((item) => (
+            <div class="flex gap-4 p-6 bg-secondary/50 rounded-2xl">
+              <div class="text-3xl flex-shrink-0">{item.icon}</div>
+              <div>
+                <h3 class="text-lg font-semibold mb-2">{item.title}</h3>
+                <p class="text-muted-foreground leading-relaxed">{item.text}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Case Study -->
+    <section class="bg-secondary py-20 px-4">
+      <div class="max-w-4xl mx-auto">
+        <span class="block text-center text-xs uppercase tracking-[0.3em] text-accent font-semibold mb-3">{page.caseStudy.eyebrow}</span>
+        <h2 class="text-2xl lg:text-3xl font-bold text-center mb-2">{page.caseStudy.title}</h2>
+        <p class="text-sm text-muted-foreground text-center mb-12">{page.caseStudy.meta}</p>
+        <div class="grid md:grid-cols-2 gap-8 items-start">
+          <div class="bg-white rounded-2xl p-8 shadow-sm border border-accent/10">
+            <h3 class="text-sm font-semibold uppercase tracking-wide text-accent mb-4">Was das Netzwerk geliefert hat</h3>
+            <ul class="space-y-3">
+              {page.caseStudy.delivered.map((d) => (
+                <li class="flex items-start gap-3">
+                  <span class="mt-1.5 h-2 w-2 rounded-full bg-accent flex-shrink-0"></span>
+                  <span class="text-muted-foreground leading-relaxed text-sm">{d}</span>
+                </li>
+              ))}
+            </ul>
+            <div class="mt-6 flex items-center gap-2 text-xs font-semibold text-accent">
+              <span class="bg-accent/10 px-3 py-1 rounded-full">Setup → Go-Live → Scale</span>
+            </div>
+          </div>
+          <div class="bg-white rounded-2xl p-8 shadow-sm border border-accent/10">
+            <blockquote class="text-lg italic text-foreground leading-relaxed mb-4">„{page.caseStudy.quote}"</blockquote>
+            <p class="text-sm text-accent font-semibold">{page.caseStudy.quoteAuthor}</p>
+            <p class="text-xs text-muted-foreground mt-2">Referenz mit Genehmigung verwendet.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Warum Partner mit uns -->
+    <section class="bg-white py-20 px-4">
+      <div class="max-w-5xl mx-auto">
+        <h2 class="text-2xl lg:text-3xl font-bold text-center mb-14">{page.why.title}</h2>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {page.why.items.map((item) => (
+            <div class="border border-accent/20 bg-secondary/40 rounded-2xl p-6">
+              <div class="text-3xl mb-3">{item.icon}</div>
+              <h3 class="text-base font-semibold mb-2">{item.title}</h3>
+              <p class="text-sm text-muted-foreground leading-relaxed">{item.text}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="bg-secondary py-20 px-4">
+      <div class="max-w-3xl mx-auto">
+        <h2 class="text-2xl lg:text-3xl font-bold text-center mb-12">{page.faq.title}</h2>
+        <div class="space-y-4">
+          {page.faq.items.map((item) => (
+            <details class="group border border-accent/20 rounded-2xl bg-white p-6 [&_summary]:cursor-pointer">
+              <summary class="flex items-center justify-between gap-4 font-semibold text-foreground list-none">
+                <span>{item.q}</span>
+                <svg class="h-5 w-5 flex-shrink-0 text-accent transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+              </summary>
+              <p class="text-muted-foreground leading-relaxed mt-4">{item.a}</p>
+            </details>
+          ))}
+        </div>
+
+        <div class="mt-14 text-center">
+          <h2 class="text-lg font-semibold mb-4">{page.related.title}</h2>
+          <div class="flex flex-wrap justify-center gap-3">
+            {page.related.links.map((link) => (
+              <a href={link.href} class="inline-flex items-center text-sm text-accent font-medium hover:underline">
+                {link.label}
+                <svg class="ml-1 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+              </a>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Lead Form -->
+    <LeadForm lang={lang} />
+  </main>
+  <Footer lang={lang} currentPath={currentPath} />
+</Layout>
+
+<style>
+  main { min-height: 100vh; }
+  details summary::-webkit-details-marker { display: none; }
+</style>
