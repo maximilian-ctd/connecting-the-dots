@@ -117,10 +117,16 @@ const breadcrumbSchema = {
         <span class="inline-block text-xs uppercase tracking-[0.3em] text-accent font-semibold mb-4">{page.hero.eyebrow}</span>
         <h1 class="text-4xl lg:text-5xl font-bold leading-tight mb-6">{page.hero.title}</h1>
         <p class="text-lg text-muted-foreground max-w-2xl mx-auto mb-8 leading-relaxed">{page.hero.subtitle}</p>
-        <a href="#contact" class="inline-flex items-center justify-center py-4 px-8 text-lg rounded-xl text-accent-foreground bg-accent shadow-[0_22px_48px_rgba(123,224,183,0.35)] transition-all hover:-translate-y-[2px] hover:shadow-[0_30px_58px_rgba(123,224,183,0.4)] active:scale-[0.98]">
-          {page.hero.cta}
-          <svg class="ml-2 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-        </a>
+        <div class="flex flex-col sm:flex-row gap-3 justify-center">
+          <a href="#contact" class="inline-flex items-center justify-center py-4 px-8 text-lg rounded-xl text-accent-foreground bg-accent shadow-[0_22px_48px_rgba(123,224,183,0.35)] transition-all hover:-translate-y-[2px] hover:shadow-[0_30px_58px_rgba(123,224,183,0.4)] active:scale-[0.98]">
+            {page.hero.cta}
+            <svg class="ml-2 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+          </a>
+          <a href="https://seller-de.tiktok.com/account/register?channel=partnership_tsp_cadan" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center py-4 px-8 text-lg rounded-xl border border-accent/40 text-foreground bg-white hover:border-accent/70 hover:bg-secondary/40 transition-colors">
+            {lang === 'de' ? 'Für TikTok Shop registrieren' : 'Register for TikTok Shop'}
+            <svg class="ml-2 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M17 7H8M17 7v9"></path></svg>
+          </a>
+        </div>
         <p class="text-sm text-muted-foreground mt-4">{page.hero.secondary}</p>
       </div>
     </section>

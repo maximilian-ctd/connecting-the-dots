@@ -1,0 +1,236 @@
+---
+import { getTranslations, type Language } from '../i18n/translations';
+
+interface Props {
+  lang?: Language;
+}
+
+const { lang = 'de' } = Astro.props;
+const t = getTranslations(lang);
+
+const ui = {
+  de: { title: 'Referenzen', subtitle: 'Echte Projekte, echte Ergebnisse – von Marktplatz-Skalierung über TikTok Shop bis Go-to-Market.', prev: 'Vorherige Referenz', next: 'Nächste Referenz', readCase: 'Case lesen' },
+  en: { title: 'References', subtitle: 'Real projects, real results – from marketplace scaling and TikTok Shop to go-to-market.', prev: 'Previous reference', next: 'Next reference', readCase: 'Read the case' },
+}[lang];
+
+const slides = [
+  {
+    logo: '/images/280197cc4f34417bd05646dffc7f56e6f8a15317.png',
+    avatar: null,
+    initials: 'AS',
+    tag: lang === 'de' ? 'Marktplätze & Skalierung' : 'Marketplaces & scaling',
+    name: 'GenesysAI',
+    sub: lang === 'de' ? 'KI-Plattform · DACH-Markteintritt' : 'AI platform · DACH market entry',
+    desc: `${t.caseStudy.description1} ${t.caseStudy.description2}`,
+    chips: [`1 → 4 ${t.caseStudy.kpi1}`, `4 ${t.caseStudy.kpi2}`, `+€1M ${t.caseStudy.kpi3}`],
+    quote: t.caseStudy.testimonial,
+    author: lang === 'de' ? 'Andreas Skorski · Gründer GenesysAI' : 'Andreas Skorski · Founder, GenesysAI',
+    href: lang === 'de'
+      ? '/de/blog/genesysai-breuninger-marktplatz-launch-de'
+      : '/en/blog/genesysai-breuninger-marketplace-launch-en',
+  },
+  {
+    logo: '/images/shine-love.avif',
+    avatar: null,
+    initials: 'CH',
+    tag: 'TikTok Shop',
+    name: 'Shine&Love by BrautSchön',
+    sub: lang === 'de' ? '925-Silberschmuck & Bridal · Shopify' : '925 silver jewelry & bridal · Shopify',
+    desc: lang === 'de'
+      ? 'Als Schmuckmarke auf Shopify war TikTok Shop Neuland. Wir haben die Produkte in vier Wochen verkaufsbereit live gebracht – inklusive Shopify-Integration, Creator-Setup und Kampagnenplanung.'
+      : 'As a jewelry brand on Shopify, TikTok Shop was new territory. We got the products live and sellable in four weeks – including Shopify integration, creator setup and campaign planning.',
+    chips: lang === 'de'
+      ? ['4 Wochen bis Go-Live', 'Shopify × TikTok Shop', 'Schmuck & Bridal']
+      : ['Live in 4 weeks', 'Shopify × TikTok Shop', 'Jewelry & bridal'],
+    quote: lang === 'de'
+      ? 'Wer als Marke auf TikTok Shop verkaufen will, ist hier richtig.'
+      : 'If you want to sell on TikTok Shop as a brand, this is the right place.',
+    author: lang === 'de'
+      ? 'Cathrin Hesping · Inhaberin BrautSchön / Shine&Love'
+      : 'Cathrin Hesping · Owner, BrautSchön / Shine&Love',
+    href: `/${lang}/tiktok-shop-partner`,
+  },
+  {
+    logo: '/images/41144ac6829b4b8ce105a021e42e2c7135c8ab45.png',
+    avatar: null,
+    initials: 'MS',
+    tag: 'Go-to-Market',
+    name: 'TourCont AG',
+    sub: lang === 'de' ? 'Reiseveranstalter-App · Gründungsphase' : 'Tour operator app · founding stage',
+    desc: lang === 'de'
+      ? 'Von einer starken Vision zur marktfähigen Positionierung: Gemeinsam mit den Gründern haben wir ein skalierbares Geschäftsmodell und eine umsetzbare Launchstrategie für einen strukturierten Markteintritt entwickelt.'
+      : 'From a strong vision to a market-ready position: together with the founders we built a scalable business model and an actionable launch strategy for a structured market entry.',
+    chips: lang === 'de'
+      ? ['Marktfähige Positionierung', 'Skalierbares Geschäftsmodell', 'Umsetzbare Launchstrategie']
+      : ['Market-ready positioning', 'Scalable business model', 'Actionable launch strategy'],
+    quote: lang === 'de'
+      ? 'Maximilian war nicht nur Berater, sondern echter Sparringspartner, der mitgedacht und mitgestaltet hat. Das Ergebnis: eine klare Positionierung, eine strukturierte Roadmap und die Grundlage für unseren erfolgreichen Markteintritt.'
+      : 'Maximilian wasn’t just an advisor, but a true sparring partner who thought and built along with us. The result: clear positioning, a structured roadmap and the foundation for our successful market entry.',
+    author: lang === 'de' ? 'Markus Schreiber · CEO, TourCont AG' : 'Markus Schreiber · CEO, TourCont AG',
+    href: lang === 'de'
+      ? '/de/blog/tourcont-ag-von-der-idee-zur-marktreife-de'
+      : '/en/blog/tourcont-ag-from-idea-to-market-readiness-en',
+  },
+];
+---
+
+<section id="case-study" class="bg-white py-20 px-4 scroll-mt-20">
+  <div class="max-w-5xl mx-auto">
+    <div class="text-center mb-12 max-w-3xl mx-auto">
+      <h2 class="text-3xl lg:text-4xl mb-3">{ui.title}</h2>
+      <p class="text-muted-foreground text-lg">{ui.subtitle}</p>
+    </div>
+
+    <div class="ref-slider relative" data-slider>
+      <div class="overflow-hidden rounded-3xl">
+        <div class="ref-track flex" data-track>
+          {slides.map((s) => (
+            <div class="ref-slide w-full flex-shrink-0 px-1">
+              <div class="bg-white border border-accent/15 rounded-3xl shadow-sm p-8 md:p-10 h-full flex flex-col">
+                <div class="flex items-start justify-between gap-4 mb-6">
+                  <div class="flex items-center gap-4 min-w-0">
+                    <img src={s.logo} alt={s.name} class="h-12 w-12 rounded-xl object-contain bg-secondary/50 p-2 flex-shrink-0" loading="lazy" />
+                    <div class="min-w-0">
+                      <h3 class="text-xl font-semibold leading-tight">{s.name}</h3>
+                      <p class="text-sm text-muted-foreground">{s.sub}</p>
+                    </div>
+                  </div>
+                  <span class="text-xs font-semibold text-accent bg-accent/10 px-3 py-1 rounded-full whitespace-nowrap flex-shrink-0">{s.tag}</span>
+                </div>
+
+                <p class="text-muted-foreground leading-relaxed mb-6">{s.desc}</p>
+
+                {s.chips.length > 0 && (
+                  <div class="flex flex-wrap gap-2 mb-6">
+                    {s.chips.map((c) => (
+                      <span class="text-xs font-medium text-foreground bg-secondary px-3 py-1.5 rounded-full border border-accent/15">{c}</span>
+                    ))}
+                  </div>
+                )}
+
+                {s.quote && (
+                  <div class="mt-auto bg-secondary/40 rounded-2xl p-5">
+                    <blockquote class="text-foreground italic leading-relaxed mb-2">„{s.quote}"</blockquote>
+                    <p class="text-sm text-accent font-semibold">{s.author}</p>
+                  </div>
+                )}
+
+                <a href={s.href} class="mt-6 inline-flex items-center gap-1 text-sm font-medium text-accent hover:underline">
+                  {ui.readCase}
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                </a>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Controls -->
+      <button
+        type="button"
+        data-prev
+        aria-label={ui.prev}
+        class="absolute top-1/2 -translate-y-1/2 -left-2 md:-left-5 z-10 h-11 w-11 rounded-full bg-white shadow-md border border-accent/20 flex items-center justify-center text-foreground hover:bg-accent hover:text-accent-foreground transition-colors"
+      >
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+      </button>
+      <button
+        type="button"
+        data-next
+        aria-label={ui.next}
+        class="absolute top-1/2 -translate-y-1/2 -right-2 md:-right-5 z-10 h-11 w-11 rounded-full bg-white shadow-md border border-accent/20 flex items-center justify-center text-foreground hover:bg-accent hover:text-accent-foreground transition-colors"
+      >
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+      </button>
+
+      <!-- Dots -->
+      <div class="flex justify-center gap-2 mt-8" data-dots>
+        {slides.map((_, i) => (
+          <button type="button" data-dot={i} aria-label={`${i + 1}`} class="ref-dot h-2.5 w-2.5 rounded-full bg-accent/25 transition-all"></button>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  (function () {
+    function initRefSlider() {
+      const slider = document.querySelector('[data-slider]');
+      if (!slider) return;
+      const track = slider.querySelector('[data-track]');
+      const slides = slider.querySelectorAll('.ref-slide');
+      const dots = slider.querySelectorAll('[data-dot]');
+      const prev = slider.querySelector('[data-prev]');
+      const next = slider.querySelector('[data-next]');
+      if (!track || slides.length === 0) return;
+
+      let index = 0;
+      const count = slides.length;
+      const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      function render() {
+        track.style.transform = 'translateX(-' + index * 100 + '%)';
+        dots.forEach(function (d, i) {
+          if (i === index) {
+            d.classList.add('is-active');
+            d.style.width = '22px';
+            d.style.background = 'var(--accent, #7be0b7)';
+          } else {
+            d.classList.remove('is-active');
+            d.style.width = '';
+            d.style.background = '';
+          }
+        });
+      }
+      function go(i) { index = (i + count) % count; render(); }
+
+      track.style.transition = 'transform 0.5s ease';
+      if (next) next.addEventListener('click', function () { go(index + 1); restart(); });
+      if (prev) prev.addEventListener('click', function () { go(index - 1); restart(); });
+      dots.forEach(function (d, i) { d.addEventListener('click', function () { go(i); restart(); }); });
+
+      // Keyboard
+      slider.setAttribute('tabindex', '0');
+      slider.addEventListener('keydown', function (e) {
+        if (e.key === 'ArrowLeft') { go(index - 1); restart(); }
+        if (e.key === 'ArrowRight') { go(index + 1); restart(); }
+      });
+
+      // Touch swipe
+      let startX = 0, dx = 0, dragging = false;
+      track.addEventListener('touchstart', function (e) { startX = e.touches[0].clientX; dragging = true; }, { passive: true });
+      track.addEventListener('touchmove', function (e) { if (dragging) dx = e.touches[0].clientX - startX; }, { passive: true });
+      track.addEventListener('touchend', function () {
+        if (dragging && Math.abs(dx) > 40) { go(index + (dx < 0 ? 1 : -1)); restart(); }
+        dragging = false; dx = 0;
+      });
+
+      // Autoplay
+      let timer = null;
+      function start() { if (reduce || count < 2) return; stop(); timer = setInterval(function () { go(index + 1); }, 6000); }
+      function stop() { if (timer) { clearInterval(timer); timer = null; } }
+      function restart() { stop(); start(); }
+      slider.addEventListener('mouseenter', stop);
+      slider.addEventListener('mouseleave', start);
+      slider.addEventListener('focusin', stop);
+      slider.addEventListener('focusout', start);
+
+      render();
+      start();
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initRefSlider);
+    } else {
+      initRefSlider();
+    }
+  })();
+</script>
+
+<style>
+  .ref-dot { cursor: pointer; }
+  .ref-slide { align-items: stretch; }
+  /* Slides gleich hoch */
+  .ref-track { align-items: stretch; }
+</style>
