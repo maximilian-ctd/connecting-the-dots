@@ -1,0 +1,425 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Leipzig Live-Commerce Meetup</title>
+<meta name="description" content="After-Work-Meetup zu Live-Commerce am 29. Oktober 2026 in der SKM Galerie Leipzig. ConnectingTheDots, STILbewusst und eBay Live. 25 kuratierte Plätze.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Leipzig Live-Commerce Meetup · 29. Oktober 2026">
+<meta property="og:description" content="After-Work-Meetup zu Live-Commerce in Leipzig – mit ConnectingTheDots, STILbewusst und eBay Live. Kostenlos, kuratiert, 25 Plätze.">
+<meta property="og:url" content="https://connectingthe.de/events/live-commerce-meetup/">
+<meta property="og:image" content="https://connectingthe.de/events/live-commerce-meetup/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Leipzig Live-Commerce Meetup – 29. Oktober 2026, SKM Galerie Leipzig">
+<meta property="og:site_name" content="ConnectingTheDots">
+<meta property="og:locale" content="de_DE">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Leipzig Live-Commerce Meetup · 29. Oktober 2026">
+<meta name="twitter:description" content="After-Work-Meetup zu Live-Commerce in Leipzig – ConnectingTheDots, STILbewusst & eBay Live. 25 Plätze.">
+<meta name="twitter:image" content="https://connectingthe.de/events/live-commerce-meetup/og.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap">
+<style>
+  :root {
+    --bg: #ffffff;
+    --bg2: #f5f7fa;
+    --bg3: #e8edf2;
+    --primary: #0b0f14;
+    --text: #0b0f14;
+    --muted: #475569;
+    --muted2: #64748b;
+    --line: rgba(11,15,20,0.12);
+    --accent: #7be0b7;
+    --accent-ink: #0b0f14;
+    --accent-strong: #0e9f6e;
+    --live: #ff4d5e;
+    --input: #ffffff;
+    --radius: 14px;
+    color-scheme: light;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: "Manrope", "Segoe UI", system-ui, -apple-system, sans-serif;
+    font-size: 17px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--accent-strong); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  h1, h2, h3 { margin: 0; text-wrap: balance; letter-spacing: -0.01em; }
+  p { margin: 0; }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+  .eyebrow {
+    font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent-strong);
+  }
+
+  /* Nav */
+  .nav { position: sticky; top: 0; z-index: 20; background: rgba(255,255,255,0.86); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
+  .nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 68px; gap: 16px; }
+  .nav img { height: 34px; width: auto; display: block; }
+  .nav-links { display: flex; align-items: center; gap: 22px; font-size: 14px; font-weight: 600; }
+  .nav-links a { color: var(--muted); }
+  .nav-links a:hover { color: var(--text); text-decoration: none; }
+  @media (max-width: 720px) { .nav-links a:not(.btn) { display: none; } }
+
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--accent); color: var(--accent-ink) !important;
+    font-weight: 800; font-size: 15px; padding: 12px 22px; border-radius: 999px; border: 0; cursor: pointer;
+    transition: transform .15s ease, filter .15s ease;
+  }
+  .btn:hover { filter: brightness(1.06); transform: translateY(-1px); text-decoration: none !important; }
+  .btn:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible, a:focus-visible {
+    outline: 3px solid rgba(123,224,183,0.55); outline-offset: 2px;
+  }
+  .btn.small { padding: 9px 16px; font-size: 14px; }
+  .btn.ghost { background: transparent; color: var(--text) !important; border: 1px solid var(--line); }
+
+  /* Hero */
+  .hero { padding: 72px 0 56px; position: relative; overflow: hidden; }
+  .hero::before {
+    content: ""; position: absolute; inset: -20% -10% auto auto; width: 560px; height: 560px; border-radius: 50%;
+    background: radial-gradient(closest-side, rgba(123,224,183,0.16), rgba(123,224,183,0));
+    pointer-events: none;
+  }
+  .live { display: inline-flex; align-items: center; gap: 10px; font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-bottom: 22px; }
+  .live .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--live); box-shadow: 0 0 0 0 rgba(255,77,94,0.6); animation: pulse 1.8s infinite; }
+  .live .tag { background: var(--live); color: #fff; font-weight: 800; padding: 2px 8px; border-radius: 6px; letter-spacing: 0.1em; }
+  @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(255,77,94,0.55);} 70% { box-shadow: 0 0 0 10px rgba(255,77,94,0);} 100% { box-shadow: 0 0 0 0 rgba(255,77,94,0);} }
+  @media (prefers-reduced-motion: reduce) { .live .dot { animation: none; } .btn { transition: none; } }
+  .hero h1 { font-size: clamp(38px, 6vw, 66px); font-weight: 800; line-height: 1.04; max-width: 15ch; }
+  .hero h1 em { font-style: normal; color: var(--accent-strong); }
+  .hero .lead { margin-top: 22px; max-width: 60ch; font-size: 19px; color: var(--muted); }
+  .hero .cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; align-items: center; }
+  .hero .cta .note { font-size: 14px; color: var(--muted2); }
+
+  .meta { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; margin-top: 48px; }
+  .meta div { background: var(--bg2); padding: 18px 20px; }
+  .meta .k { font-size: 12px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted2); font-weight: 700; }
+  .meta .v { font-size: 18px; font-weight: 700; margin-top: 4px; font-variant-numeric: tabular-nums; }
+  .meta .s { font-size: 13px; color: var(--muted); margin-top: 2px; }
+  @media (max-width: 720px) { .meta { grid-template-columns: repeat(2, 1fr); } }
+
+  /* Sections */
+  section { padding: 64px 0; border-top: 1px solid var(--line); }
+  .sec-head { display: grid; grid-template-columns: 1fr 1.6fr; gap: 32px; align-items: start; margin-bottom: 36px; }
+  .sec-head h2 { font-size: clamp(26px, 3.4vw, 36px); font-weight: 800; margin-top: 8px; }
+  .sec-head p { color: var(--muted); max-width: 60ch; }
+  @media (max-width: 800px) { .sec-head { grid-template-columns: 1fr; gap: 12px; } }
+
+  .questions { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; list-style: none; padding: 0; margin: 0; }
+  .questions li { background: var(--bg2); border: 1px solid var(--line); border-radius: 12px; padding: 16px 18px; font-weight: 600; display: flex; gap: 12px; align-items: flex-start; }
+  .questions li::before { content: "?"; flex: 0 0 26px; height: 26px; border-radius: 8px; background: rgba(123,224,183,0.2); color: var(--accent-strong); font-weight: 800; display: inline-flex; align-items: center; justify-content: center; font-size: 14px; margin-top: 1px; }
+  @media (max-width: 720px) { .questions { grid-template-columns: 1fr; } }
+
+  .persp { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .persp article { background: var(--bg2); border: 1px solid var(--line); border-radius: var(--radius); padding: 26px 24px; display: flex; flex-direction: column; gap: 12px; }
+  .persp .role { font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent-strong); }
+  .persp h3 { font-size: 22px; font-weight: 800; }
+  .persp p { color: var(--muted); font-size: 15.5px; }
+  .persp .q { margin-top: auto; padding-top: 14px; border-top: 1px solid var(--line); font-size: 15px; color: var(--text); font-weight: 600; }
+  @media (max-width: 860px) { .persp { grid-template-columns: 1fr; } }
+
+  .timeline { list-style: none; margin: 0; padding: 0; border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; }
+  .timeline li { display: grid; grid-template-columns: 110px 1fr; gap: 20px; padding: 18px 22px; background: var(--bg2); border-top: 1px solid var(--line); }
+  .timeline li:first-child { border-top: 0; }
+  .timeline time { font-weight: 800; font-variant-numeric: tabular-nums; color: var(--accent-strong); }
+  .timeline b { display: block; font-weight: 800; }
+  .timeline span { color: var(--muted); font-size: 15.5px; }
+  @media (max-width: 600px) { .timeline li { grid-template-columns: 1fr; gap: 4px; } }
+
+  .chips { display: flex; flex-wrap: wrap; gap: 10px; }
+  .chips span { background: var(--bg3); border: 1px solid var(--line); border-radius: 999px; padding: 8px 14px; font-size: 14.5px; font-weight: 600; }
+
+  .loc { display: grid; grid-template-columns: 1.2fr 1fr; gap: 24px; }
+  .loc .card { background: var(--bg2); border: 1px solid var(--line); border-radius: var(--radius); padding: 26px; }
+  .loc h3 { font-size: 22px; font-weight: 800; margin-bottom: 8px; }
+  .loc address { font-style: normal; font-weight: 600; font-size: 17px; }
+  .loc p { color: var(--muted); font-size: 15.5px; margin-top: 12px; }
+  .loc .links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+  @media (max-width: 800px) { .loc { grid-template-columns: 1fr; } }
+
+  /* Form */
+  .signup { display: grid; grid-template-columns: 1fr 1.4fr; gap: 40px; }
+  .signup .intro p { color: var(--muted); margin-top: 12px; }
+  .signup .intro ul { color: var(--muted); padding-left: 18px; margin: 14px 0 0; font-size: 15.5px; }
+  .signup .intro li { margin: 4px 0; }
+  @media (max-width: 860px) { .signup { grid-template-columns: 1fr; gap: 24px; } }
+  form { background: var(--bg2); border: 1px solid var(--line); border-radius: var(--radius); padding: 28px; display: grid; gap: 16px; }
+  .row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  @media (max-width: 560px) { .row { grid-template-columns: 1fr; } }
+  .field { display: grid; gap: 6px; }
+  label { font-size: 14px; font-weight: 700; }
+  label .opt { color: var(--muted2); font-weight: 500; }
+  input, select, textarea {
+    width: 100%; background: var(--input); color: var(--text); border: 1px solid var(--line); border-radius: 12px;
+    padding: 11px 13px; font: inherit; font-size: 15.5px; transition: border-color .15s ease;
+  }
+  input::placeholder, textarea::placeholder { color: #5b6470; }
+  input:focus, select:focus, textarea:focus { border-color: var(--accent-strong); outline: none; }
+  select { appearance: none; background-image: linear-gradient(45deg, transparent 50%, var(--muted) 50%), linear-gradient(135deg, var(--muted) 50%, transparent 50%); background-position: calc(100% - 20px) 50%, calc(100% - 14px) 50%; background-size: 6px 6px; background-repeat: no-repeat; padding-right: 36px; }
+  textarea { min-height: 96px; resize: vertical; }
+  .consent { display: grid; grid-template-columns: 20px 1fr; gap: 12px; align-items: start; font-size: 14px; color: var(--muted); }
+  .consent input { width: 18px; height: 18px; margin-top: 3px; accent-color: var(--accent-strong); padding: 0; }
+  .consent label { font-weight: 500; }
+  .hp { position: absolute; left: -9999px; }
+  .form-foot { display: flex; align-items: center; justify-content: space-between; gap: 14px; flex-wrap: wrap; }
+  .form-foot .hint { font-size: 13px; color: var(--muted2); }
+  .msg { display: none; border-radius: 12px; padding: 14px 16px; font-size: 15px; }
+  .msg.ok { display: block; background: rgba(123,224,183,0.12); border: 1px solid rgba(123,224,183,0.4); }
+  .msg.err { display: block; background: rgba(255,77,94,0.1); border: 1px solid rgba(255,77,94,0.4); }
+  .msg b { display: block; font-size: 17px; margin-bottom: 4px; }
+
+  /* Partners + footer */
+  .partners { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .partners div { border: 1px solid var(--line); border-radius: var(--radius); padding: 22px 24px; background: var(--bg2); }
+  .partners .name { font-weight: 800; font-size: 19px; }
+  .partners .desc { color: var(--muted); font-size: 14.5px; margin-top: 4px; }
+  .partners a { display: inline-block; margin-top: 10px; font-size: 14px; font-weight: 700; }
+  @media (max-width: 800px) { .partners { grid-template-columns: 1fr; } }
+  footer { border-top: 1px solid var(--line); padding: 32px 0 44px; color: var(--muted2); font-size: 14px; }
+  footer .wrap { display: flex; flex-wrap: wrap; gap: 16px 28px; align-items: center; justify-content: space-between; }
+  footer a { color: var(--muted); font-weight: 600; }
+  footer img { height: 26px; opacity: .9; }
+
+  /* Extras: Giveaway + Powered by eBay */
+  .extras { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 20px; margin-top: 20px; }
+  .badge-soft { display: inline-flex; align-items: center; gap: 8px; background: rgba(123,224,183,0.16); border: 1px solid rgba(123,224,183,0.55); color: var(--accent-ink); font-weight: 700; font-size: 14px; padding: 8px 14px; border-radius: 999px; }
+  .powered { display: inline-flex; align-items: center; gap: 7px; font-size: 14px; font-weight: 600; color: var(--muted2); }
+  .ebay { font-weight: 800; font-size: 17px; letter-spacing: -0.03em; }
+  .ebay-logo { height: 26px; width: auto; display: inline-block; vertical-align: middle; }
+  footer .ebay-logo { height: 22px; }
+  .ebay span:nth-child(1){color:#e53238} .ebay span:nth-child(2){color:#0064d2} .ebay span:nth-child(3){color:#f5af02} .ebay span:nth-child(4){color:#86b817}
+</style>
+</head>
+<body>
+<header class="nav">
+  <div class="wrap">
+    <a href="https://connectingthe.de/" aria-label="ConnectingTheDots"><img src="/images/Logo_CTD.svg" alt="ConnectingTheDots"></a>
+    <nav class="nav-links" aria-label="Seitennavigation">
+      <a href="#erwartet">Was dich erwartet</a>
+      <a href="#ablauf">Ablauf</a>
+      <a href="#perspektiven">Partner</a>
+      <a href="#anmeldung" class="btn small">Platz anfragen</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero" style="border-top:0">
+    <div class="wrap">
+      <div class="live"><span class="dot" aria-hidden="true"></span><span class="tag">Live</span> Leipzig · Donnerstag, 29. Oktober 2026</div>
+      <h1>Kann Live-Commerce wirklich <em>verkaufen?</em></h1>
+      <p class="lead">After-Work-Meetup für E-Commerce, Fashion und Retail in Leipzig. Kurzer Praxis-Impuls, ein Blick auf eBay Live, danach Drinks und Gespräche.</p>
+      <div class="cta">
+        <a href="#anmeldung" class="btn">Platz anfragen</a>
+        <a href="#ablauf" class="btn ghost">Programm ansehen</a>
+        <span class="note">Kostenlos · kuratiert · 25 Plätze</span>
+      </div>
+      <div class="extras">
+        <span class="badge-soft">🎁 Giveaway-Überraschung für alle Gäste</span>
+        <span class="powered">Powered by <img src="/images/ebay-live-logo.svg" alt="eBay Live" class="ebay-logo"></span>
+      </div>
+      <div class="meta" role="list">
+        <div role="listitem"><div class="k">Datum</div><div class="v">29.10.2026</div><div class="s">Donnerstag</div></div>
+        <div role="listitem"><div class="k">Zeit</div><div class="v">18:00 Uhr</div><div class="s">Einlass ab 18:00, Ende offen</div></div>
+        <div role="listitem"><div class="k">Ort</div><div class="v">SKM Galerie</div><div class="s"><a href="https://maps.google.com/?q=Karl-Heine-Stra%C3%9Fe+85a,+04229+Leipzig" target="_blank" rel="noopener">Karl-Heine-Str. 85a, Plagwitz</a></div></div>
+        <div role="listitem"><div class="k">Plätze</div><div class="v">25</div><div class="s">ausgewählte Gäste</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="erwartet">
+    <div class="wrap">
+      <div class="sec-head">
+        <div><div class="eyebrow">Was dich erwartet</div><h2>Kein Sales-Pitch. Ein Abend mit Antworten.</h2></div>
+        <p>Live-Commerce wird für Marken und Händler zum ernsthaften Vertriebskanal, viele Fragen bleiben aber offen. Wir diskutieren sie anhand echter Erfahrungen aus dem laufenden Geschäft, in einer kuratierten Runde aus E-Commerce- und Retail-Entscheidern, Marken, Händlern, Gründern und Creatorn aus Leipzig und der Region.</p>
+      </div>
+      <ul class="questions">
+        <li>Welche Produkte eignen sich für Live-Commerce, und welche nicht?</li>
+        <li>Wie wichtig sind Moderation, Content und Community wirklich?</li>
+        <li>Wie passt Live-Commerce in bestehende E-Commerce-Strukturen?</li>
+        <li>Und vor allem: Kann Live-Commerce tatsächlich verkaufen?</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="perspektiven">
+    <div class="wrap">
+      <div class="sec-head">
+        <div><div class="eyebrow">Drei Perspektiven</div><h2>Business, Content und Plattform an einem Tisch.</h2></div>
+        <p>Drei Partner, die unterschiedliche Teile von Live-Commerce jeden Tag machen.</p>
+      </div>
+      <div class="persp">
+        <article>
+          <div class="role">Business &amp; Umsetzung</div>
+          <h3>ConnectingTheDots</h3>
+          <p>Baut Live-Commerce für Marken und Retailer operativ auf, unter anderem mit eBay Live, und verkauft als Mitgründer eines Pre-Loved-Konzepts selbst erfolgreich über Live-Streams.</p>
+          <div class="q"><a href="https://connectingthe.de/" target="_blank" rel="noopener">connectingthe.de</a></div>
+        </article>
+        <article>
+          <div class="role">Content, Styling &amp; Community</div>
+          <h3>STILbewusst</h3>
+          <p>Stilberatung und kuratierte Fashion-Inhalte aus Leipzig. Zeigt in Live-Streams mit Maison Ô, wie Outfits über Persönlichkeit und Beratung direkt verkauft werden.</p>
+          <div class="q"><a href="https://www.stil-bewusst.de/" target="_blank" rel="noopener">stil-bewusst.de</a></div>
+        </article>
+        <article>
+          <div class="role">Plattform &amp; Technologie</div>
+          <h3>eBay Live</h3>
+          <p>Die Live-Commerce-Plattform von eBay, in Deutschland seit November 2025. Stellt Plattform und Möglichkeiten vor, beantwortet Fragen vor Ort und sponsert den Abend.</p>
+          <div class="q"><a href="https://www.ebay.de/verkaeuferportal/verkaufen-bei-ebay/ebay-live" target="_blank" rel="noopener">eBay Live im Verkäuferportal</a></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="ablauf">
+    <div class="wrap">
+      <div class="sec-head">
+        <div><div class="eyebrow">Ablauf</div><h2>Kurzer Input, viel Austausch.</h2></div>
+        <p>Fachlicher Teil in einer Stunde, danach nur noch Drinks, Snacks und Gespräche in der SKM Galerie, einer zweigeschossigen Galerie in Plagwitz nahe dem Westwerk (<a href="https://skm-galerie.de/" target="_blank" rel="noopener">skm-galerie.de</a>).</p>
+      </div>
+      <ol class="timeline">
+        <li><time>18:00</time><div><b>Ankommen &amp; Drinks</b></div></li>
+        <li><time>18:30</time><div><b>Welcome</b><span>Begrüßung durch ConnectingTheDots.</span></div></li>
+        <li><time>18:40</time><div><b>Live-Commerce in der Praxis</b><span>Impuls von ConnectingTheDots und STILbewusst mit Zahlen und Erfahrungen aus dem laufenden Betrieb.</span></div></li>
+        <li><time>19:00</time><div><b>eBay Live</b><span>Vorstellung der Plattform durch eBay.</span></div></li>
+        <li><time>19:15</time><div><b>Q&amp;A &amp; Austausch</b><span>Offene Fragerunde mit allen drei Partnern.</span></div></li>
+        <li><time>ab 19:30</time><div><b>Networking</b><span>Ohne festes Programm, Ende offen.</span></div></li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="anmeldung">
+    <div class="wrap">
+      <div class="signup">
+        <div class="intro">
+          <div class="eyebrow">Anmeldung</div>
+          <h2 style="font-size:clamp(26px,3.4vw,36px);font-weight:800;margin-top:8px">Platz anfragen</h2>
+          <p>Kostenlos, 25 Plätze, Vergabe nach Passung zum Themenkreis. Wir bestätigen jede Anfrage persönlich per E-Mail. Fragen vorab an <a href="mailto:maximilian@connectingthe.de">maximilian@connectingthe.de</a>.</p>
+        </div>
+
+        <form id="meetup-form" name="meetup-leipzig" method="POST" action="/" data-netlify="true" netlify-honeypot="bot-field" novalidate>
+          <input type="hidden" name="form-name" value="meetup-leipzig">
+          <input type="hidden" name="event" value="Leipzig Live-Commerce Meetup 29.10.2026">
+          <p class="hp" aria-hidden="true"><label>Bitte leer lassen: <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
+
+          <div class="row">
+            <div class="field"><label for="firstName">Vorname</label><input id="firstName" name="firstName" type="text" autocomplete="given-name" required></div>
+            <div class="field"><label for="lastName">Nachname</label><input id="lastName" name="lastName" type="text" autocomplete="family-name" required></div>
+          </div>
+          <div class="row">
+            <div class="field"><label for="company">Unternehmen</label><input id="company" name="company" type="text" autocomplete="organization" required></div>
+            <div class="field"><label for="role">Position / Rolle</label><input id="role" name="role" type="text" autocomplete="organization-title" placeholder="z. B. Geschäftsführerin, E-Commerce Manager" required></div>
+          </div>
+          <div class="field"><label for="email">E-Mail-Adresse</label><input id="email" name="email" type="email" autocomplete="email" placeholder="name@unternehmen.de" required></div>
+          <div class="row">
+            <div class="field">
+              <label for="experience">Erfahrung mit Live-Commerce</label>
+              <select id="experience" name="experience" required>
+                <option value="" selected disabled>Bitte wählen</option>
+                <option>Noch keine, aber interessiert</option>
+                <option>Erste Tests gemacht</option>
+                <option>Läuft bereits regelmäßig</option>
+                <option>Ich arbeite als Creator / Host</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="source">Wie hast du vom Meetup erfahren? <span class="opt">(optional)</span></label>
+              <select id="source" name="source">
+                <option value="" selected>Bitte wählen</option>
+                <option>ConnectingTheDots</option>
+                <option>STILbewusst</option>
+                <option>eBay</option>
+                <option>Empfehlung</option>
+                <option>LinkedIn</option>
+                <option>Sonstiges</option>
+              </select>
+            </div>
+          </div>
+          <div class="consent">
+            <input id="consent" name="consent" type="checkbox" value="ja" required>
+            <label for="consent">Ich bin einverstanden, dass ConnectingTheDots meine Angaben zur Organisation des Meetups speichert, mit den Partnern STILbewusst und eBay Live abstimmt und mich per E-Mail kontaktiert. Details in der <a href="https://connectingthe.de/datenschutz/" target="_blank" rel="noopener">Datenschutzerklärung</a>.</label>
+          </div>
+          <div class="msg" id="form-msg" role="status" aria-live="polite"></div>
+          <div class="form-foot">
+            <button class="btn" type="submit" id="submit-btn">Anfrage senden</button>
+            
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <img src="/images/Logo_CTD.svg" alt="ConnectingTheDots">
+    <span class="powered">Powered by <img src="/images/ebay-live-logo.svg" alt="eBay Live" class="ebay-logo"></span>
+    <div>Leipzig Live-Commerce Meetup · 29. Oktober 2026 · SKM Galerie, Leipzig</div>
+    <div style="display:flex;gap:18px"><a href="https://connectingthe.de/impressum/">Impressum</a><a href="https://connectingthe.de/datenschutz/">Datenschutz</a></div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var form = document.getElementById('meetup-form');
+  var msg = document.getElementById('form-msg');
+  var btn = document.getElementById('submit-btn');
+  var host = location.hostname;
+  var isLive = /connectingthe\.de$/.test(host) || /netlify\.app$/.test(host);
+
+  function show(type, title, text) {
+    msg.className = 'msg ' + type;
+    msg.innerHTML = '<b></b><span></span>';
+    msg.querySelector('b').textContent = title;
+    msg.querySelector('span').textContent = text;
+    msg.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
+    btn.disabled = true;
+    btn.textContent = 'Wird gesendet …';
+    var data = new URLSearchParams(new FormData(form)).toString();
+
+    if (!isLive) {
+      setTimeout(function () {
+        form.reset();
+        btn.disabled = false;
+        btn.textContent = 'Anfrage senden';
+        show('ok', 'Vorschau-Modus', 'Auf connectingthe.de landet diese Anfrage im Netlify-Formular „meetup-leipzig“. In dieser Vorschau wird nichts gesendet.');
+      }, 600);
+      return;
+    }
+
+    fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: data
+    }).then(function (r) {
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      form.reset();
+      show('ok', 'Anfrage ist da', 'Danke! Wir melden uns in den nächsten Tagen per E-Mail mit der Bestätigung und allen Details zum Abend.');
+    }).catch(function () {
+      show('err', 'Das hat leider nicht geklappt', 'Bitte versuche es gleich noch einmal oder schreib direkt an maximilian@connectingthe.de.');
+    }).finally(function () {
+      btn.disabled = false;
+      btn.textContent = 'Anfrage senden';
+    });
+  });
+})();
+</script>
+
+</body>
+</html>
