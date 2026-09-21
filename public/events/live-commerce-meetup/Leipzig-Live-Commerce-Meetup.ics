@@ -1,0 +1,22 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//ConnectingTheDots//Leipzig Meetup//DE
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:leipzig-live-commerce-meetup-2026@connectingthe.de
+DTSTAMP:20260921T090000Z
+DTSTART:20261029T170000Z
+DTEND:20261029T200000Z
+SUMMARY:Leipzig Live-Commerce Meetup
+LOCATION:SKM Galerie\, Karl-Heine-Straße 85a\, 04229 Leipzig
+DESCRIPTION:After-Work-Meetup zu Live-Commerce mit ConnectingTheDots\, STILbewusst und eBay Live. Save the Date\, die offizielle Anmeldung folgt über eBay. Infos: https://connectingthe.de/events/live-commerce-meetup/
+URL:https://connectingthe.de/events/live-commerce-meetup/
+STATUS:TENTATIVE
+BEGIN:VALARM
+TRIGGER:-P1D
+ACTION:DISPLAY
+DESCRIPTION:Morgen: Leipzig Live-Commerce Meetup
+END:VALARM
+END:VEVENT
+END:VCALENDAR
