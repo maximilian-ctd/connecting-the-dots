@@ -210,6 +210,9 @@
   footer .wrap { display: flex; flex-wrap: wrap; gap: 16px 28px; align-items: center; justify-content: space-between; }
   footer a { color: var(--muted); font-weight: 600; }
   footer img { height: 26px; opacity: .9; }
+  .alt-mail { margin: 2px 0 0; color: var(--muted); font-size: 15px; line-height: 1.6; text-align: center; }
+  .alt-mail em { color: var(--text); font-style: normal; font-weight: 600; }
+  .alt-mail a { color: var(--accent); font-weight: 700; word-break: break-all; }
 </style>
 </head>
 <body>
@@ -337,6 +340,10 @@
             <div class="msg" id="form-msg" role="status" aria-live="polite"></div>
             <div class="form-foot"><button class="btn" type="submit" id="submit-btn">Anmeldelink per E-Mail erhalten</button></div>
           </form>
+
+          <div class="divider">Oder direkt bei eBay anmelden</div>
+          <p class="alt-mail">Eine kurze Mail mit dem Hinweis <em>„Anmeldung für das Meet-up in Leipzig"</em> genügt – an<br>
+            <a href="mailto:sellermeetup_de@ebay.com?subject=Anmeldung%20f%C3%BCr%20das%20Meet-up%20in%20Leipzig&body=Hallo%2C%0A%0Aich%20m%C3%B6chte%20mich%20f%C3%BCr%20das%20Live-Commerce%20Meet-up%20in%20Leipzig%20am%2029.10.2026%20anmelden.%0A%0AName%3A%0AUnternehmen%3A%0A">sellermeetup_de@ebay.com</a></p>
 
           <div class="divider">Schon mal im Kalender blocken</div>
           <div class="cal" id="cal-links">
