@@ -1,0 +1,526 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+
+const lang = 'de';
+const currentPath = '/de/ki-check';
+
+// Kampagnen-Schalter: Black-Friday-Fassung bis einschließlich 30.11.2026.
+// Wird beim Build ausgewertet; nach dem Enddatum genügt ein erneuter Deploy, um auf Standard zu wechseln.
+const campaignEnd = new Date('2026-12-01T00:00:00+01:00');
+const isCampaign = new Date() < campaignEnd;
+
+// Schlichte Linien-Icons (Heroicons-Stil), passend zum Rest der Seite.
+const icons = {
+  lightbulb: 'M12 18v-5.25m0 0a6.01 6.01 0 001.5-.189m-1.5.189a6.01 6.01 0 01-1.5-.189m3.75 7.478a12.06 12.06 0 01-4.5 0m3.75 2.383a14.406 14.406 0 01-3 0M14.25 18v-.192c0-.983.658-1.823 1.508-2.316a7.5 7.5 0 10-7.517 0c.85.493 1.509 1.333 1.509 2.316V18',
+  search: 'M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z',
+  bolt: 'M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z',
+  chat: 'M8.625 12a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 01-2.555-.337A5.972 5.972 0 015.41 20.97a5.969 5.969 0 01-.474-.065 4.48 4.48 0 00.978-2.025c.09-.457-.133-.901-.467-1.226C3.93 16.178 3 14.189 3 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25z',
+  bag: 'M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007z',
+  store: 'M13.5 21v-7.5a.75.75 0 01.75-.75h3a.75.75 0 01.75.75V21m-4.5 0H2.36m11.14 0H18m0 0h3.64m-1.39 0V9.349m-16.5 11.65V9.35m0 0a3.001 3.001 0 003.75-.616A2.993 2.993 0 009.75 9.75c.896 0 1.7-.393 2.25-1.016a2.993 2.993 0 002.25 1.016 2.99 2.99 0 002.25-1.016 2.99 2.99 0 002.25 1.016c.896 0 1.7-.393 2.25-1.016a3.001 3.001 0 003.75.616m-16.5 0a3.004 3.004 0 01-.621-4.72l1.189-1.19A1.5 1.5 0 015.378 3h13.243a1.5 1.5 0 011.06.44l1.19 1.189a3.001 3.001 0 01-.621 4.72M6.75 18h3.75a.75.75 0 00.75-.75V13.5a.75.75 0 00-.75-.75H6.75a.75.75 0 00-.75.75v3.75c0 .414.336.75.75.75z',
+  check: 'M4.5 12.75l6 6 9-13.5',
+};
+
+const page = {
+  title: 'Kostenlose KI-Potenzialanalyse für Händler | ConnectingTheDots',
+  description: 'Bewerben Sie sich für unsere kostenlose KI-Potenzialanalyse. Wir zeigen Ihnen mit Belegen, wo Ihr Shop Zeit und Umsatz verliert – bevor wir über Preise sprechen.',
+  hero: {
+    eyebrow: 'Kostenlose KI-Potenzialanalyse',
+    title: isCampaign
+      ? 'Noch wenige Wochen bis Black Friday. Sind Ihre Produkte bereit?'
+      : 'Wo verlieren Sie Umsatz – im eigenen Shop und auf Marktplätzen?',
+    subtitle: isCampaign
+      ? 'Bewerben Sie sich für unsere kostenlose KI-Potenzialanalyse. Wir zeigen Ihnen, wo Ihr Shop Umsatz liegen lässt – und was Sie bis zur Cyber Week noch beheben können.'
+      : 'Unsere kostenlose KI-Potenzialanalyse zeigt es Ihnen – mit konkreten Belegen, bevor wir über Preise sprechen.',
+    cta: 'Jetzt kostenlos bewerben',
+    meta: 'Bewerbung 1 Min. · Fragebogen 5 Min. · Ergebnis in rund einer Woche · kostenlos',
+  },
+  benefits: {
+    title: 'Was Sie bekommen',
+    items: [
+      { icon: 'lightbulb', title: 'Klare Einschätzung', text: 'Wo KI in Ihrem Betrieb Zeit spart oder Umsatz bringt.' },
+      { icon: 'search', title: 'Konkrete Funde mit Beleg', text: 'Aus Ihrem Shop – jeweils mit Screenshot und Link.', tags: ['leere Filter', 'doppelte Artikel', 'lückenhafte Produktdaten', 'schwache Bilder', 'Marktplatz-Feeds'] },
+      { icon: 'bolt', title: 'Die drei größten Hebel', text: 'Die Maßnahmen, die am meisten bringen – nach Wirkung sortiert.' },
+      { icon: 'chat', title: '30-Minuten-Gespräch', text: 'Wir gehen die Ergebnisse gemeinsam durch.' },
+    ],
+  },
+  peak: {
+    title: 'Peak-Sprint: fit für Black Friday und Cyber Week',
+    points: [
+      'Produktdaten der Aktionsartikel vervollständigen',
+      'Marktplatz-Feeds prüfen und bereinigen',
+      'Vorab-Auswertung: Datenlücken, Ausverkaufsrisiko, Preisvergleich',
+      'Antwortvorlagen für den Kundenservice',
+      'Auswertung nach der Cyber Week',
+    ],
+    frame: 'Ohne Eingriff in Ihre Systeme, mit festem Preis, in rund zwei Wochen – wir nehmen nur wenige Händler an.',
+  },
+  forWhom: {
+    title: 'Für wen',
+    cards: [
+      { icon: 'bag', title: 'Kleinere Händler und Mittelstand', desc: 'Wenig Zeit, viel Handarbeit – wir zeigen, wo KI Ihnen Routinearbeit abnimmt.' },
+      { icon: 'store', title: 'Große Sortimente und Marktplätze', desc: 'Viele Artikel, lückenhafte Daten, abgelehnte Feeds – wir zeigen, wo Sie Umsatz verlieren.' },
+    ],
+  },
+  team: {
+    title: 'Das Team',
+    intro: 'Wir arbeiten seit Jahren zusammen und wollen KI für jedes Unternehmen nützlich machen – ohne Buzzwords.',
+    people: [
+      {
+        name: 'Maximilian Rebensburg',
+        role: 'E-Commerce und Marktplätze',
+        text: 'Kennt aus der Zusammenarbeit mit Zalando, Breuninger und anderen Marktplätzen die Datenprobleme von Händlern aus erster Hand.',
+        facts: ['15+ Jahre E-Commerce', 'Marktplätze'],
+        initials: 'MR', photo: '/images/team-maximilian.jpg',
+        linkedin: '', // TODO: LinkedIn-Link von Maximilian einsetzen
+      },
+      {
+        name: 'Dmitrii Tikhonov',
+        role: 'KI für Handel und Marktplätze',
+        text: 'Hat als CTO Systeme gebaut, die Kataloge mit bis zu einer Million Artikeln automatisch sortieren und vervollständigen.',
+        facts: ['15 Jahre Technologie', 'bis 1 Mio. Artikel'],
+        initials: 'DT', photo: '/images/team-dmitrii.jpg',
+        linkedin: 'https://www.linkedin.com/in/dmitrii-ai/',
+      },
+      {
+        name: 'Vladimir Skvortsov',
+        role: 'Systeme und Daten',
+        text: 'Hat fast sieben Jahre bei einem Großhändler Warenwirtschaft, Lager und Online-Shops miteinander verbunden.',
+        facts: ['10+ Jahre Systeme', '~7 Jahre im Handel'],
+        initials: 'VS', photo: '/images/team-vladimir.jpg',
+        linkedin: 'https://www.linkedin.com/in/viskvortsov/',
+      },
+    ],
+  },
+  faq: {
+    title: 'Häufige Fragen',
+    items: [
+      { q: 'Was kostet die Potenzialanalyse?', a: 'Nichts. Sie ist unverbindlich.' },
+      { q: 'Warum muss ich mich bewerben?', a: 'Wir bearbeiten nur eine begrenzte Zahl von Analysen pro Monat, damit jede davon gründlich wird.' },
+      { q: 'Brauchen Sie Zugang zu unseren Systemen?', a: 'Nein. Wir analysieren, was öffentlich sichtbar ist, und Ihre Antworten im Fragebogen.' },
+      { q: 'Wie lange dauert es?', a: 'Nach Ihrer Zusage etwa eine Woche bis zum Ergebnisgespräch.' },
+      { q: 'Für welche Shop-Größe eignet sich das?', a: 'Vom kleinen Fachhändler bis zum großen Marktplatz-Händler.' },
+      ...(isCampaign ? [{ q: 'Reicht die Zeit bis Black Friday noch?', a: 'Ja, wenn wir Anfang November starten. Wir arbeiten mit Exporten aus Ihrem Shop, ohne IT-Projekt.' }] : []),
+      { q: 'Was passiert nach der Analyse?', a: 'Wenn Sie möchten, schlagen wir einen nächsten Schritt mit festem Preis vor. Jede Stufe ist einzeln buchbar, Sie entscheiden jedes Mal neu.' },
+      { q: 'Was, wenn KI mein Problem nicht löst?', a: 'Dann sagen wir Ihnen das offen. Die Kosten einer bezahlten Analyse rechnen wir bei einem Folgeauftrag voll an.' },
+    ],
+  },
+  form: {
+    title: 'Jetzt kostenlos bewerben',
+    hint: 'Wir bearbeiten eine begrenzte Zahl von Analysen pro Monat und melden uns innerhalb von zwei Werktagen.',
+    areas: ['Produktdaten & Katalog', 'Marktplätze & Verkaufskanäle', 'Kundenservice', 'Marketing', 'Vertrieb', 'Logistik & Versand', 'Verwaltung & Buchhaltung'],
+  },
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: page.faq.items.map((item) => ({
+    '@type': 'Question',
+    name: item.q,
+    acceptedAnswer: { '@type': 'Answer', text: item.a },
+  })),
+};
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  serviceType: 'KI-gestützte Katalog- und Prozessoptimierung',
+  name: 'Kostenlose KI-Potenzialanalyse für Händler',
+  description: page.description,
+  provider: { '@type': 'Organization', name: 'ConnectingTheDots', url: 'https://connectingthe.de' },
+  areaServed: { '@type': 'Country', name: ['DE', 'AT', 'CH'] },
+  url: 'https://connectingthe.de/de/ki-check',
+};
+
+const inputClass = 'rounded-xl border border-border h-10 w-full min-w-0 px-3 py-1 text-base bg-input-background transition-[color,box-shadow] outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] placeholder:text-muted-foreground';
+const ctaClass = 'inline-flex items-center justify-center py-4 px-8 text-lg rounded-xl text-accent-foreground bg-accent shadow-[0_22px_48px_rgba(123,224,183,0.35)] transition-all hover:-translate-y-[2px] hover:shadow-[0_30px_58px_rgba(123,224,183,0.4)] active:scale-[0.98]';
+---
+
+<Layout title={page.title} description={page.description} lang={lang} currentPath={currentPath}>
+  <Fragment slot="head">
+    <script is:inline>document.documentElement.classList.add('reveal-js');</script>
+    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+  </Fragment>
+
+  <Header lang={lang} currentPath={currentPath} />
+  <main>
+    <!-- 1. Hero -->
+    <section class="relative bg-white pt-32 pb-20 px-4 overflow-hidden">
+      <div class="absolute inset-0 bg-gradient-to-br from-accent/5 via-transparent to-accent/3"></div>
+      <div class="blob blob-a" aria-hidden="true"></div>
+      <div class="blob blob-b" aria-hidden="true"></div>
+      <div class="max-w-4xl mx-auto relative z-10 text-center">
+        <span class="inline-block text-xs uppercase tracking-[0.3em] text-accent font-semibold mb-4">{page.hero.eyebrow}</span>
+        <h1 class="text-4xl lg:text-5xl font-bold leading-tight mb-6">{page.hero.title}</h1>
+        <p class="text-lg text-muted-foreground max-w-2xl mx-auto mb-6 leading-relaxed">{page.hero.subtitle}</p>
+        <p class="text-sm text-muted-foreground mb-9">{page.hero.meta}</p>
+        <a href="#ki-form" class={ctaClass}>
+          {page.hero.cta}
+          <svg class="ml-2 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+        </a>
+      </div>
+    </section>
+
+    <!-- 2. Was Sie bekommen -->
+    <section class="bg-secondary py-20 px-4">
+      <div class="max-w-5xl mx-auto">
+        <h2 class="text-3xl lg:text-4xl font-bold text-center mb-14" data-reveal>{page.benefits.title}</h2>
+        <div class="grid md:grid-cols-2 gap-8">
+          {page.benefits.items.map((item, i) => (
+            <div class={`ci-card ${['ci-glow-green', 'ci-glow-blue', 'ci-glow-purple', 'ci-glow-green'][i]} p-8 text-center`} data-reveal data-delay={String((i % 2) + 1)}>
+              <div class="ci-badge mx-auto mb-5">
+                <svg class="h-8 w-8 text-accent-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={icons[item.icon]}></path></svg>
+              </div>
+              <h3 class="text-xl font-semibold mb-2">{item.title}</h3>
+              <p class="text-muted-foreground leading-relaxed">{item.text}</p>
+              {item.tags && (
+                <div class="flex flex-wrap justify-center gap-2 mt-4">
+                  {item.tags.map((t) => (
+                    <span class="rounded-full bg-secondary border border-border px-2.5 py-1 text-xs text-muted-foreground">{t}</span>
+                  ))}
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    {isCampaign && (
+      <!-- 2b. Peak-Sprint (nur Kampagne) -->
+      <section class="bg-gradient-to-br from-accent/10 via-accent/5 to-transparent py-16 px-4 border-y border-accent/15">
+        <div class="max-w-4xl mx-auto" data-reveal>
+          <div class="text-center mb-8">
+            <span class="inline-block text-xs uppercase tracking-[0.3em] text-accent font-semibold mb-3">Aktion zur Peak Season</span>
+            <h2 class="text-3xl lg:text-4xl font-bold">{page.peak.title}</h2>
+          </div>
+          <ul class="grid sm:grid-cols-2 gap-x-8 gap-y-3 max-w-3xl mx-auto mb-8">
+            {page.peak.points.map((p) => (
+              <li class="flex items-start gap-3">
+                <svg class="h-5 w-5 text-accent flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={icons.check}></path></svg>
+                <span class="text-foreground leading-relaxed">{p}</span>
+              </li>
+            ))}
+          </ul>
+          <p class="text-center text-muted-foreground max-w-2xl mx-auto">{page.peak.frame}</p>
+        </div>
+      </section>
+    )}
+
+    <!-- 3. Für wen -->
+    <section class="bg-white py-20 px-4">
+      <div class="max-w-5xl mx-auto">
+        <h2 class="text-3xl lg:text-4xl font-bold text-center mb-14" data-reveal>{page.forWhom.title}</h2>
+        <div class="grid md:grid-cols-2 gap-8">
+          {page.forWhom.cards.map((card, i) => (
+            <div class={`ci-card ${i === 0 ? 'ci-glow-green' : 'ci-glow-blue'} p-8 text-center`} data-reveal data-delay={String(i + 1)}>
+              <div class="ci-badge mx-auto mb-5">
+                <svg class="h-8 w-8 text-accent-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={icons[card.icon]}></path></svg>
+              </div>
+              <h3 class="text-xl font-semibold mb-2">{card.title}</h3>
+              <p class="text-muted-foreground leading-relaxed">{card.desc}</p>
+            </div>
+          ))}
+        </div>
+        <div class="text-center mt-12" data-reveal>
+          <a href="#ki-form" class={ctaClass}>
+            Jetzt kostenlos bewerben
+            <svg class="ml-2 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. Das Team -->
+    <section class="bg-secondary py-20 px-4">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center max-w-2xl mx-auto mb-14" data-reveal>
+          <h2 class="text-3xl lg:text-4xl font-bold mb-4">{page.team.title}</h2>
+          <p class="text-muted-foreground leading-relaxed">{page.team.intro}</p>
+        </div>
+        <div class="grid md:grid-cols-3 gap-8">
+          {page.team.people.map((person, i) => (
+            <div class="ci-card ci-glow-green p-8 flex flex-col" data-reveal data-delay={String(i + 1)}>
+              {person.photo
+                ? <img src={person.photo} alt={person.name} width="80" height="80" class="h-20 w-20 rounded-full object-cover mb-5" loading="lazy" />
+                : <div class="h-20 w-20 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-xl font-semibold mb-5">{person.initials}</div>}
+              <h3 class="text-lg font-semibold">{person.name}</h3>
+              <p class="text-sm text-accent font-medium mb-3">{person.role}</p>
+              {person.facts && (
+                <div class="flex flex-wrap gap-2 mb-4">
+                  {person.facts.map((f) => (
+                    <span class="rounded-full bg-accent/10 border border-accent/20 px-2.5 py-1 text-xs font-medium text-foreground">{f}</span>
+                  ))}
+                </div>
+              )}
+              <p class="text-muted-foreground leading-relaxed text-sm mb-5">{person.text}</p>
+              {person.linkedin
+                ? (
+                  <a href={person.linkedin} target="_blank" rel="noopener noreferrer" class="mt-auto inline-flex items-center gap-1 text-sm font-medium text-accent hover:underline">
+                    LinkedIn
+                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                  </a>
+                )
+                : (<span class="mt-auto text-sm text-muted-foreground">{/* TODO: LinkedIn-Link ergänzen */}LinkedIn: folgt</span>)
+              }
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. Bewerbung + FAQ -->
+    <section id="ki-form" class="bg-white py-20 px-4 scroll-mt-20">
+      <div class="max-w-2xl mx-auto">
+        <div class="text-center mb-8" data-reveal>
+          <h2 class="text-3xl lg:text-4xl font-bold mb-3">{page.form.title}</h2>
+          <p class="text-muted-foreground">{page.form.hint}</p>
+        </div>
+
+        <div class="bg-white border border-accent/15 shadow-sm rounded-2xl p-6 sm:p-8" data-reveal data-delay="1">
+          <form id="ki-check-form" name="ki-check" method="POST" action="/" data-netlify="true" netlify-honeypot="bot-field" novalidate class="space-y-5">
+            <input type="hidden" name="form-name" value="ki-check" />
+            <p class="hidden"><label>Bitte leer lassen: <input name="bot-field" /></label></p>
+
+            <div class="grid sm:grid-cols-2 gap-4">
+              <div class="space-y-2">
+                <label for="name" class="text-sm font-medium block">Name *</label>
+                <input id="name" name="name" type="text" autocomplete="name" required class={inputClass} />
+              </div>
+              <div class="space-y-2">
+                <label for="company" class="text-sm font-medium block">Firma *</label>
+                <input id="company" name="company" type="text" autocomplete="organization" required class={inputClass} />
+              </div>
+            </div>
+
+            <div class="grid sm:grid-cols-2 gap-4">
+              <div class="space-y-2">
+                <label for="email" class="text-sm font-medium block">E-Mail *</label>
+                <input id="email" name="email" type="email" autocomplete="email" placeholder="name@unternehmen.de" required class={inputClass} />
+              </div>
+              <div class="space-y-2">
+                <label for="phone" class="text-sm font-medium block">Telefon <span class="text-muted-foreground font-normal">(optional)</span></label>
+                <input id="phone" name="phone" type="tel" autocomplete="tel" class={inputClass} />
+              </div>
+            </div>
+
+            <div class="space-y-2">
+              <label for="shopUrl" class="text-sm font-medium block">Shop-URL *</label>
+              <input id="shopUrl" name="shopUrl" type="url" placeholder="https://ihr-shop.de" required class={inputClass} />
+            </div>
+
+            <div class="grid sm:grid-cols-2 gap-4">
+              <div class="space-y-2">
+                <label for="articleCount" class="text-sm font-medium block">Anzahl Artikel *</label>
+                <select id="articleCount" name="articleCount" required class={inputClass}>
+                  <option value="" selected disabled>Bitte wählen</option>
+                  <option>unter 500</option>
+                  <option>500–5.000</option>
+                  <option>5.000–50.000</option>
+                  <option>über 50.000</option>
+                </select>
+              </div>
+              <div class="space-y-2">
+                <label for="area" class="text-sm font-medium block">Wo hakt es am meisten? *</label>
+                <select id="area" name="area" required class={inputClass}>
+                  <option value="" selected disabled>Bitte wählen</option>
+                  {page.form.areas.map((a) => <option>{a}</option>)}
+                </select>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-3">
+              <input id="consent" name="consent" type="checkbox" value="ja" required class="mt-1 w-4 h-4 rounded border-border text-accent focus:ring-accent focus:ring-2" />
+              <label for="consent" class="text-sm text-muted-foreground leading-relaxed">
+                Ich bin einverstanden, dass ConnectingTheDots meine Angaben zur Bearbeitung meiner Bewerbung speichert und mich dazu kontaktiert. Details in der <a href="/datenschutz/" class="text-primary underline" target="_blank" rel="noopener noreferrer">Datenschutzerklärung</a>.
+              </label>
+            </div>
+
+            <div class="msg hidden rounded-xl p-4 text-sm" id="ki-form-msg" role="status" aria-live="polite"></div>
+
+            <button type="submit" id="ki-submit" class={`w-full ${ctaClass}`}>
+              Jetzt kostenlos bewerben
+              <svg class="ml-2 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+            </button>
+          </form>
+        </div>
+
+        <!-- FAQ direkt unter dem Formular -->
+        <div class="mt-16">
+          <h2 class="text-3xl lg:text-4xl font-bold text-center mb-10" data-reveal>{page.faq.title}</h2>
+          <div class="space-y-4">
+            {page.faq.items.map((item) => (
+              <details class="group border border-accent/20 rounded-2xl bg-secondary/40 p-6 [&_summary]:cursor-pointer transition-colors hover:border-accent/40" data-reveal>
+                <summary class="flex items-center justify-between gap-4 font-semibold text-foreground list-none">
+                  <span>{item.q}</span>
+                  <svg class="h-5 w-5 flex-shrink-0 text-accent transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                </summary>
+                <p class="text-muted-foreground leading-relaxed mt-4">{item.a}</p>
+              </details>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Netlify-Form-Erkennung (statisches Duplikat, nicht sichtbar) -->
+    <form name="ki-check" netlify netlify-honeypot="bot-field" hidden>
+      <input type="text" name="name" />
+      <input type="text" name="company" />
+      <input type="email" name="email" />
+      <input type="tel" name="phone" />
+      <input type="url" name="shopUrl" />
+      <input type="text" name="articleCount" />
+      <input type="text" name="area" />
+      <input type="checkbox" name="consent" />
+    </form>
+  </main>
+  <Footer lang={lang} currentPath={currentPath} />
+</Layout>
+
+<script is:inline>
+  (function () {
+    var form = document.getElementById('ki-check-form');
+    if (!form) return;
+    var msg = document.getElementById('ki-form-msg');
+    var btn = document.getElementById('ki-submit');
+    var isLive = /connectingthe\.de$/.test(location.hostname) || /netlify\.app$/.test(location.hostname);
+
+    function show(type, text) {
+      msg.className = 'msg rounded-xl p-4 text-sm ' + (type === 'ok'
+        ? 'bg-accent/10 border border-accent/30 text-foreground'
+        : 'bg-red-50 border border-red-200 text-red-700');
+      msg.textContent = text;
+      msg.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (!form.checkValidity()) { form.reportValidity(); return; }
+      btn.disabled = true; btn.textContent = 'Wird gesendet …';
+      var data = new URLSearchParams(new FormData(form)).toString();
+      var done = function () { btn.disabled = false; btn.textContent = 'Jetzt kostenlos bewerben'; };
+      var danke = 'Danke für Ihre Bewerbung. Wir prüfen sie und schicken Ihnen bei Zusage einen kurzen Fragebogen (ca. 5 Minuten).';
+
+      if (!isLive) {
+        setTimeout(function () { form.reset(); done(); show('ok', danke + ' (Vorschau-Modus – es wird nichts gesendet.)'); }, 500);
+        return;
+      }
+      fetch('/', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: data })
+        .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); form.reset(); show('ok', danke); })
+        .catch(function () { show('err', 'Das hat leider nicht geklappt. Bitte versuchen Sie es erneut oder schreiben Sie an maximilian@connectingthe.de.'); })
+        .finally(done);
+    });
+  })();
+
+  // Scroll-Einblendungen: schnell und mit Sicherung, damit nie etwas unsichtbar hängen bleibt.
+  (function () {
+    var els = document.querySelectorAll('[data-reveal]');
+    if (!els.length) return;
+    var reveal = function (el) { el.classList.add('reveal-in'); };
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduce || !('IntersectionObserver' in window)) {
+      els.forEach(reveal);
+      return;
+    }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { if (e.isIntersecting) { reveal(e.target); io.unobserve(e.target); } });
+    }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
+    els.forEach(function (el) { io.observe(el); });
+    // Sicherung: alles spätestens nach 700 ms zeigen.
+    setTimeout(function () { els.forEach(reveal); }, 700);
+  })();
+</script>
+
+<style>
+  main { min-height: 100vh; }
+  details summary::-webkit-details-marker { display: none; }
+
+  /* Karten- und Icon-Stil von der Startseite übernommen (card-surface / icon-badge) */
+  .ci-card {
+    border: 1px solid rgba(123, 224, 183, 0.12);
+    border-radius: 1.75rem;
+    background: #fff;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.35s ease;
+  }
+  .ci-card > * { position: relative; z-index: 1; }
+  .ci-card:hover { transform: translateY(-12px); box-shadow: 0 25px 45px -15px rgba(123, 224, 183, 0.3); }
+  .ci-card::before {
+    content: "";
+    position: absolute;
+    inset: -40%;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .ci-card:hover::before { opacity: 1; }
+  .ci-glow-green::before { background: radial-gradient(circle at top, rgba(123, 224, 183, 0.35), transparent 55%); }
+  .ci-glow-blue::before { background: radial-gradient(circle at top, rgba(148, 211, 236, 0.35), transparent 55%); }
+  .ci-glow-purple::before { background: radial-gradient(circle at top, rgba(220, 180, 255, 0.35), transparent 55%); }
+
+  .ci-badge {
+    width: 4.5rem;
+    height: 4.5rem;
+    border-radius: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--accent, #7be0b7);
+    box-shadow: 0 12px 25px rgba(123, 224, 183, 0.25);
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+  .ci-card:hover .ci-badge { transform: scale(1.1) rotate(-4deg); }
+  @media (prefers-reduced-motion: reduce) {
+    .ci-card, .ci-card:hover, .ci-badge, .ci-card:hover .ci-badge { transition: none; transform: none; }
+  }
+
+  /* Scroll-Einblendungen (schnell). Ohne JS bleibt alles sichtbar. */
+  :global(html.reveal-js) [data-reveal] {
+    opacity: 0;
+    transform: translateY(14px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    will-change: opacity, transform;
+  }
+  :global(html.reveal-js) [data-reveal].reveal-in { opacity: 1; transform: none; }
+  :global(html.reveal-js) [data-reveal][data-delay="1"] { transition-delay: 0.05s; }
+  :global(html.reveal-js) [data-reveal][data-delay="2"] { transition-delay: 0.1s; }
+  :global(html.reveal-js) [data-reveal][data-delay="3"] { transition-delay: 0.15s; }
+
+  /* Bewegte Akzent-Flächen im Hero */
+  .blob {
+    position: absolute;
+    border-radius: 9999px;
+    filter: blur(70px);
+    pointer-events: none;
+    z-index: 0;
+  }
+  .blob-a {
+    width: 22rem; height: 22rem;
+    top: -4rem; right: -3rem;
+    background: rgba(123, 224, 183, 0.28);
+    animation: blob-float-a 14s ease-in-out infinite;
+  }
+  .blob-b {
+    width: 18rem; height: 18rem;
+    bottom: -5rem; left: -3rem;
+    background: rgba(123, 224, 183, 0.18);
+    animation: blob-float-b 18s ease-in-out infinite;
+  }
+  @keyframes blob-float-a {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(-24px, 28px) scale(1.12); }
+  }
+  @keyframes blob-float-b {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(28px, -22px) scale(1.1); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .blob { animation: none; }
+    :global(html.reveal-js) [data-reveal] { transition: none; }
+  }
+</style>

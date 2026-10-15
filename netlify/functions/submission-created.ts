@@ -9,7 +9,7 @@
 const RECIPIENT = 'maximilian@connectingthe.de';
 const FROM_EMAIL = process.env.FROM_EMAIL || 'ConnectingTheDots <onboarding@resend.dev>';
 
-const ALLOWED_FORMS = ['contact', 'meetup-leipzig'];
+const ALLOWED_FORMS = ['contact', 'meetup-leipzig', 'ki-check'];
 
 export const handler = async (event: { body?: string | null }) => {
   try {
@@ -32,9 +32,12 @@ export const handler = async (event: { body?: string | null }) => {
     }
 
     const data = payload?.data || payload?.human_fields || {};
-    const { subject, html } = formName === 'meetup-leipzig'
+    const built = formName === 'meetup-leipzig'
       ? buildMeetupEmail(data)
-      : buildContactEmail(data);
+      : formName === 'ki-check'
+        ? buildKiCheckEmail(data)
+        : buildContactEmail(data);
+    const { subject, html } = built;
 
     console.log(`submission-created: sending email for ${formName}`);
 
@@ -102,6 +105,30 @@ function buildMeetupEmail(data: Record<string, any>) {
     <p><strong>Einverständnis:</strong> ${consent ? 'Ja' : 'Nein'}</p>
   `;
   return { subject: `Meetup-Anfrage von ${firstName} ${lastName}`.trim(), html };
+}
+
+function buildKiCheckEmail(data: Record<string, any>) {
+  const name = String(data.name || '');
+  const company = String(data.company || '');
+  const email = String(data.email || '');
+  const phone = String(data.phone || '');
+  const shopUrl = String(data.shopUrl || data.shopurl || '');
+  const articleCount = String(data.articleCount || '');
+  const area = String(data.area || '');
+  const consent = String(data.consent || '');
+
+  const html = `
+    <h2>Neue Bewerbung: KI-Potenzialanalyse</h2>
+    <p><strong>Name:</strong> ${escapeHtml(name)}</p>
+    <p><strong>Firma:</strong> ${escapeHtml(company) || '–'}</p>
+    <p><strong>E-Mail:</strong> ${escapeHtml(email)}</p>
+    <p><strong>Telefon:</strong> ${escapeHtml(phone) || '–'}</p>
+    <p><strong>Shop-URL:</strong> ${escapeHtml(shopUrl) || '–'}</p>
+    <p><strong>Anzahl Artikel:</strong> ${escapeHtml(articleCount) || '–'}</p>
+    <p><strong>Wo hakt es am meisten:</strong> ${escapeHtml(area) || '–'}</p>
+    <p><strong>Einverständnis:</strong> ${consent ? 'Ja' : 'Nein'}</p>
+  `;
+  return { subject: `Bewerbung KI-Potenzialanalyse von ${name}`.trim(), html };
 }
 
 function json(statusCode: number, body: any) {

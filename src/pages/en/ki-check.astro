@@ -1,0 +1,527 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+
+const lang = 'en';
+const currentPath = '/en/ki-check';
+
+// Campaign switch: Black Friday version until and including 30 Nov 2026.
+// Evaluated at build time; after the end date a new deploy switches to the standard version.
+const campaignEnd = new Date('2026-12-01T00:00:00+01:00');
+const isCampaign = new Date() < campaignEnd;
+
+// Simple line icons (Heroicons style), matching the rest of the site.
+const icons = {
+  lightbulb: 'M12 18v-5.25m0 0a6.01 6.01 0 001.5-.189m-1.5.189a6.01 6.01 0 01-1.5-.189m3.75 7.478a12.06 12.06 0 01-4.5 0m3.75 2.383a14.406 14.406 0 01-3 0M14.25 18v-.192c0-.983.658-1.823 1.508-2.316a7.5 7.5 0 10-7.517 0c.85.493 1.509 1.333 1.509 2.316V18',
+  search: 'M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z',
+  bolt: 'M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z',
+  chat: 'M8.625 12a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 01-2.555-.337A5.972 5.972 0 015.41 20.97a5.969 5.969 0 01-.474-.065 4.48 4.48 0 00.978-2.025c.09-.457-.133-.901-.467-1.226C3.93 16.178 3 14.189 3 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25z',
+  bag: 'M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007z',
+  store: 'M13.5 21v-7.5a.75.75 0 01.75-.75h3a.75.75 0 01.75.75V21m-4.5 0H2.36m11.14 0H18m0 0h3.64m-1.39 0V9.349m-16.5 11.65V9.35m0 0a3.001 3.001 0 003.75-.616A2.993 2.993 0 009.75 9.75c.896 0 1.7-.393 2.25-1.016a2.993 2.993 0 002.25 1.016 2.99 2.99 0 002.25-1.016 2.99 2.99 0 002.25 1.016c.896 0 1.7-.393 2.25-1.016a3.001 3.001 0 003.75.616m-16.5 0a3.004 3.004 0 01-.621-4.72l1.189-1.19A1.5 1.5 0 015.378 3h13.243a1.5 1.5 0 011.06.44l1.19 1.189a3.001 3.001 0 01-.621 4.72M6.75 18h3.75a.75.75 0 00.75-.75V13.5a.75.75 0 00-.75-.75H6.75a.75.75 0 00-.75.75v3.75c0 .414.336.75.75.75z',
+  check: 'M4.5 12.75l6 6 9-13.5',
+};
+
+const page = {
+  title: 'Free AI potential analysis for retailers | ConnectingTheDots',
+  description: 'Apply for our free AI potential analysis. We show you with evidence where your shop loses time and revenue – before we talk about prices.',
+  hero: {
+    eyebrow: 'Free AI potential analysis',
+    title: isCampaign
+      ? 'Just a few weeks until Black Friday. Are your products ready?'
+      : 'Where are you losing revenue – in your own shop and on marketplaces?',
+    subtitle: isCampaign
+      ? 'Apply for our free AI potential analysis. We show you where your shop is leaving revenue on the table – and what you can still fix before Cyber Week.'
+      : 'Our free AI potential analysis shows you – with concrete evidence, before we talk about prices.',
+    cta: 'Apply for free',
+    meta: 'Application 1 min · Questionnaire 5 min · Results in about a week · free',
+  },
+  benefits: {
+    title: 'What you get',
+    items: [
+      { icon: 'lightbulb', title: 'Clear assessment', text: 'Where AI saves time or brings revenue in your business.' },
+      { icon: 'search', title: 'Concrete findings with evidence', text: 'From your shop – each with a screenshot and link.', tags: ['empty filters', 'duplicate items', 'incomplete product data', 'weak images', 'marketplace feeds'] },
+      { icon: 'bolt', title: 'The three biggest levers', text: 'The measures that bring the most – sorted by impact.' },
+      { icon: 'chat', title: '30-minute call', text: 'We go through the results together.' },
+    ],
+  },
+  peak: {
+    title: 'Peak sprint: ready for Black Friday and Cyber Week',
+    points: [
+      'Complete the product data for your deal items',
+      'Check and clean up marketplace feeds',
+      'Advance review: data gaps, sell-out risk, price comparison',
+      'Reply templates for customer service',
+      'Review after Cyber Week',
+    ],
+    frame: 'No changes to your systems, at a fixed price, in about two weeks – we only take on a few merchants.',
+    eyebrow: 'Peak season offer',
+  },
+  forWhom: {
+    title: "Who it's for",
+    cards: [
+      { icon: 'bag', title: 'Smaller retailers and SMEs', desc: 'Little time, lots of manual work – we show you where AI takes routine tasks off your plate.' },
+      { icon: 'store', title: 'Large assortments and marketplaces', desc: 'Many items, incomplete data, rejected feeds – we show you where you lose revenue.' },
+    ],
+  },
+  team: {
+    title: 'The team',
+    intro: "We've worked together for years and want to make AI useful for every company – without buzzwords.",
+    people: [
+      {
+        name: 'Maximilian Rebensburg',
+        role: 'E-commerce and marketplaces',
+        text: 'Knows the data problems of retailers first-hand from working with Zalando, Breuninger and other marketplaces.',
+        facts: ['15+ years e-commerce', 'Marketplaces'],
+        initials: 'MR', photo: '/images/team-maximilian.jpg',
+        linkedin: '', // TODO: add Maximilian's LinkedIn link
+      },
+      {
+        name: 'Dmitrii Tikhonov',
+        role: 'AI for retail and marketplaces',
+        text: 'As CTO, built systems that automatically sort and complete catalogs with up to a million items.',
+        facts: ['15 years in technology', 'up to 1M items'],
+        initials: 'DT', photo: '/images/team-dmitrii.jpg',
+        linkedin: 'https://www.linkedin.com/in/dmitrii-ai/',
+      },
+      {
+        name: 'Vladimir Skvortsov',
+        role: 'Systems and data',
+        text: 'Spent almost seven years connecting ERP, warehouse and online shops at a wholesaler.',
+        facts: ['10+ years in systems', '~7 years in retail'],
+        initials: 'VS', photo: '/images/team-vladimir.jpg',
+        linkedin: 'https://www.linkedin.com/in/viskvortsov/',
+      },
+    ],
+  },
+  faq: {
+    title: 'Frequently asked questions',
+    items: [
+      { q: 'What does the potential analysis cost?', a: 'Nothing. It is non-binding.' },
+      { q: 'Why do I have to apply?', a: 'We only handle a limited number of analyses per month so each one is thorough.' },
+      { q: 'Do you need access to our systems?', a: 'No. We analyze what is publicly visible and your answers in the questionnaire.' },
+      { q: 'How long does it take?', a: 'About a week from your confirmation to the results call.' },
+      { q: 'What shop size is it suitable for?', a: 'From small specialist retailers to large marketplace sellers.' },
+      ...(isCampaign ? [{ q: 'Is there still enough time before Black Friday?', a: 'Yes, if we start in early November. We work with exports from your shop, without an IT project.' }] : []),
+      { q: 'What happens after the analysis?', a: 'If you like, we propose a next step at a fixed price. Each stage is bookable individually, and you decide each time.' },
+      { q: "What if AI doesn't solve my problem?", a: 'Then we tell you honestly. We fully credit the cost of a paid analysis toward a follow-up project.' },
+    ],
+  },
+  form: {
+    title: 'Apply for free',
+    hint: 'We handle a limited number of analyses per month and get back to you within two business days.',
+    areas: ['Product data & catalog', 'Marketplaces & sales channels', 'Customer service', 'Marketing', 'Sales', 'Logistics & shipping', 'Administration & accounting'],
+  },
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: page.faq.items.map((item) => ({
+    '@type': 'Question',
+    name: item.q,
+    acceptedAnswer: { '@type': 'Answer', text: item.a },
+  })),
+};
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  serviceType: 'AI-based catalog and process optimization',
+  name: 'Free AI potential analysis for retailers',
+  description: page.description,
+  provider: { '@type': 'Organization', name: 'ConnectingTheDots', url: 'https://connectingthe.de' },
+  areaServed: { '@type': 'Country', name: ['DE', 'AT', 'CH'] },
+  url: 'https://connectingthe.de/en/ki-check',
+};
+
+const inputClass = 'rounded-xl border border-border h-10 w-full min-w-0 px-3 py-1 text-base bg-input-background transition-[color,box-shadow] outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] placeholder:text-muted-foreground';
+const ctaClass = 'inline-flex items-center justify-center py-4 px-8 text-lg rounded-xl text-accent-foreground bg-accent shadow-[0_22px_48px_rgba(123,224,183,0.35)] transition-all hover:-translate-y-[2px] hover:shadow-[0_30px_58px_rgba(123,224,183,0.4)] active:scale-[0.98]';
+---
+
+<Layout title={page.title} description={page.description} lang={lang} currentPath={currentPath}>
+  <Fragment slot="head">
+    <script is:inline>document.documentElement.classList.add('reveal-js');</script>
+    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+  </Fragment>
+
+  <Header lang={lang} currentPath={currentPath} />
+  <main>
+    <!-- 1. Hero -->
+    <section class="relative bg-white pt-32 pb-20 px-4 overflow-hidden">
+      <div class="absolute inset-0 bg-gradient-to-br from-accent/5 via-transparent to-accent/3"></div>
+      <div class="blob blob-a" aria-hidden="true"></div>
+      <div class="blob blob-b" aria-hidden="true"></div>
+      <div class="max-w-4xl mx-auto relative z-10 text-center">
+        <span class="inline-block text-xs uppercase tracking-[0.3em] text-accent font-semibold mb-4">{page.hero.eyebrow}</span>
+        <h1 class="text-4xl lg:text-5xl font-bold leading-tight mb-6">{page.hero.title}</h1>
+        <p class="text-lg text-muted-foreground max-w-2xl mx-auto mb-6 leading-relaxed">{page.hero.subtitle}</p>
+        <p class="text-sm text-muted-foreground mb-9">{page.hero.meta}</p>
+        <a href="#ki-form" class={ctaClass}>
+          {page.hero.cta}
+          <svg class="ml-2 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+        </a>
+      </div>
+    </section>
+
+    <!-- 2. What you get -->
+    <section class="bg-secondary py-20 px-4">
+      <div class="max-w-5xl mx-auto">
+        <h2 class="text-3xl lg:text-4xl font-bold text-center mb-14" data-reveal>{page.benefits.title}</h2>
+        <div class="grid md:grid-cols-2 gap-8">
+          {page.benefits.items.map((item, i) => (
+            <div class={`ci-card ${['ci-glow-green', 'ci-glow-blue', 'ci-glow-purple', 'ci-glow-green'][i]} p-8 text-center`} data-reveal data-delay={String((i % 2) + 1)}>
+              <div class="ci-badge mx-auto mb-5">
+                <svg class="h-8 w-8 text-accent-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={icons[item.icon]}></path></svg>
+              </div>
+              <h3 class="text-xl font-semibold mb-2">{item.title}</h3>
+              <p class="text-muted-foreground leading-relaxed">{item.text}</p>
+              {item.tags && (
+                <div class="flex flex-wrap justify-center gap-2 mt-4">
+                  {item.tags.map((t) => (
+                    <span class="rounded-full bg-secondary border border-border px-2.5 py-1 text-xs text-muted-foreground">{t}</span>
+                  ))}
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    {isCampaign && (
+      <!-- 2b. Peak sprint (campaign only) -->
+      <section class="bg-gradient-to-br from-accent/10 via-accent/5 to-transparent py-16 px-4 border-y border-accent/15">
+        <div class="max-w-4xl mx-auto" data-reveal>
+          <div class="text-center mb-8">
+            <span class="inline-block text-xs uppercase tracking-[0.3em] text-accent font-semibold mb-3">{page.peak.eyebrow}</span>
+            <h2 class="text-3xl lg:text-4xl font-bold">{page.peak.title}</h2>
+          </div>
+          <ul class="grid sm:grid-cols-2 gap-x-8 gap-y-3 max-w-3xl mx-auto mb-8">
+            {page.peak.points.map((p) => (
+              <li class="flex items-start gap-3">
+                <svg class="h-5 w-5 text-accent flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={icons.check}></path></svg>
+                <span class="text-foreground leading-relaxed">{p}</span>
+              </li>
+            ))}
+          </ul>
+          <p class="text-center text-muted-foreground max-w-2xl mx-auto">{page.peak.frame}</p>
+        </div>
+      </section>
+    )}
+
+    <!-- 3. Who it's for -->
+    <section class="bg-white py-20 px-4">
+      <div class="max-w-5xl mx-auto">
+        <h2 class="text-3xl lg:text-4xl font-bold text-center mb-14" data-reveal>{page.forWhom.title}</h2>
+        <div class="grid md:grid-cols-2 gap-8">
+          {page.forWhom.cards.map((card, i) => (
+            <div class={`ci-card ${i === 0 ? 'ci-glow-green' : 'ci-glow-blue'} p-8 text-center`} data-reveal data-delay={String(i + 1)}>
+              <div class="ci-badge mx-auto mb-5">
+                <svg class="h-8 w-8 text-accent-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={icons[card.icon]}></path></svg>
+              </div>
+              <h3 class="text-xl font-semibold mb-2">{card.title}</h3>
+              <p class="text-muted-foreground leading-relaxed">{card.desc}</p>
+            </div>
+          ))}
+        </div>
+        <div class="text-center mt-12" data-reveal>
+          <a href="#ki-form" class={ctaClass}>
+            Apply for free
+            <svg class="ml-2 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. The team -->
+    <section class="bg-secondary py-20 px-4">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center max-w-2xl mx-auto mb-14" data-reveal>
+          <h2 class="text-3xl lg:text-4xl font-bold mb-4">{page.team.title}</h2>
+          <p class="text-muted-foreground leading-relaxed">{page.team.intro}</p>
+        </div>
+        <div class="grid md:grid-cols-3 gap-8">
+          {page.team.people.map((person, i) => (
+            <div class="ci-card ci-glow-green p-8 flex flex-col" data-reveal data-delay={String(i + 1)}>
+              {person.photo
+                ? <img src={person.photo} alt={person.name} width="80" height="80" class="h-20 w-20 rounded-full object-cover mb-5" loading="lazy" />
+                : <div class="h-20 w-20 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-xl font-semibold mb-5">{person.initials}</div>}
+              <h3 class="text-lg font-semibold">{person.name}</h3>
+              <p class="text-sm text-accent font-medium mb-3">{person.role}</p>
+              {person.facts && (
+                <div class="flex flex-wrap gap-2 mb-4">
+                  {person.facts.map((f) => (
+                    <span class="rounded-full bg-accent/10 border border-accent/20 px-2.5 py-1 text-xs font-medium text-foreground">{f}</span>
+                  ))}
+                </div>
+              )}
+              <p class="text-muted-foreground leading-relaxed text-sm mb-5">{person.text}</p>
+              {person.linkedin
+                ? (
+                  <a href={person.linkedin} target="_blank" rel="noopener noreferrer" class="mt-auto inline-flex items-center gap-1 text-sm font-medium text-accent hover:underline">
+                    LinkedIn
+                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                  </a>
+                )
+                : (<span class="mt-auto text-sm text-muted-foreground">{/* TODO: add LinkedIn link */}LinkedIn: coming soon</span>)
+              }
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. Application + FAQ -->
+    <section id="ki-form" class="bg-white py-20 px-4 scroll-mt-20">
+      <div class="max-w-2xl mx-auto">
+        <div class="text-center mb-8" data-reveal>
+          <h2 class="text-3xl lg:text-4xl font-bold mb-3">{page.form.title}</h2>
+          <p class="text-muted-foreground">{page.form.hint}</p>
+        </div>
+
+        <div class="bg-white border border-accent/15 shadow-sm rounded-2xl p-6 sm:p-8" data-reveal data-delay="1">
+          <form id="ki-check-form" name="ki-check" method="POST" action="/" data-netlify="true" netlify-honeypot="bot-field" novalidate class="space-y-5">
+            <input type="hidden" name="form-name" value="ki-check" />
+            <p class="hidden"><label>Please leave empty: <input name="bot-field" /></label></p>
+
+            <div class="grid sm:grid-cols-2 gap-4">
+              <div class="space-y-2">
+                <label for="name" class="text-sm font-medium block">Name *</label>
+                <input id="name" name="name" type="text" autocomplete="name" required class={inputClass} />
+              </div>
+              <div class="space-y-2">
+                <label for="company" class="text-sm font-medium block">Company *</label>
+                <input id="company" name="company" type="text" autocomplete="organization" required class={inputClass} />
+              </div>
+            </div>
+
+            <div class="grid sm:grid-cols-2 gap-4">
+              <div class="space-y-2">
+                <label for="email" class="text-sm font-medium block">Email *</label>
+                <input id="email" name="email" type="email" autocomplete="email" placeholder="name@company.com" required class={inputClass} />
+              </div>
+              <div class="space-y-2">
+                <label for="phone" class="text-sm font-medium block">Phone <span class="text-muted-foreground font-normal">(optional)</span></label>
+                <input id="phone" name="phone" type="tel" autocomplete="tel" class={inputClass} />
+              </div>
+            </div>
+
+            <div class="space-y-2">
+              <label for="shopUrl" class="text-sm font-medium block">Shop URL *</label>
+              <input id="shopUrl" name="shopUrl" type="url" placeholder="https://your-shop.com" required class={inputClass} />
+            </div>
+
+            <div class="grid sm:grid-cols-2 gap-4">
+              <div class="space-y-2">
+                <label for="articleCount" class="text-sm font-medium block">Number of items *</label>
+                <select id="articleCount" name="articleCount" required class={inputClass}>
+                  <option value="" selected disabled>Please select</option>
+                  <option>under 500</option>
+                  <option>500–5,000</option>
+                  <option>5,000–50,000</option>
+                  <option>over 50,000</option>
+                </select>
+              </div>
+              <div class="space-y-2">
+                <label for="area" class="text-sm font-medium block">Where does it hurt most? *</label>
+                <select id="area" name="area" required class={inputClass}>
+                  <option value="" selected disabled>Please select</option>
+                  {page.form.areas.map((a) => <option>{a}</option>)}
+                </select>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-3">
+              <input id="consent" name="consent" type="checkbox" value="yes" required class="mt-1 w-4 h-4 rounded border-border text-accent focus:ring-accent focus:ring-2" />
+              <label for="consent" class="text-sm text-muted-foreground leading-relaxed">
+                I agree that ConnectingTheDots stores my details to process my application and contacts me about it. Details in the <a href="/en/datenschutz/" class="text-primary underline" target="_blank" rel="noopener noreferrer">privacy policy</a>.
+              </label>
+            </div>
+
+            <div class="msg hidden rounded-xl p-4 text-sm" id="ki-form-msg" role="status" aria-live="polite"></div>
+
+            <button type="submit" id="ki-submit" class={`w-full ${ctaClass}`}>
+              Apply for free
+              <svg class="ml-2 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+            </button>
+          </form>
+        </div>
+
+        <!-- FAQ right below the form -->
+        <div class="mt-16">
+          <h2 class="text-3xl lg:text-4xl font-bold text-center mb-10" data-reveal>{page.faq.title}</h2>
+          <div class="space-y-4">
+            {page.faq.items.map((item) => (
+              <details class="group border border-accent/20 rounded-2xl bg-secondary/40 p-6 [&_summary]:cursor-pointer transition-colors hover:border-accent/40" data-reveal>
+                <summary class="flex items-center justify-between gap-4 font-semibold text-foreground list-none">
+                  <span>{item.q}</span>
+                  <svg class="h-5 w-5 flex-shrink-0 text-accent transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                </summary>
+                <p class="text-muted-foreground leading-relaxed mt-4">{item.a}</p>
+              </details>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Netlify form detection (static duplicate, hidden) -->
+    <form name="ki-check" netlify netlify-honeypot="bot-field" hidden>
+      <input type="text" name="name" />
+      <input type="text" name="company" />
+      <input type="email" name="email" />
+      <input type="tel" name="phone" />
+      <input type="url" name="shopUrl" />
+      <input type="text" name="articleCount" />
+      <input type="text" name="area" />
+      <input type="checkbox" name="consent" />
+    </form>
+  </main>
+  <Footer lang={lang} currentPath={currentPath} />
+</Layout>
+
+<script is:inline>
+  (function () {
+    var form = document.getElementById('ki-check-form');
+    if (!form) return;
+    var msg = document.getElementById('ki-form-msg');
+    var btn = document.getElementById('ki-submit');
+    var isLive = /connectingthe\.de$/.test(location.hostname) || /netlify\.app$/.test(location.hostname);
+
+    function show(type, text) {
+      msg.className = 'msg rounded-xl p-4 text-sm ' + (type === 'ok'
+        ? 'bg-accent/10 border border-accent/30 text-foreground'
+        : 'bg-red-50 border border-red-200 text-red-700');
+      msg.textContent = text;
+      msg.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (!form.checkValidity()) { form.reportValidity(); return; }
+      btn.disabled = true; btn.textContent = 'Sending …';
+      var data = new URLSearchParams(new FormData(form)).toString();
+      var done = function () { btn.disabled = false; btn.textContent = 'Apply for free'; };
+      var thanks = 'Thank you for your application. We will review it and, if accepted, send you a short questionnaire (about 5 minutes).';
+
+      if (!isLive) {
+        setTimeout(function () { form.reset(); done(); show('ok', thanks + ' (Preview mode – nothing is sent.)'); }, 500);
+        return;
+      }
+      fetch('/', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: data })
+        .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); form.reset(); show('ok', thanks); })
+        .catch(function () { show('err', 'Unfortunately that did not work. Please try again or email maximilian@connectingthe.de.'); })
+        .finally(done);
+    });
+  })();
+
+  // Scroll reveals: fast, with a safety net so nothing stays hidden.
+  (function () {
+    var els = document.querySelectorAll('[data-reveal]');
+    if (!els.length) return;
+    var reveal = function (el) { el.classList.add('reveal-in'); };
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduce || !('IntersectionObserver' in window)) {
+      els.forEach(reveal);
+      return;
+    }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { if (e.isIntersecting) { reveal(e.target); io.unobserve(e.target); } });
+    }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
+    els.forEach(function (el) { io.observe(el); });
+    // Safety: show everything after 700 ms at the latest.
+    setTimeout(function () { els.forEach(reveal); }, 700);
+  })();
+</script>
+
+<style>
+  main { min-height: 100vh; }
+  details summary::-webkit-details-marker { display: none; }
+
+  /* Card and icon style adopted from the homepage (card-surface / icon-badge) */
+  .ci-card {
+    border: 1px solid rgba(123, 224, 183, 0.12);
+    border-radius: 1.75rem;
+    background: #fff;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.35s ease;
+  }
+  .ci-card > * { position: relative; z-index: 1; }
+  .ci-card:hover { transform: translateY(-12px); box-shadow: 0 25px 45px -15px rgba(123, 224, 183, 0.3); }
+  .ci-card::before {
+    content: "";
+    position: absolute;
+    inset: -40%;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .ci-card:hover::before { opacity: 1; }
+  .ci-glow-green::before { background: radial-gradient(circle at top, rgba(123, 224, 183, 0.35), transparent 55%); }
+  .ci-glow-blue::before { background: radial-gradient(circle at top, rgba(148, 211, 236, 0.35), transparent 55%); }
+  .ci-glow-purple::before { background: radial-gradient(circle at top, rgba(220, 180, 255, 0.35), transparent 55%); }
+
+  .ci-badge {
+    width: 4.5rem;
+    height: 4.5rem;
+    border-radius: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--accent, #7be0b7);
+    box-shadow: 0 12px 25px rgba(123, 224, 183, 0.25);
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+  .ci-card:hover .ci-badge { transform: scale(1.1) rotate(-4deg); }
+  @media (prefers-reduced-motion: reduce) {
+    .ci-card, .ci-card:hover, .ci-badge, .ci-card:hover .ci-badge { transition: none; transform: none; }
+  }
+
+  /* Scroll reveals (fast). Without JS everything stays visible. */
+  :global(html.reveal-js) [data-reveal] {
+    opacity: 0;
+    transform: translateY(14px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    will-change: opacity, transform;
+  }
+  :global(html.reveal-js) [data-reveal].reveal-in { opacity: 1; transform: none; }
+  :global(html.reveal-js) [data-reveal][data-delay="1"] { transition-delay: 0.05s; }
+  :global(html.reveal-js) [data-reveal][data-delay="2"] { transition-delay: 0.1s; }
+  :global(html.reveal-js) [data-reveal][data-delay="3"] { transition-delay: 0.15s; }
+
+  /* Moving accent shapes in the hero */
+  .blob {
+    position: absolute;
+    border-radius: 9999px;
+    filter: blur(70px);
+    pointer-events: none;
+    z-index: 0;
+  }
+  .blob-a {
+    width: 22rem; height: 22rem;
+    top: -4rem; right: -3rem;
+    background: rgba(123, 224, 183, 0.28);
+    animation: blob-float-a 14s ease-in-out infinite;
+  }
+  .blob-b {
+    width: 18rem; height: 18rem;
+    bottom: -5rem; left: -3rem;
+    background: rgba(123, 224, 183, 0.18);
+    animation: blob-float-b 18s ease-in-out infinite;
+  }
+  @keyframes blob-float-a {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(-24px, 28px) scale(1.12); }
+  }
+  @keyframes blob-float-b {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(28px, -22px) scale(1.1); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .blob { animation: none; }
+    :global(html.reveal-js) [data-reveal] { transition: none; }
+  }
+</style>

@@ -279,6 +279,21 @@ const t = getTranslations(lang);
         </div>
       </div>
     </div>
+
+    <!-- KI-Check: neuer Leistungs-Baustein -->
+    <div class="mt-12 rounded-2xl border border-accent/30 bg-accent/5 p-8 lg:p-10 flex flex-col lg:flex-row lg:items-center gap-6">
+      <div class="flex-1">
+        <span class="inline-block text-xs uppercase tracking-[0.2em] text-accent font-semibold mb-3">{lang === 'de' ? 'Neu' : 'New'}</span>
+        <h3 class="text-xl lg:text-2xl font-semibold mb-3">{lang === 'de' ? 'KI-gestützte Katalog- und Prozessoptimierung' : 'AI-powered catalog and process optimization'}</h3>
+        <p class="text-muted-foreground leading-relaxed max-w-3xl">{lang === 'de'
+          ? 'Marktplatz-Expansion scheitert oft an Produktdaten: fehlende Angaben, doppelte Artikel, abgelehnte Feeds. Gemeinsam mit unseren Technik-Partnern setzen wir KI dort ein, wo sie Händlern wirklich Zeit und Geld spart – und sagen offen, wo nicht. Der Einstieg ist eine kostenlose Potenzialanalyse.'
+          : 'Marketplace expansion often fails because of product data: missing details, duplicate products, rejected feeds. Together with our technology partners we use AI where it genuinely saves retailers time and money – and say openly where it does not. You start with a free potential analysis.'}</p>
+      </div>
+      <a href={`/${lang}/ki-check`} class="inline-flex items-center justify-center py-4 px-8 text-lg rounded-xl text-accent-foreground bg-accent shadow-[0_22px_48px_rgba(123,224,183,0.35)] transition-all hover:-translate-y-[2px] hover:shadow-[0_30px_58px_rgba(123,224,183,0.4)] active:scale-[0.98] whitespace-nowrap flex-shrink-0">
+        {lang === 'de' ? 'Zur kostenlosen Potenzialanalyse' : 'To the free potential analysis'}
+        <svg class="ml-2 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+      </a>
+    </div>
   </div>
 </section>
 
